@@ -1,0 +1,77 @@
+<?php
+
+namespace RRZE\RRZESearch\Application\Shortcode;
+
+use RRZE\RRZESearch\Domain\SearchEngine;
+
+class SearchResultsShortcode
+{
+    public $settings;
+    public $options;
+    public $searchEngine;
+
+    public function __construct()
+    {
+        /**
+         * TODO: Define properties outside of constructor
+         * TODO: Populate properties values inside constructor
+         */
+        $this->options      = get_option('rrze_search_settings');
+        $this->searchEngine = new SearchEngine();
+    }
+
+    public function register()
+    {
+        add_shortcode('rrze_search_results', array($this, 'shortcodeInit'));
+    }
+
+    public function shortcodeInit()
+    {
+        $output    = '';
+        $query     = $_GET['q'];
+        $startPage = '&start=';
+        $startPage .= isset($_GET['start']) ? $_GET['start'] : '1';
+        $resource  = $this->options['rrze_search_resources'][$_GET['se']];
+
+        /**
+         * USE JSON file only for dev
+         */
+//        $query_results = file_get_contents(plugins_url('rrze-search').DIRECTORY_SEPARATOR.'fixture'.DIRECTORY_SEPARATOR.'google_results.json');
+        $query_results = $this->searchEngine->Query($resource['resource_uri'].$startPage, $resource['resource_key'],
+            $query);
+        $results = json_decode($query_results, true);
+
+        $output .= '<div id="resultStats">About '.$results['searchInformation']['formattedTotalResults'].' results<nobr> ('.$results['searchInformation']['formattedSearchTime'].' seconds)&nbsp;</nobr></div>';
+        foreach ($results['items'] as $result) {
+            $output .= '<div class="record">';
+            $output .= '<h3 style="padding-bottom:0">';
+            $output .= '<a href="'.$result['link'].'">'.$result['title'].'</a>';
+            $output .= '</h3>';
+            $output .= '<div class="snippet">';
+            $output .= '<cite>'.$result['link'].'</cite><br>';
+            $output .= '<span class="snippet-string">'.$result['htmlSnippet'].'</span>';
+            $output .= '</div>';
+            $output .= '</div>';
+        }
+
+        $output .= '<br><br><br><br>&nbsp;';
+
+        $output .= '<div id="">';
+        if (isset($results['queries']['previousPage'])) {
+            $output .= '<a href="/rrze_search_page/?q='.rawurlencode($query).'&se='.$_GET['se'].'&start='.$results['queries']['previousPage'][0]['startIndex'].'">Previous Page</a>';
+        }
+        if (isset($results['queries']['previousPage']) && isset($results['queries']['nextPage'])) {
+            $output .= '&nbsp;|&nbsp;';
+        }
+        if (isset($results['queries']['nextPage'])) {
+            $output .= '<a href="/rrze_search_page/?q='.rawurlencode($query).'&se='.$_GET['se'].'&start='.$results['queries']['nextPage'][0]['startIndex'].'">Next Page</a>';
+        }
+        $output .= '</div>';
+
+        return $output;
+
+        /**
+         *
+         */
+    }
+}

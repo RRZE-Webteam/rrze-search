@@ -1,0 +1,61 @@
+$left_col: 75%;
+$text_color: #fff;
+$primary_blue: #003366;
+
+[hidden] {
+	display: none;
+}
+
+.search-backdrop {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 51, 102, .7);
+	z-index: 50;
+
+	.search-toggled & {
+		display: block;
+	}
+}
+
+.searchform {
+	display: block;
+	padding: 0;
+	margin: 0;
+	background: transparent;
+	position: static;
+	width: 100%;
+	height: auto;
+	text-align: left !important; /* Remove as soon as possible */
+}
+
+form[role=search] {
+	border: none;
+	padding: 0;
+	width: 100%;
+
+	header {
+		display: flex;
+	}
+}
+
+.search-terms{
+	flex-basis: 100%;
+}
+
+.meta-search .searchform .search-settings {
+	padding: 1em 0;
+
+	label {
+		position: static;
+		display: block;
+		padding: 0;
+		margin: 0;
+		height: auto;
+		width: 100%;
+		overflow: initial;
+	}
+}

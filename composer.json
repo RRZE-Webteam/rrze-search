@@ -1,0 +1,12 @@
+{
+  "name": "rrze/rrze-search",
+  "description": "RRZE WordPress Plugin",
+  "type": "wordpress-plugin",
+  "license": "GPL",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "RRZE\\": "src/"
+    }
+  }
+}

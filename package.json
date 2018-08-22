@@ -1,0 +1,16 @@
+{
+  "name": "rrze-search",
+  "version": "0.0.1",
+  "description": "",
+  "main": "rrze-search.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp-sass": "^4.0.1",
+    "gulp-watch": "^5.0.0"
+  }
+}
