@@ -11,7 +11,7 @@ class OptionsCallbacks extends AppController
      *
      * @var array
      */
-    protected $engines = ['' => 'Lokale Suche'];
+    protected $engines = ['WpSearch' => 'Lokale Suche'];
 
     /**
      * Constructor
@@ -20,15 +20,35 @@ class OptionsCallbacks extends AppController
     {
         parent::__construct();
 
-        $enginesDirectory = dirname(__DIR__, 2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Engines';
+        $enginesDirectory = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Engines';
         foreach (scandir($enginesDirectory) as $engineFile) {
             if ($engineFile !== "." && $engineFile !== "..") {
                 $engineName = pathinfo($engineFile, PATHINFO_FILENAME);
 //            require_once $enginesDirectory.DIRECTORY_SEPARATOR.$engineFile;
-                $engineClassName                 = 'RRZE\\RRZESearch\\Ports\\Engines\\'.$engineName;
+                $engineClassName = 'RRZE\\RRZESearch\\Ports\\Engines\\'.$engineName;
+//                $this->engines[$engineClassName] = call_user_func([$engineClassName, 'getName']);
                 $this->engines[$engineClassName] = call_user_func([$engineClassName, 'getName']);
             }
         }
+
+        /**
+         * Create HTML Template for Additional Resources
+         */
+        $templateIndex = count($this->engines);
+        $template      = '<template><tr>';
+        $template      .= '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources]['.$templateIndex.'][resource_name]" value=""></td>';
+
+        $template .= '<td><select id="" name="">';
+        foreach ($this->engines as $key => $value) {
+            $template .= '<option value="'.$key.'" >'.$value.'</option>';
+        }
+        $template .= '</select></td>';
+
+        $template .= '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources]['.$templateIndex.'][resource_key]" value=""></td>';
+        $template .= '<td>&nbsp;</td>';
+        $template .= '</tr></template>';
+        echo $template;
+
     }
 
     public function sanitize($input)
@@ -76,10 +96,21 @@ class OptionsCallbacks extends AppController
                 $output .= '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$i.'][resource_uri]" value=""/>';
                 $output .= '</td>';
             } else {
-                $output .= '<td><input type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$i.'][resource_uri]" value="'.$resource['resource_uri'].'" /></td>';
+                $output .= '<td>';
+//                <input type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$i.'][resource_uri]" value="'.$resource['resource_uri'].'" />
+                $output .= '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$i.'][resource_uri]'.'">';
+                foreach ($this->engines as $key => $value) {
+                    if ($key === $resource['resource_uri']) {
+                        $output .= '<option value="'.$key.'" selected>'.$value.'</option>';
+                    } else {
+                        $output .= '<option value="'.$key.'" >'.$value.'</option>';
+                    }
+                }
+                $output .= '</select>';
+                $output .= '</td>';
             }
 
-            if ($i == 0) {
+            if ($i === 0) {
                 $output .= '<td>No API Key Required';
                 $output .= '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$i.'][resource_key]" value="" />';
                 $output .= '</td>';
@@ -87,7 +118,7 @@ class OptionsCallbacks extends AppController
                 $output .= '<td><input type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$i.'][resource_key]" value="'.$resource['resource_key'].'" /></td>';
             }
 
-            if ($i == 0) {
+            if ($i === 0) {
                 $output .= '<td><input type="button" class="button button-primary" value="Remove" disabled></td>';
             } else {
                 $output .= '<td><a href="javascript:rrze_resource_removal('.$i.')" class="button button-primary">Remove</a></td>';
@@ -107,6 +138,11 @@ class OptionsCallbacks extends AppController
         echo $output;
     }
 
+    /**
+     * Renders the disclaimer page drop down
+     *
+     * @param array $args Arguments
+     */
     public function disclaimerDropDown($args)
     {
         $name         = $args['label_for'];
@@ -128,6 +164,11 @@ class OptionsCallbacks extends AppController
 
     }
 
+    /**
+     * Renders disabled Input field with Search Results page name
+     *
+     * @param array $args Arguments
+     */
     public function disabledInput($args)
     {
         $name        = $args['label_for'];
