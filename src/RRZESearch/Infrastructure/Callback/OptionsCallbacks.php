@@ -20,12 +20,13 @@ class OptionsCallbacks extends AppController
     {
         parent::__construct();
 
-        $enginesDirectory = dirname(__DIR__, 2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Engines';
+        $enginesDirectory = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Engines';
         foreach (scandir($enginesDirectory) as $engineFile) {
             if ($engineFile !== "." && $engineFile !== "..") {
                 $engineName = pathinfo($engineFile, PATHINFO_FILENAME);
 //            require_once $enginesDirectory.DIRECTORY_SEPARATOR.$engineFile;
                 $engineClassName                 = 'RRZE\\RRZESearch\\Ports\\Engines\\'.$engineName;
+//                $this->engines[$engineClassName] = call_user_func([$engineClassName, 'getName']);
                 $this->engines[$engineClassName] = call_user_func([$engineClassName, 'getName']);
             }
         }

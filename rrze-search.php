@@ -8,6 +8,7 @@ Author URI: https://www.tollwerk.de
 Version: 0.0.1
 License: GPL2
 */
+
 /**
  * @package RRZESearch
  */

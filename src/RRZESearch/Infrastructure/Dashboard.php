@@ -15,10 +15,8 @@ class Dashboard extends AppController
 
     public function __construct()
     {
-        /**
-         * TODO determine if parent construct is needed
-         * parent::__construct();
-         */
+        parent::__construct();
+        
         $this->settings          = new SettingsApi();
         $this->callbacks         = new AdminCallbacks();
         $this->callbacks_options = new OptionsCallbacks();

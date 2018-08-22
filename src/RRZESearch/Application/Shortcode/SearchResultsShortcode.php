@@ -2,7 +2,7 @@
 
 namespace RRZE\RRZESearch\Application\Shortcode;
 
-use RRZE\RRZESearch\Domain\SearchEngine;
+use RRZE\RRZESearch\Ports\Engines\GoogleSearch;
 
 class SearchResultsShortcode
 {
@@ -17,7 +17,7 @@ class SearchResultsShortcode
          * TODO: Populate properties values inside constructor
          */
         $this->options      = get_option('rrze_search_settings');
-        $this->searchEngine = new SearchEngine();
+        $this->searchEngine = new GoogleSearch();
     }
 
     public function register()
