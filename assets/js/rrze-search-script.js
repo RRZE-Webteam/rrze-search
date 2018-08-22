@@ -6,11 +6,13 @@ jQuery(document).ready(function ($) {
     var focusedElementBeforeDialogOpened;
     var dialog = document.getElementById('search-header');
     var panel = document.getElementById('search-panel');
+    var toggle = document.getElementById('search-toggle');
+    var backdrop;
 
     function openDialog() {
         // Remember the focused element before we opened the dialog
         // so we can return focus to it once we close the dialog.
-        focusedElementBeforeDialogOpened = document.activeElement;
+        // focusedElementBeforeDialogOpened = document.activeElement;
 
         // We're using a transition to reveal the dialog,
         // so wait until the element is visible, before
@@ -39,7 +41,7 @@ jQuery(document).ready(function ($) {
         // This means we don't have to handle Tab and Shift+Tab,
         // but can defer that to the browser's internal handling.
         disabledHandle = ally.maintain.disabled({
-            filter: dialog,
+            filter: [dialog, toggle, backdrop],
         });
 
         // Make sure that no element outside of the dialog
@@ -71,7 +73,7 @@ jQuery(document).ready(function ($) {
         });
 
         // Show the search panel
-        panel.hidden = false;
+        $(panel).prop('hidden', false);
         $('body').addClass('search-toggled');
     }
 
@@ -87,7 +89,13 @@ jQuery(document).ready(function ($) {
         // and then run closeDialog() synchronously
     }
 
-    function closeDialog() {
+    /**
+     * Close the dialog
+     *
+     * @param {Event} e Event
+     * @param {bool} toggleBtn Via toggle button
+     */
+    function closeDialog(e, toggleBtn) {
         // undo listening to keyboard
         keyHandle.disengage();
         // undo trapping Tab key focus
@@ -96,18 +104,22 @@ jQuery(document).ready(function ($) {
         hiddenHandle.disengage();
         // undo disabling elements outside of the dialog
         disabledHandle.disengage();
-        // return focus to where it was before we opened the dialog
-        if (focusedElementBeforeDialogOpened) {
-            focusedElementBeforeDialogOpened.focus();
-        } else if (document.activeElement) {
-            document.activeElement.blur();
+
+        if (!toggleBtn) {
+            // return focus to where it was before we opened the dialog
+            // if (focusedElementBeforeDialogOpened) {
+            //     focusedElementBeforeDialogOpened.focus();
+            // } else if (document.activeElement) {
+            //     document.activeElement.blur();
+            // }
+
+            // Hide the dialog
+            $(panel).prop('hidden', true);
+            $('body').removeClass('search-toggled');
         }
 
-        // Hide the dialog
-        panel.hidden = true;
-
-        $('body').removeClass('search-toggled');
         $('#search-toggle').attr('aria-expanded', 'false');
+        $('body').removeClass('search-toggled');
     }
 
     // function saveDialog(event) {
@@ -127,9 +139,16 @@ jQuery(document).ready(function ($) {
         $this.closest('label').find('a').add(this).attr('tabindex', this.checked ? 1 : -1);
     }
 
+    $('#search-toggle').bind('click', function (e) {
+        if ($('body').hasClass('search-toggled')) {
+            closeDialog(e, true);
+        }
+    });
+
     $('#headsearchinput').focus(openDialog);
     $(dialog).submit(closeDialog, true);
     $('.search-engine').click(toggleDisclaimer); //.blur(disableDisclaimer);
-    $('#meta').before('<div class="search-backdrop"/>');
-    $('.search-backdrop').click(closeDialog);
+    var $backdrop = $('<div id="search-backdrop"/>').click(closeDialog);
+    $('#meta').before($backdrop);
+    backdrop = $backdrop[0];
 });

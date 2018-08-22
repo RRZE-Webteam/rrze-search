@@ -6,7 +6,7 @@ $primary_blue: #003366;
 	display: none;
 }
 
-.search-backdrop {
+#search-backdrop {
 	display: none;
 	position: fixed;
 	top: 0;
@@ -42,13 +42,15 @@ form[role=search] {
 	}
 }
 
-.search-terms{
+.search-terms {
 	flex-basis: 100%;
 }
 
-.meta-search .searchform .search-settings {
+.search-panel {
 	padding: 1em 0;
+}
 
+.meta-search .searchform .search-settings {
 	label {
 		position: static;
 		display: block;
@@ -57,5 +59,29 @@ form[role=search] {
 		height: auto;
 		width: 100%;
 		overflow: initial;
+	}
+}
+
+@media (min-width: 768px) {
+	.search-toggled {
+		.meta-links {
+			display: none;
+		}
+		.meta-tools {
+			width: 100%;
+		}
+	}
+
+	.search-panel {
+		display: flex;
+		flex-direction: row-reverse;
+	}
+
+	.search-settings {
+		width: calc(100% / 3);
+	}
+
+	.search-static-links {
+		width: calc(200% / 3);
 	}
 }

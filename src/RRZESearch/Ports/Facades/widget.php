@@ -57,7 +57,7 @@
                         'fau'); ?></label>
                 <span class="searchicon"> </span>
                 <input id="headsearchinput" class="search-terms" type="text" value="<?php the_search_query(); ?>"
-                       name="query"
+                       name="s"
                        placeholder="<?php _e('Suchen nach...', 'fau'); ?>" autocomplete="off" tabindex="0">
                 <?php
                 if (get_theme_mod('search_allowfilter')) {
@@ -78,15 +78,17 @@
                 <div class="search-settings" role="radiogroup" aria-labelledby="search-engines">
                     <p id="search-engines"><?php
 
-                        $searchEngineDisclaimer = '<a href="'.get_permalink($this->options['rrze_search_disclaimer']).'" target="_blank" tabindex="-1">Datenschutz</a>';
                         echo translate('Bitte wählen Sie einen verfügbaren Suchdienst:', 'fau');
 
                         ?></p><?php
 
-                    $searchEngineIndex          = 0;
+                    $nextTabIndex               = 0;
                     foreach ($this->options['rrze_search_resources'] as $key => $resource):
-                        $searchEngineAttributes = 'tabindex="'.($searchEngineIndex++ ? '-1' : '1').'"';
+                        ++$nextTabIndex;
+                        $searchEngineActive = (($preferredEngine == $key) ? '1' : '-1');
+                        $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
                         $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
+                        $searchEngineDisclaimer = '<a href="'.get_permalink($this->options['rrze_search_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">Datenschutz</a>';
 
                         ?><label>
                         <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?> class="search-engine"

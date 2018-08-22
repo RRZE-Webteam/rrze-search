@@ -35,21 +35,26 @@
  ***********************************************************************************/
 
 ?>
-<div class="container hero-navigation">
-    <div class="row">
+<div class="hero-navigation">
+    <div>
         <h2 class="screen-reader-text">Quicklinks</h2>
         <div class="quicklinks">
             <h3>Fakultäten</h3>
             <ul class="menu-faculties">
-                <li class="phil"><a data-wpel-link="internal" href="https://www.phil.fau.de/">Philosophische Fakultät
+                <li class="phil"><a data-wpel-link="internal" href="https://www.phil.fau.de/"
+                                    tabindex="<?= $nextTabIndex; ?>">Philosophische Fakultät
                         und Fachbereich Theologie</a></li>
-                <li class="rw"><a data-wpel-link="internal" href="https://www.rw.fau.de/">Rechts- und
+                <li class="rw"><a data-wpel-link="internal" href="https://www.rw.fau.de/"
+                                  tabindex="<?= $nextTabIndex; ?>">Rechts- und
                         Wirtschaftswissenschaftliche Fakultät</a></li>
-                <li class="med"><a data-wpel-link="internal" href="https://www.med.fau.de/">Medizinische Fakultät</a>
+                <li class="med"><a data-wpel-link="internal" href="https://www.med.fau.de/"
+                                   tabindex="<?= $nextTabIndex; ?>">Medizinische Fakultät</a>
                 </li>
-                <li class="nat"><a data-wpel-link="internal" href="https://www.nat.fau.de/">Naturwissenschaftliche
+                <li class="nat"><a data-wpel-link="internal" href="https://www.nat.fau.de/"
+                                   tabindex="<?= $nextTabIndex; ?>">Naturwissenschaftliche
                         Fakultät</a></li>
-                <li class="tf"><a data-wpel-link="internal" href="https://www.tf.fau.de/">Technische Fakultät</a></li>
+                <li class="tf"><a data-wpel-link="internal" href="https://www.tf.fau.de/"
+                                  tabindex="<?= $nextTabIndex; ?>">Technische Fakultät</a></li>
             </ul>
         </div>
         <div class="quicklinks">
@@ -57,49 +62,83 @@
             <ul class="menu">
                 <li id="menu-item-2218658"
                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2218658"><a
-                            href="http://275.fau.de">Jubiläum – 275 Jahre FAU</a></li>
-                <li id="menu-item-22519"
+                            href="http://275.fau.de" tabindex="<?= $nextTabIndex; ?>">Jubiläum – 275 Jahre FAU</a></li>
+                <li id=" menu-item-22519"
                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22519"><a
-                            href="/studium/vor-dem-studium/studiengaenge/alle-studiengaenge/">Alle Studiengänge</a></li>
-                <li id="menu-item-773507"
+                            href="/studium/vor-dem-studium/studiengaenge/alle-studiengaenge/"
+                            tabindex="<?= $nextTabIndex; ?>">Alle Studiengänge</a></li>
+                <li id=" menu-item-773507"
                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-773507"><a
-                            href="/studium/im-studium/studium-a-z/">Studium A–Z</a></li>
-                <li id="menu-item-20857"
+                            href="/studium/im-studium/studium-a-z/" tabindex="<?= $nextTabIndex; ?>">Studium A–Z</a></li>
+                <li id=" menu-item-20857"
                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20857"><a
-                            href="/universitaet/kennzahlen-und-rankings/">Kennzahlen und Rankings</a></li>
-                <li id="menu-item-798873"
+                            href="/universitaet/kennzahlen-und-rankings/" tabindex="<?= $nextTabIndex; ?>">Kennzahlen und Rankings</a></li>
+                <li id=" menu-item-798873"
                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-798873"><a
-                            href="/forschung/forschungsprofil/forschungsschwerpunkte-der-fau/">Forschungsschwerpunkte</a>
+                            href="/forschung/forschungsprofil/forschungsschwerpunkte-der-fau/"
+                            tabindex="<?= $nextTabIndex; ?>">Forschungsschwerpunkte</a>
                 </li>
-                <li id="menu-item-773511"
+                <li id=" menu-item-773511"
                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-773511"><a
-                            href="/universitaet/stiften-und-foerdern/">Stiften und Fördern</a></li>
-                <li id="menu-item-1051455"
+                            href="/universitaet/stiften-und-foerdern/" tabindex="<?= $nextTabIndex; ?>">Stiften und Fördern</a></li>
+                <li id=" menu-item-1051455"
                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1051455"><a
-                            href="/universitaet/auszeichnungen-und-ehrungen/forschungspreistraeger/">Forschungspreise an
+                            href="/universitaet/auszeichnungen-und-ehrungen/forschungspreistraeger/"
+                            tabindex="<?= $nextTabIndex; ?>">Forschungspreise an
                         der FAU</a></li>
             </ul>
         </div>
         <!--
-        <div class="quicklinks">
-            <h3>Einrichtungen</h3>
-            <ul class="menu"><li id="menu-item-772795" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-772795"><a href="https://ub.fau.de/">Universitätsbibliothek</a></li>
-                <li id="menu-item-772796" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-772796"><a href="http://rrze.fau.de">Rechenzentrum</a></li>
-                <li id="menu-item-772797" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-772797"><a href="http://www.sz.uni-erlangen.de/">Sprachenzentrum</a></li>
-                <li id="menu-item-1072500" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1072500"><a href="https://zfl.fau.de">Zentrum für Lehrerinnen- und Lehrerbildung</a></li>
-                <li id="menu-item-2054993" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2054993"><a href="http://promotion.fau.de">Graduiertenzentrum</a></li>
-                <li id="menu-item-1683150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1683150"><a href="/forschung/forschungsprofil/exzellenzinitiative/">Exzellenzcluster EAM</a></li>
-            </ul>			</div>
+        <div class=" quicklinks">
+                    <h3>Einrichtungen</h3>
+                    <ul class="menu">
+                        <li id="menu-item-772795"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-772795"><a
+                                    href="https://ub.fau.de/">Universitätsbibliothek</a></li>
+                        <li id="menu-item-772796"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-772796"><a
+                                    href="http://rrze.fau.de">Rechenzentrum</a></li>
+                        <li id="menu-item-772797"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-772797"><a
+                                    href="http://www.sz.uni-erlangen.de/">Sprachenzentrum</a></li>
+                        <li id="menu-item-1072500"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1072500"><a
+                                    href="https://zfl.fau.de">Zentrum für Lehrerinnen- und Lehrerbildung</a></li>
+                        <li id="menu-item-2054993"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2054993"><a
+                                    href="http://promotion.fau.de">Graduiertenzentrum</a></li>
+                        <li id="menu-item-1683150"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1683150"><a
+                                    href="/forschung/forschungsprofil/exzellenzinitiative/">Exzellenzcluster EAM</a>
+                        </li>
+                    </ul>
+        </div>
         <div class="quicklinks">
             <h3>Informationen für</h3>
-            <ul class="menu"><li id="menu-item-367417" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-367417"><a href="/studium/vor-dem-studium/">Studieninteressierte</a></li>
-                <li id="menu-item-801989" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-801989"><a href="/studium/">Studierende</a></li>
-                <li id="menu-item-521403" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-521403"><a href="/alumni/">Alumni</a></li>
-                <li id="menu-item-2213031" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2213031"><a href="/elternportal/">Eltern</a></li>
-                <li id="menu-item-22508" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22508"><a href="/patente-gruendung-wissenstransfer/service-fuer-unternehmen/">Unternehmen</a></li>
-                <li id="menu-item-22510" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22510"><a href="/presseportal-der-fau/">Presse</a></li>
-                <li id="menu-item-764167" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-764167"><a href="/intranet/">Beschäftigte</a></li>
-            </ul>			</div>
-            -->
+            <ul class="menu">
+                <li id="menu-item-367417"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-367417"><a
+                            href="/studium/vor-dem-studium/">Studieninteressierte</a></li>
+                <li id="menu-item-801989"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-801989"><a
+                            href="/studium/">Studierende</a></li>
+                <li id="menu-item-521403"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-521403"><a
+                            href="/alumni/">Alumni</a></li>
+                <li id="menu-item-2213031"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2213031"><a
+                            href="/elternportal/">Eltern</a></li>
+                <li id="menu-item-22508"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22508"><a
+                            href="/patente-gruendung-wissenstransfer/service-fuer-unternehmen/">Unternehmen</a></li>
+                <li id="menu-item-22510"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22510"><a
+                            href="/presseportal-der-fau/">Presse</a></li>
+                <li id="menu-item-764167"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-764167"><a
+                            href="/intranet/">Beschäftigte</a></li>
+            </ul>
+        </div>
+        -->
     </div>
 </div>
