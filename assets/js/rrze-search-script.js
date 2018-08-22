@@ -7,6 +7,7 @@ jQuery(document).ready(function ($) {
     var dialog = document.getElementById('search-header');
     var panel = document.getElementById('search-panel');
     var toggle = document.getElementById('search-toggle');
+    var searchinput = document.getElementById('headsearchinput');
     var backdrop;
 
     function openDialog() {
@@ -84,6 +85,7 @@ jQuery(document).ready(function ($) {
         // focus is passed back to the open-dialog-button and
         // the keyup of <kbd>enter</kbd> will open the dialog
         // again.
+        searchinput.blur();
         setTimeout(closeDialog);
         // alternatively we could've called event.preventDefault()
         // and then run closeDialog() synchronously
@@ -145,7 +147,7 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    $('#headsearchinput').focus(openDialog);
+    $(searchinput).focus(openDialog);
     $(dialog).submit(closeDialog, true);
     $('.search-engine').click(toggleDisclaimer); //.blur(disableDisclaimer);
     var $backdrop = $('<div id="search-backdrop"/>').click(closeDialog);

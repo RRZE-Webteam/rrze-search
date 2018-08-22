@@ -36,7 +36,7 @@
 
 ?>
 <div class="hero-navigation">
-    <div>
+    <div class="row">
         <h2 class="screen-reader-text">Quicklinks</h2>
         <div class="quicklinks">
             <h3>Fakultäten</h3>
