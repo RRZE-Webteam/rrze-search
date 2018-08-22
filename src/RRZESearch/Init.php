@@ -18,6 +18,9 @@ final class Init
 
     public static function registerServices()
     {
+        echo '<pre>';
+        print_r(['working'=>'on it!']);
+        echo '</pre>';
         foreach (self::getServices() as $class) {
             $service = new $class;
             if (is_callable([$service, 'register'])) {
