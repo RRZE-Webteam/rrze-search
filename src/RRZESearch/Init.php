@@ -2,6 +2,12 @@
 
 namespace RRZE\RRZESearch;
 
+/**
+ * Class Init
+ * Bootstrap the Plugin
+ *
+ * @package RRZE\RRZESearch
+ */
 final class Init
 {
     /**
