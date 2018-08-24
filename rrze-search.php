@@ -19,6 +19,17 @@ if (file_exists(dirname(__FILE__).'/vendor/autoload.php')) {
     require_once(dirname(__FILE__).'/vendor/autoload.php');
 }
 
+function activate_rrze_search_plugin() {
+    RRZE\RRZESearch\Init::activate();
+}
+register_activation_hook( __FILE__, 'activate_rrze_search_plugin' );
+
+function deactivate_rrze_search_plugin() {
+    RRZE\RRZESearch\Init::deactivate();
+}
+register_deactivation_hook( __FILE__, 'deactivate_rrze_search_plugin' );
+
+
 if (class_exists(\RRZE\RRZESearch\Init::class)) {
     RRZE\RRZESearch\Init::registerServices();
 }
