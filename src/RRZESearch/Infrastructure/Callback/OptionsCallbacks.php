@@ -64,7 +64,7 @@ class OptionsCallbacks extends AppController
     /**
      * TODO: Update Message Text from English to German
      */
-    public function printAdminSection(): string
+    public function printAdminSection()
     {
         echo 'Configure your plugin.';
     }

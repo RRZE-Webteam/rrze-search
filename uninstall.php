@@ -18,7 +18,9 @@ $plugin_widget = 'widget_'.$plugin_id;
  */
 global $wpdb;
 $options = get_option($plugin_option);
-wp_delete_post((int)$options['rrze_search_page_id'], true);
+if (isset($options['rrze_search_page_id'])) {
+    wp_delete_post((int)$options['rrze_search_page_id'], true);
+}
 
 /**
  * WP Delete Plugin Option
