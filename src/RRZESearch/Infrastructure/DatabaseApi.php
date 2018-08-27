@@ -43,30 +43,6 @@ class DatabaseApi
         dbDelta($sql);
     }
 
-    public function get_search_resources()
-    {
-        return $this->wpdb->get_results("SELECT * FROM `wp_rrze_search_resources`", ARRAY_A);
-    }
-
-    public function get_search_resource($id)
-    {
-        return $this->wpdb->get_results("SELECT * FROM `wp_rrze_search_resources` WHERE `id` LIKE ".$id, OBJECT);
-    }
-
-    public function set_search_resource($args)
-    {
-        $data         = $args;
-        $data['time'] = current_time('mysql', 1);
-        $this->wpdb->insert('wp_rrze_search_resources', $data);
-        wp_redirect('options-general.php?page=rrze_search');
-    }
-
-    public function remove_search_resource($id)
-    {
-        $this->wpdb->delete('wp_rrze_search_resources', array('id' => $id));
-        wp_redirect('options-general.php?page=rrze_search');
-    }
-
 
     public function get_posts()
     {

@@ -61,9 +61,22 @@ class OptionsCallbacks extends AppController
         return $output;
     }
 
-    public function printAdminSection()
+    /**
+     * TODO: Update Message Text from English to German
+     */
+    public function printAdminSection(): string
     {
-        echo "Configure your plugin.";
+        echo 'Configure your plugin.';
+    }
+
+    public function printMissingTemplateMsg(): string
+    {
+        return 'Oh no! Someone deleted the result\'s Page! No worries, Another one will be generated when you click [ Save Changes ]';
+    }
+
+    public function printGenerateTemplateMsg (): string
+    {
+        return 'Search Results Page doesn\'t exist, yet! No worries, one will be generated when you click [ Save Changes ]';
     }
 
     /**
@@ -177,15 +190,18 @@ class OptionsCallbacks extends AppController
 
         if (array_key_exists($name, $options)) {
             if ($options[$name] == null) {
+                /**
+                 * TODO: Update labels from English to German [ post_title, post_excerpt ]
+                 */
                 $rrze_search_page    = array(
                     'post_date'     => date('Y-m-d H:i:s'),
                     'post_date_gmt' => date('Y-m-d H:i:s'),
                     'post_content'  => '[rrze_search_results]',
                     'post_name'     => 'rrze_search_page',
-                    'post_title'    => 'Search Results',
+                    'post_title'    => 'RRZE Search Results',
                     'post_status'   => 'publish',
                     'post_type'     => 'page',
-                    'post_excerpt'  => 'Search Results',
+                    'post_excerpt'  => 'Search Results Page utilized by RRZE Search Plugin',
                 );
                 $rrze_search_page_id = wp_insert_post($rrze_search_page);
                 $options[$name]      = $rrze_search_page_id;
@@ -195,11 +211,11 @@ class OptionsCallbacks extends AppController
                     echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']" value="'.get_post($options[$name])->ID.'" >';
                     echo '<input type="text" value="'.wp_make_link_relative(get_permalink($options[$name])).'" disabled>';
                 } else {
-                    echo 'someone deleted the page';
+                    echo $this->printMissingTemplateMsg();
                 }
             }
         } else {
-            echo 'Search Results Template doesn\'t exist. A template will be generated when you Save Changes.';
+            echo $this->printGenerateTemplateMsg();
         }
 
     }

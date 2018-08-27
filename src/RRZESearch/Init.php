@@ -45,11 +45,14 @@ final class Init
      */
     public static function activate(): void
     {
-        echo 'Activate!';
         flush_rewrite_rules();
 
-        if (!get_option('rrze_search_settings')){
-            update_option('rrze_search_settings', []);
+        if (!get_option('rrze_search_settings')) {
+            update_option('rrze_search_settings', [
+                'rrze_search_resources' => [
+                    ['resource_name' => 'Default', 'resource_key' => '']
+                ]
+            ]);
         }
     }
 

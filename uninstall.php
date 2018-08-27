@@ -12,6 +12,14 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 $plugin_id     = 'rrze_search';
 $plugin_option = $plugin_id.'_settings';
 $plugin_widget = 'widget_'.$plugin_id;
+
+/**
+ * Remove Search Results Page
+ */
+global $wpdb;
+$options = get_option($plugin_option);
+wp_delete_post((int)$options['rrze_search_page_id'], true);
+
 /**
  * WP Delete Plugin Option
  */
