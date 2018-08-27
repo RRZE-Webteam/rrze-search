@@ -34,21 +34,24 @@ class OptionsCallbacks extends AppController
         /**
          * Create HTML Template for Additional Resources
          */
-        $templateIndex = count($this->engines);
-        $template      = '<template><tr>';
-        $template      .= '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources]['.$templateIndex.'][resource_name]" value=""></td>';
-
-        $template .= '<td><select id="" name="">';
+        $template = '<template><tr>';
+        $template .= '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][index][resource_name]" value=""></td>';
+        $template .= '<td><select id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][index][resource_uri]">';
         foreach ($this->engines as $key => $value) {
-            $template .= '<option value="'.$key.'" >'.$value.'</option>';
+            /**
+             * TODO: improve first index detection. PHP 7.3 solution will be array_key_first();
+             */
+            if ($key === 'WpSearch') {
+                $template .= '<option value="'.$key.'" selected>'.$value.'</option>';
+            } else {
+                $template .= '<option value="'.$key.'" >'.$value.'</option>';
+            }
         }
         $template .= '</select></td>';
-
-        $template .= '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources]['.$templateIndex.'][resource_key]" value=""></td>';
+        $template .= '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][index][resource_key]" value=""></td>';
         $template .= '<td>&nbsp;</td>';
         $template .= '</tr></template>';
         echo $template;
-
     }
 
     public function sanitize($input)
@@ -74,7 +77,7 @@ class OptionsCallbacks extends AppController
         return 'Oh no! Someone deleted the result\'s Page! No worries, Another one will be generated when you click [ Save Changes ]';
     }
 
-    public function printGenerateTemplateMsg (): string
+    public function printGenerateTemplateMsg(): string
     {
         return 'Search Results Page doesn\'t exist, yet! No worries, one will be generated when you click [ Save Changes ]';
     }

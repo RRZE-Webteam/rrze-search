@@ -1,4 +1,3 @@
-// TODO: Complete Plugin JavaScript File
 console.log('rrze-search-admin-script initiated!');
 
 function rrze_resource_removal(resource_id) {
@@ -7,28 +6,28 @@ function rrze_resource_removal(resource_id) {
         'resource_id': resource_id
     };
 
-    jQuery.post(ajaxurl, data, function(success){
-        if (success){ location.reload(); }
+    jQuery.post(ajaxurl, data, function (success) {
+        if (success) {
+            location.reload();
+        }
     });
 }
 
 jQuery(document).ready(function ($) {
     $('#rrze_search_add_resource_form').bind('click', function (e) {
+        /** define resource count */
+        let count = $('#rrze_search_resource_count').val();
 
+        /** selected tempate content */
         let template = document.getElementsByTagName("template")[0];
 
-        let count = $('#rrze_search_resource_count').val();
-        let partial = template.content.cloneNode(true);
+        /** replace `index` with current count */
+        let partial = template.innerHTML.replace(/index/g, count);
 
-        console.log(partial.querySelectorAll());
+        /** Append the partial */
+        $('#rrze_search_resource_form tbody').append(partial);
 
-        $('#rrze_search_resource_form').append(partial);
-        // $('#rrze_search_resource_form').append('<tr>' +
-        //     '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][' + count + '][resource_name]" value=""></td>' +
-        //     '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][' + count + '][resource_uri]" value=""></td>' +
-        //     '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][' + count + '][resource_key]" value=""></td>' +
-        //     '<td>&nbsp;</td>' +
-        //     '</tr>');
-        $('#rrze_search_resource_count').val(parseInt(count) +1);
+        /** increment the count */
+        $('#rrze_search_resource_count').val(parseInt(count) + 1);
     });
 });

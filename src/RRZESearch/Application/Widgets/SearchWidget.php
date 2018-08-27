@@ -27,8 +27,7 @@ class SearchWidget extends WP_Widget
         $this->options     = get_option('rrze_search_settings');
         $this->plugin_path = plugin_dir_url(dirname(__FILE__, 2));
 
-        register_activation_hook(__FILE__, array($this, 'widgetSubmit'));
-
+//        register_activation_hook(__FILE__, array($this, 'widgetSubmit'));
     }
 
     public function register()
@@ -51,6 +50,8 @@ class SearchWidget extends WP_Widget
             'before_title'  => '',
             'after_title'   => '',
         ));
+
+
     }
 
     /**
