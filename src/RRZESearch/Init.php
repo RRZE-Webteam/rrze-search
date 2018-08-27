@@ -47,13 +47,17 @@ final class Init
     {
         flush_rewrite_rules();
 
+        /** Validate Settings Option Exists */
         if (!get_option('rrze_search_settings')) {
+
+            /** Enter Default Values */
             update_option('rrze_search_settings', [
                 'rrze_search_resources' => [
                     ['resource_name' => 'Default', 'resource_key' => '']
                 ]
             ]);
         }
+        self::changeResultsPageStatus('publish');
     }
 
     /**
@@ -62,5 +66,19 @@ final class Init
     public static function deactivate(): void
     {
         flush_rewrite_rules();
+        self::changeResultsPageStatus('private');
+    }
+
+    private static function changeResultsPageStatus($status): void
+    {
+        $options = get_option('rrze_search_settings');
+        $page_id = $options['rrze_search_page_id'];
+
+        if ($page_id !== '') {
+            $page                = get_post($page_id, 'ARRAY_A');
+            $page['post_status'] = $status;
+        }
+
+        wp_update_post($page);
     }
 }
