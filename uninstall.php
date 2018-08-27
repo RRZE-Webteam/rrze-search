@@ -15,6 +15,7 @@ $option_name = 'rrze_search_settings';
  * WP Delete Plugin Option
  */
 delete_option($option_name);
+delete_option('widget_'.$option_name);
 
 /**
  * WP Delete Plugin Option from Multisite
