@@ -21,7 +21,6 @@ final class Init
             Infrastructure\Dashboard::class,
             Infrastructure\ScriptEnqueuer::class,
             Infrastructure\DashboardLink::class,
-            Infrastructure\DatabaseApi::class,
             Application\WidgetController::class,
             Application\ShortcodeController::class,
         ];
@@ -57,7 +56,7 @@ final class Init
                 ]
             ]);
         }
-        self::changeResultsPageStatus('publish');
+        self::updateResultsPageStatus('publish');
     }
 
     /**
@@ -66,10 +65,15 @@ final class Init
     public static function deactivate(): void
     {
         flush_rewrite_rules();
-        self::changeResultsPageStatus('private');
+        self::updateResultsPageStatus('private');
     }
 
-    private static function changeResultsPageStatus($status): void
+    /**
+     * Update Result's Page Status
+     *
+     * @param string $status
+     */
+    private static function updateResultsPageStatus($status): void
     {
         $options = get_option('rrze_search_settings');
         $page_id = $options['rrze_search_page_id'];
