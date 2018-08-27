@@ -16,7 +16,7 @@ class SearchWidget extends WP_Widget
 
     public function __construct()
     {
-        $this->widget_ID      = 'rrze_search_widget';
+        $this->widget_ID      = 'rrze_search';
         $this->widget_name    = 'Suche (Multi-Engine)';
         $this->widget_options = array(
             'classname'                   => $this->widget_ID,

@@ -8,7 +8,7 @@ class WidgetController extends AppController
 {
     public function register()
     {
-        if ($this->activated('rrze_search_widget')) return;
+        if ($this->activated('rrze_search')) return;
         $search_widget = new SearchWidget();
         $search_widget->register();
     }
