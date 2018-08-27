@@ -18,7 +18,11 @@ jQuery(document).ready(function ($) {
         let template = document.getElementsByTagName("template")[0];
 
         let count = $('#rrze_search_resource_count').val();
-        $('#rrze_search_resource_form').append(template.content.cloneNode(true));
+        let partial = template.content.cloneNode(true);
+
+        console.log(partial.querySelectorAll());
+
+        $('#rrze_search_resource_form').append(partial);
         // $('#rrze_search_resource_form').append('<tr>' +
         //     '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][' + count + '][resource_name]" value=""></td>' +
         //     '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][' + count + '][resource_uri]" value=""></td>' +

@@ -20,7 +20,7 @@ final class Init
         return [
             Infrastructure\Dashboard::class,
             Infrastructure\ScriptEnqueuer::class,
-            Infrastructure\DashboardLink::class,
+            Infrastructure\SettingsLink::class,
             Application\WidgetController::class,
             Application\ShortcodeController::class,
         ];

@@ -16,13 +16,12 @@ class Dashboard extends AppController
     public function __construct()
     {
         parent::__construct();
-        
         $this->settings          = new SettingsApi();
         $this->callbacks         = new AdminCallbacks();
         $this->callbacks_options = new OptionsCallbacks();
     }
 
-    public function register()
+    public function register(): void
     {
         $this->setAdminPage();
         $this->setSettings();
@@ -97,18 +96,18 @@ class Dashboard extends AppController
                     'label_for'   => 'rrze_search_resources',
                 )
             ),
-            array(
-                'id'       => 'rrze_search_disclaimer',
-                'title'    => 'Disclaimer Link',
-                'callback' => array($this->callbacks_options, 'disclaimerDropDown'),
-                'page'     => 'rrze_search',
-                'section'  => 'rrze_search_admin_section',
-                'args'     => array(
-                    'option_name' => 'rrze_search_settings',
-                    'label_for'   => 'rrze_search_disclaimer', // matches ID
-                    'options'     => $this->settings->getPosts(),
-                )
-            ),
+//            array(
+//                'id'       => 'rrze_search_disclaimer',
+//                'title'    => 'Disclaimer Link',
+//                'callback' => array($this->callbacks_options, 'disclaimerDropDown'),
+//                'page'     => 'rrze_search',
+//                'section'  => 'rrze_search_admin_section',
+//                'args'     => array(
+//                    'option_name' => 'rrze_search_settings',
+//                    'label_for'   => 'rrze_search_disclaimer', // matches ID
+//                    'options'     => $this->settings->getPosts(),
+//                )
+//            ),
             array(
                 'id'       => 'rrze_search_page_id',
                 'title'    => 'Search Results Page',

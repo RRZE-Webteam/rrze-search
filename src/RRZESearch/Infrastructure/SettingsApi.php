@@ -112,9 +112,7 @@ class SettingsApi
 
     public function getPosts()
     {
-        $posts = $this->db->get_posts();
-
-        return $posts;
+        return $this->db->get_posts();
     }
 
     /**
