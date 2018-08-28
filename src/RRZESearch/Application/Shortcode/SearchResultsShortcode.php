@@ -41,9 +41,14 @@ class SearchResultsShortcode
 //        $query_results = file_get_contents(plugins_url('rrze-search').DIRECTORY_SEPARATOR.'fixture'.DIRECTORY_SEPARATOR.'google_results.json');
         $query_results = $this->searchEngine->Query($query, $resource['resource_key'], $startPage);
 
+        echo '<pre>';
+        print_r($resource['resource_uri']);
+        echo '</pre>';
+
         $results = json_decode($query_results, true);
 
         $output .= '<div id="resultStats">About '.$results['searchInformation']['formattedTotalResults'].' results<nobr> ('.$results['searchInformation']['formattedSearchTime'].' seconds)&nbsp;</nobr></div>';
+
         foreach ($results['items'] as $result) {
             $output .= '<div class="record">';
             $output .= '<h3 style="padding-bottom:0">';

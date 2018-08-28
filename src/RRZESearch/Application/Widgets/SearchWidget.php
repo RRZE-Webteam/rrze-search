@@ -27,7 +27,7 @@ class SearchWidget extends WP_Widget
         $this->options     = get_option('rrze_search_settings');
         $this->plugin_path = plugin_dir_url(dirname(__FILE__, 2));
 
-//        register_activation_hook(__FILE__, array($this, 'widgetSubmit'));
+        register_activation_hook(__FILE__, array($this, 'widgetSubmit'));
     }
 
     public function register()
@@ -40,10 +40,13 @@ class SearchWidget extends WP_Widget
 
     public function widgetsInit()
     {
+        /** Register Widget with WordPress */
         register_widget($this);
+        /** Register Sidebar with WordPress */
+        $sidebarId = 'rrze-search-sidebar';
         register_sidebar(array(
             'name'          => 'Search Sidebar',
-            'id'            => 'rrze-search-sidebar',
+            'id'            => $sidebarId,
             'description'   => 'A hack to display widget',
             'before_widget' => '',
             'after_widget'  => '',
@@ -51,7 +54,59 @@ class SearchWidget extends WP_Widget
             'after_title'   => '',
         ));
 
+        if (!is_active_widget(false, false, $this->widget_ID, true)) {
+            $this->insertWidgetInSidebar($this->widget_ID, [], $sidebarId);
+        }
+    }
 
+    /**
+     * Insert Widget in Sidebar
+     * Source: https://gist.github.com/tyxla/372f51ea1340e5e643f6b47e2ddf43f2
+     *
+     * @param $widget_id
+     * @param $widget_data
+     * @param $sidebar
+     */
+    public function insertWidgetInSidebar($widget_id, $widget_data, $sidebar): void
+    {
+        /**
+         * Retrieve sidebars, widgets and their instances
+         */
+        $sidebars_widgets = get_option('sidebars_widgets', array());
+        $widget_instances = get_option('widget_'.$widget_id, array());
+
+//        foreach ($sidebars_widgets[$sidebar] as $instance) {
+        echo '<pre>';
+//            print_r($instance);
+        echo '</pre>';
+//            if (!strpos($instance, $widget_id)) {
+        /**
+         * Retrieve the key of the next widget instance
+         */
+        $numeric_keys = array_filter(array_keys($widget_instances), 'is_int');
+        $next_key     = $numeric_keys ? max($numeric_keys) + 1 : 2;
+
+        /**
+         * Add this widget to the sidebar
+         */
+        if (!isset($sidebars_widgets[$sidebar])) {
+            $sidebars_widgets[$sidebar] = array();
+        }
+        $sidebars_widgets[$sidebar][] = $widget_id.'-'.$next_key;
+
+        /**
+         * Add the new widget instance
+         */
+        $widget_instances[$next_key] = $widget_data;
+
+
+        /**
+         * Store updated sidebars, widgets and their instances
+         */
+        update_option('sidebars_widgets', $sidebars_widgets);
+        update_option('widget_'.$widget_id, $widget_instances);
+//            }
+//        }
     }
 
     /**
