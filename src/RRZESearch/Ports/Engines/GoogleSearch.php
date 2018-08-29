@@ -6,26 +6,32 @@ use RRZE\RRZESearch\Domain\Contract\Engine;
 
 class GoogleSearch implements Engine
 {
-    /**
-     * Search engine name
-     *
-     * @var string
-     */
     const NAME = 'Google Custom Search';
 
     const URI = 'https://www.googleapis.com/customsearch/v1?cx=011945293402966620832:n0bvaqo6yl4&key={key}&q={query}';
 
-    public function Query($query, $key, $startPage)
+    /**
+     * @param string $query
+     * @param string $key
+     * @param int $startPage
+     *
+     * @return mixed
+     */
+    public function Query(string $query, string $key, int $startPage)
     {
-        $uri = self::URI.'&start='.$startPage;
-        /**
-         * Will only run if the URI is not empty string.
-         */
-        $parsed_url = parse_url($uri);
-        $url        = $parsed_url['scheme'].'://'.$parsed_url['host'].$parsed_url['path'].'?';
+        $params = array();
 
-        $params  = array();
-        $_params = explode('&', $parsed_url['query']);
+        /**
+         * Append the StartPage Index and rebuild the URI
+         */
+        $uri        = self::URI.'&start='.$startPage;
+        $parsed_url = parse_url($uri);
+        $_uri       = $parsed_url['scheme'].'://'.$parsed_url['host'].$parsed_url['path'].'?';
+        $_params    = explode('&', $parsed_url['query']);
+
+        /**
+         * Replace {key}, {query} placeholder
+         */
         foreach ($_params as $param) {
             $split = explode('=', $param);
             switch ($split[1]) {
@@ -36,37 +42,72 @@ class GoogleSearch implements Engine
                     $params[$split[0]] = rawurlencode($query);
                     break;
                 default:
-                    $params[$split[0]] = urlencode($split[1]);
+                    $params[$split[0]] = $split[1];
             }
         }
-        $i = 1;
-        foreach ($params as $key => $value) {
-            $url .= $key.'='.$value;
-            if ($i < count($params)) {
-                $url .= '&';
-            }
-            $i++;
-        }
-
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_TIMEOUT, 10);
-        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($curl, CURLOPT_HEADER, 0);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-        $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        $result    = curl_exec($curl);
-
-//            header('Content-type: application/json');
-        curl_close($curl);
+        /**
+         * Rejoin the parameters to URI
+         */
+        $_uri .= http_build_query($params);
 
         /**
-         * Add Configuration for each results schema
+         * Curl Headers
          */
-        return $result;
+        $headers = array(
+            'Content-length: 0',
+            'Content-type: application/json'
+        );
+
+        /**
+         * Curl Options Array
+         */
+        $curlOptions = array(
+            CURLOPT_HTTPHEADER     => $headers,
+            CURLOPT_HEADER         => false,
+            CURLOPT_URL            => urldecode($_uri),
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT        => 10,
+            CURLOPT_CONNECTTIMEOUT => 10,
+            CURLOPT_HEADER         => 0,
+            CURLOPT_FOLLOWLOCATION => 1
+        );
+
+        /**
+//         * curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+//         * curl_setopt($ch, CURLOPT_HEADER, false);
+         * curl_setopt($ch, CURLOPT_REFERER, JUri::getInstance()->toString());
+         * // curl_setopt($ch, CURLOPT_REFERER, $page_url);
+         * curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+         * curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+         * curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1);
+         * curl_setopt($ch, CURLOPT_URL, $google.'?'.http_build_query($queryParams));
+         */
+
+        echo '<pre>';
+        print_r($curlOptions);
+        echo '</pre>';
+
+        /**
+         * Try to make query request
+         */
+        $curl = curl_init();
+        curl_setopt_array($curl, $curlOptions);
+
+        /**
+         * Finalize query request
+         */
+        $results = curl_exec($curl);
+
+        echo '<pre>';
+        echo '<a href="'.$_uri.'">'.$_uri.'</a>';
+        print_r($results);
+        echo '</pre>';
+
+        curl_close($curl);
+
+        return $results;
     }
 
     /**

@@ -183,13 +183,15 @@ class SearchWidget extends WP_Widget
     {
         setcookie('rrze_search_engine_pref', $_POST['resource_id'], 0, '/');
         $results_page  = get_permalink($this->options['rrze_search_page_id']);
-        $redirect_link = add_query_arg(array('q' => urlencode($_POST['query']), 'se' => $_POST['resource_id']),
+
+        /** Ensure you're using $_POST['s'] for the q(uery) value, prior to redirect */
+        $redirect_link = add_query_arg(array('q' => urlencode($_POST['s']), 'se' => $_POST['resource_id']),
             $results_page);
 
         if ($_POST['resource_id'] != 0) {
             wp_redirect($redirect_link);
         } else {
-            wp_redirect(esc_url(home_url('?s='.rawurlencode($_POST['query']))));
+            wp_redirect(esc_url(home_url('?s='.rawurlencode($_POST['s']))));
         }
         exit;
 

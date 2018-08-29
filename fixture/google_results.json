@@ -1,4 +1,3 @@
-
 {
   "kind": "customsearch#search",
   "url": {
@@ -8,9 +7,9 @@
   "queries": {
     "request": [
       {
-        "title": "Google Custom Search - philip saa",
-        "totalResults": "544000",
-        "searchTerms": "philip saa",
+        "title": "Google Custom Search - tollwerk",
+        "totalResults": "1640",
+        "searchTerms": "tollwerk",
         "count": 10,
         "startIndex": 1,
         "inputEncoding": "utf8",
@@ -21,9 +20,9 @@
     ],
     "nextPage": [
       {
-        "title": "Google Custom Search - philip saa",
-        "totalResults": "544000",
-        "searchTerms": "philip saa",
+        "title": "Google Custom Search - tollwerk",
+        "totalResults": "1640",
+        "searchTerms": "tollwerk",
         "count": 10,
         "startIndex": 11,
         "inputEncoding": "utf8",
@@ -34,32 +33,381 @@
     ]
   },
   "context": {
-    "title": "Fau.tollwerk.de"
+    "title": "fau.tollwerk.de"
   },
   "searchInformation": {
-    "searchTime": 0.374234,
-    "formattedSearchTime": "0.37",
-    "totalResults": "544000",
-    "formattedTotalResults": "544,000"
+    "searchTime": 0.089304,
+    "formattedSearchTime": "0,09",
+    "totalResults": "1640",
+    "formattedTotalResults": "1.640"
   },
   "items": [
     {
       "kind": "customsearch#result",
-      "title": "Philip Saa (@cowglow) | Twitter",
-      "htmlTitle": "\u003cb\u003ePhilip Saa\u003c/b\u003e (@cowglow) | Twitter",
-      "link": "https://twitter.com/cowglow?lang=en",
-      "displayLink": "twitter.com",
-      "snippet": "The latest Tweets from Philip Saa (@cowglow). #filmmaker #coder #junglist. \nBavaria, Germany.",
-      "htmlSnippet": "The latest Tweets from \u003cb\u003ePhilip Saa\u003c/b\u003e (@cowglow). #filmmaker #coder #junglist. \u003cbr\u003e\nBavaria, Germany.",
-      "cacheId": "LV5Ph30gGwUJ",
-      "formattedUrl": "https://twitter.com/cowglow?lang=en",
-      "htmlFormattedUrl": "https://twitter.com/cowglow?lang=en",
+      "title": "tollwerk | Webdesign · TYPO3 · Online-Shops | Werbeagentur ...",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e | Webdesign · TYPO3 · Online-Shops | Werbeagentur ...",
+      "link": "https://tollwerk.de/",
+      "displayLink": "tollwerk.de",
+      "snippet": "Als Full-Service-Werbeagentur aus Nürnberg realisiert Tollwerk Projekte in den \nBereichen Internet, TYPO3, Online-Shops, Suchmaschinenoptimierung / SEO ...",
+      "htmlSnippet": "Als Full-Service-Werbeagentur aus Nürnberg realisiert \u003cb\u003eTollwerk\u003c/b\u003e Projekte in den \u003cbr\u003e\nBereichen Internet, TYPO3, Online-Shops, Suchmaschinenoptimierung / SEO&nbsp;...",
+      "cacheId": "za3uH9uw1P8J",
+      "formattedUrl": "https://tollwerk.de/",
+      "htmlFormattedUrl": "https://\u003cb\u003etollwerk\u003c/b\u003e.de/",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "288",
+            "height": "175",
+            "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRtJySgLCCElIx0gM6DbCYfui_XuddqsTTWvOR7xeL4s39pB3gPE-UVCvE"
+          }
+        ],
+        "postaladdress": [
+          {
+            "streetaddress": "Klingenhofstraße 5",
+            "postalcode": "90411",
+            "addresslocality": "Nürnberg",
+            "addressregion": "Bayern",
+            "addresscountry": "Deutschland"
+          }
+        ],
+        "metatags": [
+          {
+            "author": "tollwerk® GmbH",
+            "language": "de",
+            "y_key": "79fcdf392a31590b",
+            "viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",
+            "fb:admins": "533415336,1004143357,100000232850574"
+          }
+        ],
+        "hcard": [
+          {
+            "fn": "tollwerk® GmbH",
+            "url": "https://tollwerk.de/",
+            "url_text": "https://tollwerk.de",
+            "photo": "https://tollwerk.de/fileadmin/templates/css/img/logo_full.png",
+            "logo": "https://tollwerk.de/fileadmin/templates/css/img/logo_full.png"
+          }
+        ],
+        "organization": [
+          {
+            "name": "tollwerk® GmbH",
+            "image": "https://tollwerk.de/fileadmin/templates/css/img/logo_full.png",
+            "faxnumber": "+49 911 959394-7",
+            "url": "https://tollwerk.de"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://tollwerk.de/typo3temp/pics/4f38c99c82.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "tollwerk GmbH · GitHub",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e GmbH · GitHub",
+      "link": "https://github.com/tollwerk",
+      "displayLink": "github.com",
+      "snippet": "General setup instructions for Tollwerk Gentoo boxes ... Yeoman generator for \ntypical tollwerk frontend projects (currently focused on TYPO3 projects with ...",
+      "htmlSnippet": "General setup instructions for \u003cb\u003eTollwerk\u003c/b\u003e Gentoo boxes ... Yeoman generator for \u003cbr\u003e\ntypical \u003cb\u003etollwerk\u003c/b\u003e frontend projects (currently focused on TYPO3 projects with&nbsp;...",
+      "cacheId": "xdcWb7uwoYMJ",
+      "formattedUrl": "https://github.com/tollwerk",
+      "htmlFormattedUrl": "https://github.com/\u003cb\u003etollwerk\u003c/b\u003e",
       "pagemap": {
         "cse_thumbnail": [
           {
             "width": "225",
             "height": "225",
-            "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ7Mhdwi6OlylFXV5x2LSj6isyAtAwfAejPsM5vL6zwX51nI5L72qRqF7Q"
+            "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSIymnZCdjIIhFzpojxccNgRlt2w9166CDfoj4P-moqjrgb58hN_LVxPWI"
+          }
+        ],
+        "code": [
+          {
+            "name": "TYPO3-ext-tw_componentlibrary",
+            "coderepository": "TYPO3-ext-tw_componentlibrary",
+            "description": "Component library features for your TYPO3 project",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "gentoo-setup",
+            "coderepository": "gentoo-setup",
+            "description": "General setup instructions for Tollwerk Gentoo boxes"
+          },
+          {
+            "name": "TYPO3-ext-tw_base",
+            "coderepository": "TYPO3-ext-tw_base",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "TYPO3-ext-tw_cookie",
+            "coderepository": "TYPO3-ext-tw_cookie",
+            "description": "Cookie Consent Banner for TYPO3 websites",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "data-processing-agreements",
+            "coderepository": "data-processing-agreements",
+            "description": "Collection of Data Processing Agreement (DPA) and GDPR compliance resources",
+            "programminglanguage": "CSS"
+          },
+          {
+            "name": "fractal-typo3",
+            "coderepository": "fractal-typo3",
+            "description": "TYPO3 bridge for the Fractal component library tool (http://fractal.build / @frctl)",
+            "programminglanguage": "JavaScript"
+          },
+          {
+            "name": "admin",
+            "coderepository": "admin",
+            "description": "Tollwerk server account administration",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "generator-tollwerk",
+            "coderepository": "generator-tollwerk",
+            "description": "Yeoman generator for typical tollwerk frontend projects (currently focused on TYPO3 projects with TemplaVoila / FluidTYPO3)",
+            "programminglanguage": "JavaScript"
+          },
+          {
+            "name": "TYPO3-ext-tw_lucenesearch",
+            "coderepository": "TYPO3-ext-tw_lucenesearch",
+            "description": "Simple and lightweight implementation of the Apache Lucene Index as frontend search solution for TYPO3. Created by Joschi Kuphal (@jkphl), licensed under the terms of the GPL v2 license.",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "gsales2",
+            "coderepository": "gsales2",
+            "description": "tollwerk gSales extensions",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "ldap-auth",
+            "coderepository": "ldap-auth",
+            "description": "Simple readonly LDAP authentication with Laravel 5.2",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "tollwerkstatt",
+            "coderepository": "tollwerkstatt",
+            "programminglanguage": "JavaScript"
+          },
+          {
+            "name": "toggl-dashboard",
+            "coderepository": "toggl-dashboard",
+            "description": "Dashboard for monitoring Toggle time entries",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "fractal-tenon",
+            "coderepository": "fractal-tenon",
+            "description": "Fractal component library tool (http://fractal.build) plugin for accessibility testing against Tenon (http://tenon.io)",
+            "programminglanguage": "JavaScript"
+          },
+          {
+            "name": "TYPO3-ext-tw_antibot",
+            "coderepository": "TYPO3-ext-tw_antibot",
+            "description": "Death to Spambots! — CAPTCHA-less security for TYPO3 forms",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "TYPO3-ext-tw_sitemap",
+            "coderepository": "TYPO3-ext-tw_sitemap",
+            "description": "Advanced Google XML Sitemap generation incl. various entry sources and multiple sitemap file support",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "TYPO3-ext-squeezr",
+            "coderepository": "TYPO3-ext-squeezr",
+            "description": "Easily integrate squeezr (https://github.com/jkphl/squeezr) into your TYPO3 setup",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "TYPO3-ext-tw_googleanalytics",
+            "coderepository": "TYPO3-ext-tw_googleanalytics",
+            "description": "Frontend plugin for advanced Google Analytics integration with a wide range of features including pageView and event tracking, custom variables / dimensions / metrics, cross domain tracking,...",
+            "programminglanguage": "JavaScript"
+          },
+          {
+            "name": "ext-jh_magnificpopup",
+            "coderepository": "ext-jh_magnificpopup",
+            "description": "TYPO3 CMS Extension to integrate Magnific Popup",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "cookie-cache-loader",
+            "coderepository": "cookie-cache-loader",
+            "description": "Cookie cache loader",
+            "programminglanguage": "JavaScript"
+          },
+          {
+            "name": "TYPO3-ext-tw_prototype",
+            "coderepository": "TYPO3-ext-tw_prototype",
+            "description": "Prototypical TYPO3 main extension for Tollwerk projects",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "code-style-guidelines",
+            "coderepository": "code-style-guidelines",
+            "description": "Code style guidelines for several contexts and programming languages used at Tollwerk on a regular basis"
+          },
+          {
+            "name": "TYPO3-ext-tw_payment",
+            "coderepository": "TYPO3-ext-tw_payment",
+            "description": "Stripe & PayPal payment platform plugins",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "TYPO3-ext-tw_yourls",
+            "coderepository": "TYPO3-ext-tw_yourls",
+            "description": "YOURLS URL shortener (http://yourls.org) API client",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "TYPO3-skeleton",
+            "coderepository": "TYPO3-skeleton",
+            "description": "Base skeleton for new TYPO3 projects featuring a directory structure and some base TypoScript files relevant for most of our projects",
+            "programminglanguage": "TypeScript"
+          },
+          {
+            "name": "TYPO3-ext-tw_odl",
+            "coderepository": "TYPO3-ext-tw_odl",
+            "description": "Device management for Open Device Labs – right away within your TYPO3 installation. Created by Joschi Kuphal (@jkphl), licensed under the terms of the GPL v2 license.",
+            "programminglanguage": "PHP"
+          }
+        ],
+        "metatags": [
+          {
+            "viewport": "width=device-width",
+            "fb:app_id": "1401488693436528",
+            "og:image": "https://avatars0.githubusercontent.com/u/1038729?s=280&v=4",
+            "og:site_name": "GitHub",
+            "og:type": "profile",
+            "og:title": "tollwerk GmbH",
+            "og:url": "https://github.com/tollwerk",
+            "profile:username": "tollwerk",
+            "pjax-timeout": "1000",
+            "request-id": "E1CA:4B4C:6E1DCC:A98B2E:5B4E1B04",
+            "hovercard-subject-tag": "organization:1038729",
+            "google-analytics": "UA-3769691-2",
+            "octolytics-host": "collector.githubapp.com",
+            "octolytics-app-id": "github",
+            "octolytics-event-url": "https://collector.githubapp.com/github-external/browser_event",
+            "octolytics-dimension-request_id": "E1CA:4B4C:6E1DCC:A98B2E:5B4E1B04",
+            "octolytics-dimension-region_edge": "sea",
+            "octolytics-dimension-region_render": "iad",
+            "analytics-location": "/\u003corg-login\u003e",
+            "dimension1": "Logged Out",
+            "hostname": "github.com",
+            "expected-hostname": "github.com",
+            "js-proxy-site-detection-payload": "MjUwMWMwNGViN2Y0MjM4YmQ5Y2FjMzRjMjQ5NjY2YWExM2M0YzQ2ZWEyNzU1OWFkMWM2ODMyZWYwNzkyODQ3Y3x7InJlbW90ZV9hZGRyZXNzIjoiNjYuMjQ5Ljc5LjE0NiIsInJlcXVlc3RfaWQiOiJFMUNBOjRCNEM6NkUxRENDOkE5OEIyRTo1QjRFMUIwNCIsInRpbWVzdGFtcCI6MTUzMTg0NTM4MSwiaG9zdCI6ImdpdGh1Yi5jb20ifQ==",
+            "enabled-features": "UNIVERSE_BANNER,FREE_TRIALS,MARKETPLACE_INSIGHTS,MARKETPLACE_SEARCH,MARKETPLACE_INSIGHTS_CONVERSION_PERCENTAGES",
+            "html-safe-nonce": "92af62a720b0632750658511ffe071cc39c568e0",
+            "browser-stats-url": "https://api.github.com/_private/browser/stats",
+            "browser-errors-url": "https://api.github.com/_private/browser/errors",
+            "theme-color": "#1e2327"
+          }
+        ],
+        "organization": [
+          {
+            "image": "https://avatars1.githubusercontent.com/u/1038729?s=200&v=4",
+            "location": "Nuremberg / Germany",
+            "url": "http://tollwerk.de",
+            "email": "info@tollwerk.de"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://avatars0.githubusercontent.com/u/1038729?s=280&v=4"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "tollwerk - Home | Facebook",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e - Home | Facebook",
+      "link": "https://www.facebook.com/tollwerk/",
+      "displayLink": "www.facebook.com",
+      "snippet": "tollwerk, Nuremberg. 332 likes. tollwerk® GmbH - TYPO3 · Web · Barrierefreiheit · \nWerbung · Design :::: Impressum: https://tollwerk.de/impressum/",
+      "htmlSnippet": "\u003cb\u003etollwerk\u003c/b\u003e, Nuremberg. 332 likes. \u003cb\u003etollwerk\u003c/b\u003e® GmbH - TYPO3 · Web · Barrierefreiheit · \u003cbr\u003e\nWerbung · Design :::: Impressum: https://\u003cb\u003etollwerk\u003c/b\u003e.de/impressum/",
+      "formattedUrl": "https://www.facebook.com/tollwerk/",
+      "htmlFormattedUrl": "https://www.facebook.com/\u003cb\u003etollwerk\u003c/b\u003e/",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "225",
+            "height": "225",
+            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQl0ierJlkUSPUO1vpuypcHOo8TI_LSidntNfOLNy0FmZV6SHdZCgWahuA"
+          }
+        ],
+        "aggregaterating": [
+          {
+            "ratingvalue": "5",
+            "ratingcount": "16"
+          }
+        ],
+        "metatags": [
+          {
+            "referrer": "default",
+            "al:android:app_name": "Facebook",
+            "al:android:package": "com.facebook.katana",
+            "al:android:url": "fb://page/133038876725926?referrer=app_link",
+            "al:ios:app_name": "Facebook",
+            "al:ios:app_store_id": "284882215",
+            "al:ios:url": "fb://page/?id=133038876725926",
+            "og:title": "tollwerk",
+            "og:description": "tollwerk, Nuremberg. 332 likes. tollwerk® GmbH - TYPO3 · Web · Barrierefreiheit · Werbung · Design  ::::  Impressum: https://tollwerk.de/impressum/",
+            "og:image": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=133038876725926",
+            "og:url": "https://www.facebook.com/tollwerk/"
+          }
+        ],
+        "listitem": [
+          {
+            "item": "Places",
+            "name": "Places",
+            "position": "1"
+          },
+          {
+            "item": "Nuremberg",
+            "name": "Nuremberg",
+            "position": "2"
+          },
+          {
+            "item": "Web Designer",
+            "name": "Web Designer",
+            "position": "3"
+          }
+        ],
+        "organization": [
+          {
+            "image": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=133038876725926"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=373509889420633"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "tollwerk® GmbH (@tollwerk) | Twitter",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e® GmbH (@\u003cb\u003etollwerk\u003c/b\u003e) | Twitter",
+      "link": "https://twitter.com/tollwerk?lang=de",
+      "displayLink": "twitter.com",
+      "snippet": "The latest Tweets from tollwerk® GmbH (@tollwerk). #TYPO3- & Full-Service-\nWerbeagentur · Responsive Webdesign · Multi-Device, Accessibility ...",
+      "htmlSnippet": "The latest Tweets from \u003cb\u003etollwerk\u003c/b\u003e® GmbH (@\u003cb\u003etollwerk\u003c/b\u003e). #TYPO3- &amp; Full-Service-\u003cbr\u003e\nWerbeagentur · Responsive Webdesign · Multi-Device, Accessibility&nbsp;...",
+      "cacheId": "vqUyJI8IGTkJ",
+      "formattedUrl": "https://twitter.com/tollwerk?lang=de",
+      "htmlFormattedUrl": "https://twitter.com/\u003cb\u003etollwerk\u003c/b\u003e?lang=de",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "225",
+            "height": "225",
+            "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSJc5ypEImYN8_0FA4oX8KUgpx6rjH5k9IomvnLZK7IHRHTWFRzZZPzjAQ"
           }
         ],
         "metatags": [
@@ -68,408 +416,390 @@
             "msapplication-tilecolor": "#00aced",
             "swift-page-name": "profile",
             "swift-page-section": "profile",
-            "al:ios:url": "twitter://user?screen_name=cowglow",
+            "al:ios:url": "twitter://user?screen_name=tollwerk",
             "al:ios:app_store_id": "333903271",
             "al:ios:app_name": "Twitter",
-            "al:android:url": "twitter://user?screen_name=cowglow",
+            "al:android:url": "twitter://user?screen_name=tollwerk",
             "al:android:package": "com.twitter.android",
             "al:android:app_name": "Twitter"
           }
         ],
         "cse_image": [
           {
-            "src": "https://pbs.twimg.com/profile_images/947534820074192896/HXDMVXuw_400x400.jpg"
+            "src": "https://pbs.twimg.com/profile_images/606809042107920385/mEcP4peh_400x400.jpg"
           }
         ]
       }
     },
     {
       "kind": "customsearch#result",
-      "title": "Philip M. Hamer and Elizabeth Hamer Kegan Award | Society of ...",
-      "htmlTitle": "\u003cb\u003ePhilip\u003c/b\u003e M. Hamer and Elizabeth Hamer Kegan Award | Society of ...",
-      "link": "https://www2.archivists.org/governance/handbook/section12-hamer",
-      "displayLink": "www2.archivists.org",
-      "snippet": "About SAA ... This Philip M. Hamer and Elizabeth Hamer Kegan Award \nrecognizes an archivist, editor, group of individuals, ... Her late husband, Philip M. \nHamer, was a historian who served successively as head of the Library, \nAccessions, ...",
-      "htmlSnippet": "About \u003cb\u003eSAA\u003c/b\u003e ... This \u003cb\u003ePhilip\u003c/b\u003e M. Hamer and Elizabeth Hamer Kegan Award \u003cbr\u003e\nrecognizes an archivist, editor, group of individuals, ... Her late husband, \u003cb\u003ePhilip\u003c/b\u003e M. \u003cbr\u003e\nHamer, was a historian who served successively as head of the Library, \u003cbr\u003e\nAccessions,&nbsp;...",
-      "cacheId": "V9ENnZDjxAIJ",
-      "formattedUrl": "https://www2.archivists.org/governance/handbook/section12-hamer",
-      "htmlFormattedUrl": "https://www2.archivists.org/governance/handbook/section12-hamer",
-      "pagemap": {
-        "metatags": [
-          {
-            "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
-          }
-        ]
-      }
-    },
-    {
-      "kind": "customsearch#result",
-      "title": "Woo Kok Wah (Philip) - SAA Global Education",
-      "htmlTitle": "Woo Kok Wah (\u003cb\u003ePhilip\u003c/b\u003e) - \u003cb\u003eSAA\u003c/b\u003e Global Education",
-      "link": "http://saage.edu.sg/teachers/woo-kok-wah-philip/",
-      "displayLink": "saage.edu.sg",
-      "snippet": "Mr Woo is a Fellow of The Association of Chartered Certified Accountants (FCCA) \nand a member of the Institute of Data Processing and Management ...",
-      "htmlSnippet": "Mr Woo is a Fellow of The Association of Chartered Certified Accountants (FCCA) \u003cbr\u003e\nand a member of the Institute of Data Processing and Management&nbsp;...",
-      "cacheId": "GwW7mxp-zCkJ",
-      "formattedUrl": "saage.edu.sg/teachers/woo-kok-wah-philip/",
-      "htmlFormattedUrl": "\u003cb\u003esaa\u003c/b\u003ege.edu.sg/teachers/woo-kok-wah-\u003cb\u003ephilip\u003c/b\u003e/",
-      "pagemap": {
-        "cse_thumbnail": [
-          {
-            "width": "275",
-            "height": "183",
-            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR3Cv7dbHg4ueR3QVDK9l0gdSHE1-WcEgaxlRFdg6roJBBLnBstLOPAhqo"
-          }
-        ],
-        "metatags": [
-          {
-            "viewport": "width=device-width, initial-scale=1",
-            "og:locale": "en_US",
-            "og:type": "article",
-            "og:title": "Woo Kok Wah (Philip) - SAA Global Education",
-            "og:description": "Mr Woo is a Fellow of The Association of Chartered Certified Accountants (FCCA) and a member of the Institute of Data Processing and Management (MIDPM)-UK.",
-            "og:url": "http://saage.edu.sg/teachers/woo-kok-wah-philip/",
-            "og:site_name": "SAA Global Education",
-            "article:publisher": "https://www.facebook.com/saaglobaleducation",
-            "og:image": "http://saage.edu.sg/wp-content/uploads/2018/04/Philip-Woo.jpg",
-            "og:image:width": "1200",
-            "og:image:height": "800",
-            "twitter:card": "summary_large_image",
-            "twitter:description": "Mr Woo is a Fellow of The Association of Chartered Certified Accountants (FCCA) and a member of the Institute of Data Processing and Management (MIDPM)-UK.",
-            "twitter:title": "Woo Kok Wah (Philip) - SAA Global Education",
-            "twitter:site": "@saa_ge",
-            "twitter:image": "http://saage.edu.sg/wp-content/uploads/2018/04/Philip-Woo.jpg",
-            "twitter:creator": "@saa_ge",
-            "msapplication-tileimage": "http://saage.edu.sg/wp-content/uploads/2017/12/cropped-saage-logo-icon-512x512-270x270.png",
-            "position": "1"
-          }
-        ],
-        "cse_image": [
-          {
-            "src": "http://saage.edu.sg/wp-content/uploads/2018/04/Philip-Woo.jpg"
-          }
-        ]
-      }
-    },
-    {
-      "kind": "customsearch#result",
-      "title": "COWGLOW [est. 1999]",
-      "htmlTitle": "COWGLOW [est. 1999]",
-      "link": "http://cowglow.com/",
-      "displayLink": "cowglow.com",
-      "snippet": "Philip Saa (@cowglow) is an American filmmaker living and working in Germany.",
-      "htmlSnippet": "\u003cb\u003ePhilip Saa\u003c/b\u003e (@cowglow) is an American filmmaker living and working in Germany.",
-      "cacheId": "4huUiVuezpIJ",
-      "formattedUrl": "cowglow.com/",
-      "htmlFormattedUrl": "cowglow.com/",
-      "pagemap": {
-        "cse_thumbnail": [
-          {
-            "width": "225",
-            "height": "225",
-            "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQzoWgNV0m9qDt2pPxhLDyqs1fm1B9XqHTLOW4_CmiFdv5oMxtyCdl1mjk"
-          }
-        ],
-        "metatags": [
-          {
-            "viewport": "width=device-width, initial-scale=1",
-            "author": "cowglow"
-          }
-        ],
-        "cse_image": [
-          {
-            "src": "http://cowglow.com/assets/images/psaa.png"
-          }
-        ]
-      }
-    },
-    {
-      "kind": "customsearch#result",
-      "title": "Philips SAA1099 - Wikipedia",
-      "htmlTitle": "\u003cb\u003ePhilips\u003c/b\u003e SAA1099 - Wikipedia",
-      "link": "https://en.wikipedia.org/wiki/Philips_SAA1099",
-      "displayLink": "en.wikipedia.org",
-      "snippet": "The Philips SAA1099 sound generator was a 6-voice sound chip used by some \n1980s devices, notably: The British-made SAM Coupé computer; The Creative ...",
-      "htmlSnippet": "The \u003cb\u003ePhilips\u003c/b\u003e SAA1099 sound generator was a 6-voice sound chip used by some \u003cbr\u003e\n1980s devices, notably: The British-made SAM Coupé computer; The Creative&nbsp;...",
-      "cacheId": "9ZhvMFy3gDkJ",
-      "formattedUrl": "https://en.wikipedia.org/wiki/Philips_SAA1099",
-      "htmlFormattedUrl": "https://en.wikipedia.org/wiki/\u003cb\u003ePhilips\u003c/b\u003e_\u003cb\u003eSAA\u003c/b\u003e1099",
-      "pagemap": {
-        "cse_thumbnail": [
-          {
-            "width": "234",
-            "height": "215",
-            "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTdv3WgBe0C1MphBexisFIzZU7gbLHxCloC-FuUjkmJ9FvVKnHBBjtTjMz2"
-          }
-        ],
-        "metatags": [
-          {
-            "referrer": "origin",
-            "og:image": "https://upload.wikimedia.org/wikipedia/commons/9/96/SAA1099_pinout.png"
-          }
-        ],
-        "cse_image": [
-          {
-            "src": "https://upload.wikimedia.org/wikipedia/commons/9/96/SAA1099_pinout.png"
-          }
-        ]
-      }
-    },
-    {
-      "kind": "customsearch#result",
-      "title": "SAA Philip M. Hamer and Elizabeth Hamer Kegan Award | Kentucky ...",
-      "htmlTitle": "\u003cb\u003eSAA Philip\u003c/b\u003e M. Hamer and Elizabeth Hamer Kegan Award | Kentucky ...",
-      "link": "http://www.kyarchivists.com/saa-philip-m-hamer-and-elizabeth-hamer-kegan-award/",
-      "displayLink": "www.kyarchivists.com",
-      "snippet": "Feb 2, 2018 ... The Philip M. Hamer and Elizabeth Hamer Kegan Award Subcommittee of the \nSociety of American Archivists (SAA) seeks nominations for the ...",
-      "htmlSnippet": "Feb 2, 2018 \u003cb\u003e...\u003c/b\u003e The \u003cb\u003ePhilip\u003c/b\u003e M. Hamer and Elizabeth Hamer Kegan Award Subcommittee of the \u003cbr\u003e\nSociety of American Archivists (\u003cb\u003eSAA\u003c/b\u003e) seeks nominations for the&nbsp;...",
-      "cacheId": "Ik9qEnNWsS0J",
-      "formattedUrl": "www.kyarchivists.com/saa-philip-m-hamer-and-elizabeth-hamer-kegan- award/",
-      "htmlFormattedUrl": "www.kyarchivists.com/\u003cb\u003esaa\u003c/b\u003e-\u003cb\u003ephilip\u003c/b\u003e-m-hamer-and-elizabeth-hamer-kegan- award/",
+      "title": "tollwerk® GmbH | LinkedIn",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e® GmbH | LinkedIn",
+      "link": "https://www.linkedin.com/company/tollwerk-gmbh",
+      "displayLink": "www.linkedin.com",
+      "snippet": "Learn about working at tollwerk® GmbH. Join LinkedIn today for free. See who \nyou know at tollwerk® GmbH, leverage your professional network, and get hired.",
+      "htmlSnippet": "Learn about working at \u003cb\u003etollwerk\u003c/b\u003e® GmbH. Join LinkedIn today for free. See who \u003cbr\u003e\nyou know at \u003cb\u003etollwerk\u003c/b\u003e® GmbH, leverage your professional network, and get hired.",
+      "formattedUrl": "https://www.linkedin.com/company/tollwerk-gmbh",
+      "htmlFormattedUrl": "https://www.linkedin.com/company/\u003cb\u003etollwerk\u003c/b\u003e-gmbh",
       "pagemap": {
         "cse_thumbnail": [
           {
             "width": "200",
             "height": "200",
-            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQWFd3H4RHfOldxeesuf5INtso9lDvoaCpBocXJaRRmC-FLpHMaF4tw1Uk"
+            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRbp6B5J-TEt9MKFYDGbZv78d_MoDVsgL5MqXPesbpQXgOt31JWcwSi_yo"
           }
         ],
         "metatags": [
           {
+            "pagekey": "d_org_guest_company_overview",
+            "seobeaconworkerurl": "https://static.licdn.com/sc/h/3m0nuu8g9hqyi8d1h8lhfr2q8",
+            "locale": "en_US",
+            "og:title": "tollwerk® GmbH | LinkedIn",
+            "og:description": "Learn about working at tollwerk® GmbH. Join LinkedIn today for free. See who you know at tollwerk® GmbH, leverage your professional network, and get hired.",
+            "og:image": "https://media.licdn.com/dms/image/C510BAQH7MPrXdFBuWA/company-logo_200_200/0?e=2159024400&v=beta&t=8eNG0gdXC9yAMQW-JY2byjmYiYqDaNcgBdBl_OS6008",
             "og:type": "article",
-            "og:title": "SAA Philip M. Hamer and Elizabeth Hamer Kegan Award",
-            "og:url": "http://www.kyarchivists.com/saa-philip-m-hamer-and-elizabeth-hamer-kegan-award/",
-            "og:description": "Please consider nominations for the Society of American Archivists Philip M. Hamer and Elizabeth Hamer Kegan Award! The Philip M. Hamer and Elizabeth Hamer Kegan Award Subcommittee of the Society o…",
-            "article:published_time": "2018-02-02T13:31:54-05:00",
-            "article:modified_time": "2018-02-02T13:31:54-05:00",
-            "og:site_name": "Kentucky Council on Archives",
-            "og:image": "https://s0.wp.com/i/blank.jpg",
-            "og:locale": "en_US",
-            "twitter:text:title": "SAA Philip M. Hamer and Elizabeth Hamer Kegan Award",
-            "twitter:card": "summary"
+            "og:url": "https://www.linkedin.com/company/tollwerk-gmbh",
+            "twitter:card": "summary",
+            "twitter:site": "@linkedin",
+            "twitter:title": "tollwerk® GmbH | LinkedIn",
+            "twitter:description": "Learn about working at tollwerk® GmbH. Join LinkedIn today for free. See who you know at tollwerk® GmbH, leverage your professional network, and get hired.",
+            "twitter:image": "https://media.licdn.com/dms/image/C510BAQH7MPrXdFBuWA/company-logo_200_200/0?e=2159024400&v=beta&t=8eNG0gdXC9yAMQW-JY2byjmYiYqDaNcgBdBl_OS6008"
+          }
+        ],
+        "listitem": [
+          {
+            "position": "1",
+            "url": "https://www.linkedin.com/in/joschikuphal?trk=org-employees_mini-profile_image"
+          },
+          {
+            "position": "2",
+            "url": "https://www.linkedin.com/in/philipsaa?trk=org-employees_mini-profile_image"
           }
         ],
         "cse_image": [
           {
-            "src": "https://s0.wp.com/i/blank.jpg"
+            "src": "https://media.licdn.com/dms/image/C510BAQH7MPrXdFBuWA/company-logo_200_200/0?e=2159024400&v=beta&t=8eNG0gdXC9yAMQW-JY2byjmYiYqDaNcgBdBl_OS6008"
           }
         ]
       }
     },
     {
       "kind": "customsearch#result",
-      "title": "Australia luopuu ritarinarvosta – prinssi Philip saa pitää arvonimensä",
-      "htmlTitle": "Australia luopuu ritarinarvosta – prinssi \u003cb\u003ePhilip saa\u003c/b\u003e pitää arvonimensä",
-      "link": "https://yle.fi/uutiset/3-8423989",
-      "displayLink": "yle.fi",
-      "snippet": "2. marraskuu 2015 ... Arvonimen jo aiemmin saaneet saavat pitää arvonsa, joten esimerkiksi \nkuningatar Elisabetin aviomies prinssi Philip saa pitää aiemmin tänä ...",
-      "htmlSnippet": "2. marraskuu 2015 \u003cb\u003e...\u003c/b\u003e Arvonimen jo aiemmin saaneet saavat pitää arvonsa, joten esimerkiksi \u003cbr\u003e\nkuningatar Elisabetin aviomies prinssi \u003cb\u003ePhilip saa\u003c/b\u003e pitää aiemmin tänä&nbsp;...",
-      "cacheId": "vR5Z2go_cHwJ",
-      "formattedUrl": "https://yle.fi/uutiset/3-8423989",
-      "htmlFormattedUrl": "https://yle.fi/uutiset/3-8423989",
+      "title": "tollwerk® GmbH als Arbeitgeber | XING Unternehmen",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e® GmbH als Arbeitgeber | XING Unternehmen",
+      "link": "https://www.xing.com/companies/tollwerk%C2%AEgmbh",
+      "displayLink": "www.xing.com",
+      "snippet": "Erfahren Sie, welche Vorteile tollwerk® GmbH als Arbeitgeber auszeichnen.",
+      "htmlSnippet": "Erfahren Sie, welche Vorteile \u003cb\u003etollwerk\u003c/b\u003e® GmbH als Arbeitgeber auszeichnen.",
+      "cacheId": "eMqJyfYtBJ0J",
+      "formattedUrl": "https://www.xing.com/companies/tollwerk®gmbh",
+      "htmlFormattedUrl": "https://www.xing.com/companies/\u003cb\u003etollwerk\u003c/b\u003e®gmbh",
       "pagemap": {
         "cse_thumbnail": [
           {
-            "width": "311",
-            "height": "162",
-            "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPYj64gO1BqhRSk1YL-oIeW0HZ1HLsxHIvWW74SXDhYkQfMAm9o5z_k18"
+            "width": "264",
+            "height": "70",
+            "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSpKDhwdoC2ll4gPEIxSBo2_5mlEjr9Yh8_4PfLSwLMwxF439NLVOv3yQ"
+          }
+        ],
+        "postaladdress": [
+          {
+            "streetaddress": "Klingenhofstraße 5",
+            "postalcode": "90411",
+            "addresslocality": "Nürnberg",
+            "addresscountry": "Deutschland"
           }
         ],
         "metatags": [
           {
-            "og:description": "Edellinen pääministeri oli ottanut arvon käyttöön uudelleen viime vuonna, mutta hänen päätöstään arvosteltiin voimakkaasti. Arvonimen jo aiemmin saaneet saavat pitää arvonsa, joten esimerkiksi kuningatar Elisabetin aviomies prinssi Philip saa pitää aiemmin tänä vuonna saamansa ritarinarvon.",
-            "og:url": "http://yle.fi/uutiset/australia_luopuu_ritarinarvosta__prinssi_philip_saa_pitaa_arvonimensa/8423989",
-            "og:image": "https://images.cdn.yle.fi/image/upload/ar_1.91,c_crop/17-6372357f4a79a13ed3.jpg",
-            "og:type": "website",
-            "og:title": "Australia luopuu ritarinarvosta – prinssi Philip saa pitää arvonimensä",
-            "og:site_name": "Yle Uutiset",
-            "fb:app_id": "147925155254978",
-            "fb:pages": "170559451901,252166562460,291117849202,192534820828660,246415834930,141733389996,185521831442,127820652625,225930055836,182155748236,136798886342079,333763622448,312937363491,190153419756,300238829691,250842384819,366734725407,227515436637,116686841709805,355899633222,300809901605,166619556742075,492609065374,124877274234053,230483103705424,200984393268390,1651249601794906,107308025957314,173241277806,345732187153,183860797738,69675651064,164345690280744,1148642531826361,643517599029267,531270113605417,165217470246480,1380652225559559,509209759245250,113980165302836,351173836210,479683965433928,192230846527,1654755908077820,765596730168740,196737677052513,106560389371863,1724601357566118,50687535468,171726874124",
-            "twitter:card": "summary_large_image",
-            "twitter:site": "@yleuutiset",
-            "viewport": "width=device-width,initial-scale=1",
-            "apple-mobile-web-app-title": "Yle Uutiset",
-            "apple-mobile-web-app-status-bar-style": "black",
-            "theme-color": "#007e96",
-            "msapplication-navbutton-color": "#007e96"
-          }
-        ],
-        "article": [
-          {
-            "name": "Australia luopuu ritarinarvosta – prinssi Philip saa pitää arvonimensä"
+            "referrer": "default",
+            "csrf-param": "authenticity_token",
+            "csrf-token": "iFOkt7OxgF8dqgiIfu4jFSdQn1jQrurZGI/9LVFZYFK9ZcmFhf+tE1vaMOct1m1gSn3MObbMmp9H+69sOgkBYQ==",
+            "logjam-request-id": "companies-production-9a3dafeb92b7453394d6fad203b78247",
+            "logjam-action": "CorporatePages::ProfileController#show",
+            "logjam-collector": "https://www.xing.com/logjam/",
+            "og:title": "tollwerk® GmbH als Arbeitgeber | XING Unternehmen",
+            "og:url": "https://www.xing.com/companies/tollwerk%C2%AEgmbh",
+            "og:image": "https://www.xing.com/img/custom/cp/assets/logo/f/8/c/8076/logo/Tollwerk-Logo_RGB.jpg",
+            "og:site_name": "XING AG",
+            "og:description": "Erfahren Sie, welche Vorteile tollwerk® GmbH als Arbeitgeber auszeichnen.",
+            "og:type": "company",
+            "viewport": "width=device-width, minimum-scale=1, maximum-scale=1"
           }
         ],
         "breadcrumb": [
           {
-            "url": "yle.fi",
-            "title": "yle.fi"
-          }
-        ],
-        "person": [
+            "url": "Startseite",
+            "title": "Startseite"
+          },
           {
-            "image": "https://images.cdn.yle.fi/image/upload/w_60,h_60,c_thumb,r_max,dpr_2.0/17-6372357f4a79a13ed3.png",
-            "name": "Mikko Kuusisalo"
+            "url": "Unternehmen",
+            "title": "Unternehmen"
+          },
+          {
+            "url": "Branchen",
+            "title": "Branchen"
+          },
+          {
+            "url": "Internet und Onlinemedien",
+            "title": "Internet und Onlinemedien"
+          },
+          {
+            "title": "tollwerk® GmbH"
           }
         ],
         "cse_image": [
           {
-            "src": "https://images.cdn.yle.fi/image/upload/ar_1.91,c_crop/17-6372357f4a79a13ed3.jpg"
+            "src": "https://www.xing.com/img/custom/cp/assets/logo/f/8/c/8076/logo/Tollwerk-Logo_RGB.jpg"
+          }
+        ],
+        "localbusiness": [
+          {
+            "name": "tollwerk® GmbH",
+            "logo": "https://www.xing.com/companies/tollwerk%C2%AEgmbh",
+            "foundingdate": "2000",
+            "telephone": "+49 911 959394-5",
+            "faxnumber": "+49 911 959394-7",
+            "email": "info@tollwerk.de",
+            "url": "tollwerk.de"
           }
         ]
       }
     },
     {
       "kind": "customsearch#result",
-      "title": ": Philip Zimbardo: O tom, ako sa z obyčajných ľudí stanú monštrá ...",
-      "htmlTitle": ": \u003cb\u003ePhilip\u003c/b\u003e Zimbardo: O tom, ako \u003cb\u003esa\u003c/b\u003e z obyčajných ľudí stanú monštrá ...",
-      "link": "https://www.ted.com/talks/philip_zimbardo_on_the_psychology_of_evil?language=sk",
-      "displayLink": "www.ted.com",
-      "snippet": "Philip Zimbardo vie, ako ľahko sa dobrí ľudia menia na zlých. V tomto príspevku \nsa s nami podelí o svoje postrehy a nevídané naturalistické fotky z procesov v ...",
-      "htmlSnippet": "\u003cb\u003ePhilip\u003c/b\u003e Zimbardo vie, ako ľahko \u003cb\u003esa\u003c/b\u003e dobrí ľudia menia na zlých. V tomto príspevku \u003cbr\u003e\n\u003cb\u003esa\u003c/b\u003e s nami podelí o svoje postrehy a nevídané naturalistické fotky z procesov v&nbsp;...",
-      "cacheId": "JNi2gTpQoSIJ",
-      "formattedUrl": "https://www.ted.com/.../philip_zimbardo_on_the_psychology_of_evil?...",
-      "htmlFormattedUrl": "https://www.ted.com/.../\u003cb\u003ephilip\u003c/b\u003e_zimbardo_on_the_psychology_of_evil?...",
+      "title": "tollwerk Lucene search (tw_lucenesearch)",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e Lucene search (tw_lucenesearch)",
+      "link": "https://extensions.typo3.org/extension/tw_lucenesearch/",
+      "displayLink": "extensions.typo3.org",
+      "snippet": "Jan 22, 2014 ... [TYPO3 CMS 6 Release] Simple and lightweight implementation of the Apache \nLucene Index as frontend search solution for TYPO3, built on ...",
+      "htmlSnippet": "Jan 22, 2014 \u003cb\u003e...\u003c/b\u003e [TYPO3 CMS 6 Release] Simple and lightweight implementation of the Apache \u003cbr\u003e\nLucene Index as frontend search solution for TYPO3, built on&nbsp;...",
+      "cacheId": "0WVb2MvYJbEJ",
+      "formattedUrl": "https://extensions.typo3.org/extension/tw_lucenesearch/",
+      "htmlFormattedUrl": "https://extensions.typo3.org/extension/tw_lucenesearch/",
       "pagemap": {
-        "cse_thumbnail": [
+        "softwareapplication": [
           {
-            "width": "310",
-            "height": "162",
-            "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSKn6z-U9THpN1psKO5yU4rHqNB2GPz31RT2M2TAcRBIa-rg8IKQzR8DlA"
+            "applicationcategory": "TYPO3 Extension",
+            "applicationsuite": "TYPO3",
+            "downloadurl": "https://extensions.typo3.org/extension/download/tw_lucenesearch/",
+            "fileformat": "application/zip",
+            "operatingsystem": "Windows,Linux,MacOS",
+            "alternatename": "tollwerk Lucene search",
+            "name": "tw_lucenesearch",
+            "softwareversion": "1.0.2",
+            "description": "[TYPO3 CMS 6 Release] Simple and lightweight implementation of the Apache Lucene Index as frontend search solution for TYPO3, built on extbase / fluid, supporting wildcard and fuzzy searches,...",
+            "releasenotes": "Fixed a regression bug with wrong Flexform file name",
+            "datecreated": "2014-01-22T22:50:27+01:00",
+            "applicationsubcategory": "Frontend Plugins"
           }
         ],
         "metatags": [
           {
-            "apple-itunes-app": "app-id=376183339,app-argument=https://www.ted.com/talks/philip_zimbardo_on_the_psychology_of_evil?language=sk&utm_source=ted.com&utm_medium=referral&utm_campaign=smart_app_banner",
-            "medium": "video",
-            "fb:app_id": "201021956610141",
-            "og:url": "https://www.ted.com/talks/philip_zimbardo_on_the_psychology_of_evil?language=sk",
-            "og:title": "Philip Zimbardo: O tom, ako sa z obyčajných ľudí stanú monštrá... alebo hrdinovia",
-            "og:image": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/120ccfcc17a4370989d4dffdea7c040842854036_1600x1200.jpg?c=1050%2C550&w=1050",
-            "og:image:secure_url": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/120ccfcc17a4370989d4dffdea7c040842854036_1600x1200.jpg?c=1050%2C550&w=1050",
-            "og:image:width": "1050",
-            "og:image:height": "550",
-            "og:type": "video.other",
-            "og:video:duration": "1396.0",
-            "og:video:tag": "children",
-            "og:video:release_date": "1222131600",
-            "al:ios:app_name": "TED",
-            "al:ios:app_store_id": "376183339",
-            "al:ios:url": "ted://talks/272?source=facebook",
-            "al:android:app_name": "TED",
-            "al:android:package": "com.ted.android",
-            "al:android:url": "ted://talks/philip_zimbardo_on_the_psychology_of_evil?source=facebook",
-            "rss-feed": "https://www.ted.com/feeds/talks.rss",
-            "twitter:card": "summary_large_image",
-            "twitter:site": "@tedtalks",
-            "twitter:image": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/120ccfcc17a4370989d4dffdea7c040842854036_1600x1200.jpg?w=1200",
-            "twitter:app:id:iphone": "376183339",
-            "twitter:app:id:ipad": "376183339",
-            "twitter:app:id:googleplay": "com.ted.android",
-            "twitter:app:name:ipad": "TED",
-            "twitter:app:name:iphone": "TED",
-            "twitter:app:name:googleplay": "TED",
-            "twitter:app:url:ipad": "ted://talks/272?source=twitter",
-            "twitter:app:url:iphone": "ted://talks/272?source=twitter",
-            "twitter:app:url:googleplay": "https://www.ted.com/talks/philip_zimbardo_on_the_psychology_of_evil?language=sk",
-            "theme-color": "#E62B1E",
-            "handheldfriendly": "True",
-            "mobileoptimized": "320",
+            "og:title": "tollwerk Lucene search (tw_lucenesearch)",
+            "og:description": "[TYPO3 CMS 6 Release] Simple and lightweight implementation of the Apache Lucene Index as frontend search solution for TYPO3, built on extbase / fluid, supporting wildcard and fuzzy searches, search term highlighting, indexing of uncached pages, custom search term rewrite hooks and much more without any further software requirements (Java application server, Apache Solr etc.). ATTENTION: Support for TYPO3 4.x has been dropped, use the 0.x versions instead!",
+            "viewport": "width=device-width, initial-scale=1",
+            "apple-mobile-web-app-capable": "no"
+          }
+        ],
+        "person": [
+          {
+            "name": "Dipl.-Ing. Joschi Kuphal"
+          }
+        ],
+        "organization": [
+          {
+            "name": "tollwerkÂ® GmbH"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "2016/Nuremberg/Guest List - IndieWeb",
+      "htmlTitle": "2016/Nuremberg/Guest List - IndieWeb",
+      "link": "https://indieweb.org/2016/Nuremberg/Guest_List",
+      "displayLink": "indieweb.org",
+      "snippet": "22. Apr. 2016 ... ... Where: tollwerk, Klingenhofstraße 5, 90411 Nürnberg, Germany. URL: http://\nindiewebcamp.com/2016/Nuremberg; Cost: Free; Registration: ...",
+      "htmlSnippet": "22. Apr. 2016 \u003cb\u003e...\u003c/b\u003e ... Where: \u003cb\u003etollwerk\u003c/b\u003e, Klingenhofstraße 5, 90411 Nürnberg, Germany. URL: http://\u003cbr\u003e\nindiewebcamp.com/2016/Nuremberg; Cost: Free; Registration:&nbsp;...",
+      "cacheId": "-DbBTAl74HoJ",
+      "formattedUrl": "https://indieweb.org/2016/Nuremberg/Guest_List",
+      "htmlFormattedUrl": "https://indieweb.org/2016/Nuremberg/Guest_List",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "128",
+            "height": "128",
+            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRRU-JWoucble5eUDOanUPhR8nSqrAFi83glS-Bka18tNjKXUac31_ciF4"
+          }
+        ],
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1"
+          }
+        ],
+        "hcard": [
+          {
+            "fn": "Aaron Parecki",
+            "url": "https://aaronparecki.com/",
+            "url_text": "https://aaronparecki.com/"
+          },
+          {
+            "fn": "Barnaby Walters",
+            "url": "https://waterpigs.co.uk",
+            "url_text": "https://waterpigs.co.uk"
+          },
+          {
+            "fn": "Bea David",
+            "url": "http://justonestep.de/",
+            "url_text": "http://justonestep.de/"
+          },
+          {
+            "fn": "Bianka Tafuro"
+          },
+          {
+            "fn": "Björn Stierand",
+            "url": "https://bjoern.stierand.org",
+            "url_text": "https://bjoern.stierand.org"
+          },
+          {
+            "fn": "Dirk Murschall",
+            "url": "https://www.dirkmurschall.de/",
+            "url_text": "https://www.dirkmurschall.de/"
+          },
+          {
+            "fn": "Dominic Grzbielok",
+            "url": "http://www.grzbielok.de/",
+            "url_text": "http://www.grzbielok.de/"
+          },
+          {
+            "fn": "Frederic Marx",
+            "url": "https://fmarx.com",
+            "url_text": "https://fmarx.com"
+          },
+          {
+            "fn": "Henne Vogelsang",
+            "url": "http://www.hennevogel.de",
+            "url_text": "http://www.hennevogel.de"
+          },
+          {
+            "fn": "Jeena",
+            "nickname": "Jeena",
+            "url": "https://jeena.net",
+            "url_text": "https://jeena.net"
+          }
+        ],
+        "person": [
+          {
+            "org": "GfK SE"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://aaronparecki.com/photo.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "Data Processors and their DPA resources | data-processing ...",
+      "htmlTitle": "Data Processors and their DPA resources | data-processing ...",
+      "link": "https://tollwerk.github.io/data-processing-agreements/",
+      "displayLink": "tollwerk.github.io",
+      "snippet": "... a GDPR compliant DPA (whether or not that's a valid state). data-processing-\nagreements is maintained by tollwerk. This page was generated by GitHub \nPages.",
+      "htmlSnippet": "... a GDPR compliant DPA (whether or not that&#39;s a valid state). data-processing-\u003cbr\u003e\nagreements is maintained by \u003cb\u003etollwerk\u003c/b\u003e. This page was generated by GitHub \u003cbr\u003e\nPages.",
+      "cacheId": "pbnN2qginLUJ",
+      "formattedUrl": "https://tollwerk.github.io/data-processing-agreements/",
+      "htmlFormattedUrl": "https://\u003cb\u003etollwerk\u003c/b\u003e.github.io/data-processing-agreements/",
+      "pagemap": {
+        "metatags": [
+          {
+            "og:title": "Data Processors and their DPA resources",
+            "og:locale": "en_US",
+            "og:description": "Collection of Data Processing Agreement (DPA) and GDPR compliance resources",
+            "og:url": "https://tollwerk.github.io/data-processing-agreements/",
+            "og:site_name": "data-processing-agreements",
+            "viewport": "width=device-width, initial-scale=1",
+            "theme-color": "#157878"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "CoderDojo Nürnberg #19 @ tollwerk, Nürnberg [2. September]",
+      "htmlTitle": "CoderDojo Nürnberg #19 @ \u003cb\u003etollwerk\u003c/b\u003e, Nürnberg [2. September]",
+      "link": "http://nuremberg.carpediem.cd/events/6590469-coderdojo-n-rnberg-19-at-tollwerk/",
+      "displayLink": "nuremberg.carpediem.cd",
+      "snippet": "Das CoderDojo Nürnberg ist Club für Kinder und Jugendliche von 5-17 Jahren, \ndie begleitet von erfahrenen Mentoren Programmieren lernen & Spaß haben ...",
+      "htmlSnippet": "Das CoderDojo Nürnberg ist Club für Kinder und Jugendliche von 5-17 Jahren, \u003cbr\u003e\ndie begleitet von erfahrenen Mentoren Programmieren lernen &amp; Spaß haben&nbsp;...",
+      "cacheId": "d0ThUAfHvaMJ",
+      "formattedUrl": "nuremberg.carpediem.cd/.../6590469-coderdojo-n-rnberg-19-at-tollwerk/",
+      "htmlFormattedUrl": "nuremberg.carpediem.cd/.../6590469-coderdojo-n-rnberg-19-at-\u003cb\u003etollwerk\u003c/b\u003e/",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "300",
+            "height": "168",
+            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQGihyvqaKg-2-7xOMEkPhsnbbSe0PGAA6GypH3Rc1OWfoM4PtZZnGPRFyL"
+          }
+        ],
+        "hcalendar": [
+          {
+            "dtstart": "2018-09-02T10:00:00+02:00",
+            "summary": "CoderDojo Nürnberg #19",
+            "url": "http://nuremberg.carpediem.cd/events6590469-coderdojo-n-rnberg-19-at-tollwerk/",
+            "dtend": "2018-09-02T17:00:00+02:00",
+            "description": "Das CoderDojo Nürnberg ist Club für Kinder und Jugendliche von 5-17 Jahren, die begleitet von erfahrenen Mentoren Programmieren lernen & Spaß haben wollen ☯ Teilnahme kostenlos, Hilfe...",
+            "photo": "http://nuremberg.carpediem.cd/data/afisha/bp/a5/0e/a50e5d355f.jpg"
+          }
+        ],
+        "metatags": [
+          {
             "viewport": "width=device-width, initial-scale=1.0",
-            "apple-mobile-web-app-title": "TED Talks",
-            "apple-mobile-web-app-capable": "yes",
-            "apple-mobile-web-app-status-bar-style": "black",
-            "application-name": "TED Talks",
-            "msapplication-config": "https://www.ted.com/browserconfig.xml",
-            "msapplication-tilecolor": "#000000"
+            "msapplication-tilecolor": "#ffffff",
+            "msapplication-tileimage": "/img/fav/ms-icon-144x144.png",
+            "theme-color": "#ffffff",
+            "og:type": "website",
+            "og:description": "Das CoderDojo Nürnberg ist Club für Kinder und Jugendliche von 5-17 Jahren, die begleitet von erfahrenen Mentoren Programmieren lernen & Spaß haben wollen ☯ Teilnahme kostenlos, Hilfe willkommen!  WICHTIG: Sowohl für Ninjas, als auch deren Begleitung und...",
+            "og:image": "http://nuremberg.carpediem.cd/data/afisha/o/a5/0e/a50e5d355f.jpg",
+            "og:site_name": "nuremberg.carpediem.cd",
+            "csrf-param": "_csrf",
+            "csrf-token": "Nl82SXZPeENEDlMeHQUeFkMVWw08BxwyVBpzHR9/MDtcFnEeWxUrKw=="
           }
         ],
-        "videoobject": [
+        "sitenavigationelement": [
           {
-            "url": "https://www.ted.com/talks/philip_zimbardo_on_the_psychology_of_evil",
-            "name": "Philip Zimbardo: O tom, ako sa z obyčajných ľudí stanú monštrá... alebo hrdinovia",
-            "description": "Philip Zimbardo vie, ako ľahko sa dobrí ľudia menia na zlých. V tomto príspevku sa s nami podelí o svoje postrehy a nevídané naturalistické fotky z procesov v Abu Ghraib. Hovorí tiež...",
-            "duration": "PT23M16S",
-            "uploaddate": "2008-09-23T01:00:00+00:00",
-            "interactioncount": "6184319",
-            "thumbnailurl": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/120ccfcc17a4370989d4dffdea7c040842854036_1600x1200.jpg?quality=95&w=480",
-            "embedurl": "https://embed.ted.com/talks/philip_zimbardo_on_the_psychology_of_evil",
-            "playertype": "Flash HTML5",
-            "width": "640",
-            "height": "360",
-            "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+            "name": "Heute",
+            "url": "Heute"
           }
         ],
-        "person": [
+        "place": [
           {
-            "url": "https://www.ted.com/speakers/philip_zimbardo",
-            "name": "Philip Zimbardo",
-            "image": "https://pe.tedcdn.com/images/ted/54221_254x191.jpg"
+            "address": "Klingenhofstraße 5, 90411 Nuremberg",
+            "name": "tollwerk"
           }
         ],
         "cse_image": [
           {
-            "src": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/120ccfcc17a4370989d4dffdea7c040842854036_1600x1200.jpg?c=1050%2C550&w=1050"
-          }
-        ]
-      }
-    },
-    {
-      "kind": "customsearch#result",
-      "title": "Murraya Koenigii leaf-assisted rapid green synthesis of silver and ...",
-      "htmlTitle": "Murraya Koenigii leaf-assisted rapid green synthesis of silver and ...",
-      "link": "https://www.ncbi.nlm.nih.gov/pubmed/21215687",
-      "displayLink": "www.ncbi.nlm.nih.gov",
-      "snippet": "Dec 22, 2010 ... Philip D(1), Unni C, Aromal SA, Vidhu VK. Author information: (1)Department of \nPhysics, Mar Ivanios College, Thiruvananthapuram 695 015, ...",
-      "htmlSnippet": "Dec 22, 2010 \u003cb\u003e...\u003c/b\u003e \u003cb\u003ePhilip\u003c/b\u003e D(1), Unni C, Aromal \u003cb\u003eSA\u003c/b\u003e, Vidhu VK. Author information: (1)Department of \u003cbr\u003e\nPhysics, Mar Ivanios College, Thiruvananthapuram 695 015,&nbsp;...",
-      "formattedUrl": "https://www.ncbi.nlm.nih.gov/pubmed/21215687",
-      "htmlFormattedUrl": "https://www.ncbi.nlm.nih.gov/pubmed/21215687",
-      "pagemap": {
-        "metatags": [
-          {
-            "citation_title": "Murraya Koenigii leaf-assisted rapid green synthesis of silver and gold nanoparticles.",
-            "citation_authors": "Philip D; Unni C; Aromal SA; Vidhu VK",
-            "citation_date": "2/2011",
-            "citation_publisher": "Spectrochim Acta A Mol Biomol Spectrosc",
-            "citation_journal_title": "Spectrochimica acta. Part A, Molecular and biomolecular spectroscopy",
-            "citation_pmid": "21215687",
-            "citation_abstract_html_url": "https://www.ncbi.nlm.nih.gov/pubmed/21215687",
-            "citation_volume": "78",
-            "citation_issue": "2",
-            "citation_firstpage": "899",
-            "citation_doi": "10.1016/j.saa.2010.12.060",
-            "citation_issn": "1873-3557"
-          }
-        ]
-      }
-    },
-    {
-      "kind": "customsearch#result",
-      "title": "Philips SAA 1099 – Wikipedie",
-      "htmlTitle": "\u003cb\u003ePhilips SAA\u003c/b\u003e 1099 – Wikipedie",
-      "link": "https://cs.wikipedia.org/wiki/Philips_SAA_1099",
-      "displayLink": "cs.wikipedia.org",
-      "snippet": "Philips SAA 1099 je zvukový generátor vyvinutý firmou Philips. Obvod se \npoužíval v prvních verzích zvukové karty Sound Blaster a jejích předchůdcích. Je \ntaké ...",
-      "htmlSnippet": "\u003cb\u003ePhilips SAA\u003c/b\u003e 1099 je zvukový generátor vyvinutý firmou Philips. Obvod se \u003cbr\u003e\npoužíval v prvních verzích zvukové karty Sound Blaster a jejích předchůdcích. Je \u003cbr\u003e\ntaké&nbsp;...",
-      "cacheId": "En3AtZi0tvwJ",
-      "formattedUrl": "https://cs.wikipedia.org/wiki/Philips_SAA_1099",
-      "htmlFormattedUrl": "https://cs.wikipedia.org/wiki/\u003cb\u003ePhilips\u003c/b\u003e_\u003cb\u003eSAA\u003c/b\u003e_1099",
-      "pagemap": {
-        "cse_thumbnail": [
-          {
-            "width": "234",
-            "height": "215",
-            "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTdv3WgBe0C1MphBexisFIzZU7gbLHxCloC-FuUjkmJ9FvVKnHBBjtTjMz2"
+            "src": "http://nuremberg.carpediem.cd/data/afisha/o/a5/0e/a50e5d355f.jpg"
           }
         ],
-        "metatags": [
+        "event": [
           {
-            "referrer": "origin",
-            "og:image": "https://upload.wikimedia.org/wikipedia/commons/9/96/SAA1099_pinout.png"
-          }
-        ],
-        "cse_image": [
+            "dtstart": "2018-09-02T10:00:00+02:00",
+            "summary": "CoderDojo Nürnberg #19",
+            "url": "http://nuremberg.carpediem.cd/events6590469-coderdojo-n-rnberg-19-at-tollwerk/",
+            "dtend": "2018-09-02T17:00:00+02:00"
+          },
           {
-            "src": "https://upload.wikimedia.org/wikipedia/commons/9/96/SAA1099_pinout.png"
+            "startdate": "2018-09-02T10:00:00+02:00",
+            "enddate": "2018-09-02T17:00:00+02:00",
+            "image": "http://nuremberg.carpediem.cd/data/afisha/bp/a5/0e/a50e5d355f.jpg",
+            "description": "Das CoderDojo Nürnberg ist Club für Kinder und Jugendliche von 5-17 Jahren, die begleitet von erfahrenen Mentoren Programmieren lernen & Spaß haben wollen ☯ Teilnahme kostenlos, Hilfe...",
+            "url": "http://nuremberg.carpediem.cd/events6590469-coderdojo-n-rnberg-19-at-tollwerk/",
+            "name": "CoderDojo Nürnberg #19"
           }
         ]
       }
