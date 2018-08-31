@@ -20,6 +20,11 @@ class OptionsCallbacks extends AppController
     {
         parent::__construct();
 
+        /**
+         * Define Search Engines
+         *
+         * Usage: $this->engines
+         */
         $enginesDirectory = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Engines';
         foreach (scandir($enginesDirectory) as $engineFile) {
             if ($engineFile !== "." && $engineFile !== "..") {
@@ -31,14 +36,19 @@ class OptionsCallbacks extends AppController
             }
         }
 
+        /**
+         * Define Disclaimer Pages
+         *
+         * Usage: $this->pages
+         */
+        $this->pages = get_pages();
     }
 
     public function sanitize($input)
     {
-        $output                           = array();
-        $output['rrze_search_resources']  = (isset($input['rrze_search_resources'])) ? $input['rrze_search_resources'] : array();
-        $output['rrze_search_disclaimer'] = (isset($input['rrze_search_disclaimer'])) ? $input['rrze_search_disclaimer'] : '';
-        $output['rrze_search_page_id']    = (isset($input['rrze_search_page_id'])) ? $input['rrze_search_page_id'] : '';;
+        $output                          = array();
+        $output['rrze_search_resources'] = $input['rrze_search_resources'] ?? array();
+        $output['rrze_search_page_id']   = $input['rrze_search_page_id'] ?? '';
 
         return $output;
     }
@@ -72,6 +82,7 @@ class OptionsCallbacks extends AppController
         $option_name  = $args['option_name'];
         $option_value = get_option($option_name);
         $resources    = $option_value[$name];
+        $pages        = array('working on it');
 
         /** Resource template */
         require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'template-resource.php');
@@ -103,7 +114,6 @@ class OptionsCallbacks extends AppController
         $output .= '</select>';
 
         echo $output;
-
     }
 
     /**
