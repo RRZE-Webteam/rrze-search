@@ -31,27 +31,6 @@ class OptionsCallbacks extends AppController
             }
         }
 
-        /**
-         * Create HTML Template for Additional Resources
-         */
-        $template = '<template><tr>';
-        $template .= '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][index][resource_name]" value=""></td>';
-        $template .= '<td><select id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][index][resource_uri]">';
-        foreach ($this->engines as $key => $value) {
-            /**
-             * TODO: improve first index detection. PHP 7.3 solution will be array_key_first();
-             */
-            if ($key === 'WpSearch') {
-                $template .= '<option value="'.$key.'" selected>'.$value.'</option>';
-            } else {
-                $template .= '<option value="'.$key.'" >'.$value.'</option>';
-            }
-        }
-        $template .= '</select></td>';
-        $template .= '<td><input type="text" id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][index][resource_key]" value=""></td>';
-        $template .= '<td>&nbsp;</td>';
-        $template .= '</tr></template>';
-        echo $template;
     }
 
     public function sanitize($input)
@@ -94,64 +73,11 @@ class OptionsCallbacks extends AppController
         $option_value = get_option($option_name);
         $resources    = $option_value[$name];
 
-        $output = '<table id="rrze_search_resource_form" class="form-table" border="0">';
-        $output .= '<thead>';
-        $output .= '<td><strong>Search Engine</strong></td>';
-        $output .= '<td><strong>URL</strong></td>';
-        $output .= '<td><strong>API Key</strong></td>';
-        $output .= '<td>&nbsp;</td>';
-        $output .= '</thead>';
-        $i      = 0;
+        /** Resource template */
+        require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'template-resource.php');
 
-        foreach ($resources as $resource) {
-            $output .= '<tr valign="top">';
-            $output .= '<td><input type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$i.'][resource_name]" value="'.$resource['resource_name'].'" /></td>';
-
-            if ($i == 0) {
-                $output .= '<td>WordPress Search';
-                $output .= '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$i.'][resource_uri]" value=""/>';
-                $output .= '</td>';
-            } else {
-                $output .= '<td>';
-//                <input type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$i.'][resource_uri]" value="'.$resource['resource_uri'].'" />
-                $output .= '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$i.'][resource_uri]'.'">';
-                foreach ($this->engines as $key => $value) {
-                    if ($key === $resource['resource_uri']) {
-                        $output .= '<option value="'.$key.'" selected>'.$value.'</option>';
-                    } else {
-                        $output .= '<option value="'.$key.'" >'.$value.'</option>';
-                    }
-                }
-                $output .= '</select>';
-                $output .= '</td>';
-            }
-
-            if ($i === 0) {
-                $output .= '<td>No API Key Required';
-                $output .= '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$i.'][resource_key]" value="" />';
-                $output .= '</td>';
-            } else {
-                $output .= '<td><input type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$i.'][resource_key]" value="'.$resource['resource_key'].'" /></td>';
-            }
-
-            if ($i === 0) {
-                $output .= '<td><input type="button" class="button button-primary" value="Remove" disabled></td>';
-            } else {
-                $output .= '<td><a href="javascript:rrze_resource_removal('.$i.')" class="button button-primary">Remove</a></td>';
-            }
-
-            $output .= '</tr>';
-            $i++;
-        }
-
-        $output .= '<tfoot>';
-        $output .= '<td colspan="4" align="right">';
-        $output .= '<input type="hidden" id="rrze_search_resource_count" value="'.$i.'">';
-        $output .= '<input type="button" id="rrze_search_add_resource_form" class="button button-primary" value="Add Resource">';
-        $output .= '</td>';
-        $output .= '</tfoot>';
-        $output .= '</table>';
-        echo $output;
+        /** Resource table */
+        require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'admin-resources-table.php');
     }
 
     /**

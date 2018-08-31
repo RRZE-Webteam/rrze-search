@@ -45,7 +45,7 @@ class SearchWidget extends WP_Widget
         /** Register Sidebar with WordPress */
         $sidebarId = 'rrze-search-sidebar';
         register_sidebar(array(
-            'name'          => 'Search Sidebar',
+            'name'          => 'RRZE Search Sidebar',
             'id'            => $sidebarId,
             'description'   => 'A hack to display widget',
             'before_widget' => '',
@@ -170,6 +170,7 @@ class SearchWidget extends WP_Widget
         echo $args['before_widget'];
 
         $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? intval($instance['search_engine']) : intval($_COOKIE['rrze_search_engine_pref']);
+
         include \dirname(__DIR__,
                 2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'widget.php';
 
@@ -182,7 +183,7 @@ class SearchWidget extends WP_Widget
     public function widgetSubmit()
     {
         setcookie('rrze_search_engine_pref', $_POST['resource_id'], 0, '/');
-        $results_page  = get_permalink($this->options['rrze_search_page_id']);
+        $results_page = get_permalink($this->options['rrze_search_page_id']);
 
         /** Ensure you're using $_POST['s'] for the q(uery) value, prior to redirect */
         $redirect_link = add_query_arg(array('q' => urlencode($_POST['s']), 'se' => $_POST['resource_id']),

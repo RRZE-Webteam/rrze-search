@@ -39,36 +39,12 @@ class SearchResultsShortcode
         /**
          * USE JSON file only for dev
          */
-//        $query_results = file_get_contents(plugins_url('rrze-search').DIRECTORY_SEPARATOR.'fixture'.DIRECTORY_SEPARATOR.'google_results.json');
-        $query_results = $this->searchEngine->Query($query, $resource['resource_key'], $startPage);
-        $results       = json_decode($query_results, true);
+        $query_results = file_get_contents(plugins_url('rrze-search').DIRECTORY_SEPARATOR.'fixture'.DIRECTORY_SEPARATOR.'google_results.json');
+//        $query_results = $this->searchEngine->Query($query, $resource['resource_key'], $startPage);
+        /** @var array $results */
+        $results = json_decode($query_results, true);
 
-        $output .= '<div id="resultStats">About '.$results['searchInformation']['formattedTotalResults'].' results<nobr> ('.$results['searchInformation']['formattedSearchTime'].' seconds)&nbsp;</nobr></div>';
-        foreach ($results['items'] as $result) {
-            $output .= '<div class="record">';
-            $output .= '<h3 style="padding-bottom:0">';
-            $output .= '<a href="'.$result['link'].'">'.$result['title'].'</a>';
-            $output .= '</h3>';
-            $output .= '<div class="snippet">';
-            $output .= '<cite>'.$result['link'].'</cite><br>';
-            $output .= '<div class="snippet-string">'.$result['snippet'].'</div>';
-            $output .= '</div>';
-            $output .= '</div>';
-        }
-        $output .= '<br><br><br><br>&nbsp;';
-
-        $output .= '<div id="">';
-        if (isset($results['queries']['previousPage'])) {
-            $output .= '<a href="'.site_url().$pageLink.'?q='.rawurlencode($query).'&se='.$_GET['se'].'&start='.$results['queries']['previousPage'][0]['startIndex'].'">Previous Page</a>';
-        }
-        if (isset($results['queries']['previousPage'], $results['queries']['nextPage'])) {
-            $output .= '&nbsp;|&nbsp;';
-        }
-        if (isset($results['queries']['nextPage'])) {
-            $output .= '<a href="'.site_url().$pageLink.'?q='.rawurlencode($query).'&se='.$_GET['se'].'&start='.$results['queries']['nextPage'][0]['startIndex'].'">Next Page</a>';
-        }
-        $output .= '</div>';
-
-        return $output;
+        include \dirname(__DIR__,
+                2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'shortcode.php';
     }
 }
