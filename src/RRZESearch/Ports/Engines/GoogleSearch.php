@@ -11,6 +11,8 @@ class GoogleSearch implements Engine
     const URI = 'https://www.googleapis.com/customsearch/v1?cx=011945293402966620832:n0bvaqo6yl4&key={key}&q={query}';
 
     /**
+     * Query
+     *
      * @param string $query
      * @param string $key
      * @param int $startPage
@@ -75,21 +77,6 @@ class GoogleSearch implements Engine
         );
 
         /**
-//         * curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-//         * curl_setopt($ch, CURLOPT_HEADER, false);
-         * curl_setopt($ch, CURLOPT_REFERER, JUri::getInstance()->toString());
-         * // curl_setopt($ch, CURLOPT_REFERER, $page_url);
-         * curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-         * curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
-         * curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1);
-         * curl_setopt($ch, CURLOPT_URL, $google.'?'.http_build_query($queryParams));
-         */
-
-        echo '<pre>';
-        print_r($curlOptions);
-        echo '</pre>';
-
-        /**
          * Try to make query request
          */
         $curl = curl_init();
@@ -99,12 +86,6 @@ class GoogleSearch implements Engine
          * Finalize query request
          */
         $results = curl_exec($curl);
-
-        echo '<pre>';
-        echo '<a href="'.$_uri.'">'.$_uri.'</a>';
-        print_r($results);
-        echo '</pre>';
-
         curl_close($curl);
 
         return $results;

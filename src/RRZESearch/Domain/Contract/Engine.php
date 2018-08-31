@@ -14,7 +14,7 @@ interface Engine
      *
      * @return mixed
      */
-    public function Query(string $uri, string $key, int $query);
+    public function Query(string $query, string $key, int $startPage);
 
     /**
      * Return the name of this engine
