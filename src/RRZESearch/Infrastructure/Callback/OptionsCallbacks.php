@@ -46,9 +46,11 @@ class OptionsCallbacks extends AppController
 
     public function sanitize($input)
     {
-        $output                          = array();
-        $output['rrze_search_resources'] = $input['rrze_search_resources'] ?? array();
-        $output['rrze_search_page_id']   = $input['rrze_search_page_id'] ?? '';
+        $output                           = array();
+        $output['meta_shortcut']          = 'rrze_search_resource_disclaimer';
+        $output['rrze_search_page_id']    = $input['rrze_search_page_id'] ?? '';
+        $output['rrze_search_resources']  = $input['rrze_search_resources'] ?? array();
+        $output['rrze_search_disclaimer'] = $input['rrze_search_disclaimer'] ?? '';
 
         return $output;
     }
@@ -81,8 +83,22 @@ class OptionsCallbacks extends AppController
         $name         = $args['label_for'];
         $option_name  = $args['option_name'];
         $option_value = get_option($option_name);
-        $resources    = $option_value[$name];
-        $pages        = array('working on it');
+
+        /**
+         * Define props used in template
+         */
+        $pages = array();
+        $resources = $option_value[$name];
+
+        /**
+         * Filter for Customer Filed value
+         */
+        foreach ($this->pages as $page) {
+            $meta = get_post_meta($page->ID);
+            if (isset($meta['rrze_search_resource_disclaimer'])) {
+                $pages[] = $page;
+            }
+        }
 
         /** Resource template */
         require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'template-resource.php');

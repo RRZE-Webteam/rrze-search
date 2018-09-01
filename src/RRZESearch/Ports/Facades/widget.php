@@ -82,13 +82,13 @@
 
                         ?></p><?php
 
-                    $nextTabIndex               = 0;
+                    $nextTabIndex = 0;
                     foreach ($this->options['rrze_search_resources'] as $key => $resource):
                         ++$nextTabIndex;
-                        $searchEngineActive = (($preferredEngine == $key) ? '1' : '-1');
+                        $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
                         $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
                         $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
-                        $searchEngineDisclaimer = '<a href="'.get_permalink($this->options['rrze_search_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">Datenschutz</a>';
+                        $searchEngineDisclaimer = '<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">Datenschutz</a>';
 
                         ?><label>
                         <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?> class="search-engine"
