@@ -1,4 +1,4 @@
-#RRZE\RRZESearch
+# RRZE\RRZESearch
 
 WordPress-Plugin für zentrale Einrichtungen der Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
 
