@@ -23,7 +23,7 @@ foreach ($results['items'] as $result) {
         echo '<a href="'.site_url().$pageLink.'?q='.rawurlencode($query).'&se='.$_GET['se'].'&start='.$results['queries']['previousPage'][0]['startIndex'].'">Previous Page</a>';
     }
     if (isset($results['queries']['previousPage'], $results['queries']['nextPage'])) {
-        $output .= '&nbsp;|&nbsp;';
+        echo '&nbsp;|&nbsp;';
     }
     if (isset($results['queries']['nextPage'])) {
         echo '<a href="'.site_url().$pageLink.'?q='.rawurlencode($query).'&se='.$_GET['se'].'&start='.$results['queries']['nextPage'][0]['startIndex'].'">Next Page</a>';

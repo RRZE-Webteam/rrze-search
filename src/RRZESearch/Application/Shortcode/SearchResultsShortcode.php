@@ -6,16 +6,11 @@ class SearchResultsShortcode
 {
     public $options;
 
-//    public $searchEngine;
+    public $searchEngine;
 
     public function __construct()
     {
-        /**
-         * TODO: Define properties outside of constructor
-         * TODO: Populate properties values inside constructor
-         */
         $this->options = get_option('rrze_search_settings');
-//        $this->searchEngine = new GoogleSearch();
     }
 
     public function register()
@@ -39,8 +34,8 @@ class SearchResultsShortcode
         /**
          * USE JSON file only for dev
          */
-        $query_results = file_get_contents(plugins_url('rrze-search').DIRECTORY_SEPARATOR.'fixture'.DIRECTORY_SEPARATOR.'google_results.json');
-//        $query_results = $this->searchEngine->Query($query, $resource['resource_key'], $startPage);
+//        $query_results = file_get_contents(plugins_url('rrze-search').DIRECTORY_SEPARATOR.'fixture'.DIRECTORY_SEPARATOR.'google_results.json');
+        $query_results = $this->searchEngine->Query($query, $resource['resource_key'], $startPage);
         /** @var array $results */
         $results = json_decode($query_results, true);
 
