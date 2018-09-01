@@ -1,4 +1,5 @@
 #RRZE\RRZESearch
+
 WordPress-Plugin für zentrale Einrichtungen der Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
 
 Implements additional `Search Engine` resources.
@@ -9,7 +10,9 @@ TODO:
 - Copyright
 - Feedback
 
+
 ## Appendix
+
 Special instructions and other cataloged information
 
 `Designating Disclaimer Page`
