@@ -5,12 +5,11 @@ namespace RRZE\RRZESearch\Infrastructure;
 class DatabaseApi
 {
     private $wpdb;
-//    public $table_name = '';
 
     public function __construct()
     {
         global $wpdb;
-        $this->wpdb       = $wpdb;
+        $this->wpdb = $wpdb;
     }
 
     public function get_posts()

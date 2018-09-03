@@ -7,13 +7,14 @@ Author: tollwerk
 Author URI: https://www.tollwerk.de
 Version: 0.0.1
 License: GPL2
+Text Domain: rrze-search
+Domain Path: /languages
 */
 
 /**
  * @package RRZESearch
  */
 defined('ABSPATH') || exit;
-
 /**
  * Composer's Autoload
  */
@@ -24,25 +25,29 @@ if (file_exists(dirname(__FILE__).'/vendor/autoload.php')) {
 /**
  * Plugin Activation Function
  */
-function activate_rrze_search_plugin() {
+function activate_rrze_search_plugin()
+{
     RRZE\RRZESearch\Init::activate();
 }
+
 /** WP Activation Hook */
-register_activation_hook( __FILE__, 'activate_rrze_search_plugin' );
+register_activation_hook(__FILE__, 'activate_rrze_search_plugin');
 
 /**
  * Plugin Deactivation Function
  */
-function deactivate_rrze_search_plugin() {
+function deactivate_rrze_search_plugin()
+{
     RRZE\RRZESearch\Init::deactivate();
 }
+
 /** WP Deactivation Hook */
-register_deactivation_hook( __FILE__, 'deactivate_rrze_search_plugin' );
+register_deactivation_hook(__FILE__, 'deactivate_rrze_search_plugin');
 
 /**
  * Bootstrap the Plugin
  */
 if (class_exists(\RRZE\RRZESearch\Init::class)) {
-    RRZE\RRZESearch\Init::registerServices();
+    RRZE\RRZESearch\Init::bootstrap();
 }
 

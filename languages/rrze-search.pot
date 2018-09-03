@@ -1,0 +1,119 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: RRZE Search\n"
+"POT-Creation-Date: 2018-09-03 14:31+0200\n"
+"PO-Revision-Date: 2018-09-03 13:00+0200\n"
+"Last-Translator: Philip Saa <cowglow@gmail.com>\n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: fixture\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: vendor\n"
+"X-Poedit-SearchPathExcluded-3: composer.json\n"
+"X-Poedit-SearchPathExcluded-4: gulpfile.js\n"
+"X-Poedit-SearchPathExcluded-5: package-lock.json\n"
+"X-Poedit-SearchPathExcluded-6: package.json\n"
+
+#: src/RRZESearch/Application/Widgets/SearchWidget.php:144
+msgid "Display Title"
+msgstr ""
+
+#: src/RRZESearch/Application/Widgets/SearchWidget.php:150
+msgid "Default Search Engine"
+msgstr ""
+
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:63
+msgid "Configure your plugin."
+msgstr ""
+
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:68
+msgid ""
+"Oh no! Someone deleted the results Page! No worries, Another one will be "
+"generated when you click [ Save Changes ]"
+msgstr ""
+
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:73
+msgid ""
+"Search Results Page doesn't exist, yet! No worries, one will be generated "
+"when you click [ Save Changes ]"
+msgstr ""
+
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:156
+msgid "RRZE Search Results"
+msgstr ""
+
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:159
+msgid "Search Result Page utilized by RRZE Search Plugin"
+msgstr ""
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:41
+#: src/RRZESearch/Infrastructure/Dashboard.php:74
+msgid "Settings › Search"
+msgstr ""
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:90
+msgid "Available Search Engines"
+msgstr ""
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:113
+#: src/RRZESearch/Infrastructure/SettingsLink.php:16
+msgid "Search Results Page"
+msgstr ""
+
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:3
+msgid "Option Label"
+msgstr ""
+
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:4
+msgid "Search Engine"
+msgstr ""
+
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:5
+msgid "API Key"
+msgstr ""
+
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:6
+msgid "Disclaimer Link"
+msgstr ""
+
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:19
+msgid "WordPress Search"
+msgstr ""
+
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:42
+msgid "No API Key Required"
+msgstr ""
+
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:65
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:68
+msgid "Remove"
+msgstr ""
+
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:80
+msgid "Add Resource"
+msgstr ""
+
+#: src/RRZESearch/Ports/Facades/shortcode.php:1
+#, php-format
+msgid "About %1$s results"
+msgstr ""
+
+#: src/RRZESearch/Ports/Facades/shortcode.php:24
+msgid "Previous Page"
+msgstr ""
+
+#: src/RRZESearch/Ports/Facades/shortcode.php:30
+msgid "Next Page"
+msgstr ""
+
+#~ msgid "Local Search"
+#~ msgstr "Lokale Suche"

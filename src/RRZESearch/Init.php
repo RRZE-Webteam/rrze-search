@@ -29,8 +29,14 @@ final class Init
     /**
      * Bootstrap the Plugin's Services
      */
-    public static function registerServices(): void
+    public static function bootstrap(): void
     {
+        /**
+         * Pre-load Language Pack to ensure translation before bootstrapping
+         */
+        $languagePath = sprintf('%s/languages/', dirname(plugin_basename(__FILE__), 3));
+        load_plugin_textdomain('rrze-search', false, $languagePath);
+
         foreach (self::getServices() as $class) {
             $service = new $class;
             if (\is_callable([$service, 'register'])) {

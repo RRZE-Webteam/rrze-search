@@ -38,7 +38,7 @@ class Dashboard extends AppController
     {
         $this->pages = array(
             array(
-                'page_title' => 'Einstellungen › Suche',
+                'page_title' => __('Settings › Search', 'rrze-search'),
                 'menu_title' => 'RRZE Suche',
                 'capability' => 'manage_options',
                 'menu_slug'  => 'rrze_search',
@@ -71,7 +71,7 @@ class Dashboard extends AppController
         $args = array(
             array(
                 'id'       => 'rrze_search_admin_section',
-                'title'    => 'Einstellungen › Suche',
+                'title'    => __('Settings › Search', 'rrze-search'),
                 'callback' => array($this->callbacks_options, 'printAdminSection'),
                 'page'     => 'rrze_search'
             )
@@ -87,7 +87,7 @@ class Dashboard extends AppController
         $args = array(
             array(
                 'id'       => 'rrze_search_resources',
-                'title'    => 'Verfügbare Suchmaschinen',
+                'title'    => __('Available Search Engines', 'rrze-search'),
                 'callback' => array($this->callbacks_options, 'resourcesTable'),
                 'page'     => 'rrze_search',
                 'section'  => 'rrze_search_admin_section',
@@ -110,7 +110,7 @@ class Dashboard extends AppController
 //            ),
             array(
                 'id'       => 'rrze_search_page_id',
-                'title'    => 'Search Results Page',
+                'title'    => __('Search Results Page', 'rrze-search'),
                 'callback' => array($this->callbacks_options, 'disabledInput'),
                 'page'     => 'rrze_search',
                 'section'  => 'rrze_search_admin_section',
@@ -120,7 +120,6 @@ class Dashboard extends AppController
                 )
             )
         );
-
         $this->settings->setFields($args);
     }
 }

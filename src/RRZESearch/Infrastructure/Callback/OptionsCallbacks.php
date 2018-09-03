@@ -11,7 +11,7 @@ class OptionsCallbacks extends AppController
      *
      * @var array
      */
-    protected $engines = ['WpSearch' => 'Lokale Suche'];
+    protected $engines = ['WpSearch' => 'Default'];
 
     /**
      * Constructor
@@ -60,17 +60,17 @@ class OptionsCallbacks extends AppController
      */
     public function printAdminSection()
     {
-        echo 'Configure your plugin.';
+        echo __('Configure your plugin.', 'rrze-search');
     }
 
     public function printMissingTemplateMsg(): string
     {
-        return 'Oh no! Someone deleted the result\'s Page! No worries, Another one will be generated when you click [ Save Changes ]';
+        return __('Oh no! Someone deleted the results Page! No worries, Another one will be generated when you click [ Save Changes ]', 'rrze-search');
     }
 
     public function printGenerateTemplateMsg(): string
     {
-        return 'Search Results Page doesn\'t exist, yet! No worries, one will be generated when you click [ Save Changes ]';
+        return __('Search Results Page doesn\'t exist, yet! No worries, one will be generated when you click [ Save Changes ]', 'rrze-search');
     }
 
     /**
@@ -153,10 +153,10 @@ class OptionsCallbacks extends AppController
                     'post_date_gmt' => date('Y-m-d H:i:s'),
                     'post_content'  => '[rrze_search_results]',
                     'post_name'     => 'rrze_search_page',
-                    'post_title'    => 'RRZE Search Results',
+                    'post_title'    => __('RRZE Search Results', 'rrze-search'),
                     'post_status'   => 'publish',
                     'post_type'     => 'page',
-                    'post_excerpt'  => 'Search Results Page utilized by RRZE Search Plugin',
+                    'post_excerpt'  => __('Search Result Page utilized by RRZE Search Plugin', 'rrze-search'),
                 );
                 $rrze_search_page_id = wp_insert_post($rrze_search_page);
                 $options[$name]      = $rrze_search_page_id;

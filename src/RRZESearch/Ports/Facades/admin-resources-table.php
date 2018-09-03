@@ -1,9 +1,9 @@
 <table id="rrze_search_resource_form" class="form-table" border="0">
     <thead>
-        <td><strong>Option Label</strong></td>
-        <td><strong>Search Engine</strong></td>
-        <td><strong>API Key</strong></td>
-        <td><strong>Disclaimer Link</strong></td>
+        <td><strong><?php echo __('Option Label', 'rrze-search'); ?></strong></td>
+        <td><strong><?php echo __('Search Engine', 'rrze-search'); ?></strong></td>
+        <td><strong><?php echo __('API Key', 'rrze-search'); ?></strong></td>
+        <td><strong><?php echo __('Disclaimer Link', 'rrze-search'); ?></strong></td>
         <td>&nbsp;</td>
     </thead>
     <?php
@@ -16,7 +16,7 @@
 
         /** Search Engine */
         if ($nextResourceIndex === 0) {
-            echo '<td>WordPress Search';
+            echo '<td>'.__('WordPress Search', 'rrze-search');
             echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_uri]" value=""/>';
             echo '</td>';
         } else {
@@ -39,7 +39,7 @@
 
         /** API Key */
         if ($nextResourceIndex === 0) {
-            echo '<td>No API Key Required';
+            echo '<td>'.__('No API Key Required', 'rrze-search');
             echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_key]" value="" />';
             echo '</td>';
         } else {
@@ -62,9 +62,11 @@
 
         /** Remove Button */
         if ($nextResourceIndex === 0) {
-            echo '<td><input type="button" class="button button-primary" value="Remove" disabled></td>';
+            echo '<td><input type="button" class="button button-primary" value="'.__('Remove',
+                    'rrze-search').'" disabled></td>';
         } else {
-            echo '<td><a href="javascript:rrze_resource_removal('.$nextResourceIndex.')" class="button button-primary">Remove</a></td>';
+            echo '<td><a href="javascript:rrze_resource_removal('.$nextResourceIndex.')" class="button button-primary">'.__('Remove',
+                    'rrze-search').'</a></td>';
         }
 
         echo '</tr>';
@@ -74,7 +76,8 @@
     <tfoot>
         <td colspan="5" align="right">
             <input type="hidden" id="rrze_search_resource_count" value="<?php echo $nextResourceIndex; ?>">
-            <input type="button" id="rrze_search_add_resource_form" class="button button-primary" value="Add Resource">
+            <input type="button" id="rrze_search_add_resource_form" class="button button-primary"
+                   value="<?php echo __('Add Resource', 'rrze-search'); ?>">
         </td>
     </tfoot>
 </table>
