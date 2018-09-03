@@ -15,12 +15,12 @@ class SearchResultsShortcode
 
     public function register()
     {
+        echo 'register - shortcode\n';
         add_shortcode('rrze_search_results', array($this, 'shortcodeInit'));
     }
 
     public function shortcodeInit()
     {
-        $output    = '';
         $query     = $_GET['q'];
         $startPage = isset($_GET['start']) ? $_GET['start'] : '1';
         $resource  = $this->options['rrze_search_resources'][$_GET['se']];
@@ -36,8 +36,7 @@ class SearchResultsShortcode
          */
 //        $query_results = file_get_contents(plugins_url('rrze-search').DIRECTORY_SEPARATOR.'fixture'.DIRECTORY_SEPARATOR.'google_results.json');
         $query_results = $this->searchEngine->Query($query, $resource['resource_key'], $startPage);
-        /** @var array $results */
-        $results = json_decode($query_results, true);
+        $results       = json_decode($query_results, true);
 
         include \dirname(__DIR__,
                 2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'shortcode.php';
