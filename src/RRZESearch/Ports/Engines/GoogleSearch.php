@@ -19,7 +19,7 @@ class GoogleSearch implements Engine
      *
      * @return mixed
      */
-    public function Query(string $query, string $key, int $startPage): \stdClass
+    public function Query(string $query, string $key, int $startPage)
     {
         $params = array();
 

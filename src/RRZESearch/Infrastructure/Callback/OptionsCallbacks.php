@@ -46,11 +46,17 @@ class OptionsCallbacks extends AppController
 
     public function sanitize($input)
     {
-        $output                           = array();
-        $output['meta_shortcut']          = 'rrze_search_resource_disclaimer';
-        $output['rrze_search_page_id']    = $input['rrze_search_page_id'] ?? '';
-        $output['rrze_search_resources']  = $input['rrze_search_resources'] ?? array();
-        $output['rrze_search_disclaimer'] = $input['rrze_search_disclaimer'] ?? '';
+        $output = array();
+
+        /** Installed Search Engines - Super Admin Level (soon) */
+        $output['rrze_search_engines'] = $input['rrze_search_engines'] ?? array();
+        /** Configured Search Engines - Admin Level */
+        $output['rrze_search_resources'] = $input['rrze_search_resources'] ?? array();
+        /** Page ID for Search Results */
+        $output['rrze_search_page_id'] = $input['rrze_search_page_id'] ?? '';
+
+        /** Custom Field value for pages tagged as disclaimer pages */
+        $output['meta_shortcut'] = 'rrze_search_resource_disclaimer';
 
         return $output;
     }
@@ -65,12 +71,29 @@ class OptionsCallbacks extends AppController
 
     public function printMissingTemplateMsg(): string
     {
-        return __('Oh no! Someone deleted the results Page! No worries, Another one will be generated when you click [ Save Changes ]', 'rrze-search');
+        return __('Oh no! Someone deleted the results Page! No worries, Another one will be generated when you click [ Save Changes ]',
+            'rrze-search');
     }
 
     public function printGenerateTemplateMsg(): string
     {
-        return __('Search Results Page doesn\'t exist, yet! No worries, one will be generated when you click [ Save Changes ]', 'rrze-search');
+        return __('Search Results Page doesn\'t exist, yet! No worries, one will be generated when you click [ Save Changes ]',
+            'rrze-search');
+    }
+
+    public function enginesTable(array $args)
+    {
+        $name        = $args['label_for'];
+        $option_name = $args['option_name'];
+        $option_value = get_option($option_name);
+
+        /**
+         * Define props used in template
+         */
+        $engines = $option_value[$name];
+
+        /** Engine table */
+        require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'admin-engines-table.php');
     }
 
     /**
@@ -87,7 +110,7 @@ class OptionsCallbacks extends AppController
         /**
          * Define props used in template
          */
-        $pages = array();
+        $pages     = array();
         $resources = $option_value[$name];
 
         /**

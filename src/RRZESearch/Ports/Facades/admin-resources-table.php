@@ -2,7 +2,6 @@
     <thead>
         <td><strong><?php echo __('Option Label', 'rrze-search'); ?></strong></td>
         <td><strong><?php echo __('Search Engine', 'rrze-search'); ?></strong></td>
-        <td><strong><?php echo __('API Key', 'rrze-search'); ?></strong></td>
         <td><strong><?php echo __('Disclaimer Link', 'rrze-search'); ?></strong></td>
         <td>&nbsp;</td>
     </thead>
@@ -35,15 +34,6 @@
             }
             echo '</select>';
             echo '</td>';
-        }
-
-        /** API Key */
-        if ($nextResourceIndex === 0) {
-            echo '<td>'.__('No API Key Required', 'rrze-search');
-            echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_key]" value="" />';
-            echo '</td>';
-        } else {
-            echo '<td><input type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_key]" value="'.$resource['resource_key'].'" /></td>';
         }
 
         /** Disclaimer Link */

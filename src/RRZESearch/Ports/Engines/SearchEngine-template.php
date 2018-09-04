@@ -57,7 +57,7 @@ class SearchEngine implements Engine
      *
      * @return mixed
      */
-    public function Query(string $query, string $key, int $startPage): \stdClass
+    public function Query(string $query, string $key, int $startPage)
     {
         /**
          * STEP 1 - Build the query

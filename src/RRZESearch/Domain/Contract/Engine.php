@@ -12,9 +12,8 @@ interface Engine
      * @param string $key
      * @param int $startPage
      *
-     * @return \stdClass
      */
-    public function Query(string $query, string $key, int $startPage): \stdClass;
+    public function Query(string $query, string $key, int $startPage);
 
     /**
      * Return the name of this engine
