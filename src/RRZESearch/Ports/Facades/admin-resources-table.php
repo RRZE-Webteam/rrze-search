@@ -1,4 +1,4 @@
-<table id="rrze_search_resource_form" class="form-table" border="0">
+<table id="rrze_search_resource_form" class="form-table" border="1">
     <thead>
         <td><strong><?php echo __('Option Label', 'rrze-search'); ?></strong></td>
         <td><strong><?php echo __('Search Engine', 'rrze-search'); ?></strong></td>
@@ -34,6 +34,15 @@
             }
             echo '</select>';
             echo '</td>';
+        }
+
+        /** API Key */
+        if ($nextResourceIndex === 0) {
+            echo '<td>'.__('No API Key Required', 'rrze-search');
+            echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_key]" value="" />';
+            echo '</td>';
+        } else {
+            echo '<td><input type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_key]" value="'.$resource['resource_key'].'" /></td>';
         }
 
         /** Disclaimer Link */

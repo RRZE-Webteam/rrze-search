@@ -31,7 +31,6 @@ class OptionsCallbacks extends AppController
                 $engineName = pathinfo($engineFile, PATHINFO_FILENAME);
 //            require_once $enginesDirectory.DIRECTORY_SEPARATOR.$engineFile;
                 $engineClassName = 'RRZE\\RRZESearch\\Ports\\Engines\\'.$engineName;
-//                $this->engines[$engineClassName] = call_user_func([$engineClassName, 'getName']);
                 $this->engines[$engineClassName] = call_user_func([$engineClassName, 'getName']);
             }
         }
@@ -90,7 +89,23 @@ class OptionsCallbacks extends AppController
         /**
          * Define props used in template
          */
-        $engines = $option_value[$name];
+        $engines = array();
+
+        /**
+         * Build Data Provider for table rendering
+         */
+        $i = 0;
+        foreach ($this->engines as $engine_class => $engine_name){
+            if ($i !== 0){
+                $ref = new $engine_class;
+                $engines[$engine_class] = array(
+                    'name' => $ref::NAME,
+                    'uri' => $ref::URI
+                );
+            }
+
+            $i++;
+        }
 
         /** Engine table */
         require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'admin-engines-table.php');
