@@ -56,7 +56,7 @@ msgstr "RRZE Suchergebnisse"
 
 #: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:159
 msgid "Search Result Page utilized by RRZE Search Plugin"
-msgstr "Suchergebnis Seite, die vom RRZE Search Plugin verwendet wird"
+msgstr "Suchergebnisseite, die vom RRZE Search Plugin verwendet wird"
 
 #: src/RRZESearch/Infrastructure/Dashboard.php:41
 #: src/RRZESearch/Infrastructure/Dashboard.php:74
