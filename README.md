@@ -1,4 +1,4 @@
-# RRZE\RRZESearch
+# RRZESearch
 
 WordPress-Plugin für zentrale Einrichtungen der Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
 
@@ -14,6 +14,17 @@ TODO:
 ## Appendix
 
 Special instructions and other cataloged information
+
+`Adding Search Engine`
+- Duplicate `SearchEngine-template.php` from `RRZESearch\Ports\Engines\`
+- Refactor the `Classname`
+- Define the Search Engine's Parameters and Filters
+- Recommended use of `cURL` to make request
+- Return `json` \stdClass
+
+ 
+---
+
 
 `Designating Disclaimer Page`
 - From the `WordPress Admin` go to `Pages`.

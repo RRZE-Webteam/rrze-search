@@ -8,18 +8,18 @@ interface Engine
     /**
      * Query - Make your request and return it's results
      *
-     * @param string $uri
+     * @param string $query
      * @param string $key
-     * @param int $query
+     * @param int $startPage
      *
-     * @return mixed
+     * @return \stdClass
      */
-    public function Query(string $query, string $key, int $startPage);
+    public function Query(string $query, string $key, int $startPage): \stdClass;
 
     /**
      * Return the name of this engine
      *
-     * @return mixed
+     * @return string
      */
-    public static function getName();
+    public static function getName(): string;
 }

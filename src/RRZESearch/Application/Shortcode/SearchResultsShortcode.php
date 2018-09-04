@@ -15,7 +15,6 @@ class SearchResultsShortcode
 
     public function register()
     {
-        echo 'register - shortcode\n';
         add_shortcode('rrze_search_results', array($this, 'shortcodeInit'));
     }
 
@@ -29,7 +28,7 @@ class SearchResultsShortcode
         /**
          * Define the Search Engine Resource;
          */
-        $this->searchEngine = new $resource['resource_uri'];
+        $this->searchEngine = new $resource['resource_class'];
 
         /**
          * USE JSON file only for dev

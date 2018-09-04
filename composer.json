@@ -5,6 +5,9 @@
   "license": "GPL",
   "require": {},
   "autoload": {
+    "exclude-from-classmap": [
+      "src/RRZESearch/Ports/Engines/SearchEngine-template.php"
+    ],
     "psr-4": {
       "RRZE\\": "src/"
     }

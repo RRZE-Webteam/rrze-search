@@ -2,7 +2,7 @@
     <tr>
         <td><input type="text" id="rrze_search_resources"
                    name="rrze_search_settings[rrze_search_resources][index][resource_name]" value=""></td>
-        <td><select id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][index][resource_uri]">
+        <td><select id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][index][resource_class]">
                 <?php
                 echo PHP_EOL;
                 foreach ($this->engines as $key => $value) {

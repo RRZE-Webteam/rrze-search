@@ -17,15 +17,15 @@
         /** Search Engine */
         if ($nextResourceIndex === 0) {
             echo '<td>'.__('WordPress Search', 'rrze-search');
-            echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_uri]" value=""/>';
+            echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]" value=""/>';
             echo '</td>';
         } else {
             echo '<td>';
-            echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_uri]'.'">';
+            echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]'.'">';
             $searchEngineIndex = 0;
             foreach ($this->engines as $key => $value) {
                 if ($searchEngineIndex > 0) {
-                    if ($key === $resource['resource_uri']) {
+                    if ($key === $resource['resource_class']) {
                         echo '<option value="'.$key.'" selected>'.$value.'</option>';
                     } else {
                         echo '<option value="'.$key.'" >'.$value.'</option>';

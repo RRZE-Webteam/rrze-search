@@ -27,7 +27,7 @@ class OptionsCallbacks extends AppController
          */
         $enginesDirectory = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Engines';
         foreach (scandir($enginesDirectory) as $engineFile) {
-            if ($engineFile !== "." && $engineFile !== "..") {
+            if ($engineFile !== "." && $engineFile !== ".." && $engineFile !== 'SearchEngine-template.php') {
                 $engineName = pathinfo($engineFile, PATHINFO_FILENAME);
 //            require_once $enginesDirectory.DIRECTORY_SEPARATOR.$engineFile;
                 $engineClassName = 'RRZE\\RRZESearch\\Ports\\Engines\\'.$engineName;
