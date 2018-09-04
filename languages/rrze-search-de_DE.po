@@ -32,23 +32,23 @@ msgstr "Standardsuchmaschine"
 
 #: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:63
 msgid "Configure your plugin."
-msgstr "Konfigurieren das Plugin."
+msgstr "Plugin konfigurieren"
 
 #: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:68
 msgid ""
 "Oh no! Someone deleted the results Page! No worries, Another one will be "
 "generated when you click [ Save Changes ]"
 msgstr ""
-"Oh nein! Jemand hat die Ergebnisseite gelöscht! Keine Sorge, ein weiterer "
-"wird generiert, wenn Sie auf [Änderungen speichern] klicken"
+"Oh nein! Jemand hat die Ergebnisseite gelöscht! Keine Sorge, eine weitere wird generiert, "
+"sobald Sie auf [Änderungen speichern] klicken"
 
 #: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:73
 msgid ""
 "Search Results Page doesn't exist, yet! No worries, one will be generated "
 "when you click [ Save Changes ]"
 msgstr ""
-"Suchergebnisse Seite existiert noch nicht! Keine Sorge, man wird generiert, "
-"wenn Sie auf [Änderungen speichern] klicken"
+"Die Suchergebnisse Seite existiert noch nicht! Keine Sorge, sie wird generiert, "
+"sobald Sie auf [Änderungen speichern] klicken"
 
 #: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:156
 msgid "RRZE Search Results"
@@ -56,7 +56,7 @@ msgstr "RRZE Suchergebnisse"
 
 #: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:159
 msgid "Search Result Page utilized by RRZE Search Plugin"
-msgstr "Suchergebnis Seite, die von RRZE Search Plugin verwendet wird"
+msgstr "Suchergebnis Seite, die vom RRZE Search Plugin verwendet wird"
 
 #: src/RRZESearch/Infrastructure/Dashboard.php:41
 #: src/RRZESearch/Infrastructure/Dashboard.php:74
@@ -74,7 +74,7 @@ msgstr "Suchergebnisseite"
 
 #: src/RRZESearch/Ports/Facades/admin-resources-table.php:3
 msgid "Option Label"
-msgstr "Etikettenoption"
+msgstr "Optionsbeschriftung"
 
 #: src/RRZESearch/Ports/Facades/admin-resources-table.php:4
 msgid "Search Engine"
@@ -86,11 +86,11 @@ msgstr "API-Schlüssel"
 
 #: src/RRZESearch/Ports/Facades/admin-resources-table.php:6
 msgid "Disclaimer Link"
-msgstr "Haftungsausschluss Link"
+msgstr "Link zum Haftungsausschluss"
 
 #: src/RRZESearch/Ports/Facades/admin-resources-table.php:19
 msgid "WordPress Search"
-msgstr "WordPress Suche"
+msgstr "WordPress-Suche"
 
 #: src/RRZESearch/Ports/Facades/admin-resources-table.php:42
 msgid "No API Key Required"
