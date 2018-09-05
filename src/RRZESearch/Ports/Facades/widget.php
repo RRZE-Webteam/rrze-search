@@ -83,18 +83,20 @@
                         ?></p><?php
 
                     $nextTabIndex = 0;
-                    foreach ($this->options['rrze_search_resources'] as $key => $resource):
+                    foreach ($resources as $key => $resource):
                         ++$nextTabIndex;
                         $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
                         $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
                         $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
                         $searchEngineDisclaimer = '<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">Datenschutz</a>';
 
+//                        if ($engines[$resource['resource_class']] === '' && isset($engines[$resource['resource_class']])) {
+                        if ($key > 0 && $engines[$resource['resource_class']]) {
                         ?><label>
                         <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?> class="search-engine"
                                value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
                         <span><?= sprintf($resource['resource_name'], $searchEngineDisclaimer); ?></span>
-                        </label><?php
+                        </label><?php }
 
                     endforeach;
                     ?>

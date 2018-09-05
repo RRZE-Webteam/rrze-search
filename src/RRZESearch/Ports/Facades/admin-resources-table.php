@@ -6,23 +6,18 @@
         <td><strong><?php echo __('Disclaimer Link', 'rrze-search'); ?></strong></td>
         <td>&nbsp;</td>
     </thead>
+    <pre>
+<!--        --><?php //print_r($resources); ?>
+    </pre>
     <?php
     $nextResourceIndex = 0;
     foreach ($resources as $resource) {
         echo '<tr valign="top">';
 
-        if ($nextResourceIndex !== 0) {
-//            $isDisabled = (isset($engines[$resource['resource_class']]['enabled']) && $engines[$resource['resource_class']]['enabled'] === 'false') ? 'disabled' : '';
-            $isDisabled = isBoolean($engines[$resource['resource_class']]);//(isset([$resource['resource_class']]['enabled']) && $engines[$resource['resource_class']]['enabled'] === 'false') ? 'disabled' : '';
-            echo '<pre>';
-            print_r($isDisabled);
-            echo PHP_EOL;
-            echo '</pre>';
-        }
+        $isEnabled = ($nextResourceIndex !== 0) ? $engines[$resource['resource_class']]['enabled'] : 'true';
 
-        echo '<pre>';
-        echo '</pre>';
-
+        /** Enabled */
+        echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][isEnabled]" value="'.$isEnabled.'" />';
 
         /** Option Label */
         echo '<td><input type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_name]" value="'.$resource['resource_name'].'" /></td>';
@@ -34,7 +29,14 @@
             echo '</td>';
         } else {
             echo '<td>';
-            echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]">';
+            if ($isEnabled === 'false') {
+                echo PHP_EOL;
+                echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]" value="'.$resource['resource_class'].'">';
+                echo PHP_EOL;
+                echo '<select disabled>';
+            } else {
+                echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]">';
+            }
             $searchEngineIndex = 0;
             foreach ($this->engines as $key => $value) {
                 if ($searchEngineIndex > 0) {

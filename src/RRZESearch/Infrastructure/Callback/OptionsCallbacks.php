@@ -51,9 +51,20 @@ class OptionsCallbacks extends AppController
         $output['rrze_search_engines'] = $input['rrze_search_engines'] ?? array();
         /** Configured Search Engines - Admin Level */
         $output['rrze_search_resources'] = $input['rrze_search_resources'] ?? array();
+        /** Create Array of Enabled Engines */
+        $enabledEngines = array();
+        foreach ($input['rrze_search_engines'] as $engine) {
+            $enabledEngines[$engine['class']] = isset($engine['enabled']) ? 'true' : 'false';
+        }
+        /** If the engine doesn't have an isEnabled property - it's must likely a newly added element */
+        foreach ($input['rrze_search_resources'] as $engine) {
+            if (!isset($engine['isEnabled'])) {
+                /** Append the property and give it the actual enabled status */
+                $output['rrze_search_resources'][count($output['rrze_search_resources']) - 1]['isEnabled'] = $enabledEngines[$engine['resource_class']];
+            }
+        }
         /** Page ID for Search Results */
         $output['rrze_search_page_id'] = $input['rrze_search_page_id'] ?? '';
-
         /** Custom Field value for pages tagged as disclaimer pages */
         $output['meta_shortcut'] = 'rrze_search_resource_disclaimer';
 
@@ -142,8 +153,8 @@ class OptionsCallbacks extends AppController
         /**
          * Filter for Enabled Engines
          */
-        foreach ($option_value['rrze_search_engines'] as $engine){
-            $enable = (isset($engine['enabled'])) ? 'true' : 'false';
+        foreach ($option_value['rrze_search_engines'] as $engine) {
+            $enable                    = (isset($engine['enabled'])) ? 'true' : 'false';
             $engines[$engine['class']] = array(
                 'enabled' => $enable
             );

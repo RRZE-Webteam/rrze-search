@@ -18,7 +18,8 @@
         <td><input type="text" id="rrze_search_resources"
                    name="rrze_search_settings[rrze_search_resources][index][resource_key]"
                    placeholder="<?php echo __('Leave blank if no API Key', 'rrze-search'); ?>" value=""></td>
-        <td><select id="rrze_search_resources" name="rrze_search_settings[rrze_search_resources][index][resource_disclaimer]"
+        <td><select id="rrze_search_resources"
+                    name="rrze_search_settings[rrze_search_resources][index][resource_disclaimer]"
                     style="width: 150px !important; min-width: 50px; max-width: 150px;">
                 <?php
                 // This loop through the $pages collection. Which is a collection of Wordpress Pages which use a custom
