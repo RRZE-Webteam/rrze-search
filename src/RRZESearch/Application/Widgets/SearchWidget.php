@@ -28,6 +28,8 @@ class SearchWidget extends WP_Widget
         $this->plugin_path = plugin_dir_url(dirname(__FILE__, 2));
 
         register_activation_hook(__FILE__, array($this, 'widgetSubmit'));
+
+        parent::__construct($this->widget_ID, $this->widget_name);
     }
 
     public function register()
@@ -141,13 +143,15 @@ class SearchWidget extends WP_Widget
         $search_engine = !empty($instance['search_engine']) ? $instance['search_engine'] : '0';
         ?>
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php echo __('Display Title', 'rrze-search'); ?>:</label>
+            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php echo __('Display Title',
+                    'rrze-search'); ?>:</label>
             <input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>"
                    name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text"
                    value="<?php echo esc_attr($title); ?>">
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('search_engine'); ?>"><?php echo __('Default Search Engine', 'rrze-search'); ?>:</label>
+            <label for="<?php echo $this->get_field_id('search_engine'); ?>"><?php echo __('Default Search Engine',
+                    'rrze-search'); ?>:</label>
             <select name="<?php echo $this->get_field_name('search_engine'); ?>"
                     id="<?php echo $this->get_field_id('search_engine'); ?>" class="widefat">
                 <?php foreach ($this->options['rrze_search_resources'] as $key => $resource) {

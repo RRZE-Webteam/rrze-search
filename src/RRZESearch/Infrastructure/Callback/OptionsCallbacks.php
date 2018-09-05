@@ -30,7 +30,7 @@ class OptionsCallbacks extends AppController
             if ($engineFile !== "." && $engineFile !== ".." && $engineFile !== 'SearchEngine-template.php') {
                 $engineName = pathinfo($engineFile, PATHINFO_FILENAME);
 //            require_once $enginesDirectory.DIRECTORY_SEPARATOR.$engineFile;
-                $engineClassName = 'RRZE\\RRZESearch\\Ports\\Engines\\'.$engineName;
+                $engineClassName                 = 'RRZE\\RRZESearch\\Ports\\Engines\\'.$engineName;
                 $this->engines[$engineClassName] = call_user_func([$engineClassName, 'getName']);
             }
         }
@@ -82,8 +82,8 @@ class OptionsCallbacks extends AppController
 
     public function enginesTable(array $args)
     {
-        $name        = $args['label_for'];
-        $option_name = $args['option_name'];
+        $name         = $args['label_for'];
+        $option_name  = $args['option_name'];
         $option_value = get_option($option_name);
 
         /**
@@ -95,12 +95,12 @@ class OptionsCallbacks extends AppController
          * Build Data Provider for table rendering
          */
         $i = 0;
-        foreach ($this->engines as $engine_class => $engine_name){
-            if ($i !== 0){
-                $ref = new $engine_class;
+        foreach ($this->engines as $engine_class => $engine_name) {
+            if ($i !== 0) {
+                $ref                    = new $engine_class;
                 $engines[$engine_class] = array(
                     'name' => $ref::NAME,
-                    'uri' => $ref::URI
+                    'uri'  => $ref::URI
                 );
             }
 
@@ -126,6 +126,7 @@ class OptionsCallbacks extends AppController
          * Define props used in template
          */
         $pages     = array();
+        $engines   = array();
         $resources = $option_value[$name];
 
         /**
@@ -136,6 +137,16 @@ class OptionsCallbacks extends AppController
             if (isset($meta['rrze_search_resource_disclaimer'])) {
                 $pages[] = $page;
             }
+        }
+
+        /**
+         * Filter for Enabled Engines
+         */
+        foreach ($option_value['rrze_search_engines'] as $engine){
+            $enable = (isset($engine['enabled'])) ? 'true' : 'false';
+            $engines[$engine['class']] = array(
+                'enabled' => $enable
+            );
         }
 
         /** Resource template */

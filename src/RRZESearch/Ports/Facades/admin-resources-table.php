@@ -2,6 +2,7 @@
     <thead>
         <td><strong><?php echo __('Option Label', 'rrze-search'); ?></strong></td>
         <td><strong><?php echo __('Search Engine', 'rrze-search'); ?></strong></td>
+        <td><strong><?php echo __('API Key', 'rrze-search'); ?></strong></td>
         <td><strong><?php echo __('Disclaimer Link', 'rrze-search'); ?></strong></td>
         <td>&nbsp;</td>
     </thead>
@@ -20,15 +21,27 @@
             echo '</td>';
         } else {
             echo '<td>';
-            echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]'.'">';
+//            $isDisabled = (isset($engines[$resource['resource_class']]['enabled']) && $engines[$resource['resource_class']]['enabled'] === 'false') ? 'disabled' : '';
+            $isDisabled = $engines;//(isset([$resource['resource_class']]['enabled']) && $engines[$resource['resource_class']]['enabled'] === 'false') ? 'disabled' : '';
+
+            echo '<pre>';
+            print_r($resource);
+            echo '</pre>';
+
+            echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]">';
             $searchEngineIndex = 0;
             foreach ($this->engines as $key => $value) {
                 if ($searchEngineIndex > 0) {
+                    echo '$key: '.$key;
+//                    if ($engines[$key]['enabled'] === 'true') {
                     if ($key === $resource['resource_class']) {
                         echo '<option value="'.$key.'" selected>'.$value.'</option>';
                     } else {
                         echo '<option value="'.$key.'" >'.$value.'</option>';
                     }
+//                    } else {
+//                        echo '<option value="'.$key.'">'.__('Disabled Option', 'rrze-search').'</option>';
+//                    }
                 }
                 $searchEngineIndex++;
             }

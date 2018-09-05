@@ -2,14 +2,10 @@
     <thead>
         <td><strong><?php echo __('Class Name', 'rrze-search'); ?></strong></td>
         <td><strong><?php echo __('API URI', 'rrze-search'); ?></strong></td>
-        <td>&nbsp;</td>
+        <td><strong><?php echo __('Enable/Disable', 'rrze-search') ?></strong></td>
     </thead>
     <?php
     $nextEngineIndex = 0;
-
-    echo '<pre>';
-    print_r($option_value[$name]);
-    echo '</pre>';
 
     foreach ($this->engines as $engine_class => $engine_name) {
         echo '<tr valign="top">';
@@ -21,13 +17,8 @@
             echo '</td><td>';
             echo '<input type="text" value="'.$engines[$engine_class]['uri'].'" readonly />';
             echo '</td><td>';
-            echo isset($option_name[$name][$nextEngineIndex]['enabled']);
-            $enabled = (isset($option_name[$name][$nextEngineIndex]['enabled'])) ? 'on' : 'off';
-
-            /**
-             * TODO: fix the toggle to enable and disable Search Engines
-             */
-            echo '<input type="checkbox" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextEngineIndex.'][enabled]" checked="false" />';
+            $enabled = (isset($option_value[$name][$nextEngineIndex]['enabled'])) ? 'checked ' : '';
+            echo '<input type="checkbox" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextEngineIndex.'][enabled]" '.$enabled.' />';
             echo '</td>';
         }
 
