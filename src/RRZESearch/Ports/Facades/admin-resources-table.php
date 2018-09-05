@@ -11,6 +11,19 @@
     foreach ($resources as $resource) {
         echo '<tr valign="top">';
 
+        if ($nextResourceIndex !== 0) {
+//            $isDisabled = (isset($engines[$resource['resource_class']]['enabled']) && $engines[$resource['resource_class']]['enabled'] === 'false') ? 'disabled' : '';
+            $isDisabled = isBoolean($engines[$resource['resource_class']]);//(isset([$resource['resource_class']]['enabled']) && $engines[$resource['resource_class']]['enabled'] === 'false') ? 'disabled' : '';
+            echo '<pre>';
+            print_r($isDisabled);
+            echo PHP_EOL;
+            echo '</pre>';
+        }
+
+        echo '<pre>';
+        echo '</pre>';
+
+
         /** Option Label */
         echo '<td><input type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_name]" value="'.$resource['resource_name'].'" /></td>';
 
@@ -21,31 +34,20 @@
             echo '</td>';
         } else {
             echo '<td>';
-//            $isDisabled = (isset($engines[$resource['resource_class']]['enabled']) && $engines[$resource['resource_class']]['enabled'] === 'false') ? 'disabled' : '';
-            $isDisabled = $engines;//(isset([$resource['resource_class']]['enabled']) && $engines[$resource['resource_class']]['enabled'] === 'false') ? 'disabled' : '';
-
-            echo '<pre>';
-            print_r($resource);
-            echo '</pre>';
-
             echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]">';
             $searchEngineIndex = 0;
             foreach ($this->engines as $key => $value) {
                 if ($searchEngineIndex > 0) {
-                    echo '$key: '.$key;
-//                    if ($engines[$key]['enabled'] === 'true') {
                     if ($key === $resource['resource_class']) {
                         echo '<option value="'.$key.'" selected>'.$value.'</option>';
                     } else {
                         echo '<option value="'.$key.'" >'.$value.'</option>';
                     }
-//                    } else {
-//                        echo '<option value="'.$key.'">'.__('Disabled Option', 'rrze-search').'</option>';
-//                    }
                 }
                 $searchEngineIndex++;
             }
             echo '</select>';
+
             echo '</td>';
         }
 
