@@ -35,6 +35,7 @@ class SearchResultsShortcode
          */
 //        $query_results = file_get_contents(plugins_url('rrze-search').DIRECTORY_SEPARATOR.'fixture'.DIRECTORY_SEPARATOR.'google_results.json');
         $query_results = $this->searchEngine->Query($query, $resource['resource_key'], $startPage);
+
         $results       = json_decode($query_results, true);
 
         include \dirname(__DIR__,
