@@ -29,16 +29,19 @@ class SearchResultsShortcode
          * Define the Search Engine Resource;
          */
         $this->searchEngine = new $resource['resource_class'];
+        $_className = explode('\\', $resource['resource_class']);
+        $className = $_className[count($_className)-1];
 
         /**
          * USE JSON file only for dev
          */
-//        $query_results = file_get_contents(plugins_url('rrze-search').DIRECTORY_SEPARATOR.'fixture'.DIRECTORY_SEPARATOR.'google_results.json');
+//        $query_results = file_get_contents(plugins_url('rrze-search').DIRECTORY_SEPARATOR.'fixtur e'.DIRECTORY_SEPARATOR.'google_results.json');
         $query_results = $this->searchEngine->Query($query, $resource['resource_key'], $startPage);
-
         $results       = json_decode($query_results, true);
 
+
+        $partialsPath = DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'Results'.DIRECTORY_SEPARATOR;
         include \dirname(__DIR__,
-                2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'shortcode.php';
+                2).$partialsPath.$className.'-shortcode.php';
     }
 }

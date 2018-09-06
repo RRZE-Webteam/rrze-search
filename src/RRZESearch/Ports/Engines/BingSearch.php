@@ -40,9 +40,9 @@ use RRZE\RRZESearch\Domain\Contract\Engine;
 /**
  * TODO: refactor class name
  *
- * Class DuckGoSearch
+ * Class BingSearch
  */
-class DuckGoSearch implements Engine
+class BingSearch implements Engine
 {
     const NAME = 'Microsoft Bing';
 
@@ -60,8 +60,6 @@ class DuckGoSearch implements Engine
      */
     public function Query(string $query, string $key, int $startPage)
     {
-        echo 'working on it<br>';
-
         $context = stream_context_create(
             array(
                 'http' => array(
@@ -71,73 +69,32 @@ class DuckGoSearch implements Engine
             )
         );
 
-        $result  = file_get_contents(self::URI."?q=".urlencode($query), false, $context);
-        $headers = array();
-        foreach ($http_response_header as $k => $v) {
-            $h = explode(":", $v, 2);
-            if (isset($h[1])) {
-                if (preg_match("/^BingAPIs-/", $h[0]) || preg_match("/^X-MSEdge-/", $h[0])) {
-                    $headers[trim($h[0])] = trim($h[1]);
-                }
-            }
-        }
+        $params = array(
+            'q'            => $query,
+            'customconfig' => 3022471055,
+            'mkt'          => 'de-DE',
+            'safesearch'   => 'Moderate',
+            'count'        => 25,
+            'offset'       => 25 * intval($startPage)
+        );
 
+        $result  = file_get_contents(self::URI."?".http_build_query($params), false, $context);
 
-
-        /**
-         * STEP 1 - Build the query
-         */
-//        $params = array(
-//            'q'            => $query,
-//            'customconfig' => 3022471055,
-//            'mkt'          => 'de-DE',
-//            'safesearch'   => 'Moderate',
-//            'count'        => 10,
-//            'offset'       => 0
-//        );
-
-        /**
-         * STEP 2 - Build URL
-         */
-//        $_uri = self::URI;
-//        $_uri .= '?'.http_build_query($params);
-
-        /**
-         * STEP 3 - Curl headers array
-         */
-//        $curlHeaders = array(
-//            'Content-length: 0',
-//            'Content-type: application/json',
-//        );
-
-        /**
-         * STEP 4 - Curl options array
-         */
-//        $curlOptions = array(
-//            CURLOPT_HTTPHEADER => $curlHeaders,
-//            CURLOPT_URL        => urldecode($_uri),
-//        );
-
-        /**
-         * STEP 5 - Make the request
-         */
-//        $curl = curl_init();
-//        curl_setopt_array($curl, $curlOptions);
-
-        /**
-         * STEP 6 - Finalize query request
-         */
-//        $results = curl_exec($curl);
-//        curl_close($curl);
+        // Handles HTTP Response Header
+//        $headers = array();
+//        foreach ($http_response_header as $k => $v) {
+//            $h = explode(":", $v, 2);
+//            if (isset($h[1])) {
+//                if (preg_match("/^BingAPIs-/", $h[0]) || preg_match("/^X-MSEdge-/", $h[0])) {
+//                    $headers[trim($h[0])] = trim($h[1]);
+//                }
+//            }
+//        }
 
         /**
          * NOTICE that you should be returning a json string as \StdClass
          * ******************************************************************/
-        echo '<pre>'.PHP_EOL;
-        echo '<h1>OUTPUT</h1>';
-        echo '</pre>';
-
-        return array($headers, $result);
+        return $result;
     }
 
     /**
