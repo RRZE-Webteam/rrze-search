@@ -74,8 +74,8 @@ class BingSearch implements Engine
             'customconfig' => 3022471055,
             'mkt'          => 'de-DE',
             'safesearch'   => 'Moderate',
-            'count'        => 25,
-            'offset'       => 25 * intval($startPage)
+            'count'        => 10,
+            'offset'       => 10 * intval($startPage)
         );
 
         $result  = file_get_contents(self::URI."?".http_build_query($params), false, $context);
@@ -92,7 +92,7 @@ class BingSearch implements Engine
 //        }
 
         /**
-         * NOTICE that you should be returning a json string as \StdClass
+         * NOTICE that you should be returning a json string
          * ******************************************************************/
         return $result;
     }

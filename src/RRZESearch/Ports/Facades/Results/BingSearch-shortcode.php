@@ -3,7 +3,6 @@
 <!--    <nobr> (--><?php //echo $results['searchInformation']['formattedSearchTime']; ?><!-- seconds)&nbsp;</nobr>-->
 </div>
 <?php
-$index = 0;
 foreach ($results['webPages']['value'] as $result) {
     ?>
     <div class="record">
@@ -15,7 +14,6 @@ foreach ($results['webPages']['value'] as $result) {
         </div>
     </div>
     <?php
-    $index++;
 } ?>
 <hr>
 
@@ -23,14 +21,14 @@ foreach ($results['webPages']['value'] as $result) {
     <?php
     $resultIndex = (isset($_GET['start'])) ? $_GET['start'] : 0;
     if ($resultIndex > 0) {
-        echo '<a href="'.site_url().$pageLink.'?q='.rawurlencode($query).'&se='.$_GET['se'].'&start='.($resultIndex-1).'">'.__('Previous Page',
+        echo '<a href="'.site_url().$pageLink.'?q='.urlencode($_GET['q']).'&se='.$_GET['se'].'&start='.($resultIndex-1).'">'.__('Previous Page',
                 'rrze-search').'</a>';
     }
     if ($resultIndex > 0) {
         echo '&nbsp;|&nbsp;';
     }
-    if ($resultIndex >= 0 && floor($results['webPages']['totalEstimatedMatches']/25) > $resultIndex) {
-        echo '<a href="'.site_url().$pageLink.'?q='.urlencode($query).'&se='.$_GET['se'].'&start='.($resultIndex+1).'">'.__('Next Page',
+    if ($resultIndex >= 0 && floor($results['webPages']['totalEstimatedMatches']/10) > $resultIndex) {
+        echo '<a href="'.site_url().$pageLink.'?q='.urlencode($_GET['q']).'&se='.$_GET['se'].'&start='.($resultIndex+1).'">'.__('Next Page',
                 'rrze-search').'</a>';
     } ?>
 </div>

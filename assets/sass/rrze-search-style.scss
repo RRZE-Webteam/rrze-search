@@ -94,3 +94,25 @@ form[role=search] {
 		}
 	}
 }
+
+.results-tabs {
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+	margin-bottom: 15px;
+}
+
+.results-tabs a {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+}
+
+.results-tabs a:hover {
+	background-color: #ddd;
+	text-decoration: none;
+}
