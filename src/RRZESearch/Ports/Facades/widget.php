@@ -76,29 +76,37 @@
             </header>
             <div id="search-panel" class="search-panel" hidden>
                 <div class="search-settings" role="radiogroup" aria-labelledby="search-engines">
-                    <p id="search-engines"><?php
-
-                        echo translate('Bitte wählen Sie einen verfügbaren Suchdienst:', 'fau');
-
-                        ?></p><?php
-
+                    <p id="search-engines"><?php echo translate('Bitte wählen Sie einen verfügbaren Suchdienst:',
+                            'fau'); ?></p>
+                    <?php
                     $nextTabIndex = 0;
                     foreach ($resources as $key => $resource):
                         ++$nextTabIndex;
                         $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
                         $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
                         $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
-                        $searchEngineDisclaimer = '<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">Datenschutz</a>';
+                        $searchEngineDisclaimer = '<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">'.__('Privacy Policy',
+                                'rrze-search').'</a>';
 
-//                        if ($engines[$resource['resource_class']] === '' && isset($engines[$resource['resource_class']])) {
-                        if ($key > 0 && $engines[$resource['resource_class']]) {
-                        ?><label>
-                        <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?> class="search-engine"
-                               value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
-                        <span><?= sprintf($resource['resource_name'], $searchEngineDisclaimer); ?></span>
-                        </label><?php }
-
+                        if (isset($engines[$resource['resource_class']]) && $engines[$resource['resource_class']] === '') {
+//                        if ($key > 0 && $engines[$resource['resource_class']]) {
+                            ?>
+                            <label>
+                                <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?>
+                                       class="search-engine"
+                                       value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
+                                <span>working on the link</span>
+                                <!--                        <span>-->
+                                <?//= sprintf($resource['resource_name'], $searchEngineDisclaimer); ?><!--</span>-->
+                                <!--                            disclaimer link-->
+                            </label>
+                        <?php }
                     endforeach;
+
+                        echo '<pre>';
+                        print_r(key($resource));
+                        echo '</pre>';
+
                     ?>
                 </div>
                 <div class="search-static-links"><?php include __DIR__.DIRECTORY_SEPARATOR.'widget-static-links.php'; ?></div>

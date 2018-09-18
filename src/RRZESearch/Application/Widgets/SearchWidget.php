@@ -173,7 +173,7 @@ class SearchWidget extends WP_Widget
     {
         echo $args['before_widget'];
 
-        $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? intval($instance['search_engine']) : intval($_COOKIE['rrze_search_engine_pref']);
+        $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? (int)$instance['search_engine'] : (int)$_COOKIE['rrze_search_engine_pref'];
         $resources       = $this->options['rrze_search_resources'];
         $engines         = $this->options['rrze_search_engines'];
 

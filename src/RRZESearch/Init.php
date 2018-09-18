@@ -71,6 +71,8 @@ final class Init
     public static function deactivate(): void
     {
         flush_rewrite_rules();
+//        deactivate_plugins('rrze-search/rrze-search.php');
+//        unregister_sidebar('rrze-search-sidebar');
         self::updateResultsPageStatus('private');
     }
 
