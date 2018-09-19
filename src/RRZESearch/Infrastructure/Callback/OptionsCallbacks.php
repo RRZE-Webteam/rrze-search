@@ -160,11 +160,11 @@ class OptionsCallbacks extends AppController
             );
         }
 
-        /** Resource template */
-        require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'template-resource.php');
-
         /** Resource table */
         require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'admin-resources-table.php');
+
+        /** Resource template */
+        require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'template-resource.php');
     }
 
     /**
@@ -224,7 +224,7 @@ class OptionsCallbacks extends AppController
             } else {
                 if (get_post($options[$name]) && intval(get_post($options[$name])->ID) == $options[$name]) {
                     echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']" value="'.get_post($options[$name])->ID.'" >';
-                    echo '<input type="text" value="'.wp_make_link_relative(get_permalink($options[$name])).'" disabled>';
+                    echo '<input type="text" value="'.wp_make_link_relative(get_permalink($options[$name])).'" class="regular-text" readonly>';
                 } else {
                     echo $this->printMissingTemplateMsg();
                 }

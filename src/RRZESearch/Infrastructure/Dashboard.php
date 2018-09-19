@@ -86,6 +86,17 @@ class Dashboard extends AppController
     {
         $args = array(
             array(
+                'id'       => 'rrze_search_resources',
+                'title'    => __('Search Engines Configuration', 'rrze-search'),
+                'callback' => array($this->callbacks_options, 'resourcesTable'),
+                'page'     => 'rrze_search',
+                'section'  => 'rrze_search_admin_section',
+                'args'     => array(
+                    'option_name' => 'rrze_search_settings',
+                    'label_for'   => 'rrze_search_resources',
+                )
+            ),
+            array(
                 'id'       => 'rrze_search_engines',
                 'title'    => __('Search Engines', 'rrze-search'),
                 'callback' => array($this->callbacks_options, 'enginesTable'),
@@ -94,17 +105,6 @@ class Dashboard extends AppController
                 'args'     => array(
                     'option_name' => 'rrze_search_settings',
                     'label_for'   => 'rrze_search_engines'
-                )
-            ),
-            array(
-                'id'       => 'rrze_search_resources',
-                'title'    => __('Available Search Engines', 'rrze-search'),
-                'callback' => array($this->callbacks_options, 'resourcesTable'),
-                'page'     => 'rrze_search',
-                'section'  => 'rrze_search_admin_section',
-                'args'     => array(
-                    'option_name' => 'rrze_search_settings',
-                    'label_for'   => 'rrze_search_resources',
                 )
             ),
             array(

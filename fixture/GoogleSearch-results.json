@@ -1,0 +1,808 @@
+{
+  "kind": "customsearch#search",
+  "url": {
+    "type": "application/json",
+    "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&lr={language?}&safe={safe?}&cx={cx?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&c2coff={disableCnTwTranslation?}&hq={hq?}&hl={hl?}&siteSearch={siteSearch?}&siteSearchFilter={siteSearchFilter?}&exactTerms={exactTerms?}&excludeTerms={excludeTerms?}&linkSite={linkSite?}&orTerms={orTerms?}&relatedSite={relatedSite?}&dateRestrict={dateRestrict?}&lowRange={lowRange?}&highRange={highRange?}&searchType={searchType}&fileType={fileType?}&rights={rights?}&imgSize={imgSize?}&imgType={imgType?}&imgColorType={imgColorType?}&imgDominantColor={imgDominantColor?}&alt=json"
+  },
+  "queries": {
+    "request": [
+      {
+        "title": "Google Custom Search - tollwerk",
+        "totalResults": "1640",
+        "searchTerms": "tollwerk",
+        "count": 10,
+        "startIndex": 1,
+        "inputEncoding": "utf8",
+        "outputEncoding": "utf8",
+        "safe": "off",
+        "cx": "011945293402966620832:n0bvaqo6yl4"
+      }
+    ],
+    "nextPage": [
+      {
+        "title": "Google Custom Search - tollwerk",
+        "totalResults": "1640",
+        "searchTerms": "tollwerk",
+        "count": 10,
+        "startIndex": 11,
+        "inputEncoding": "utf8",
+        "outputEncoding": "utf8",
+        "safe": "off",
+        "cx": "011945293402966620832:n0bvaqo6yl4"
+      }
+    ]
+  },
+  "context": {
+    "title": "fau.tollwerk.de"
+  },
+  "searchInformation": {
+    "searchTime": 0.089304,
+    "formattedSearchTime": "0,09",
+    "totalResults": "1640",
+    "formattedTotalResults": "1.640"
+  },
+  "items": [
+    {
+      "kind": "customsearch#result",
+      "title": "tollwerk | Webdesign · TYPO3 · Online-Shops | Werbeagentur ...",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e | Webdesign · TYPO3 · Online-Shops | Werbeagentur ...",
+      "link": "https://tollwerk.de/",
+      "displayLink": "tollwerk.de",
+      "snippet": "Als Full-Service-Werbeagentur aus Nürnberg realisiert Tollwerk Projekte in den \nBereichen Internet, TYPO3, Online-Shops, Suchmaschinenoptimierung / SEO ...",
+      "htmlSnippet": "Als Full-Service-Werbeagentur aus Nürnberg realisiert \u003cb\u003eTollwerk\u003c/b\u003e Projekte in den \u003cbr\u003e\nBereichen Internet, TYPO3, Online-Shops, Suchmaschinenoptimierung / SEO&nbsp;...",
+      "cacheId": "za3uH9uw1P8J",
+      "formattedUrl": "https://tollwerk.de/",
+      "htmlFormattedUrl": "https://\u003cb\u003etollwerk\u003c/b\u003e.de/",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "288",
+            "height": "175",
+            "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRtJySgLCCElIx0gM6DbCYfui_XuddqsTTWvOR7xeL4s39pB3gPE-UVCvE"
+          }
+        ],
+        "postaladdress": [
+          {
+            "streetaddress": "Klingenhofstraße 5",
+            "postalcode": "90411",
+            "addresslocality": "Nürnberg",
+            "addressregion": "Bayern",
+            "addresscountry": "Deutschland"
+          }
+        ],
+        "metatags": [
+          {
+            "author": "tollwerk® GmbH",
+            "language": "de",
+            "y_key": "79fcdf392a31590b",
+            "viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",
+            "fb:admins": "533415336,1004143357,100000232850574"
+          }
+        ],
+        "hcard": [
+          {
+            "fn": "tollwerk® GmbH",
+            "url": "https://tollwerk.de/",
+            "url_text": "https://tollwerk.de",
+            "photo": "https://tollwerk.de/fileadmin/templates/css/img/logo_full.png",
+            "logo": "https://tollwerk.de/fileadmin/templates/css/img/logo_full.png"
+          }
+        ],
+        "organization": [
+          {
+            "name": "tollwerk® GmbH",
+            "image": "https://tollwerk.de/fileadmin/templates/css/img/logo_full.png",
+            "faxnumber": "+49 911 959394-7",
+            "url": "https://tollwerk.de"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://tollwerk.de/typo3temp/pics/4f38c99c82.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "tollwerk GmbH · GitHub",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e GmbH · GitHub",
+      "link": "https://github.com/tollwerk",
+      "displayLink": "github.com",
+      "snippet": "General setup instructions for Tollwerk Gentoo boxes ... Yeoman generator for \ntypical tollwerk frontend projects (currently focused on TYPO3 projects with ...",
+      "htmlSnippet": "General setup instructions for \u003cb\u003eTollwerk\u003c/b\u003e Gentoo boxes ... Yeoman generator for \u003cbr\u003e\ntypical \u003cb\u003etollwerk\u003c/b\u003e frontend projects (currently focused on TYPO3 projects with&nbsp;...",
+      "cacheId": "xdcWb7uwoYMJ",
+      "formattedUrl": "https://github.com/tollwerk",
+      "htmlFormattedUrl": "https://github.com/\u003cb\u003etollwerk\u003c/b\u003e",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "225",
+            "height": "225",
+            "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSIymnZCdjIIhFzpojxccNgRlt2w9166CDfoj4P-moqjrgb58hN_LVxPWI"
+          }
+        ],
+        "code": [
+          {
+            "name": "TYPO3-ext-tw_componentlibrary",
+            "coderepository": "TYPO3-ext-tw_componentlibrary",
+            "description": "Component library features for your TYPO3 project",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "gentoo-setup",
+            "coderepository": "gentoo-setup",
+            "description": "General setup instructions for Tollwerk Gentoo boxes"
+          },
+          {
+            "name": "TYPO3-ext-tw_base",
+            "coderepository": "TYPO3-ext-tw_base",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "TYPO3-ext-tw_cookie",
+            "coderepository": "TYPO3-ext-tw_cookie",
+            "description": "Cookie Consent Banner for TYPO3 websites",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "data-processing-agreements",
+            "coderepository": "data-processing-agreements",
+            "description": "Collection of Data Processing Agreement (DPA) and GDPR compliance resources",
+            "programminglanguage": "CSS"
+          },
+          {
+            "name": "fractal-typo3",
+            "coderepository": "fractal-typo3",
+            "description": "TYPO3 bridge for the Fractal component library tool (http://fractal.build / @frctl)",
+            "programminglanguage": "JavaScript"
+          },
+          {
+            "name": "admin",
+            "coderepository": "admin",
+            "description": "Tollwerk server account administration",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "generator-tollwerk",
+            "coderepository": "generator-tollwerk",
+            "description": "Yeoman generator for typical tollwerk frontend projects (currently focused on TYPO3 projects with TemplaVoila / FluidTYPO3)",
+            "programminglanguage": "JavaScript"
+          },
+          {
+            "name": "TYPO3-ext-tw_lucenesearch",
+            "coderepository": "TYPO3-ext-tw_lucenesearch",
+            "description": "Simple and lightweight implementation of the Apache Lucene Index as frontend search solution for TYPO3. Created by Joschi Kuphal (@jkphl), licensed under the terms of the GPL v2 license.",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "gsales2",
+            "coderepository": "gsales2",
+            "description": "tollwerk gSales extensions",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "ldap-auth",
+            "coderepository": "ldap-auth",
+            "description": "Simple readonly LDAP authentication with Laravel 5.2",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "tollwerkstatt",
+            "coderepository": "tollwerkstatt",
+            "programminglanguage": "JavaScript"
+          },
+          {
+            "name": "toggl-dashboard",
+            "coderepository": "toggl-dashboard",
+            "description": "Dashboard for monitoring Toggle time entries",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "fractal-tenon",
+            "coderepository": "fractal-tenon",
+            "description": "Fractal component library tool (http://fractal.build) plugin for accessibility testing against Tenon (http://tenon.io)",
+            "programminglanguage": "JavaScript"
+          },
+          {
+            "name": "TYPO3-ext-tw_antibot",
+            "coderepository": "TYPO3-ext-tw_antibot",
+            "description": "Death to Spambots! — CAPTCHA-less security for TYPO3 forms",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "TYPO3-ext-tw_sitemap",
+            "coderepository": "TYPO3-ext-tw_sitemap",
+            "description": "Advanced Google XML Sitemap generation incl. various entry sources and multiple sitemap file support",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "TYPO3-ext-squeezr",
+            "coderepository": "TYPO3-ext-squeezr",
+            "description": "Easily integrate squeezr (https://github.com/jkphl/squeezr) into your TYPO3 setup",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "TYPO3-ext-tw_googleanalytics",
+            "coderepository": "TYPO3-ext-tw_googleanalytics",
+            "description": "Frontend plugin for advanced Google Analytics integration with a wide range of features including pageView and event tracking, custom variables / dimensions / metrics, cross domain tracking,...",
+            "programminglanguage": "JavaScript"
+          },
+          {
+            "name": "ext-jh_magnificpopup",
+            "coderepository": "ext-jh_magnificpopup",
+            "description": "TYPO3 CMS Extension to integrate Magnific Popup",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "cookie-cache-loader",
+            "coderepository": "cookie-cache-loader",
+            "description": "Cookie cache loader",
+            "programminglanguage": "JavaScript"
+          },
+          {
+            "name": "TYPO3-ext-tw_prototype",
+            "coderepository": "TYPO3-ext-tw_prototype",
+            "description": "Prototypical TYPO3 main extension for Tollwerk projects",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "code-style-guidelines",
+            "coderepository": "code-style-guidelines",
+            "description": "Code style guidelines for several contexts and programming languages used at Tollwerk on a regular basis"
+          },
+          {
+            "name": "TYPO3-ext-tw_payment",
+            "coderepository": "TYPO3-ext-tw_payment",
+            "description": "Stripe & PayPal payment platform plugins",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "TYPO3-ext-tw_yourls",
+            "coderepository": "TYPO3-ext-tw_yourls",
+            "description": "YOURLS URL shortener (http://yourls.org) API client",
+            "programminglanguage": "PHP"
+          },
+          {
+            "name": "TYPO3-skeleton",
+            "coderepository": "TYPO3-skeleton",
+            "description": "Base skeleton for new TYPO3 projects featuring a directory structure and some base TypoScript files relevant for most of our projects",
+            "programminglanguage": "TypeScript"
+          },
+          {
+            "name": "TYPO3-ext-tw_odl",
+            "coderepository": "TYPO3-ext-tw_odl",
+            "description": "Device management for Open Device Labs – right away within your TYPO3 installation. Created by Joschi Kuphal (@jkphl), licensed under the terms of the GPL v2 license.",
+            "programminglanguage": "PHP"
+          }
+        ],
+        "metatags": [
+          {
+            "viewport": "width=device-width",
+            "fb:app_id": "1401488693436528",
+            "og:image": "https://avatars0.githubusercontent.com/u/1038729?s=280&v=4",
+            "og:site_name": "GitHub",
+            "og:type": "profile",
+            "og:title": "tollwerk GmbH",
+            "og:url": "https://github.com/tollwerk",
+            "profile:username": "tollwerk",
+            "pjax-timeout": "1000",
+            "request-id": "E1CA:4B4C:6E1DCC:A98B2E:5B4E1B04",
+            "hovercard-subject-tag": "organization:1038729",
+            "google-analytics": "UA-3769691-2",
+            "octolytics-host": "collector.githubapp.com",
+            "octolytics-app-id": "github",
+            "octolytics-event-url": "https://collector.githubapp.com/github-external/browser_event",
+            "octolytics-dimension-request_id": "E1CA:4B4C:6E1DCC:A98B2E:5B4E1B04",
+            "octolytics-dimension-region_edge": "sea",
+            "octolytics-dimension-region_render": "iad",
+            "analytics-location": "/\u003corg-login\u003e",
+            "dimension1": "Logged Out",
+            "hostname": "github.com",
+            "expected-hostname": "github.com",
+            "js-proxy-site-detection-payload": "MjUwMWMwNGViN2Y0MjM4YmQ5Y2FjMzRjMjQ5NjY2YWExM2M0YzQ2ZWEyNzU1OWFkMWM2ODMyZWYwNzkyODQ3Y3x7InJlbW90ZV9hZGRyZXNzIjoiNjYuMjQ5Ljc5LjE0NiIsInJlcXVlc3RfaWQiOiJFMUNBOjRCNEM6NkUxRENDOkE5OEIyRTo1QjRFMUIwNCIsInRpbWVzdGFtcCI6MTUzMTg0NTM4MSwiaG9zdCI6ImdpdGh1Yi5jb20ifQ==",
+            "enabled-features": "UNIVERSE_BANNER,FREE_TRIALS,MARKETPLACE_INSIGHTS,MARKETPLACE_SEARCH,MARKETPLACE_INSIGHTS_CONVERSION_PERCENTAGES",
+            "html-safe-nonce": "92af62a720b0632750658511ffe071cc39c568e0",
+            "browser-stats-url": "https://api.github.com/_private/browser/stats",
+            "browser-errors-url": "https://api.github.com/_private/browser/errors",
+            "theme-color": "#1e2327"
+          }
+        ],
+        "organization": [
+          {
+            "image": "https://avatars1.githubusercontent.com/u/1038729?s=200&v=4",
+            "location": "Nuremberg / Germany",
+            "url": "http://tollwerk.de",
+            "email": "info@tollwerk.de"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://avatars0.githubusercontent.com/u/1038729?s=280&v=4"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "tollwerk - Home | Facebook",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e - Home | Facebook",
+      "link": "https://www.facebook.com/tollwerk/",
+      "displayLink": "www.facebook.com",
+      "snippet": "tollwerk, Nuremberg. 332 likes. tollwerk® GmbH - TYPO3 · Web · Barrierefreiheit · \nWerbung · Design :::: Impressum: https://tollwerk.de/impressum/",
+      "htmlSnippet": "\u003cb\u003etollwerk\u003c/b\u003e, Nuremberg. 332 likes. \u003cb\u003etollwerk\u003c/b\u003e® GmbH - TYPO3 · Web · Barrierefreiheit · \u003cbr\u003e\nWerbung · Design :::: Impressum: https://\u003cb\u003etollwerk\u003c/b\u003e.de/impressum/",
+      "formattedUrl": "https://www.facebook.com/tollwerk/",
+      "htmlFormattedUrl": "https://www.facebook.com/\u003cb\u003etollwerk\u003c/b\u003e/",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "225",
+            "height": "225",
+            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQl0ierJlkUSPUO1vpuypcHOo8TI_LSidntNfOLNy0FmZV6SHdZCgWahuA"
+          }
+        ],
+        "aggregaterating": [
+          {
+            "ratingvalue": "5",
+            "ratingcount": "16"
+          }
+        ],
+        "metatags": [
+          {
+            "referrer": "default",
+            "al:android:app_name": "Facebook",
+            "al:android:package": "com.facebook.katana",
+            "al:android:url": "fb://page/133038876725926?referrer=app_link",
+            "al:ios:app_name": "Facebook",
+            "al:ios:app_store_id": "284882215",
+            "al:ios:url": "fb://page/?id=133038876725926",
+            "og:title": "tollwerk",
+            "og:description": "tollwerk, Nuremberg. 332 likes. tollwerk® GmbH - TYPO3 · Web · Barrierefreiheit · Werbung · Design  ::::  Impressum: https://tollwerk.de/impressum/",
+            "og:image": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=133038876725926",
+            "og:url": "https://www.facebook.com/tollwerk/"
+          }
+        ],
+        "listitem": [
+          {
+            "item": "Places",
+            "name": "Places",
+            "position": "1"
+          },
+          {
+            "item": "Nuremberg",
+            "name": "Nuremberg",
+            "position": "2"
+          },
+          {
+            "item": "Web Designer",
+            "name": "Web Designer",
+            "position": "3"
+          }
+        ],
+        "organization": [
+          {
+            "image": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=133038876725926"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=373509889420633"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "tollwerk® GmbH (@tollwerk) | Twitter",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e® GmbH (@\u003cb\u003etollwerk\u003c/b\u003e) | Twitter",
+      "link": "https://twitter.com/tollwerk?lang=de",
+      "displayLink": "twitter.com",
+      "snippet": "The latest Tweets from tollwerk® GmbH (@tollwerk). #TYPO3- & Full-Service-\nWerbeagentur · Responsive Webdesign · Multi-Device, Accessibility ...",
+      "htmlSnippet": "The latest Tweets from \u003cb\u003etollwerk\u003c/b\u003e® GmbH (@\u003cb\u003etollwerk\u003c/b\u003e). #TYPO3- &amp; Full-Service-\u003cbr\u003e\nWerbeagentur · Responsive Webdesign · Multi-Device, Accessibility&nbsp;...",
+      "cacheId": "vqUyJI8IGTkJ",
+      "formattedUrl": "https://twitter.com/tollwerk?lang=de",
+      "htmlFormattedUrl": "https://twitter.com/\u003cb\u003etollwerk\u003c/b\u003e?lang=de",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "225",
+            "height": "225",
+            "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSJc5ypEImYN8_0FA4oX8KUgpx6rjH5k9IomvnLZK7IHRHTWFRzZZPzjAQ"
+          }
+        ],
+        "metatags": [
+          {
+            "msapplication-tileimage": "//abs.twimg.com/favicons/win8-tile-144.png",
+            "msapplication-tilecolor": "#00aced",
+            "swift-page-name": "profile",
+            "swift-page-section": "profile",
+            "al:ios:url": "twitter://user?screen_name=tollwerk",
+            "al:ios:app_store_id": "333903271",
+            "al:ios:app_name": "Twitter",
+            "al:android:url": "twitter://user?screen_name=tollwerk",
+            "al:android:package": "com.twitter.android",
+            "al:android:app_name": "Twitter"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://pbs.twimg.com/profile_images/606809042107920385/mEcP4peh_400x400.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "tollwerk® GmbH | LinkedIn",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e® GmbH | LinkedIn",
+      "link": "https://www.linkedin.com/company/tollwerk-gmbh",
+      "displayLink": "www.linkedin.com",
+      "snippet": "Learn about working at tollwerk® GmbH. Join LinkedIn today for free. See who \nyou know at tollwerk® GmbH, leverage your professional network, and get hired.",
+      "htmlSnippet": "Learn about working at \u003cb\u003etollwerk\u003c/b\u003e® GmbH. Join LinkedIn today for free. See who \u003cbr\u003e\nyou know at \u003cb\u003etollwerk\u003c/b\u003e® GmbH, leverage your professional network, and get hired.",
+      "formattedUrl": "https://www.linkedin.com/company/tollwerk-gmbh",
+      "htmlFormattedUrl": "https://www.linkedin.com/company/\u003cb\u003etollwerk\u003c/b\u003e-gmbh",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "200",
+            "height": "200",
+            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRbp6B5J-TEt9MKFYDGbZv78d_MoDVsgL5MqXPesbpQXgOt31JWcwSi_yo"
+          }
+        ],
+        "metatags": [
+          {
+            "pagekey": "d_org_guest_company_overview",
+            "seobeaconworkerurl": "https://static.licdn.com/sc/h/3m0nuu8g9hqyi8d1h8lhfr2q8",
+            "locale": "en_US",
+            "og:title": "tollwerk® GmbH | LinkedIn",
+            "og:description": "Learn about working at tollwerk® GmbH. Join LinkedIn today for free. See who you know at tollwerk® GmbH, leverage your professional network, and get hired.",
+            "og:image": "https://media.licdn.com/dms/image/C510BAQH7MPrXdFBuWA/company-logo_200_200/0?e=2159024400&v=beta&t=8eNG0gdXC9yAMQW-JY2byjmYiYqDaNcgBdBl_OS6008",
+            "og:type": "article",
+            "og:url": "https://www.linkedin.com/company/tollwerk-gmbh",
+            "twitter:card": "summary",
+            "twitter:site": "@linkedin",
+            "twitter:title": "tollwerk® GmbH | LinkedIn",
+            "twitter:description": "Learn about working at tollwerk® GmbH. Join LinkedIn today for free. See who you know at tollwerk® GmbH, leverage your professional network, and get hired.",
+            "twitter:image": "https://media.licdn.com/dms/image/C510BAQH7MPrXdFBuWA/company-logo_200_200/0?e=2159024400&v=beta&t=8eNG0gdXC9yAMQW-JY2byjmYiYqDaNcgBdBl_OS6008"
+          }
+        ],
+        "listitem": [
+          {
+            "position": "1",
+            "url": "https://www.linkedin.com/in/joschikuphal?trk=org-employees_mini-profile_image"
+          },
+          {
+            "position": "2",
+            "url": "https://www.linkedin.com/in/philipsaa?trk=org-employees_mini-profile_image"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://media.licdn.com/dms/image/C510BAQH7MPrXdFBuWA/company-logo_200_200/0?e=2159024400&v=beta&t=8eNG0gdXC9yAMQW-JY2byjmYiYqDaNcgBdBl_OS6008"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "tollwerk® GmbH als Arbeitgeber | XING Unternehmen",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e® GmbH als Arbeitgeber | XING Unternehmen",
+      "link": "https://www.xing.com/companies/tollwerk%C2%AEgmbh",
+      "displayLink": "www.xing.com",
+      "snippet": "Erfahren Sie, welche Vorteile tollwerk® GmbH als Arbeitgeber auszeichnen.",
+      "htmlSnippet": "Erfahren Sie, welche Vorteile \u003cb\u003etollwerk\u003c/b\u003e® GmbH als Arbeitgeber auszeichnen.",
+      "cacheId": "eMqJyfYtBJ0J",
+      "formattedUrl": "https://www.xing.com/companies/tollwerk®gmbh",
+      "htmlFormattedUrl": "https://www.xing.com/companies/\u003cb\u003etollwerk\u003c/b\u003e®gmbh",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "264",
+            "height": "70",
+            "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSpKDhwdoC2ll4gPEIxSBo2_5mlEjr9Yh8_4PfLSwLMwxF439NLVOv3yQ"
+          }
+        ],
+        "postaladdress": [
+          {
+            "streetaddress": "Klingenhofstraße 5",
+            "postalcode": "90411",
+            "addresslocality": "Nürnberg",
+            "addresscountry": "Deutschland"
+          }
+        ],
+        "metatags": [
+          {
+            "referrer": "default",
+            "csrf-param": "authenticity_token",
+            "csrf-token": "iFOkt7OxgF8dqgiIfu4jFSdQn1jQrurZGI/9LVFZYFK9ZcmFhf+tE1vaMOct1m1gSn3MObbMmp9H+69sOgkBYQ==",
+            "logjam-request-id": "companies-production-9a3dafeb92b7453394d6fad203b78247",
+            "logjam-action": "CorporatePages::ProfileController#show",
+            "logjam-collector": "https://www.xing.com/logjam/",
+            "og:title": "tollwerk® GmbH als Arbeitgeber | XING Unternehmen",
+            "og:url": "https://www.xing.com/companies/tollwerk%C2%AEgmbh",
+            "og:image": "https://www.xing.com/img/custom/cp/assets/logo/f/8/c/8076/logo/Tollwerk-Logo_RGB.jpg",
+            "og:site_name": "XING AG",
+            "og:description": "Erfahren Sie, welche Vorteile tollwerk® GmbH als Arbeitgeber auszeichnen.",
+            "og:type": "company",
+            "viewport": "width=device-width, minimum-scale=1, maximum-scale=1"
+          }
+        ],
+        "breadcrumb": [
+          {
+            "url": "Startseite",
+            "title": "Startseite"
+          },
+          {
+            "url": "Unternehmen",
+            "title": "Unternehmen"
+          },
+          {
+            "url": "Branchen",
+            "title": "Branchen"
+          },
+          {
+            "url": "Internet und Onlinemedien",
+            "title": "Internet und Onlinemedien"
+          },
+          {
+            "title": "tollwerk® GmbH"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://www.xing.com/img/custom/cp/assets/logo/f/8/c/8076/logo/Tollwerk-Logo_RGB.jpg"
+          }
+        ],
+        "localbusiness": [
+          {
+            "name": "tollwerk® GmbH",
+            "logo": "https://www.xing.com/companies/tollwerk%C2%AEgmbh",
+            "foundingdate": "2000",
+            "telephone": "+49 911 959394-5",
+            "faxnumber": "+49 911 959394-7",
+            "email": "info@tollwerk.de",
+            "url": "tollwerk.de"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "tollwerk Lucene search (tw_lucenesearch)",
+      "htmlTitle": "\u003cb\u003etollwerk\u003c/b\u003e Lucene search (tw_lucenesearch)",
+      "link": "https://extensions.typo3.org/extension/tw_lucenesearch/",
+      "displayLink": "extensions.typo3.org",
+      "snippet": "Jan 22, 2014 ... [TYPO3 CMS 6 Release] Simple and lightweight implementation of the Apache \nLucene Index as frontend search solution for TYPO3, built on ...",
+      "htmlSnippet": "Jan 22, 2014 \u003cb\u003e...\u003c/b\u003e [TYPO3 CMS 6 Release] Simple and lightweight implementation of the Apache \u003cbr\u003e\nLucene Index as frontend search solution for TYPO3, built on&nbsp;...",
+      "cacheId": "0WVb2MvYJbEJ",
+      "formattedUrl": "https://extensions.typo3.org/extension/tw_lucenesearch/",
+      "htmlFormattedUrl": "https://extensions.typo3.org/extension/tw_lucenesearch/",
+      "pagemap": {
+        "softwareapplication": [
+          {
+            "applicationcategory": "TYPO3 Extension",
+            "applicationsuite": "TYPO3",
+            "downloadurl": "https://extensions.typo3.org/extension/download/tw_lucenesearch/",
+            "fileformat": "application/zip",
+            "operatingsystem": "Windows,Linux,MacOS",
+            "alternatename": "tollwerk Lucene search",
+            "name": "tw_lucenesearch",
+            "softwareversion": "1.0.2",
+            "description": "[TYPO3 CMS 6 Release] Simple and lightweight implementation of the Apache Lucene Index as frontend search solution for TYPO3, built on extbase / fluid, supporting wildcard and fuzzy searches,...",
+            "releasenotes": "Fixed a regression bug with wrong Flexform file name",
+            "datecreated": "2014-01-22T22:50:27+01:00",
+            "applicationsubcategory": "Frontend Plugins"
+          }
+        ],
+        "metatags": [
+          {
+            "og:title": "tollwerk Lucene search (tw_lucenesearch)",
+            "og:description": "[TYPO3 CMS 6 Release] Simple and lightweight implementation of the Apache Lucene Index as frontend search solution for TYPO3, built on extbase / fluid, supporting wildcard and fuzzy searches, search term highlighting, indexing of uncached pages, custom search term rewrite hooks and much more without any further software requirements (Java application server, Apache Solr etc.). ATTENTION: Support for TYPO3 4.x has been dropped, use the 0.x versions instead!",
+            "viewport": "width=device-width, initial-scale=1",
+            "apple-mobile-web-app-capable": "no"
+          }
+        ],
+        "person": [
+          {
+            "name": "Dipl.-Ing. Joschi Kuphal"
+          }
+        ],
+        "organization": [
+          {
+            "name": "tollwerkÂ® GmbH"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "2016/Nuremberg/Guest List - IndieWeb",
+      "htmlTitle": "2016/Nuremberg/Guest List - IndieWeb",
+      "link": "https://indieweb.org/2016/Nuremberg/Guest_List",
+      "displayLink": "indieweb.org",
+      "snippet": "22. Apr. 2016 ... ... Where: tollwerk, Klingenhofstraße 5, 90411 Nürnberg, Germany. URL: http://\nindiewebcamp.com/2016/Nuremberg; Cost: Free; Registration: ...",
+      "htmlSnippet": "22. Apr. 2016 \u003cb\u003e...\u003c/b\u003e ... Where: \u003cb\u003etollwerk\u003c/b\u003e, Klingenhofstraße 5, 90411 Nürnberg, Germany. URL: http://\u003cbr\u003e\nindiewebcamp.com/2016/Nuremberg; Cost: Free; Registration:&nbsp;...",
+      "cacheId": "-DbBTAl74HoJ",
+      "formattedUrl": "https://indieweb.org/2016/Nuremberg/Guest_List",
+      "htmlFormattedUrl": "https://indieweb.org/2016/Nuremberg/Guest_List",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "128",
+            "height": "128",
+            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRRU-JWoucble5eUDOanUPhR8nSqrAFi83glS-Bka18tNjKXUac31_ciF4"
+          }
+        ],
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1"
+          }
+        ],
+        "hcard": [
+          {
+            "fn": "Aaron Parecki",
+            "url": "https://aaronparecki.com/",
+            "url_text": "https://aaronparecki.com/"
+          },
+          {
+            "fn": "Barnaby Walters",
+            "url": "https://waterpigs.co.uk",
+            "url_text": "https://waterpigs.co.uk"
+          },
+          {
+            "fn": "Bea David",
+            "url": "http://justonestep.de/",
+            "url_text": "http://justonestep.de/"
+          },
+          {
+            "fn": "Bianka Tafuro"
+          },
+          {
+            "fn": "Björn Stierand",
+            "url": "https://bjoern.stierand.org",
+            "url_text": "https://bjoern.stierand.org"
+          },
+          {
+            "fn": "Dirk Murschall",
+            "url": "https://www.dirkmurschall.de/",
+            "url_text": "https://www.dirkmurschall.de/"
+          },
+          {
+            "fn": "Dominic Grzbielok",
+            "url": "http://www.grzbielok.de/",
+            "url_text": "http://www.grzbielok.de/"
+          },
+          {
+            "fn": "Frederic Marx",
+            "url": "https://fmarx.com",
+            "url_text": "https://fmarx.com"
+          },
+          {
+            "fn": "Henne Vogelsang",
+            "url": "http://www.hennevogel.de",
+            "url_text": "http://www.hennevogel.de"
+          },
+          {
+            "fn": "Jeena",
+            "nickname": "Jeena",
+            "url": "https://jeena.net",
+            "url_text": "https://jeena.net"
+          }
+        ],
+        "person": [
+          {
+            "org": "GfK SE"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://aaronparecki.com/photo.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "Data Processors and their DPA resources | data-processing ...",
+      "htmlTitle": "Data Processors and their DPA resources | data-processing ...",
+      "link": "https://tollwerk.github.io/data-processing-agreements/",
+      "displayLink": "tollwerk.github.io",
+      "snippet": "... a GDPR compliant DPA (whether or not that's a valid state). data-processing-\nagreements is maintained by tollwerk. This page was generated by GitHub \nPages.",
+      "htmlSnippet": "... a GDPR compliant DPA (whether or not that&#39;s a valid state). data-processing-\u003cbr\u003e\nagreements is maintained by \u003cb\u003etollwerk\u003c/b\u003e. This page was generated by GitHub \u003cbr\u003e\nPages.",
+      "cacheId": "pbnN2qginLUJ",
+      "formattedUrl": "https://tollwerk.github.io/data-processing-agreements/",
+      "htmlFormattedUrl": "https://\u003cb\u003etollwerk\u003c/b\u003e.github.io/data-processing-agreements/",
+      "pagemap": {
+        "metatags": [
+          {
+            "og:title": "Data Processors and their DPA resources",
+            "og:locale": "en_US",
+            "og:description": "Collection of Data Processing Agreement (DPA) and GDPR compliance resources",
+            "og:url": "https://tollwerk.github.io/data-processing-agreements/",
+            "og:site_name": "data-processing-agreements",
+            "viewport": "width=device-width, initial-scale=1",
+            "theme-color": "#157878"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "CoderDojo Nürnberg #19 @ tollwerk, Nürnberg [2. September]",
+      "htmlTitle": "CoderDojo Nürnberg #19 @ \u003cb\u003etollwerk\u003c/b\u003e, Nürnberg [2. September]",
+      "link": "http://nuremberg.carpediem.cd/events/6590469-coderdojo-n-rnberg-19-at-tollwerk/",
+      "displayLink": "nuremberg.carpediem.cd",
+      "snippet": "Das CoderDojo Nürnberg ist Club für Kinder und Jugendliche von 5-17 Jahren, \ndie begleitet von erfahrenen Mentoren Programmieren lernen & Spaß haben ...",
+      "htmlSnippet": "Das CoderDojo Nürnberg ist Club für Kinder und Jugendliche von 5-17 Jahren, \u003cbr\u003e\ndie begleitet von erfahrenen Mentoren Programmieren lernen &amp; Spaß haben&nbsp;...",
+      "cacheId": "d0ThUAfHvaMJ",
+      "formattedUrl": "nuremberg.carpediem.cd/.../6590469-coderdojo-n-rnberg-19-at-tollwerk/",
+      "htmlFormattedUrl": "nuremberg.carpediem.cd/.../6590469-coderdojo-n-rnberg-19-at-\u003cb\u003etollwerk\u003c/b\u003e/",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "300",
+            "height": "168",
+            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQGihyvqaKg-2-7xOMEkPhsnbbSe0PGAA6GypH3Rc1OWfoM4PtZZnGPRFyL"
+          }
+        ],
+        "hcalendar": [
+          {
+            "dtstart": "2018-09-02T10:00:00+02:00",
+            "summary": "CoderDojo Nürnberg #19",
+            "url": "http://nuremberg.carpediem.cd/events6590469-coderdojo-n-rnberg-19-at-tollwerk/",
+            "dtend": "2018-09-02T17:00:00+02:00",
+            "description": "Das CoderDojo Nürnberg ist Club für Kinder und Jugendliche von 5-17 Jahren, die begleitet von erfahrenen Mentoren Programmieren lernen & Spaß haben wollen ☯ Teilnahme kostenlos, Hilfe...",
+            "photo": "http://nuremberg.carpediem.cd/data/afisha/bp/a5/0e/a50e5d355f.jpg"
+          }
+        ],
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1.0",
+            "msapplication-tilecolor": "#ffffff",
+            "msapplication-tileimage": "/img/fav/ms-icon-144x144.png",
+            "theme-color": "#ffffff",
+            "og:type": "website",
+            "og:description": "Das CoderDojo Nürnberg ist Club für Kinder und Jugendliche von 5-17 Jahren, die begleitet von erfahrenen Mentoren Programmieren lernen & Spaß haben wollen ☯ Teilnahme kostenlos, Hilfe willkommen!  WICHTIG: Sowohl für Ninjas, als auch deren Begleitung und...",
+            "og:image": "http://nuremberg.carpediem.cd/data/afisha/o/a5/0e/a50e5d355f.jpg",
+            "og:site_name": "nuremberg.carpediem.cd",
+            "csrf-param": "_csrf",
+            "csrf-token": "Nl82SXZPeENEDlMeHQUeFkMVWw08BxwyVBpzHR9/MDtcFnEeWxUrKw=="
+          }
+        ],
+        "sitenavigationelement": [
+          {
+            "name": "Heute",
+            "url": "Heute"
+          }
+        ],
+        "place": [
+          {
+            "address": "Klingenhofstraße 5, 90411 Nuremberg",
+            "name": "tollwerk"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "http://nuremberg.carpediem.cd/data/afisha/o/a5/0e/a50e5d355f.jpg"
+          }
+        ],
+        "event": [
+          {
+            "dtstart": "2018-09-02T10:00:00+02:00",
+            "summary": "CoderDojo Nürnberg #19",
+            "url": "http://nuremberg.carpediem.cd/events6590469-coderdojo-n-rnberg-19-at-tollwerk/",
+            "dtend": "2018-09-02T17:00:00+02:00"
+          },
+          {
+            "startdate": "2018-09-02T10:00:00+02:00",
+            "enddate": "2018-09-02T17:00:00+02:00",
+            "image": "http://nuremberg.carpediem.cd/data/afisha/bp/a5/0e/a50e5d355f.jpg",
+            "description": "Das CoderDojo Nürnberg ist Club für Kinder und Jugendliche von 5-17 Jahren, die begleitet von erfahrenen Mentoren Programmieren lernen & Spaß haben wollen ☯ Teilnahme kostenlos, Hilfe...",
+            "url": "http://nuremberg.carpediem.cd/events6590469-coderdojo-n-rnberg-19-at-tollwerk/",
+            "name": "CoderDojo Nürnberg #19"
+          }
+        ]
+      }
+    }
+  ]
+}
