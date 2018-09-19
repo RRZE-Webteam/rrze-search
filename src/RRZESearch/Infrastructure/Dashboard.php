@@ -87,7 +87,7 @@ class Dashboard extends AppController
         $args = array(
             array(
                 'id'       => 'rrze_search_resources',
-                'title'    => __('Search Engines Configuration', 'rrze-search'),
+                'title'    => __('Configure Resources', 'rrze-search'),
                 'callback' => array($this->callbacks_options, 'resourcesTable'),
                 'page'     => 'rrze_search',
                 'section'  => 'rrze_search_admin_section',
