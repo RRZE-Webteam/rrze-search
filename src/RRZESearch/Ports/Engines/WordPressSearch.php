@@ -34,18 +34,17 @@ namespace RRZE\RRZESearch\Ports\Engines;
 use RRZE\RRZESearch\Domain\Contract\Engine;
 
 /**
- * Class BingSearch
+ * Class WordPressSearch
  *
  * @package RRZE\RRZESearch\Ports\Engines
  */
-class BingSearch implements Engine
+class WordPressSearch implements Engine
 {
-    const NAME = 'Microsoft Bing';
+    const NAME = 'WordPress Native Search';
 
-    const URI = 'https://api.cognitive.microsoft.com/bingcustomsearch/v7.0/search';
-//    const URI = 'https://api.cognitive.microsoft.com/bing/v7.0/search'; // Documentation Example
+    const URI = 'https://api.server.net/v1';
 
-    const LINK = '/bing_search_results/';
+    const LINK = '/';
 
     /**
      * Query - interface defined
@@ -58,41 +57,55 @@ class BingSearch implements Engine
      */
     public function Query(string $query, string $key, int $startPage)
     {
-        $context = stream_context_create(
-            array(
-                'http' => array(
-                    'header' => "Ocp-Apim-Subscription-Key: $key\r\n",
-                    'method' => 'GET'
-                )
-            )
-        );
-
-        $params = array(
-            'q'            => $query,
-            'customconfig' => 3022471055,
-            'mkt'          => 'de-DE',
-            'safesearch'   => 'Moderate',
-            'count'        => 10,
-            'offset'       => 10 * intval($startPage)
-        );
-
-        $result = file_get_contents(self::URI."?".http_build_query($params), false, $context);
-
-        // Handles HTTP Response Header
-//        $headers = array();
-//        foreach ($http_response_header as $k => $v) {
-//            $h = explode(":", $v, 2);
-//            if (isset($h[1])) {
-//                if (preg_match("/^BingAPIs-/", $h[0]) || preg_match("/^X-MSEdge-/", $h[0])) {
-//                    $headers[trim($h[0])] = trim($h[1]);
-//                }
-//            }
-//        }
+        $results = json_encode(['working' => 'on it!']);
+        /**
+         * STEP 1 - Build the query
+         */
+//        $params = array(
+//            'key'    => '{key}',
+//            'query'  => '{query}',
+//            'filter' => '{filter}',
+//        );
+//
+//        /**
+//         * STEP 2 - Build URL
+//         */
+//        $_uri = self::URI;
+//        $_uri .= '?'.http_build_query($params);
+//
+//        /**
+//         * STEP 3 - Curl headers array
+//         */
+//        $curlHeaders = array(
+//            'Content-length: 0',
+//            'Content-type: application/json'
+//        );
+//
+//        /**
+//         * STEP 4 - Curl options array
+//         */
+//        $curlOptions = array(
+//            CURLOPT_HTTPHEADER     => $curlHeaders ,
+//            CURLOPT_URL            => urldecode($_uri),
+//        );
+//
+//        /**
+//         * STEP 5 - Make the request
+//         */
+//        $curl = curl_init();
+//        curl_setopt_array($curl, $curlOptions);
+//
+//        /**
+//         * STEP 6 - Finalize query request
+//         */
+//        $results = curl_exec($curl);
+//        curl_close($curl);
+//
 
         /**
-         * NOTICE that you should be returning a json string
+         * NOTICE that you should be returning a json string as \StdClass
          * ******************************************************************/
-        return $result;
+        return $results;
     }
 
     /**

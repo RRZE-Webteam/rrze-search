@@ -98,7 +98,7 @@ class Dashboard extends AppController
             ),
             array(
                 'id'       => 'rrze_search_engines',
-                'title'    => __('Search Engines', 'rrze-search'),
+                'title'    => __('Enable Search Engines', 'rrze-search'),
                 'callback' => array($this->callbacks_options, 'enginesTable'),
                 'page'     => 'rrze_search',
                 'section'  => 'rrze_search_admin_section',

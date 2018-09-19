@@ -95,6 +95,17 @@ form[role=search] {
 	}
 }
 
+label.resource_table_label {
+	text-align: right;
+	display: inline-block;
+	width: 8em;
+	white-space: nowrap;
+}
+
+/**
+TODO: Move to a front-end only script
+ */
+
 .results-tabs {
 	overflow: hidden;
 	border: 1px solid #ccc;

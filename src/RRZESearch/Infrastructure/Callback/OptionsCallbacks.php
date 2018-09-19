@@ -114,7 +114,6 @@ class OptionsCallbacks extends AppController
                     'uri'  => $ref::URI
                 );
             }
-
             $i++;
         }
 
@@ -167,30 +166,6 @@ class OptionsCallbacks extends AppController
         require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'template-resource.php');
     }
 
-    /**
-     * Renders the disclaimer page drop down
-     *
-     * @param array $args Arguments
-     */
-    public function disclaimerDropDown($args)
-    {
-        $name         = $args['label_for'];
-        $option_name  = $args['option_name'];
-        $option_value = get_option($option_name);
-        $options      = $args['options'];
-
-        $output = '<select id="'.$name.'" name="'.$option_name.'['.$name.']'.'">';
-        foreach ($options as $option) {
-            if ($option['ID'] == $option_value[$name]) {
-                $output .= '<option value="'.$option['ID'].'" selected>'.$option['post_title'].'</option>';
-            } else {
-                $output .= '<option value="'.$option['ID'].'" >'.$option['post_title'].'</option>';
-            }
-        }
-        $output .= '</select>';
-
-        echo $output;
-    }
 
     /**
      * Renders disabled Input field with Search Results page name
@@ -205,9 +180,6 @@ class OptionsCallbacks extends AppController
 
         if (array_key_exists($name, $options)) {
             if ($options[$name] == null) {
-                /**
-                 * TODO: Update labels from English to German [ post_title, post_excerpt ]
-                 */
                 $rrze_search_page    = array(
                     'post_date'     => date('Y-m-d H:i:s'),
                     'post_date_gmt' => date('Y-m-d H:i:s'),
@@ -223,8 +195,7 @@ class OptionsCallbacks extends AppController
                 update_option($option_name, $options, true);
             } else {
                 if (get_post($options[$name]) && intval(get_post($options[$name])->ID) == $options[$name]) {
-                    echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']" value="'.get_post($options[$name])->ID.'" >';
-                    echo '<input type="text" value="'.wp_make_link_relative(get_permalink($options[$name])).'" class="regular-text" readonly>';
+                    require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'admin-results-page-input.php');
                 } else {
                     echo $this->printMissingTemplateMsg();
                 }
