@@ -3,8 +3,7 @@
         <?php
         $nextResourceIndex = 0;
         foreach ($resources as $resource) {
-            $isEnabled = ($nextResourceIndex !== 0) ? $engines[$resource['resource_class']]['enabled'] : 'true';
-            $rowColor  = ($nextResourceIndex % 2) ? '#bbb' : '#ddd';
+            $rowColor = ($nextResourceIndex % 2) ? '#bbb' : '#ddd';
             ?>
             <tr bgcolor="<?php echo $rowColor; ?>">
                 <td style="vertical-align:top">
@@ -12,9 +11,6 @@
                         <label>
                             <strong><?php echo __('Resource Label', 'rrze-search'); ?></strong>
                             <?php
-                            /** Option Label */
-                            /** Enabled */
-                            echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][isEnabled]" value="'.$isEnabled.'" />';
                             /** Option Label */
                             echo '<input type="text" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_name]" value="'.$resource['resource_name'].'" />';
                             ?>
@@ -28,24 +24,13 @@
                             <span><?php echo __('Class Name', 'rrze-search'); ?></span>
                             <?php
                             /** Search Engine Class */
-                            if ($isEnabled === 'false') {
-                                echo PHP_EOL;
-                                echo '<input type="hidden" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]" value="'.$resource['resource_class'].'">';
-                                echo PHP_EOL;
-                                echo '<select disabled>';
-                            } else {
-                                echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]" class="regular-text">';
-                            }
-                            $searchEngineIndex = 0;
+                            echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]" class="regular-text">';
                             foreach ($this->engines as $key => $value) {
-                                if ($searchEngineIndex > 0) {
-                                    if ($key === $resource['resource_class']) {
-                                        echo '<option value="'.$key.'" selected>'.$value.'</option>';
-                                    } else {
-                                        echo '<option value="'.$key.'" >'.$value.'</option>';
-                                    }
+                                if ($key === $resource['resource_class']) {
+                                    echo '<option value="'.$key.'" selected>'.$value.'</option>';
+                                } else {
+                                    echo '<option value="'.$key.'" >'.$value.'</option>';
                                 }
-                                $searchEngineIndex++;
                             }
                             echo '</select>';
                             ?>
@@ -58,7 +43,7 @@
                             <strong><?php echo __('API Key', 'rrze-search'); ?></strong>
                             <?php
                             /** API Key */
-                            $apiValue = ($resource['resource_key'] === '') ? $resource['resource_key'] : __('No API Key Required',
+                            $apiValue = ($resource['resource_key'] !== '') ? $resource['resource_key'] : __('No API Key',
                                 'rrze-search');
                             echo '<input class="regular-text" type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_key]" value="'.$apiValue.'" />';
                             ?>
@@ -72,7 +57,7 @@
                             <?php
                             /** Disclaimer Link */
                             echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_disclaimer]" class="regular-text">';
-                            foreach ($pages as $page) {
+                            foreach ($disclaimerPages as $page) {
                                 $currentPage = $page->ID;
                                 if ($currentPage === (int)$option_value[$name][$nextResourceIndex]['resource_disclaimer']) {
                                     echo '<option value="'.$page->ID.'" selected>'.$page->post_title.'</option>';

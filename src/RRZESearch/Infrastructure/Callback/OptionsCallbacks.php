@@ -11,7 +11,17 @@ class OptionsCallbacks extends AppController
      *
      * @var array
      */
-    protected $engines = ['WpSearch' => 'Default'];
+    protected $engines = [];
+
+    /**
+     * @var array|false
+     */
+    private $pages;
+
+    /**
+     * @var string
+     */
+    private $facades_dir;
 
     /**
      * Constructor
@@ -25,44 +35,60 @@ class OptionsCallbacks extends AppController
          *
          * Usage: $this->engines
          */
-        $enginesDirectory = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Engines';
-        foreach (scandir($enginesDirectory) as $engineFile) {
-            if ($engineFile !== "." && $engineFile !== ".." && $engineFile !== 'SearchEngine-template.php') {
-                $engineName = pathinfo($engineFile, PATHINFO_FILENAME);
-//            require_once $enginesDirectory.DIRECTORY_SEPARATOR.$engineFile;
+        $enginesDirectory = \dirname(__DIR__, 2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Engines';
+        foreach (scandir($enginesDirectory, SCANDIR_SORT_NONE) as $engineFile) {
+            if ($engineFile !== '.' && $engineFile !== '..' && $engineFile !== 'SearchEngine-template.php') {
+                $engineName                      = pathinfo($engineFile, PATHINFO_FILENAME);
                 $engineClassName                 = 'RRZE\\RRZESearch\\Ports\\Engines\\'.$engineName;
-                $this->engines[$engineClassName] = call_user_func([$engineClassName, 'getName']);
+                $this->engines[$engineClassName] = \call_user_func([$engineClassName, 'getName']);
             }
         }
 
         /**
          * Define Disclaimer Pages
-         *
-         * Usage: $this->pages
          */
         $this->pages = get_pages();
+
+        /**
+         * Shortcut to Facades
+         */
+        $this->facades_dir = $this->plugin_path.implode(DIRECTORY_SEPARATOR, ['RRZESearch', 'Ports', 'Facades']);
     }
 
     public function sanitize($input)
     {
         $output = array();
 
-        /** Installed Search Engines - Super Admin Level (soon) */
-        $output['rrze_search_engines'] = $input['rrze_search_engines'] ?? array();
-        /** Configured Search Engines - Admin Level */
+        /** Configured Search Engines - Super Admin Level */
         $output['rrze_search_resources'] = $input['rrze_search_resources'] ?? array();
-        /** Create Array of Enabled Engines */
-        $enabledEngines = array();
-        foreach ($input['rrze_search_engines'] as $engine) {
-            $enabledEngines[$engine['class']] = isset($engine['enabled']) ? 'true' : 'false';
-        }
-        /** If the engine doesn't have an isEnabled property - it's must likely a newly added element */
-        foreach ($input['rrze_search_resources'] as $engine) {
-            if (!isset($engine['isEnabled'])) {
-                /** Append the property and give it the actual enabled status */
-                $output['rrze_search_resources'][count($output['rrze_search_resources']) - 1]['isEnabled'] = $enabledEngines[$engine['resource_class']];
-            }
-        }
+
+        /** Installed Search Engines - Regular Admin Level */
+        $output['rrze_search_engines'] = $input['rrze_search_engines'] ?? array();
+
+        /** Installed Search Engines - Regular Admin Level */
+        $output['rrze_search_engines'] = $input['rrze_search_engines'] ?? array();
+
+
+        /** Remove old Resource Engines */
+//        foreach ($output['rrze_search_engines'] as $resourceEngine){
+//            if (!\in_array($resourceEngine['resource_class'], $output['rrze_search_resources'], true)){
+//                unset($resourceEngine);
+//            }
+//        }
+
+//            $isEnabled = ($input['rrze_search_engines'][$engine['resource_name']]) ? $input['rrze_search_engines'][$engine['resource_name']] : '';
+
+////            $enabledEngines[$engine['class']] = isset($engine['enabled']) ? 'true' : 'false';
+
+//        /** If the engine doesn't have an isEnabled property - it's must likely a newly added element */
+//        foreach ($output['rrze_search_resources'] as $engine) {
+//            $engine['isEnabled'] = 'working on it';
+//            if (!isset($engine['isEnabled'])) {
+//                /** Append the property and give it the actual enabled status */
+//                $output['rrze_search_resources'][\count($output['rrze_search_resources']) - 1]['isEnabled'] = $enabledEngines[$engine['resource_class']];
+//            }
+//        }
+
         /** Page ID for Search Results */
         $output['rrze_search_page_id'] = $input['rrze_search_page_id'] ?? '';
         /** Custom Field value for pages tagged as disclaimer pages */
@@ -71,9 +97,6 @@ class OptionsCallbacks extends AppController
         return $output;
     }
 
-    /**
-     * TODO: Update Message Text from English to German
-     */
     public function printAdminSection()
     {
         echo __('Configure your plugin.', 'rrze-search');
@@ -91,38 +114,57 @@ class OptionsCallbacks extends AppController
             'rrze-search');
     }
 
+    /**
+     * Render the engines table - Admin
+     *
+     * @param array $args
+     */
     public function enginesTable(array $args)
     {
         $name         = $args['label_for'];
         $option_name  = $args['option_name'];
         $option_value = get_option($option_name);
 
-        /**
-         * Define props used in template
-         */
-        $engines = array();
+        $enginesCount = \count($option_value[$name]);
 
-        /**
-         * Build Data Provider for table rendering
-         */
-        $i = 0;
-        foreach ($this->engines as $engine_class => $engine_name) {
-            if ($i !== 0) {
-                $ref                    = new $engine_class;
-                $engines[$engine_class] = array(
-                    'name' => $ref::NAME,
-                    'uri'  => $ref::URI
-                );
+//        if (\count($option_value['rrze_search_resources']) !== $enginesCount) {
+            /** Add or Remove Additional Resources from Engine Collection */
+
+            $_array = [];
+            foreach ($option_value['rrze_search_resources'] as $resource) {
+                if (!$this->isResourceEngine($option_name, $resource['resource_name'])) {
+                    $option_value[$name][] = [
+                        'resource_name'  => $resource['resource_name'],
+                        'resource_class' => $resource['resource_class']
+                    ];
+                }
             }
-            $i++;
-        }
+
+            echo '<pre>';
+            print_r($_array);
+            echo '</pre>';
+//        }
 
         /** Engine table */
-        require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'admin-engines-table.php');
+        require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-engines-table.php';
+    }
+
+    private function isResourceEngine($option_name, $resource_name)
+    {
+        $output       = false;
+        $option_value = get_option($option_name);
+        foreach ($option_value['rrze_search_engines'] as $resource) {
+            if ($resource['resource_name'] === $resource_name) {
+                $output = true;
+            }
+        }
+
+
+        return $output;
     }
 
     /**
-     * Render the resources table
+     * Render the resources table - Super Admin
      *
      * @param array $args Arguments
      */
@@ -135,9 +177,8 @@ class OptionsCallbacks extends AppController
         /**
          * Define props used in template
          */
-        $pages     = array();
-        $engines   = array();
-        $resources = $option_value[$name];
+        $disclaimerPages = array();
+        $resources       = $option_value[$name];
 
         /**
          * Filter for Customer Filed value
@@ -145,25 +186,15 @@ class OptionsCallbacks extends AppController
         foreach ($this->pages as $page) {
             $meta = get_post_meta($page->ID);
             if (isset($meta['rrze_search_resource_disclaimer'])) {
-                $pages[] = $page;
+                $disclaimerPages[] = $page;
             }
         }
 
-        /**
-         * Filter for Enabled Engines
-         */
-        foreach ($option_value['rrze_search_engines'] as $engine) {
-            $enable                    = (isset($engine['enabled'])) ? 'true' : 'false';
-            $engines[$engine['class']] = array(
-                'enabled' => $enable
-            );
-        }
-
         /** Resource table */
-        require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'admin-resources-table.php');
+        require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-resources-table.php';
 
         /** Resource template */
-        require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'template-resource.php');
+        require $this->facades_dir.DIRECTORY_SEPARATOR.'template-resource.php';
     }
 
 
@@ -194,8 +225,8 @@ class OptionsCallbacks extends AppController
                 $options[$name]      = $rrze_search_page_id;
                 update_option($option_name, $options, true);
             } else {
-                if (get_post($options[$name]) && intval(get_post($options[$name])->ID) == $options[$name]) {
-                    require($this->plugin_path.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'admin-results-page-input.php');
+                if (get_post($options[$name]) && (int)get_post($options[$name])->ID == $options[$name]) {
+                    require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-results-page-input.php';
                 } else {
                     echo $this->printMissingTemplateMsg();
                 }
