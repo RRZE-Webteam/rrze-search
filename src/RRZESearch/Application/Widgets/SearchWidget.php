@@ -177,18 +177,18 @@ class SearchWidget extends WP_Widget
         $resources       = $this->options['rrze_search_resources'];
         $engines         = $this->options['rrze_search_engines'];
 
-        foreach ($engines as $engine) {
-            $enable                    = (isset($engine['enabled'])) ? 'true' : 'false';
-            $engines[$engine['class']] = array(
-                'enabled' => $enable
-            );
-        }
+//        foreach ($engines as $engine) {
+//            $enable                    = (isset($engine['enabled'])) ? 'true' : 'false';
+//            $engines[$engine['class']] = array(
+//                'enabled' => $enable
+//            );
+//        }
 
-        $engines  = array();
-        $_engines = $this->options['rrze_search_engines'];
-        foreach ($_engines as $_engine) {
-            $engines[$_engine['class']] = isset($_engine['enabled']);
-        }
+//        $engines  = array();
+//        $_engines = $this->options['rrze_search_engines'];
+//        foreach ($_engines as $_engine) {
+//            $engines[$_engine['class']] = isset($_engine['enabled']);
+//        }
 
         include \dirname(__DIR__,
                 2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'widget.php';
@@ -208,11 +208,11 @@ class SearchWidget extends WP_Widget
         $redirect_link = add_query_arg(array('q' => urlencode($_POST['s']), 'se' => $_POST['resource_id']),
             $results_page);
 
-        if ($_POST['resource_id'] != 0) {
+//        if ($_POST['resource_id'] != 0) {
             wp_redirect($redirect_link);
-        } else {
-            wp_redirect(esc_url(home_url('?s='.rawurlencode($_POST['s']))));
-        }
+//        } else {
+//            wp_redirect(esc_url(home_url('?s='.rawurlencode($_POST['s']))));
+//        }
         exit;
 
     }

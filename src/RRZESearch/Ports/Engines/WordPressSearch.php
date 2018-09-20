@@ -42,9 +42,9 @@ class WordPressSearch implements Engine
 {
     const NAME = 'WordPress Native Search';
 
-    const URI = 'https://api.server.net/v1';
+    const URI = '/wp-json/wp/v2/posts';
 
-    const LINK = '/';
+    const LINK = '/rrze_search_page/';
 
     /**
      * Query - interface defined
@@ -57,55 +57,59 @@ class WordPressSearch implements Engine
      */
     public function Query(string $query, string $key, int $startPage)
     {
-        $results = json_encode(['working' => 'on it!']);
+
         /**
          * STEP 1 - Build the query
          */
-//        $params = array(
-//            'key'    => '{key}',
-//            'query'  => '{query}',
-//            'filter' => '{filter}',
-//        );
-//
-//        /**
-//         * STEP 2 - Build URL
-//         */
-//        $_uri = self::URI;
-//        $_uri .= '?'.http_build_query($params);
-//
-//        /**
-//         * STEP 3 - Curl headers array
-//         */
-//        $curlHeaders = array(
-//            'Content-length: 0',
-//            'Content-type: application/json'
-//        );
-//
-//        /**
-//         * STEP 4 - Curl options array
-//         */
-//        $curlOptions = array(
-//            CURLOPT_HTTPHEADER     => $curlHeaders ,
-//            CURLOPT_URL            => urldecode($_uri),
-//        );
-//
-//        /**
-//         * STEP 5 - Make the request
-//         */
-//        $curl = curl_init();
-//        curl_setopt_array($curl, $curlOptions);
-//
-//        /**
-//         * STEP 6 - Finalize query request
-//         */
-//        $results = curl_exec($curl);
-//        curl_close($curl);
-//
+        $params = array(
+            's'  => $query,
+        );
+
+        /**
+         * STEP 2 - Build URL
+         */
+        $_uri = self::URI;
+        $_uri .= '?'.http_build_query($params);
+
+        /**
+         * STEP 3 - Curl headers array
+         */
+        $curlHeaders = array(
+            'Content-length: 0',
+            'Content-type: application/json'
+        );
+
+        /**
+         * STEP 4 - Curl options array
+         */
+        $curlOptions = array(
+            CURLOPT_HTTPHEADER     => $curlHeaders ,
+            CURLOPT_URL            => urldecode($_uri),
+        );
+
+        /**
+         * STEP 5 - Make the request
+         */
+        $curl = curl_init();
+        curl_setopt_array($curl, $curlOptions);
+
+        /**
+         * STEP 6 - Finalize query request
+         */
+        $results = curl_exec($curl);
+        curl_close($curl);
+
+
+        echo '<pre>';
+        echo 'from the Search Engine Class: ';
+        print_r($_SERVER['REQUEST_URI'].urldecode($_uri));
+        echo '</pre>';
 
         /**
          * NOTICE that you should be returning a json string as \StdClass
          * ******************************************************************/
         return $results;
+//        return ['working' => 'on it!'];
     }
 
     /**

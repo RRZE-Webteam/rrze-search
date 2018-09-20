@@ -18,6 +18,6 @@ class AppController
     public function activated($key)
     {
         $option = get_option('rrze_search_settings');
-        return isset($option[$key]) ? $option[$key] : false;
+        return $option[$key] ?? false;
     }
 }

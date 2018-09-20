@@ -74,13 +74,16 @@
                 ?>
                 <input type="submit" id="searchsubmit" value="<?php _e('Finden', 'fau'); ?>" tabindex="2">
             </header>
-            <div id="search-panel" class="search-panel" hidden>
+            <div id="search-panel" class="search-panel" style="width:800px; left:-450px; position: absolute" -hidden>
                 <div class="search-settings" role="radiogroup" aria-labelledby="search-engines">
+
                     <p id="search-engines"><?php echo translate('Bitte wählen Sie einen verfügbaren Suchdienst:',
                             'fau'); ?></p>
                     <?php
                     $nextTabIndex = 0;
                     foreach ($resources as $key => $resource):
+                        print_r($resource['resource_name']);
+                    echo '<br>';
                         ++$nextTabIndex;
                         $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
                         $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
@@ -88,25 +91,20 @@
                         $searchEngineDisclaimer = '<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">'.__('Privacy Policy',
                                 'rrze-search').'</a>';
 
-                        if (isset($engines[$resource['resource_class']]) && $engines[$resource['resource_class']] === '') {
+//                        if (isset($engines[$resource['resource_class']]) && $engines[$resource['resource_class']] === '') {
 //                        if ($key > 0 && $engines[$resource['resource_class']]) {
                             ?>
                             <label>
                                 <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?>
                                        class="search-engine"
                                        value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
-                                <span>working on the link</span>
+
                                 <!--                        <span>-->
                                 <?//= sprintf($resource['resource_name'], $searchEngineDisclaimer); ?><!--</span>-->
                                 <!--                            disclaimer link-->
                             </label>
-                        <?php }
+                        <?php //}
                     endforeach;
-
-                        echo '<pre>';
-                        print_r(key($resource));
-                        echo '</pre>';
-
                     ?>
                 </div>
                 <div class="search-static-links"><?php include __DIR__.DIRECTORY_SEPARATOR.'widget-static-links.php'; ?></div>
