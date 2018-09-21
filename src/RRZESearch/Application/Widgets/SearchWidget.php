@@ -2,6 +2,7 @@
 
 namespace RRZE\RRZESearch\Application\Widgets;
 
+use RRZE\RRZESearch\Infrastructure\Helper\Helper;
 use WP_Widget;
 
 class SearchWidget extends WP_Widget
@@ -174,21 +175,12 @@ class SearchWidget extends WP_Widget
         echo $args['before_widget'];
 
         $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? (int)$instance['search_engine'] : (int)$_COOKIE['rrze_search_engine_pref'];
-        $resources       = $this->options['rrze_search_resources'];
-        $engines         = $this->options['rrze_search_engines'];
-
-//        foreach ($engines as $engine) {
-//            $enable                    = (isset($engine['enabled'])) ? 'true' : 'false';
-//            $engines[$engine['class']] = array(
-//                'enabled' => $enable
-//            );
-//        }
-
-//        $engines  = array();
-//        $_engines = $this->options['rrze_search_engines'];
-//        foreach ($_engines as $_engine) {
-//            $engines[$_engine['class']] = isset($_engine['enabled']);
-//        }
+        $resources = [];
+        foreach ($this->options['rrze_search_engines'] as $resource) {
+            if (isset($resource['enabled'])) {
+                $resources  [] = Helper::getResourceById('rrze_search_settings', $resource['resource_id']);
+            }
+        }
 
         include \dirname(__DIR__,
                 2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'widget.php';

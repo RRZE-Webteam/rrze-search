@@ -34,7 +34,7 @@ class Dashboard extends AppController
     /**
      * Configure the admin page
      */
-    public function setAdminPage()
+    public function setAdminPage(): void
     {
         $this->pages = array(
             array(
@@ -47,7 +47,7 @@ class Dashboard extends AppController
         );
     }
 
-    public function setSettings()
+    public function setSettings(): void
     {
         /**
          * In relation to register_setting() from the WP Settings API
@@ -66,7 +66,7 @@ class Dashboard extends AppController
     /**
      * Configure the settings
      */
-    public function setSections()
+    public function setSections(): void
     {
         $args = array(
             array(
@@ -82,7 +82,7 @@ class Dashboard extends AppController
     /**
      * Configure the fields
      */
-    public function setFields()
+    public function setFields(): void
     {
         $args = array(
             array(

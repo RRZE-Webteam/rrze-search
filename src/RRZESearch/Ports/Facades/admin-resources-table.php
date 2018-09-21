@@ -20,7 +20,7 @@
                     </fieldset>
                 </td>
 
-                <td width="100%">
+                <td width="50%">
                     <fieldset>
                         <label class="resource_table_label">
                             <span><?php echo __('Class Name', 'rrze-search'); ?></span>
@@ -39,7 +39,6 @@
                         </label>
                     </fieldset>
 
-
                     <fieldset>
                         <label class="resource_table_label">
                             <strong><?php echo __('API Key', 'rrze-search'); ?></strong>
@@ -54,7 +53,6 @@
                             ?>
                         </label>
                     </fieldset>
-
 
                     <fieldset>
                         <label class="resource_table_label">

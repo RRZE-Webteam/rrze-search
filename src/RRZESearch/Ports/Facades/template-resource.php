@@ -1,5 +1,5 @@
 <template>
-    <tr>
+    <tr style="border: thin solid black; background-color: #F5F5F5">
         <td>
             <fieldset>
                 <label>
@@ -14,7 +14,7 @@
             </fieldset>
         </td>
 
-        <td width="100%">
+        <td>
             <fieldset>
                 <label class="resource_table_label">
                     <span><?php echo __('Class Name', 'rrze-search'); ?></span>
@@ -54,7 +54,7 @@
                         // And thus fixes the bug on issue: #1
                         echo PHP_EOL;
                         $nextPageIndex = 0;
-                        foreach ($pages as $page) {
+                        foreach ($disclaimerPages as $page) {
                             if ($nextPageIndex === 0) {
                                 echo '<option value="'.$page->ID.'" selected>'.$page->post_title.'</option>';
                             } else {

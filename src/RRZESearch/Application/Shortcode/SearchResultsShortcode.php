@@ -2,6 +2,8 @@
 
 namespace RRZE\RRZESearch\Application\Shortcode;
 
+use RRZE\RRZESearch\Infrastructure\Helper\Helper;
+
 class SearchResultsShortcode
 {
     public $options;
@@ -20,9 +22,15 @@ class SearchResultsShortcode
 
     public function shortcodeInit()
     {
+        $resources = [];
+        foreach ($this->options['rrze_search_engines'] as $resource) {
+            if (isset($resource['enabled'])) {
+                $resources  [] = Helper::getResourceById('rrze_search_settings', $resource['resource_id']);
+            }
+        }
+
         $query      = $_GET['q'];
         $startPage  = $_GET['start'] ?? '1';
-        $resources  = $this->options['rrze_search_resources'];
         $resource   = $this->options['rrze_search_resources'][$_GET['se']];
         $pageLink   = get_permalink($this->options['rrze_search_page_id']);
         $facadesDir = DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR;
