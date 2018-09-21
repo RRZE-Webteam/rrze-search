@@ -64,30 +64,7 @@ class OptionsCallbacks extends AppController
 
         /** Installed Search Engines - Regular Admin Level */
         $output['rrze_search_engines'] = $input['rrze_search_engines'] ?? array();
-
-        /** Installed Search Engines - Regular Admin Level */
-        $output['rrze_search_engines'] = $input['rrze_search_engines'] ?? array();
-
-
-        /** Remove old Resource Engines */
-//        foreach ($output['rrze_search_engines'] as $resourceEngine){
-//            if (!\in_array($resourceEngine['resource_class'], $output['rrze_search_resources'], true)){
-//                unset($resourceEngine);
-//            }
-//        }
-
-//            $isEnabled = ($input['rrze_search_engines'][$engine['resource_name']]) ? $input['rrze_search_engines'][$engine['resource_name']] : '';
-
-////            $enabledEngines[$engine['class']] = isset($engine['enabled']) ? 'true' : 'false';
-
-//        /** If the engine doesn't have an isEnabled property - it's must likely a newly added element */
-//        foreach ($output['rrze_search_resources'] as $engine) {
-//            $engine['isEnabled'] = 'working on it';
-//            if (!isset($engine['isEnabled'])) {
-//                /** Append the property and give it the actual enabled status */
-//                $output['rrze_search_resources'][\count($output['rrze_search_resources']) - 1]['isEnabled'] = $enabledEngines[$engine['resource_class']];
-//            }
-//        }
+//        $output['rrze_search_engines'] = [];
 
         /** Page ID for Search Results */
         $output['rrze_search_page_id'] = $input['rrze_search_page_id'] ?? '';
@@ -128,39 +105,61 @@ class OptionsCallbacks extends AppController
         $enginesCount = \count($option_value[$name]);
 
 //        if (\count($option_value['rrze_search_resources']) !== $enginesCount) {
-            /** Add or Remove Additional Resources from Engine Collection */
+        /** Add or Remove Additional Resources from Engine Collection */
 
-            $_array = [];
-            foreach ($option_value['rrze_search_resources'] as $resource) {
-                if (!$this->isResourceEngine($option_name, $resource['resource_name'])) {
-                    $option_value[$name][] = [
-                        'resource_name'  => $resource['resource_name'],
-                        'resource_class' => $resource['resource_class']
-                    ];
-                }
+        $_array = [];
+        foreach ($option_value['rrze_search_resources'] as $resource) {
+            if ($this->isResourceEngine($option_name, $resource['resource_id'])) {
+                $_array[] = [
+                    'validator'   => $this->isResourceEngine($option_name, $resource['resource_id']),
+                    'resource_id' => $resource['resource_id'],
+                    'enabled'     => $this->isEngineEnabled($option_name, $resource['resource_id'])
+                ];
+//                $option_value[$name][] = [
+//                    'resource_id'    => $resource['resource_id'],
+//                    'resource_name'  => $resource['resource_name'],
+//                    'resource_class' => $resource['resource_class'],
+//                    'enabled'        => $this->isEngineEnabled($option_name, $resource['resource_id'])
+//                ];
+            } else {
+                echo 'do something else for: '.$resource['resource_id'];
             }
+        }
 
-            echo '<pre>';
-            print_r($_array);
-            echo '</pre>';
+        echo '<pre>';
+        print_r($_array);
+        echo '</pre>';
+
 //        }
 
         /** Engine table */
         require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-engines-table.php';
     }
 
-    private function isResourceEngine($option_name, $resource_name)
+    private function isResourceEngine($option_name, $resource_id): bool
     {
-        $output       = false;
+        $bool         = false;
         $option_value = get_option($option_name);
-        foreach ($option_value['rrze_search_engines'] as $resource) {
-            if ($resource['resource_name'] === $resource_name) {
-                $output = true;
+        foreach ($option_value['rrze_search_resources'] as $resource) {
+            if ($resource['resource_id'] === $resource_id) {
+                $bool = true;
             }
         }
 
+        return $bool;
+    }
 
-        return $output;
+    private function isEngineEnabled($option_name, $resource_id): bool
+    {
+        $bool         = false;
+//        $option_value = get_option($option_name);
+//        foreach ($option_value['rrze_search_engines'] as $engine) {
+//            if ($engine['resource_id'] === $resource_id) {
+//                $bool = $engine['enabled'];
+//            }
+//        }
+
+        return $bool;
     }
 
     /**

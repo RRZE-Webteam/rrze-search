@@ -4,6 +4,9 @@
             <fieldset>
                 <label>
                     <strong><?php echo __('Resource Label', 'rrze-search'); ?></strong>
+                    <input type="hidden" class="regular-text" id="rrze_search_resources"
+                           name="rrze_search_settings[rrze_search_resources][index][resource_id]"
+                           value="<?php echo uniqid('rrze_', true); ?>">
                     <input type="text" class="regular-text" id="rrze_search_resources"
                            name="rrze_search_settings[rrze_search_resources][index][resource_name]"
                            placeholder="<?php echo __('New Resource Label', 'rrze-search'); ?>" value="">

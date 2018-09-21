@@ -11,6 +11,8 @@
                         <label>
                             <strong><?php echo __('Resource Label', 'rrze-search'); ?></strong>
                             <?php
+                            $uId = ($resource['resource_id'] !== '') ? $resource['resource_id'] : uniqid('rrze_', true);
+                            echo '<input type="hidden" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_id]" value="'.$uId.'" />';
                             /** Option Label */
                             echo '<input type="text" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_name]" value="'.$resource['resource_name'].'" />';
                             ?>
@@ -43,9 +45,12 @@
                             <strong><?php echo __('API Key', 'rrze-search'); ?></strong>
                             <?php
                             /** API Key */
-                            $apiValue = ($resource['resource_key'] !== '') ? $resource['resource_key'] : __('No API Key',
-                                'rrze-search');
-                            echo '<input class="regular-text" type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_key]" value="'.$apiValue.'" />';
+                            if ($resource['resource_key'] === '') {
+                                echo '<input class="regular-text" type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_key]" placeholder="'.__('No API Key',
+                                        'rrze-search').'" value="" />';
+                            } else {
+                                echo '<input class="regular-text" type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_key]" value="'.$resource['resource_key'].'" />';
+                            }
                             ?>
                         </label>
                     </fieldset>

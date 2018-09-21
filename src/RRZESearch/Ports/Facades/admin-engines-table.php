@@ -1,7 +1,19 @@
-<pre>
-<!--    --><? //= print_r($option_value['rrze_search_resources']); ?>
-    <?= print_r($option_value['rrze_search_engines']); ?>
-</pre>
+<table>
+    <tr>
+        <td style="vertical-align: top;"><?php
+            echo '<pre>';
+            print_r($option_value['rrze_search_resources']);
+            echo '</pre>';
+            ?>
+        </td><td style="vertical-align: top;">
+            <?php
+            echo '<pre>';
+            print_r($option_value['rrze_search_engines']);
+            echo '</pre>';
+            ?>
+        </td>
+    </tr>
+</table>
 <?php
 $nextEngineIndex = 0;
 foreach ($option_value['rrze_search_engines'] as $resourceEngine) {
@@ -13,6 +25,9 @@ foreach ($option_value['rrze_search_engines'] as $resourceEngine) {
                     'rrze-search'); ?></span>
         </legend>
         <label>
+            <input type="hidden" id="<?= $name; ?>"
+                   name="<?= $option_name ?>[<?= $name; ?>][<?= $nextEngineIndex; ?>][resource_id]"
+                   value="<?= $resourceEngine['resource_id']; ?>">
             <input type="hidden" id="<?= $name; ?>"
                    name="<?= $option_name ?>[<?= $name; ?>][<?= $nextEngineIndex; ?>][resource_name]"
                    value="<?= $resourceEngine['resource_name']; ?>">
