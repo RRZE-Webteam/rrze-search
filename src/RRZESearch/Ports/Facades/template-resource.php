@@ -2,8 +2,8 @@
     <tr style="border: thin solid black; background-color: #F5F5F5">
         <td>
             <fieldset>
-                <label>
-                    <strong><?php echo __('Resource Label', 'rrze-search'); ?></strong>
+                <label class="resource_table_label">
+                    <span><?php echo __('Resource Label', 'rrze-search'); ?></span>
                     <input type="hidden" class="regular-text" id="rrze_search_resources"
                            name="rrze_search_settings[rrze_search_resources][index][resource_id]"
                            value="<?php echo uniqid('rrze_', true); ?>">
@@ -12,9 +12,7 @@
                            placeholder="<?php echo __('New Resource Label', 'rrze-search'); ?>" value="">
                 </label>
             </fieldset>
-        </td>
 
-        <td>
             <fieldset>
                 <label class="resource_table_label">
                     <span><?php echo __('Class Name', 'rrze-search'); ?></span>
@@ -32,9 +30,11 @@
                 </label>
             </fieldset>
 
+        </td><td>
+
             <fieldset>
                 <label class="resource_table_label">
-                    <strong><?php echo __('API Key', 'rrze-search'); ?></strong>
+                    <span><?php echo __('API Key', 'rrze-search'); ?></span>
                     <input type="text" class="regular-text" id="rrze_search_resources"
                            name="rrze_search_settings[rrze_search_resources][index][resource_key]"
                            placeholder="<?php echo __('Leave blank if no API Key', 'rrze-search'); ?>" value="">
@@ -43,7 +43,7 @@
 
             <fieldset>
                 <label class="resource_table_label">
-                    <strong><?php echo __('Disclaimer Link', 'rrze-search'); ?></strong>
+                    <span><?php echo __('Disclaimer Link', 'rrze-search'); ?></span>
                     <select id="rrze_search_resources" class="regular-text"
                             name="rrze_search_settings[rrze_search_resources][index][resource_disclaimer]">
                         <?php

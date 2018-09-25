@@ -8,8 +8,8 @@
             <tr bgcolor="<?php echo $rowColor; ?>">
                 <td style="vertical-align:top">
                     <fieldset>
-                        <label>
-                            <strong><?php echo __('Resource Label', 'rrze-search'); ?></strong>
+                        <label class="resource_table_label">
+                            <span><?php echo __('Resource Label', 'rrze-search'); ?></span>
                             <?php
                             $uId = ($resource['resource_id'] !== '') ? $resource['resource_id'] : uniqid('rrze_', true);
                             echo '<input type="hidden" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_id]" value="'.$uId.'" />';
@@ -18,9 +18,7 @@
                             ?>
                         </label>
                     </fieldset>
-                </td>
 
-                <td width="50%">
                     <fieldset>
                         <label class="resource_table_label">
                             <span><?php echo __('Class Name', 'rrze-search'); ?></span>
@@ -38,10 +36,12 @@
                             ?>
                         </label>
                     </fieldset>
+                </td>
 
+                <td>
                     <fieldset>
                         <label class="resource_table_label">
-                            <strong><?php echo __('API Key', 'rrze-search'); ?></strong>
+                            <span><?php echo __('API Key', 'rrze-search'); ?></span>
                             <?php
                             /** API Key */
                             if ($resource['resource_key'] === '') {
@@ -56,7 +56,7 @@
 
                     <fieldset>
                         <label class="resource_table_label">
-                            <strong><?php echo __('Disclaimer Link', 'rrze-search'); ?></strong>
+                            <span><?php echo __('Disclaimer Link', 'rrze-search'); ?></span>
                             <?php
                             /** Disclaimer Link */
                             echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_disclaimer]" class="regular-text">';
@@ -92,7 +92,7 @@
         } ?>
     </tbody>
     <tfoot>
-        <td colspan="3" align="center">
+        <td colspan="3">
             <input type="hidden" id="rrze_search_resource_count" value="<?php echo $nextResourceIndex; ?>">
             <input type="button" id="rrze_search_add_resource_form" class="button button-primary"
                    value="<?php echo __('Add Resource', 'rrze-search'); ?>">

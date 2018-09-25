@@ -48,9 +48,9 @@ class SearchWidget extends WP_Widget
         /** Register Sidebar with WordPress */
         $sidebarId = 'rrze-search-sidebar';
         register_sidebar(array(
-            'name'          => 'RRZE Search Sidebar',
+            'name'          => __('RRZE Search Sidebar', 'rrze-search'),
             'id'            => $sidebarId,
-            'description'   => 'A hack to display widget',
+            'description'   => __('Used to display the widget', 'rrze-search'),
             'before_widget' => '',
             'after_widget'  => '',
             'before_title'  => '',
@@ -78,11 +78,6 @@ class SearchWidget extends WP_Widget
         $sidebars_widgets = get_option('sidebars_widgets', array());
         $widget_instances = get_option('widget_'.$widget_id, array());
 
-//        foreach ($sidebars_widgets[$sidebar] as $instance) {
-        echo '<pre>';
-//            print_r($instance);
-        echo '</pre>';
-//            if (!strpos($instance, $widget_id)) {
         /**
          * Retrieve the key of the next widget instance
          */

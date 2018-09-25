@@ -96,10 +96,13 @@ form[role=search] {
 }
 
 label.resource_table_label {
-	text-align: right;
-	display: inline-block;
-	width: 8em;
+	display: block;
+	width: 100%;
 	white-space: nowrap;
+
+	span {
+		display: block;
+	}
 }
 
 /**
