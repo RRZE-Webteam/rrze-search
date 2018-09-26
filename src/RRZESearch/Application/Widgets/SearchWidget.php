@@ -171,11 +171,7 @@ class SearchWidget extends WP_Widget
     public function widget($args, $instance)
     {
         echo $args['before_widget'];
-
-        echo '<pre>';
-        print_r($instance);
-        echo '</pre>';
-
+        
         $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? (int)$instance['search_engine'] : (int)$_COOKIE['rrze_search_engine_pref'];
         $resources       = [];
         foreach ($this->options['rrze_search_engines'] as $resource) {
