@@ -58,7 +58,10 @@ class SearchWidget extends WP_Widget
         ));
 
         if (!is_active_widget(false, false, $this->widget_ID, true)) {
-            $this->insertWidgetInSidebar($this->widget_ID, [], $sidebarId);
+            $this->insertWidgetInSidebar($this->widget_ID, [
+                'title'         => '',
+                'search_engine' => 1
+            ], $sidebarId);
         }
     }
 
@@ -169,8 +172,12 @@ class SearchWidget extends WP_Widget
     {
         echo $args['before_widget'];
 
+        echo '<pre>';
+        print_r($instance);
+        echo '</pre>';
+
         $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? (int)$instance['search_engine'] : (int)$_COOKIE['rrze_search_engine_pref'];
-        $resources = [];
+        $resources       = [];
         foreach ($this->options['rrze_search_engines'] as $resource) {
             if (isset($resource['enabled'])) {
                 $resources  [] = Helper::getResourceById('rrze_search_settings', $resource['resource_id']);
@@ -196,7 +203,7 @@ class SearchWidget extends WP_Widget
             $results_page);
 
 //        if ($_POST['resource_id'] != 0) {
-            wp_redirect($redirect_link);
+        wp_redirect($redirect_link);
 //        } else {
 //            wp_redirect(esc_url(home_url('?s='.rawurlencode($_POST['s']))));
 //        }
