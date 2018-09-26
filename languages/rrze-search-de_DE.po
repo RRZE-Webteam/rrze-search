@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-09-26 11:43+0200\n"
-"PO-Revision-Date: 2018-09-26 11:43+0200\n"
+"POT-Creation-Date: 2018-09-26 18:31+0200\n"
+"PO-Revision-Date: 2018-09-26 18:31+0200\n"
 "Last-Translator: Philip Saa <cowglow@gmail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -42,15 +42,15 @@ msgstr "Standardsuchmaschine"
 msgid "Configure your plugin."
 msgstr "Plugin konfigurieren."
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:184
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:186
 msgid "RRZE Search Results"
 msgstr "RRZE Suchergebnisse"
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:187
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:189
 msgid "Search Result Page utilized by RRZE Search Plugin"
 msgstr "Suchergebnisseite, die vom RRZE Search Plugin verwendet wird"
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:197
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:199
 msgid ""
 "Oh no! Someone deleted the results Page! No worries, Another one will be "
 "generated when you click [ Save Changes ]"
@@ -58,7 +58,7 @@ msgstr ""
 "Oh nein! Jemand hat die Ergebnisseite gelöscht! Keine Sorge, eine weitere "
 "wird generiert, sobald Sie auf [Änderungen speichern] klicken"
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:201
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:203
 msgid ""
 "Search Results Page doesn't exist, yet! No worries, one will be generated "
 "when you click [ Save Changes ]"
@@ -107,6 +107,10 @@ msgstr "Nächste Seite"
 #: src/RRZESearch/Ports/Facades/admin-engines-table.php:8
 msgid "Check the box to enabled the "
 msgstr "Aktivieren Sie das Kontrollkästchen, um die Option zu aktivieren "
+
+#: src/RRZESearch/Ports/Facades/admin-resources-table-hidden.php:4
+msgid "Accessible only to SuperAdmins"
+msgstr "Nur für SuperAdmins zugänglich"
 
 #: src/RRZESearch/Ports/Facades/admin-resources-table.php:12
 msgid "Search Engine Label"
