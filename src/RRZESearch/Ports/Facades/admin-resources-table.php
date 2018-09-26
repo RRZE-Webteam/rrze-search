@@ -86,7 +86,7 @@
         <td colspan="3">
             <input type="hidden" id="rrze_search_resource_count" value="<?php echo $nextResourceIndex; ?>">
             <input type="button" id="rrze_search_add_resource_form" class="button button-primary"
-                   value="<?php echo __('Add Resource', 'rrze-search'); ?>">
+                   value="<?php echo __('Add Search Engine', 'rrze-search'); ?>">
         </td>
     </tfoot>
 </table>

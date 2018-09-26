@@ -44,8 +44,6 @@ class GoogleSearch implements Engine
 
     const URI = 'https://www.googleapis.com/customsearch/v1?cx=011945293402966620832:n0bvaqo6yl4&key={key}&q={query}';
 
-    const LINK = '/google_search_results/';
-
     /**
      * Query
      *
@@ -137,13 +135,4 @@ class GoogleSearch implements Engine
         return self::NAME;
     }
 
-    /**
-     * Return the link of this engine
-     *
-     * @return string
-     */
-    public static function getRedirectLink(): string
-    {
-        return self::LINK;
-    }
 }

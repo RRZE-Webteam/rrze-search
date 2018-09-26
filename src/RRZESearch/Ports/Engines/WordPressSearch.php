@@ -45,8 +45,6 @@ class WordPressSearch implements Engine
 
     const URI = '/wp-json/wp/v2/posts';
 
-    const LINK = '/rrze_search_page/';
-
     /**
      * Query - interface defined
      *
@@ -78,13 +76,4 @@ class WordPressSearch implements Engine
         return self::NAME;
     }
 
-    /**
-     * Return the link of this engine
-     *
-     * @return string
-     */
-    public static function getRedirectLink(): string
-    {
-        return self::LINK;
-    }
 }

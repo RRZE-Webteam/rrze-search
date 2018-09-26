@@ -6,7 +6,7 @@
             'q'  => $_GET['q'],
             'se' => $resourceIndex
         ));
-        echo '<a href="?'.$query.'">'.$engine['resource_name'].'</a>';
+        echo '<a href="?'.$query.'">'.str_replace('(%s)', '',$engine['resource_name']).'</a>';
         $resourceIndex++;
     }
     ?>

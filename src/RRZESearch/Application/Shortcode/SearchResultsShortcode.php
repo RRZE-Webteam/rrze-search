@@ -22,13 +22,7 @@ class SearchResultsShortcode
 
     public function shortcodeInit()
     {
-        $resources = [];
-        foreach ($this->options['rrze_search_engines'] as $resource) {
-            if (isset($resource['enabled'])) {
-                $resources  [] = Helper::getResourceById('rrze_search_settings', $resource['resource_id']);
-            }
-        }
-
+        $resources = $this->options['rrze_search_resources'];
         $query      = $_GET['q'];
         $startPage  = $_GET['start'] ?? '1';
         $resource   = $this->options['rrze_search_resources'][$_GET['se']];

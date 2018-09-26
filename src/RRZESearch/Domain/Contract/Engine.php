@@ -20,11 +20,4 @@ interface Engine
      * @return string
      */
     public static function getName(): string;
-
-    /**
-     * Return the link of this engine
-     *
-     * @return string
-     */
-    public static function getRedirectLink(): string;
 }

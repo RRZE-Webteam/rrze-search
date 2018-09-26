@@ -2,7 +2,6 @@
 
 namespace RRZE\RRZESearch\Application\Widgets;
 
-use RRZE\RRZESearch\Infrastructure\Helper\Helper;
 use WP_Widget;
 
 class SearchWidget extends WP_Widget
@@ -171,13 +170,10 @@ class SearchWidget extends WP_Widget
     public function widget($args, $instance)
     {
         echo $args['before_widget'];
-
         $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? (int)$instance['search_engine'] : (int)$_COOKIE['rrze_search_engine_pref'];
         $resources       = $this->options['rrze_search_resources'];
-        
         include \dirname(__DIR__,
                 2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'widget.php';
-
         echo $args['after_widget'];
     }
 
@@ -192,13 +188,7 @@ class SearchWidget extends WP_Widget
         /** Ensure you're using $_POST['s'] for the q(uery) value, prior to redirect */
         $redirect_link = add_query_arg(array('q' => urlencode($_POST['s']), 'se' => $_POST['resource_id']),
             $results_page);
-
-//        if ($_POST['resource_id'] != 0) {
         wp_redirect($redirect_link);
-//        } else {
-//            wp_redirect(esc_url(home_url('?s='.rawurlencode($_POST['s']))));
-//        }
         exit;
-
     }
 }

@@ -45,8 +45,6 @@ class BingSearch implements Engine
     const URI = 'https://api.cognitive.microsoft.com/bingcustomsearch/v7.0/search';
 //    const URI = 'https://api.cognitive.microsoft.com/bing/v7.0/search'; // Documentation Example
 
-    const LINK = '/bing_search_results/';
-
     /**
      * Query - interface defined
      *
@@ -76,7 +74,18 @@ class BingSearch implements Engine
             'offset'       => 10 * intval($startPage)
         );
 
-        $result = file_get_contents(self::URI."?".http_build_query($params), false, $context);
+        set_error_handler(
+            create_function(
+                '$severity, $message, $file, $line',
+                'throw new ErrorException($message, $severity, $severity, $file, $line);'
+            )
+        );
+
+        try {
+            $result = file_get_contents(self::URI."?".http_build_query($params), false, $context);
+        } catch (\Exception $exception) {
+            echo 'HTTP request failed. Error was: '.$exception->getMessage().' PLEASE INFORM THE SYSTEM ADMINISTRATION';
+        }
 
         // Handles HTTP Response Header
 //        $headers = array();
@@ -105,13 +114,4 @@ class BingSearch implements Engine
         return self::NAME;
     }
 
-    /**
-     * Return the link of this engine
-     *
-     * @return string
-     */
-    public static function getRedirectLink(): string
-    {
-        return self::LINK;
-    }
 }
