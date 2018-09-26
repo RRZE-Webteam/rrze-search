@@ -74,12 +74,17 @@
                 ?>
                 <input type="submit" id="searchsubmit" value="<?php _e('Finden', 'fau'); ?>" tabindex="2">
             </header>
-<!--            <div id="search-panel" class="search-panel" style="background-color: #fff; width:800px; left:-450px; position: absolute" -hidden>-->
+            <!--            <div id="search-panel" class="search-panel" style="background-color: #fff; width:800px; left:-450px; position: absolute" -hidden>-->
             <div id="search-panel" class="search-panel" hidden>
                 <div class="search-settings" role="radiogroup" aria-labelledby="search-engines">
 
                     <p id="search-engines"><?php echo translate('Bitte wählen Sie einen verfügbaren Suchdienst:',
                             'fau'); ?></p>
+
+                    <pre>
+<!--                        --><?//= print_r($resources); ?>
+                    </pre>
+
                     <?php
                     $nextTabIndex = 0;
                     foreach ($resources as $key => $resource):
@@ -96,8 +101,7 @@
                             <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?>
                                    class="search-engine"
                                    value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
-                            <span><?= $resource['resource_name']; ?> <?= $searchEngineDisclaimer?></span>
-<!--                            <span>--><?//= sprintf($resource['resource_name'], $searchEngineDisclaimer); ?><!--</span>-->
+                            <span><?= sprintf($resource['resource_name'], $searchEngineDisclaimer); ?></span>
                         </label>
                     <?php
                     endforeach;

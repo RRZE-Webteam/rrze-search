@@ -75,16 +75,7 @@
                 </td>
 
                 <td>
-                    <?php
-                    /** Remove Button */
-                    if ($nextResourceIndex === 0) {
-                        echo '<input type="button" class="button button-primary" value="'.__('Remove',
-                                'rrze-search').'" disabled>';
-                    } else {
-                        echo '<a href="javascript:rrze_resource_removal('.$nextResourceIndex.')" class="button button-primary">'.__('Remove',
-                                'rrze-search').'</a>';
-                    }
-                    ?>
+                    <a href="javascript:rrze_resource_removal(<?php echo $nextResourceIndex; ?>)" class="button button-primary"><?php echo __('Remove', 'rrze-search'); ?></a>
                 </td>
             </tr>
             <?php
