@@ -60,7 +60,7 @@ class SearchWidget extends WP_Widget
         if (!is_active_widget(false, false, $this->widget_ID, true)) {
             $this->insertWidgetInSidebar($this->widget_ID, [
                 'title'         => '',
-                'search_engine' => 1
+                'search_engine' => 0
             ], $sidebarId);
         }
     }
