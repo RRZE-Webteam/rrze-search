@@ -160,6 +160,8 @@ class OptionsCallbacks extends AppController
 
             /** Resource template */
             require $this->facades_dir.DIRECTORY_SEPARATOR.'template-resource.php';
+        } else {
+            require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-resources-table-hidden.php';
         }
     }
 
