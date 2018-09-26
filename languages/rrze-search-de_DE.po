@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-09-19 10:48+0200\n"
-"PO-Revision-Date: 2018-09-19 10:49+0200\n"
+"POT-Creation-Date: 2018-09-26 11:43+0200\n"
+"PO-Revision-Date: 2018-09-26 11:43+0200\n"
 "Last-Translator: Philip Saa <cowglow@gmail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -22,19 +22,35 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-5: package-lock.json\n"
 "X-Poedit-SearchPathExcluded-6: package.json\n"
 
-#: src/RRZESearch/Application/Widgets/SearchWidget.php:146
+#: src/RRZESearch/Application/Widgets/SearchWidget.php:50
+msgid "RRZE Search Sidebar"
+msgstr "RRZE Suchergebnisse"
+
+#: src/RRZESearch/Application/Widgets/SearchWidget.php:52
+msgid "Used to display the widget"
+msgstr "Wird verwendet, um das Widget anzuzeigen"
+
+#: src/RRZESearch/Application/Widgets/SearchWidget.php:144
 msgid "Display Title"
 msgstr "Titel anzeigen"
 
-#: src/RRZESearch/Application/Widgets/SearchWidget.php:153
+#: src/RRZESearch/Application/Widgets/SearchWidget.php:151
 msgid "Default Search Engine"
 msgstr "Standardsuchmaschine"
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:79
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:87
 msgid "Configure your plugin."
-msgstr "Plugin konfigurieren"
+msgstr "Plugin konfigurieren."
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:84
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:184
+msgid "RRZE Search Results"
+msgstr "RRZE Suchergebnisse"
+
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:187
+msgid "Search Result Page utilized by RRZE Search Plugin"
+msgstr "Suchergebnisseite, die vom RRZE Search Plugin verwendet wird"
+
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:197
 msgid ""
 "Oh no! Someone deleted the results Page! No worries, Another one will be "
 "generated when you click [ Save Changes ]"
@@ -42,7 +58,7 @@ msgstr ""
 "Oh nein! Jemand hat die Ergebnisseite gelöscht! Keine Sorge, eine weitere "
 "wird generiert, sobald Sie auf [Änderungen speichern] klicken"
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:90
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:201
 msgid ""
 "Search Results Page doesn't exist, yet! No worries, one will be generated "
 "when you click [ Save Changes ]"
@@ -50,28 +66,18 @@ msgstr ""
 "Die Suchergebnisse Seite existiert noch nicht! Keine Sorge, sie wird "
 "generiert, sobald Sie auf [Änderungen speichern] klicken"
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:216
-msgid "RRZE Search Results"
-msgstr "RRZE Suchergebnisse"
-
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:219
-msgid "Search Result Page utilized by RRZE Search Plugin"
-msgstr "Suchergebnisseite, die vom RRZE Search Plugin verwendet wird"
-
 #: src/RRZESearch/Infrastructure/Dashboard.php:41
 #: src/RRZESearch/Infrastructure/Dashboard.php:74
 msgid "Settings › Search"
 msgstr "Einstellungen › Suche"
 
 #: src/RRZESearch/Infrastructure/Dashboard.php:90
-msgid "Available Search Engines"
-msgstr "Verfügbare Suchmaschinen"
-
-#: src/RRZESearch/Infrastructure/Dashboard.php:101
-#, fuzzy
-#| msgid "Search Engine"
 msgid "Search Engines"
 msgstr "Suchmaschine"
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:101
+msgid "Search Engine Types"
+msgstr "Suchmaschine Typ"
 
 #: src/RRZESearch/Infrastructure/Dashboard.php:112
 msgid "Search Results Page"
@@ -79,10 +85,11 @@ msgstr "Suchergebnisseite"
 
 #: src/RRZESearch/Infrastructure/SettingsLink.php:16
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: src/RRZESearch/Ports/Facades/Results/BingSearch-shortcode.php:1
 #: src/RRZESearch/Ports/Facades/Results/GoogleSearch-shortcode.php:1
+#: src/RRZESearch/Ports/Facades/Results/WordPressSearch-shortcode.php:1
 #, php-format
 msgid "About %1$s results"
 msgstr "Ungefähr %1$s Ergebnisse"
@@ -97,58 +104,71 @@ msgstr "Vorherige Seite"
 msgid "Next Page"
 msgstr "Nächste Seite"
 
-#: src/RRZESearch/Ports/Facades/admin-engines-table.php:10
+#: src/RRZESearch/Ports/Facades/admin-engines-table.php:8
 msgid "Check the box to enabled the "
-msgstr ""
+msgstr "Aktivieren Sie das Kontrollkästchen, um die Option zu aktivieren "
 
-#: src/RRZESearch/Ports/Facades/admin-engines-table.php:25
-msgid "Check the box of Search Enginges that you would like to be enabled"
-msgstr ""
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:12
+msgid "Search Engine Label"
+msgstr "Suchmaschinen-Label"
 
-#: src/RRZESearch/Ports/Facades/admin-resources-table.php:3
-msgid "Option Label"
-msgstr "Optionsbeschriftung"
-
-#: src/RRZESearch/Ports/Facades/admin-resources-table.php:4
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:24
+#: src/RRZESearch/Ports/Facades/template-resource.php:18
 msgid "Class Name"
-msgstr ""
+msgstr "Klassenname"
 
-#: src/RRZESearch/Ports/Facades/admin-resources-table.php:5
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:44
+#: src/RRZESearch/Ports/Facades/template-resource.php:37
 msgid "API Key"
 msgstr "API-Schlüssel"
 
-#: src/RRZESearch/Ports/Facades/admin-resources-table.php:6
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:48
+msgid "No API Key"
+msgstr "Kein API-Schlüssel"
+
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:59
+#: src/RRZESearch/Ports/Facades/template-resource.php:46
 msgid "Disclaimer Link"
 msgstr "Link zum Haftungsausschluss"
 
-#: src/RRZESearch/Ports/Facades/admin-resources-table.php:24
-msgid "WordPress Search"
-msgstr "WordPress-Suche"
-
-#: src/RRZESearch/Ports/Facades/admin-resources-table.php:55
-msgid "No API Key Required"
-msgstr "Kein API-Schlüssel erforderlich"
-
 #: src/RRZESearch/Ports/Facades/admin-resources-table.php:78
-#: src/RRZESearch/Ports/Facades/admin-resources-table.php:81
 msgid "Remove"
 msgstr "Löschen"
 
-#: src/RRZESearch/Ports/Facades/admin-resources-table.php:93
-msgid "Add Resource"
-msgstr "Ressource hinzufügen"
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:89
+msgid "Add Search Engine"
+msgstr "Suchmaschine hinzufügen"
 
 #: src/RRZESearch/Ports/Facades/template-resource.php:6
-msgid "New Search Engine"
-msgstr "Neu Suchmaschine"
+msgid "Resource Label"
+msgstr "Ressourcenbeschriftung"
 
-#: src/RRZESearch/Ports/Facades/template-resource.php:20
+#: src/RRZESearch/Ports/Facades/template-resource.php:12
+msgid "New Resource Label"
+msgstr "Neues Ressourcen-Label"
+
+#: src/RRZESearch/Ports/Facades/template-resource.php:40
 msgid "Leave blank if no API Key"
-msgstr ""
+msgstr "Leer lassen, wenn keinen API-Schlüssel "
 
-#: src/RRZESearch/Ports/Facades/widget.php:88
+#: src/RRZESearch/Ports/Facades/widget.php:90
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Datenschutz"
+
+#~ msgid "Available Search Engines"
+#~ msgstr "Verfügbare Suchmaschinen"
+
+#~ msgid "Option Label"
+#~ msgstr "Optionsbeschriftung"
+
+#~ msgid "WordPress Search"
+#~ msgstr "WordPress-Suche"
+
+#~ msgid "No API Key Required"
+#~ msgstr "Kein API-Schlüssel erforderlich"
+
+#~ msgid "New Search Engine"
+#~ msgstr "Neu Suchmaschine"
 
 #~ msgid "Local Search"
 #~ msgstr "Lokale Suche"
