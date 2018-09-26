@@ -9,7 +9,7 @@
                 <td style="vertical-align:top">
                     <fieldset>
                         <label class="resource_table_label">
-                            <span><?php echo __('Resource Label', 'rrze-search'); ?></span>
+                            <span><?php echo __('Search Engine Label', 'rrze-search'); ?></span>
                             <?php
                             $uId = ($resource['resource_id'] !== '') ? $resource['resource_id'] : uniqid('rrze_', true);
                             echo '<input type="hidden" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_id]" value="'.$uId.'" />';
