@@ -87,16 +87,6 @@ class BingSearch implements Engine
             echo 'HTTP request failed. Error was: '.$exception->getMessage().' PLEASE INFORM THE SYSTEM ADMINISTRATION';
         }
 
-        // Handles HTTP Response Header
-//        $headers = array();
-//        foreach ($http_response_header as $k => $v) {
-//            $h = explode(":", $v, 2);
-//            if (isset($h[1])) {
-//                if (preg_match("/^BingAPIs-/", $h[0]) || preg_match("/^X-MSEdge-/", $h[0])) {
-//                    $headers[trim($h[0])] = trim($h[1]);
-//                }
-//            }
-//        }
 
         /**
          * NOTICE that you should be returning a json string
