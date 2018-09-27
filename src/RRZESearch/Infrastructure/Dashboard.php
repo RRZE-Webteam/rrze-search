@@ -28,7 +28,7 @@ class Dashboard extends AppController
         $this->setSettings();
         $this->setSections();
         $this->setFields();
-        $this->settings->addPages($this->pages)->withSubPage(__('Search Engine Types', 'rrze-search'))->register();
+        $this->settings->addPages($this->pages)->withSubPage(__('Search Engines', 'rrze-search'))->register();
         $this->settings->addSubPages($this->subpages)->register();
     }
 
@@ -60,7 +60,7 @@ class Dashboard extends AppController
             array(
                 'parent_slug' => 'rrze_search',
                 'page_title'  => __('Settings › Search', 'rrze-search'),
-                'menu_title'  => __('Search Engines', 'rrze-search'),
+                'menu_title'  => __('Configuration', 'rrze-search'),
                 'capability'  => 'manage_options',
                 'menu_slug'   => $slug.'_subpage',
                 'callback'    => array($this->callbacks, 'superAdminDashboard')
@@ -125,7 +125,7 @@ class Dashboard extends AppController
             ),
             array(
                 'id'       => 'rrze_search_engines',
-                'title'    => __('Search Engine Types', 'rrze-search'),
+                'title'    => __('Search Engines', 'rrze-search'),
                 'callback' => array($this->callbacks_options, 'enginesTable'),
                 'page'     => 'rrze_search',
                 'section'  => 'rrze_search_admin_section',

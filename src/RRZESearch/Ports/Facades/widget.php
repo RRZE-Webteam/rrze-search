@@ -87,8 +87,8 @@
                         $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
                         $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
                         $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
-                        $searchEngineDisclaimer = '<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">'.__('Privacy Policy',
-                                'rrze-search').'</a>';
+                        $searchEngineDisclaimer = strlen($resource['resource_disclaimer']) ? ' (<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">'.__('Privacy Policy',
+                                'rrze-search').'</a>) ' : null;
 
                         ?>
                         <label>
@@ -96,10 +96,12 @@
 
                                    class="search-engine"
                                    value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
-                            <span><?php if (strlen($resource['resource_disclaimer'])) {
+                            <span><?php if ($searchEngineDisclaimer) {
                                     echo sprintf($resource['resource_name'], $searchEngineDisclaimer);
                                 } else {
-                                    echo $resource['resource_name'];
+                                    echo sprintf($resource['resource_name'], '');
+
+
                                 } ?></span>
                         </label>
                     <?php

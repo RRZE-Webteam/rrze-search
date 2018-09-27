@@ -5,8 +5,8 @@ foreach ($option_value['rrze_search_engines'] as $resourceEngine) {
     ?>
     <fieldset>
         <legend class="screen-reader-text">
-            <span><?php echo __('Check the box to enabled the '.$resourceEngine['resource_name'].' Search Engine',
-                    'rrze-search'); ?></span>
+            <span><?php echo sprintf(__('Check the box to enabled the %s Search Engine',
+                    'rrze-search'), $resourceEngine['resource_name']); ?></span>
         </legend>
         <label>
             <input type="hidden" id="<?= $name; ?>"

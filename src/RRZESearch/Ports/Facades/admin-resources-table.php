@@ -9,7 +9,7 @@
                 <td style="vertical-align:top">
                     <fieldset>
                         <label class="resource_table_label">
-                            <span><?php echo __('Search Engine Label', 'rrze-search'); ?></span>
+                            <span><?php echo __('Label', 'rrze-search'); ?></span>
                             <?php
                             $uId = ($resource['resource_id'] !== '') ? $resource['resource_id'] : uniqid('rrze_', true);
                             echo '<input type="hidden" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_id]" value="'.$uId.'" />';
@@ -21,7 +21,7 @@
 
                     <fieldset>
                         <label class="resource_table_label">
-                            <span><?php echo __('Class Name', 'rrze-search'); ?></span>
+                            <span><?php echo __('Type', 'rrze-search'); ?></span>
                             <?php
                             /** Search Engine Class */
                             echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]" class="regular-text">';
@@ -56,11 +56,11 @@
 
                     <fieldset>
                         <label class="resource_table_label">
-                            <span><?php echo __('Disclaimer Link', 'rrze-search'); ?></span>
+                            <span><?php echo __('Disclaimer / Instructions', 'rrze-search'); ?></span>
                             <?php
                             /** Disclaimer Link */
                             echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_disclaimer]" class="regular-text">';
-                            echo '<option value="">'.__('Select Disclaimer Link', 'rrze-search').'</option>';
+                            echo '<option value="">'.__('---', 'rrze-search').'</option>';
                             foreach ($disclaimerPages as $page) {
                                 $currentPage = $page->ID;
                                 if ($currentPage === (int)$option_value[$name][$nextResourceIndex]['resource_disclaimer']) {

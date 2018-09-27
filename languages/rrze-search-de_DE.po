@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-09-26 18:31+0200\n"
-"PO-Revision-Date: 2018-09-26 18:31+0200\n"
+"POT-Creation-Date: 2018-09-27 16:32+0200\n"
+"PO-Revision-Date: 2018-09-27 16:32+0200\n"
 "Last-Translator: Philip Saa <cowglow@gmail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -38,19 +38,27 @@ msgstr "Titel anzeigen"
 msgid "Default Search Engine"
 msgstr "Standardsuchmaschine"
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:87
-msgid "Configure your plugin."
-msgstr "Plugin konfigurieren."
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:83
+#, fuzzy
+#| msgid "Available Search Engines"
+msgid "Enable Search Engines"
+msgstr "Verfügbare Suchmaschinen"
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:186
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:88
+#, fuzzy
+#| msgid "Search Engines"
+msgid "Configure Search Engines"
+msgstr "Suchmaschine"
+
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:190
 msgid "RRZE Search Results"
 msgstr "RRZE Suchergebnisse"
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:189
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:193
 msgid "Search Result Page utilized by RRZE Search Plugin"
 msgstr "Suchergebnisseite, die vom RRZE Search Plugin verwendet wird"
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:199
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:203
 msgid ""
 "Oh no! Someone deleted the results Page! No worries, Another one will be "
 "generated when you click [ Save Changes ]"
@@ -58,7 +66,7 @@ msgstr ""
 "Oh nein! Jemand hat die Ergebnisseite gelöscht! Keine Sorge, eine weitere "
 "wird generiert, sobald Sie auf [Änderungen speichern] klicken"
 
-#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:203
+#: src/RRZESearch/Infrastructure/Callback/OptionsCallbacks.php:207
 msgid ""
 "Search Results Page doesn't exist, yet! No worries, one will be generated "
 "when you click [ Save Changes ]"
@@ -66,20 +74,24 @@ msgstr ""
 "Die Suchergebnisse Seite existiert noch nicht! Keine Sorge, sie wird "
 "generiert, sobald Sie auf [Änderungen speichern] klicken"
 
-#: src/RRZESearch/Infrastructure/Dashboard.php:41
-#: src/RRZESearch/Infrastructure/Dashboard.php:74
-msgid "Settings › Search"
-msgstr "Einstellungen › Suche"
-
-#: src/RRZESearch/Infrastructure/Dashboard.php:90
+#: src/RRZESearch/Infrastructure/Dashboard.php:31
+#: src/RRZESearch/Infrastructure/Dashboard.php:117
+#: src/RRZESearch/Infrastructure/Dashboard.php:128
 msgid "Search Engines"
 msgstr "Suchmaschine"
 
+#: src/RRZESearch/Infrastructure/Dashboard.php:47
+#: src/RRZESearch/Infrastructure/Dashboard.php:62
+#: src/RRZESearch/Infrastructure/Dashboard.php:95
 #: src/RRZESearch/Infrastructure/Dashboard.php:101
-msgid "Search Engine Types"
-msgstr "Suchmaschine Typ"
+msgid "Settings › Search"
+msgstr "Einstellungen › Suche"
 
-#: src/RRZESearch/Infrastructure/Dashboard.php:112
+#: src/RRZESearch/Infrastructure/Dashboard.php:63
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:139
 msgid "Search Results Page"
 msgstr "Suchergebnisseite"
 
@@ -105,21 +117,20 @@ msgid "Next Page"
 msgstr "Nächste Seite"
 
 #: src/RRZESearch/Ports/Facades/admin-engines-table.php:8
-msgid "Check the box to enabled the "
-msgstr "Aktivieren Sie das Kontrollkästchen, um die Option zu aktivieren "
-
-#: src/RRZESearch/Ports/Facades/admin-resources-table-hidden.php:4
-msgid "Accessible only to SuperAdmins"
-msgstr "Nur für SuperAdmins zugänglich"
+#, php-format
+msgid "Check the box to enabled the %s Search Engine"
+msgstr ""
+"Aktivieren Sie das Kontrollkästchen, um die Suchmaschine %s  zu aktivieren"
 
 #: src/RRZESearch/Ports/Facades/admin-resources-table.php:12
-msgid "Search Engine Label"
-msgstr "Suchmaschinen-Label"
+#: src/RRZESearch/Ports/Facades/template-resource.php:6
+msgid "Label"
+msgstr "Bezeichnung"
 
 #: src/RRZESearch/Ports/Facades/admin-resources-table.php:24
 #: src/RRZESearch/Ports/Facades/template-resource.php:18
-msgid "Class Name"
-msgstr "Klassenname"
+msgid "Type"
+msgstr "Typ"
 
 #: src/RRZESearch/Ports/Facades/admin-resources-table.php:44
 #: src/RRZESearch/Ports/Facades/template-resource.php:37
@@ -132,24 +143,24 @@ msgstr "Kein API-Schlüssel"
 
 #: src/RRZESearch/Ports/Facades/admin-resources-table.php:59
 #: src/RRZESearch/Ports/Facades/template-resource.php:46
-msgid "Disclaimer Link"
-msgstr "Link zum Haftungsausschluss"
+msgid "Disclaimer / Instructions"
+msgstr "Datenschutz / Anleitung"
 
-#: src/RRZESearch/Ports/Facades/admin-resources-table.php:78
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:63
+msgid "---"
+msgstr "---"
+
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:79
 msgid "Remove"
 msgstr "Löschen"
 
-#: src/RRZESearch/Ports/Facades/admin-resources-table.php:89
+#: src/RRZESearch/Ports/Facades/admin-resources-table.php:90
 msgid "Add Search Engine"
 msgstr "Suchmaschine hinzufügen"
 
-#: src/RRZESearch/Ports/Facades/template-resource.php:6
-msgid "Resource Label"
-msgstr "Ressourcenbeschriftung"
-
 #: src/RRZESearch/Ports/Facades/template-resource.php:12
-msgid "New Resource Label"
-msgstr "Neues Ressourcen-Label"
+msgid "My Search Engine"
+msgstr "Meine Suchmaschine"
 
 #: src/RRZESearch/Ports/Facades/template-resource.php:40
 msgid "Leave blank if no API Key"
@@ -159,8 +170,29 @@ msgstr "Leer lassen, wenn keinen API-Schlüssel "
 msgid "Privacy Policy"
 msgstr "Datenschutz"
 
-#~ msgid "Available Search Engines"
-#~ msgstr "Verfügbare Suchmaschinen"
+#~ msgid "Search Engine Types"
+#~ msgstr "Suchmaschine Typ"
+
+#~ msgid "New Resource Label"
+#~ msgstr "Neues Ressourcen-Label"
+
+#~ msgid "Resource Label"
+#~ msgstr "Ressourcenbeschriftung"
+
+#~ msgid "Class Name"
+#~ msgstr "Klassenname"
+
+#~ msgid "Disclaimer Link"
+#~ msgstr "Link zum Haftungsausschluss"
+
+#~ msgid "Configure your plugin."
+#~ msgstr "Plugin konfigurieren."
+
+#~ msgid "Accessible only to SuperAdmins"
+#~ msgstr "Nur für SuperAdmins zugänglich"
+
+#~ msgid "Search Engine Label"
+#~ msgstr "Suchmaschinen-Label"
 
 #~ msgid "Option Label"
 #~ msgstr "Optionsbeschriftung"
