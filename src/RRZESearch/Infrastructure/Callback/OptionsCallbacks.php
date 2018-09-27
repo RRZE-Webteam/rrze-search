@@ -174,6 +174,13 @@ class OptionsCallbacks extends AppController
         $options_value = get_option($option_name);
 
         if (array_key_exists($name, $options_value)) {
+            echo '<pre>current value: '.PHP_EOL;
+            /**
+             * TODO: Determin if the current value correspends to an actual page, then proceed
+             */
+            echo var_dump($options_value[$name]);
+            echo '</pre>';
+
             if ($options_value[$name] === '') {
                 $rrze_search_page     = array(
                     'post_date'     => date('Y-m-d H:i:s'),
@@ -200,6 +207,5 @@ class OptionsCallbacks extends AppController
             echo __('Search Results Page doesn\'t exist, yet! No worries, one will be generated when you click [ Save Changes ]',
                 'rrze-search');
         }
-
     }
 }
