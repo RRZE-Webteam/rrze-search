@@ -21,12 +21,11 @@ class SettingsApi
 
     public function register()
     {
-        if (!empty($this->admin_pages)) {
-            add_action('admin_menu', array($this, 'addAdminMenu'));
+        if ( ! empty($this->admin_pages) || ! empty($this->admin_subpages) ) {
+            add_action( 'admin_menu', array( $this, 'addAdminMenu' ) );
         }
-        if (!empty($this->settings)) {
-            add_action('admin_init', array($this, 'registerCustomFields'));
-            add_action('wp_ajax_resourceRemoval', array($this, 'resourceRemoval'));
+        if ( !empty($this->settings) ) {
+            add_action( 'admin_init', array( $this, 'registerCustomFields' ) );
         }
     }
 
@@ -37,13 +36,49 @@ class SettingsApi
         return $this;
     }
 
+    public function withSubPage( string $title = null )
+    {
+        if ( empty($this->admin_pages) ) {
+            return $this;
+        }
+        $admin_page = $this->admin_pages[0];
+        $subpage = array(
+            array(
+                'parent_slug' => $admin_page['menu_slug'],
+                'page_title' => $admin_page['page_title'],
+                'menu_title' => ($title) ? $title : $admin_page['menu_title'],
+                'capability' => $admin_page['capability'],
+                'menu_slug' => $admin_page['menu_slug'],
+                'callback' => $admin_page['callback']
+            )
+        );
+        $this->admin_subpages = $subpage;
+        return $this;
+    }
+
+    public function addSubPages( array $pages )
+    {
+        $this->admin_subpages = array_merge( $this->admin_subpages, $pages );
+        return $this;
+    }
+
     public function addAdminMenu()
     {
-        foreach ($this->admin_pages as $page) {
-            add_options_page($page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'],
-                $page['callback']);
+        foreach ( $this->admin_pages as $page ) {
+            add_menu_page( $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], $page['callback'], $page['icon_url'], $page['position'] );
+        }
+
+        global $current_user;
+        $user_roles = $current_user->roles;
+        array_shift($user_roles);
+
+        if (is_super_admin($current_user->ID)) {
+            foreach ( $this->admin_subpages as $page ) {
+                add_submenu_page( $page['parent_slug'], $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], $page['callback'] );
+            }
         }
     }
+
 
     public function setSettings(array $settings)
     {

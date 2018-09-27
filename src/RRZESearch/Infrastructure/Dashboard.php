@@ -12,6 +12,7 @@ class Dashboard extends AppController
     public $callbacks;
     public $callbacks_options;
     public $pages = array();
+    public $subpages = array();
 
     public function __construct()
     {
@@ -23,26 +24,40 @@ class Dashboard extends AppController
 
     public function register(): void
     {
-        $this->setAdminPage();
+        $this->pagesConfiguration();
         $this->setSettings();
         $this->setSections();
         $this->setFields();
-
-        $this->settings->addPages($this->pages)->register();
+        $this->settings->addPages($this->pages)->withSubPage(__('Search Engine Types', 'rrze-search'))->register();
+        $this->settings->addSubPages($this->subpages)->register();
     }
 
     /**
      * Configure the admin page
      */
-    public function setAdminPage(): void
+    public function pagesConfiguration(): void
     {
+        $slug = 'rrze_search';
+
         $this->pages = array(
             array(
                 'page_title' => __('Settings › Search', 'rrze-search'),
                 'menu_title' => 'RRZE Suche',
                 'capability' => 'manage_options',
-                'menu_slug'  => 'rrze_search',
+                'menu_slug'  => $slug,
                 'callback'   => array($this->callbacks, 'adminDashboard'),
+                'icon_url'   => 'dashicons-search'
+            )
+        );
+
+        $this->subpages = array(
+            array(
+                'parent_slug' => 'rrze_search',
+                'page_title'  => __('Settings › Search', 'rrze-search'),
+                'menu_title'  => __('Search Engines', 'rrze-search'),
+                'capability'  => 'manage_options',
+                'menu_slug'   => $slug.'_subpage',
+                'callback'    => array($this->callbacks, 'adminDashboard')
             )
         );
     }
