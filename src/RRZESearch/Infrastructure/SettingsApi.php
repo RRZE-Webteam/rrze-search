@@ -26,6 +26,7 @@ class SettingsApi
         }
         if ( !empty($this->settings) ) {
             add_action( 'admin_init', array( $this, 'registerCustomFields' ) );
+            add_action('wp_ajax_resourceRemoval', array($this, 'resourceRemoval'));
         }
     }
 
@@ -127,23 +128,22 @@ class SettingsApi
      */
     public function resourceRemoval()
     {
-        echo json_encode(['message' => 'working on it!']);
-//        $resources    = [];
-//        $index        = $_POST['resource_id'];
-//        $option_name  = 'rrze_search_settings';
-//        $option       = get_option($option_name);
-//        $option_value = $option['rrze_search_resources'];
-//        unset($option_value[$index]);
-//
-//        foreach ($option_value as $item) {
-//            $resources[] = $item;
-//        }
-//
-//        $option['rrze_search_resources'] = $resources;
-//
-//        $update = update_option($option_name, $option);
-//        echo json_encode($update);
-//        die();
+        $resources    = [];
+        $index        = $_POST['resource_id'];
+        $option_name  = 'rrze_search_settings';
+        $option       = get_option($option_name);
+        $option_value = $option['rrze_search_resources'];
+        unset($option_value[$index]);
+
+        foreach ($option_value as $item) {
+            $resources[] = $item;
+        }
+
+        $option['rrze_search_resources'] = $resources;
+
+        $update = update_option($option_name, $option);
+        echo json_encode($update);
+        die();
     }
 
     public function getPosts()

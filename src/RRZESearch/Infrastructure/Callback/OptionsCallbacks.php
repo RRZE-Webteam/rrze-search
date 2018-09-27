@@ -15,11 +15,6 @@ class OptionsCallbacks extends AppController
     protected $engines = [];
 
     /**
-     * @var array|false
-     */
-    private $pages;
-
-    /**
      * @var string
      */
     private $facades_dir;
@@ -99,15 +94,26 @@ class OptionsCallbacks extends AppController
         $option_name  = $args['option_name'];
         $option_value = get_option($option_name);
 
+        /**
+         * Filter for Customer Filed value
+         */
+        foreach (get_pages() as $page) {
+            $meta = get_post_meta($page->ID);
+            if (isset($meta['rrze_search_resource_disclaimer'])) {
+                $disclaimerPages[] = $page;
+            }
+        }
 
         /** Add new Resources from Engine Collection */
         foreach ($option_value['rrze_search_resources'] as $resource) {
             if (!Helper::isResourceEngine($option_name, $resource['resource_id'])) {
                 $option_value[$name][] = [
-                    'resource_id'    => $resource['resource_id'],
-                    'resource_name'  => $resource['resource_name'],
-                    'resource_class' => $resource['resource_class'],
-                    'enabled'        => false
+                    'resource_id'         => $resource['resource_id'],
+                    'resource_name'       => $resource['resource_name'],
+                    'resource_class'      => $resource['resource_class'],
+                    'resource_disclaimer' => $resource['resource_disclaimer'],
+                    'link_label'          => $resource['link_label'],
+                    'enabled'             => false
                 ];
             }
         }
@@ -121,8 +127,26 @@ class OptionsCallbacks extends AppController
             $nextResourceIndex++;
         }
 
+        /** Update Labels */
+//        echo '<pre>';
+//        print_r($option_value['rrze_search_engines']);
+//        print_r($option_value['rrze_search_resources']);
+//        $nextResourceIndex = 0;
+//        foreach ($option_value['rrze_search_engines'] as $engine) {
+//            $_resource = Helper::getResourceById($option_name, $engine['resource_id']);
+//            echo $nextResourceIndex.': '.PHP_EOL;
+//            print_r($engine['resource_id']);
+//            echo PHP_EOL;
+
+//            if ($engine['resource_name'] !== $_resource['resource_name']){
+//                $option_value['rrze_search_engines'][$nextResourceIndex]['resource_name'] = $_resource['resource_name'];
+//            }
+        $nextResourceIndex++;
+//        }
+//        echo '</pre>';
+
         /** Engine table */
-        require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-engines-table.php';
+        require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-engine-toggle.php';
     }
 
     /**
@@ -142,21 +166,11 @@ class OptionsCallbacks extends AppController
         $disclaimerPages = array();
         $resources       = $option_value[$name];
 
-        /**
-         * Filter for Customer Filed value
-         */
-        foreach (get_pages() as $page) {
-            $meta = get_post_meta($page->ID);
-            if (isset($meta['rrze_search_resource_disclaimer'])) {
-                $disclaimerPages[] = $page;
-            }
-        }
-
         /** Resource table */
-        require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-resources-table.php';
+        require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-engine-configuration.php';
 
         /** Resource template */
-        require $this->facades_dir.DIRECTORY_SEPARATOR.'template-resource.php';
+        require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-engine-template.php';
 
     }
 
@@ -174,14 +188,8 @@ class OptionsCallbacks extends AppController
         $options_value = get_option($option_name);
 
         if (array_key_exists($name, $options_value)) {
-            echo '<pre>current value: '.PHP_EOL;
-            /**
-             * TODO: Determin if the current value correspends to an actual page, then proceed
-             */
-            echo var_dump($options_value[$name]);
-            echo '</pre>';
+            if ($options_value[$name] === '' || !get_permalink($options_value[$name])) {
 
-            if ($options_value[$name] === '') {
                 $rrze_search_page     = array(
                     'post_date'     => date('Y-m-d H:i:s'),
                     'post_date_gmt' => date('Y-m-d H:i:s'),
@@ -196,6 +204,7 @@ class OptionsCallbacks extends AppController
                 $options_value[$name] = $rrze_search_page_id;
                 update_option($option_name, $options_value, true);
             }
+
 
             if (get_post($options_value[$name])) {
                 require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-results-page-input.php';

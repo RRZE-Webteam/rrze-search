@@ -62,7 +62,7 @@ class Dashboard extends AppController
                 'page_title'  => __('Settings › Search', 'rrze-search'),
                 'menu_title'  => __('Configuration', 'rrze-search'),
                 'capability'  => 'manage_options',
-                'menu_slug'   => $slug.'_subpage',
+                'menu_slug'   => $slug.'_su',
                 'callback'    => array($this->callbacks, 'superAdminDashboard')
             )
         );

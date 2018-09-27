@@ -82,29 +82,31 @@
                     <?php
                     $nextTabIndex = 0;
                     foreach ($resources as $key => $resource):
+                        if ($resource['enabled']) {
+                            echo var_dump(Helper::getResourceById);
+                            ++$nextTabIndex;
+                            $link_label             = $resource['link_label'];
+                            $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
+                            $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
+                            $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
+                            $searchEngineDisclaimer = strlen($resource['resource_disclaimer']) ? ' (<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">'.$link_label.'</a>) ' : null;
 
-                        ++$nextTabIndex;
-                        $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
-                        $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
-                        $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
-                        $searchEngineDisclaimer = strlen($resource['resource_disclaimer']) ? ' (<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">'.__('Privacy Policy',
-                                'rrze-search').'</a>) ' : null;
+                            ?>
+                            <label>
+                                <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?>
 
-                        ?>
-                        <label>
-                            <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?>
-
-                                   class="search-engine"
-                                   value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
-                            <span><?php if ($searchEngineDisclaimer) {
-                                    echo sprintf($resource['resource_name'], $searchEngineDisclaimer);
-                                } else {
-                                    echo sprintf($resource['resource_name'], '');
+                                       class="search-engine"
+                                       value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
+                                <span><?php if ($searchEngineDisclaimer) {
+                                        echo sprintf($resource['resource_name'], $searchEngineDisclaimer);
+                                    } else {
+                                        echo sprintf($resource['resource_name'], '');
 
 
-                                } ?></span>
-                        </label>
-                    <?php
+                                    } ?></span>
+                            </label>
+                            <?php
+                        }
                     endforeach;
                     ?>
                 </div>

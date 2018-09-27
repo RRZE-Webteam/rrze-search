@@ -3,6 +3,7 @@
 namespace RRZE\RRZESearch\Application\Widgets;
 
 use WP_Widget;
+use RRZE\RRZESearch\Infrastructure\Helper\Helper;
 
 class SearchWidget extends WP_Widget
 {
@@ -171,7 +172,8 @@ class SearchWidget extends WP_Widget
     {
         echo $args['before_widget'];
         $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? (int)$instance['search_engine'] : (int)$_COOKIE['rrze_search_engine_pref'];
-        $resources       = $this->options['rrze_search_resources'];
+        $resources       = $this->options['rrze_search_engines'];
+
         include \dirname(__DIR__,
                 2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'widget.php';
         echo $args['after_widget'];

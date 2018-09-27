@@ -21,6 +21,18 @@
 
                     <fieldset>
                         <label class="resource_table_label">
+                            <span><?php echo __('Disclaimer / Instructions', 'rrze-search'); ?></span>
+                            <?php
+                            /** Disclaimer Link Label */
+                            echo '<input type="text" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][link_label]" value="'.$resource['link_label'].'" />';
+                            ?>
+                        </label>
+                    </fieldset>
+                </td>
+
+                <td>
+                    <fieldset>
+                        <label class="resource_table_label">
                             <span><?php echo __('Type', 'rrze-search'); ?></span>
                             <?php
                             /** Search Engine Class */
@@ -36,9 +48,7 @@
                             ?>
                         </label>
                     </fieldset>
-                </td>
 
-                <td>
                     <fieldset>
                         <label class="resource_table_label">
                             <span><?php echo __('API Key', 'rrze-search'); ?></span>
@@ -50,26 +60,6 @@
                             } else {
                                 echo '<input class="regular-text" type="text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_key]" value="'.$resource['resource_key'].'" />';
                             }
-                            ?>
-                        </label>
-                    </fieldset>
-
-                    <fieldset>
-                        <label class="resource_table_label">
-                            <span><?php echo __('Disclaimer / Instructions', 'rrze-search'); ?></span>
-                            <?php
-                            /** Disclaimer Link */
-                            echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_disclaimer]" class="regular-text">';
-                            echo '<option value="">'.__('---', 'rrze-search').'</option>';
-                            foreach ($disclaimerPages as $page) {
-                                $currentPage = $page->ID;
-                                if ($currentPage === (int)$option_value[$name][$nextResourceIndex]['resource_disclaimer']) {
-                                    echo '<option value="'.$page->ID.'" selected>'.$page->post_title.'</option>';
-                                } else {
-                                    echo '<option value="'.$page->ID.'" >'.$page->post_title.'</option>';
-                                }
-                            }
-                            echo '</select>';
                             ?>
                         </label>
                     </fieldset>
