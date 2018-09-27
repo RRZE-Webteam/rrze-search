@@ -60,6 +60,7 @@
                             <?php
                             /** Disclaimer Link */
                             echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_disclaimer]" class="regular-text">';
+                            echo '<option value="">'.__('Select Disclaimer Link', 'rrze-search').'</option>';
                             foreach ($disclaimerPages as $page) {
                                 $currentPage = $page->ID;
                                 if ($currentPage === (int)$option_value[$name][$nextResourceIndex]['resource_disclaimer']) {

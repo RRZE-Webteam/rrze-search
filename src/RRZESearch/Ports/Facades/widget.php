@@ -93,9 +93,14 @@
                         ?>
                         <label>
                             <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?>
+
                                    class="search-engine"
                                    value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
-                            <span><?= sprintf($resource['resource_name'], $searchEngineDisclaimer); ?></span>
+                            <span><?php if (strlen($resource['resource_disclaimer'])) {
+                                    echo sprintf($resource['resource_name'], $searchEngineDisclaimer);
+                                } else {
+                                    echo $resource['resource_name'];
+                                } ?></span>
                         </label>
                     <?php
                     endforeach;

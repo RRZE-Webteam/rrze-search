@@ -46,11 +46,6 @@ class OptionsCallbacks extends AppController
         }
 
         /**
-         * Define Disclaimer Pages
-         */
-        $this->pages = get_pages();
-
-        /**
          * Shortcut to Facades
          */
         $this->facades_dir = $this->plugin_path.implode(DIRECTORY_SEPARATOR, ['RRZESearch', 'Ports', 'Facades']);
@@ -150,7 +145,7 @@ class OptionsCallbacks extends AppController
         /**
          * Filter for Customer Filed value
          */
-        foreach ($this->pages as $page) {
+        foreach (get_pages() as $page) {
             $meta = get_post_meta($page->ID);
             if (isset($meta['rrze_search_resource_disclaimer'])) {
                 $disclaimerPages[] = $page;
