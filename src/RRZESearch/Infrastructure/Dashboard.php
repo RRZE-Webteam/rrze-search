@@ -97,10 +97,10 @@ class Dashboard extends AppController
                 'page'     => 'rrze_search'
             ),
             array(
-                'id'       => 'rrze_search_admin_section',
+                'id'       => 'rrze_search_super_admin_section',
                 'title'    => __('Settings › Search', 'rrze-search'),
-                'callback' => array($this->callbacks_options, 'printAdminSection'),
-                'page'     => 'rrze_search_subpage'
+                'callback' => array($this->callbacks_options, 'printSuperAdminSection'),
+                'page'     => 'rrze_search_su'
             )
         );
         $this->settings->setSections($args);
@@ -116,8 +116,8 @@ class Dashboard extends AppController
                 'id'       => 'rrze_search_resources',
                 'title'    => __('Search Engines', 'rrze-search'),
                 'callback' => array($this->callbacks_options, 'resourcesTable'),
-                'page'     => 'rrze_search',
-                'section'  => 'rrze_search_admin_section',
+                'page'     => 'rrze_search_su',
+                'section'  => 'rrze_search_super_admin_section',
                 'args'     => array(
                     'option_name' => 'rrze_search_settings',
                     'label_for'   => 'rrze_search_resources',
@@ -138,8 +138,8 @@ class Dashboard extends AppController
                 'id'       => 'rrze_search_page_id',
                 'title'    => __('Search Results Page', 'rrze-search'),
                 'callback' => array($this->callbacks_options, 'disabledInput'),
-                'page'     => 'rrze_search',
-                'section'  => 'rrze_search_admin_section',
+                'page'     => 'rrze_search_su',
+                'section'  => 'rrze_search_super_admin_section',
                 'args'     => array(
                     'option_name' => 'rrze_search_settings',
                     'label_for'   => 'rrze_search_page_id', // matches ID

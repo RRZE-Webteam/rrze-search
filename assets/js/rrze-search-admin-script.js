@@ -1,6 +1,7 @@
 console.log('rrze-search-admin-script initiated!');
 
 function rrze_resource_removal(resource_id) {
+    console.log('remove resource: ' + resource_id + ' [' + ajaxurl + ']');
     let data = {
         'action': 'resourceRemoval',
         'resource_id': resource_id

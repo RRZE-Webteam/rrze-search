@@ -65,16 +65,17 @@ class OptionsCallbacks extends AppController
      */
     public function sanitize($input): array
     {
+        $option = get_option('rrze_search_settings');
         $output = array();
 
         /** Configured Search Engines - Super Admin Level */
-        $output['rrze_search_resources'] = $input['rrze_search_resources'] ?? array();
+        $output['rrze_search_resources'] = ($input['rrze_search_resources']) ? $input['rrze_search_resources'] : $option['rrze_search_resources'];
 
         /** Installed Search Engines - Regular Admin Level */
-        $output['rrze_search_engines'] = $input['rrze_search_engines'] ?? array();
+        $output['rrze_search_engines'] = ($input['rrze_search_engines']) ? $input['rrze_search_engines'] : $option['rrze_search_engines'];
 
         /** Page ID for Search Results */
-        $output['rrze_search_page_id'] = $input['rrze_search_page_id'] ?? '';
+        $output['rrze_search_page_id'] = ($input['rrze_search_page_id']) ? $input['rrze_search_page_id'] : $option['rrze_search_page_id'];
 
         /** Custom Field value for pages tagged as disclaimer pages */
         $output['meta_shortcut'] = 'rrze_search_resource_disclaimer';
@@ -84,7 +85,12 @@ class OptionsCallbacks extends AppController
 
     public function printAdminSection(): void
     {
-        echo __('Configure your plugin.', 'rrze-search');
+        echo __('Enable Search Engines', 'rrze-search');
+    }
+
+    public function printSuperAdminSection(): void
+    {
+        echo __('Configure Search Engines', 'rrze-search');
     }
 
     /**
@@ -97,6 +103,7 @@ class OptionsCallbacks extends AppController
         $name         = $args['label_for'];
         $option_name  = $args['option_name'];
         $option_value = get_option($option_name);
+
 
         /** Add new Resources from Engine Collection */
         foreach ($option_value['rrze_search_resources'] as $resource) {
@@ -150,23 +157,18 @@ class OptionsCallbacks extends AppController
             }
         }
 
-        global $current_user;
-        $user_roles = $current_user->roles;
-        array_shift($user_roles);
+        /** Resource table */
+        require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-resources-table.php';
 
-        if (is_super_admin($current_user->ID)) {
-            /** Resource table */
-            require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-resources-table.php';
+        /** Resource template */
+        require $this->facades_dir.DIRECTORY_SEPARATOR.'template-resource.php';
 
-            /** Resource template */
-            require $this->facades_dir.DIRECTORY_SEPARATOR.'template-resource.php';
-        } else {
-            require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-resources-table-hidden.php';
-        }
     }
 
     /**
      * Renders disabled Input field with Search Results page name
+     *
+     * TODO: Different users are generating their own page
      *
      * @param array $args Arguments
      */
