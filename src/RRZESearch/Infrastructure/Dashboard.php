@@ -39,6 +39,9 @@ class Dashboard extends AppController
     {
         $slug = 'rrze_search';
 
+        /**
+         * Option Admin Page aka Dashboard
+         */
         $this->pages = array(
             array(
                 'page_title' => __('Settings › Search', 'rrze-search'),
@@ -50,6 +53,9 @@ class Dashboard extends AppController
             )
         );
 
+        /**
+         * Sub Page is used for the Super Admin Functionality
+         */
         $this->subpages = array(
             array(
                 'parent_slug' => 'rrze_search',
@@ -57,7 +63,7 @@ class Dashboard extends AppController
                 'menu_title'  => __('Search Engines', 'rrze-search'),
                 'capability'  => 'manage_options',
                 'menu_slug'   => $slug.'_subpage',
-                'callback'    => array($this->callbacks, 'adminDashboard')
+                'callback'    => array($this->callbacks, 'superAdminDashboard')
             )
         );
     }
@@ -89,6 +95,12 @@ class Dashboard extends AppController
                 'title'    => __('Settings › Search', 'rrze-search'),
                 'callback' => array($this->callbacks_options, 'printAdminSection'),
                 'page'     => 'rrze_search'
+            ),
+            array(
+                'id'       => 'rrze_search_admin_section',
+                'title'    => __('Settings › Search', 'rrze-search'),
+                'callback' => array($this->callbacks_options, 'printAdminSection'),
+                'page'     => 'rrze_search_subpage'
             )
         );
         $this->settings->setSections($args);
