@@ -83,7 +83,7 @@
                     $nextTabIndex = 0;
                     foreach ($resources as $key => $resource):
                         if ($resource['enabled']) {
-                            echo var_dump(Helper::getResourceById);
+//                            echo var_dump(Helper::getResourceById);
                             ++$nextTabIndex;
                             $link_label             = $resource['link_label'];
                             $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
@@ -94,10 +94,10 @@
                             ?>
                             <label>
                                 <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?>
-
                                        class="search-engine"
                                        value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
-                                <span><?php if ($searchEngineDisclaimer) {
+                                <span>
+                                    <?php if ($searchEngineDisclaimer) {
                                         echo sprintf($resource['resource_name'], $searchEngineDisclaimer);
                                     } else {
                                         echo sprintf($resource['resource_name'], '');

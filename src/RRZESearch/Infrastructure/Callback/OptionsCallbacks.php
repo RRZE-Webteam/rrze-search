@@ -31,12 +31,17 @@ class OptionsCallbacks extends AppController
          *
          * Usage: $this->engines
          */
-        $enginesDirectory = \dirname(__DIR__, 2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Engines';
-        foreach (scandir($enginesDirectory, SCANDIR_SORT_NONE) as $engineFile) {
-            if ($engineFile !== '.' && $engineFile !== '..' && $engineFile !== 'SearchEngine-template.php') {
-                $engineName                      = pathinfo($engineFile, PATHINFO_FILENAME);
-                $engineClassName                 = 'RRZE\\RRZESearch\\Ports\\Engines\\'.$engineName;
-                $this->engines[$engineClassName] = \call_user_func([$engineClassName, 'getName']);
+        $adapterDirectory = \dirname(__DIR__,
+                2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Engines'.DIRECTORY_SEPARATOR.'Adapters';
+        foreach (scandir($adapterDirectory, SCANDIR_SORT_NONE) as $adapterFile) {
+            if ($adapterFile !== '.' && $adapterFile !== '..') {
+                $engineName                      = pathinfo($adapterFile, PATHINFO_FILENAME);
+                $engineClassName                 = 'RRZE\\RRZESearch\\Ports\\Engines\\Adapters\\'.$engineName;
+                $this->engines[$engineClassName] = [
+                    'name' => \call_user_func([$engineClassName, 'getName']),
+                    'label' => \call_user_func([$engineClassName, 'getLabel']),
+                    'link_label' => \call_user_func([$engineClassName, 'getLinkLabel'])
+                ];
             }
         }
 
@@ -177,8 +182,6 @@ class OptionsCallbacks extends AppController
     /**
      * Renders disabled Input field with Search Results page name
      *
-     * TODO: Different users are generating their own page
-     *
      * @param array $args Arguments
      */
     public function disabledInput($args): void
@@ -188,6 +191,9 @@ class OptionsCallbacks extends AppController
         $options_value = get_option($option_name);
 
         if (array_key_exists($name, $options_value)) {
+            /**
+             * Test the Permalink to ensure current user isn't overwriting post created by another user
+             */
             if ($options_value[$name] === '' || !get_permalink($options_value[$name])) {
 
                 $rrze_search_page     = array(

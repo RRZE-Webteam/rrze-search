@@ -29,7 +29,8 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace RRZE\RRZESearch\Ports\Engines;
+namespace RRZE\RRZESearch\Ports\Engines\Classes;
+
 
 use RRZE\RRZESearch\Domain\Contract\Engine;
 
@@ -40,8 +41,6 @@ use RRZE\RRZESearch\Domain\Contract\Engine;
  */
 class GoogleSearch implements Engine
 {
-    const NAME = 'Google Custom Search';
-
     const URI = 'https://www.googleapis.com/customsearch/v1?cx=011945293402966620832:n0bvaqo6yl4&key={key}&q={query}';
 
     /**
@@ -125,14 +124,18 @@ class GoogleSearch implements Engine
         return $results;
     }
 
-    /**
-     * Return the name of this engine
-     *
-     * @return string
-     */
     public static function getName(): string
     {
         return self::NAME;
     }
 
+    public static function getLabel(): string
+    {
+        return self::LABEL;
+    }
+
+    public static function getLinkLabel(): string
+    {
+        return self::LINK_LABEL;
+    }
 }

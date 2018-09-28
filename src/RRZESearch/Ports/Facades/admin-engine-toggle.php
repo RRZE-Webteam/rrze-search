@@ -1,3 +1,6 @@
+<pre><?= print_r($this->engines); ?></pre>
+<pre><?= print_r($option_value['rrze_search_resources']); ?></pre>
+<pre><?= print_r($option_value['rrze_search_engines']); ?></pre>
 <?php
 $nextEngineIndex = 0;
 foreach ($option_value['rrze_search_engines'] as $resourceEngine) {
@@ -18,12 +21,17 @@ foreach ($option_value['rrze_search_engines'] as $resourceEngine) {
             <input type="hidden" id="<?= $name; ?>"
                    name="<?= $option_name ?>[<?= $name; ?>][<?= $nextEngineIndex; ?>][resource_class]"
                    value="<?= $resourceEngine['resource_class']; ?>">
-            <input type="hidden" id="<?= $name; ?>"
-                   name="<?= $option_name ?>[<?= $name; ?>][<?= $nextEngineIndex; ?>][resource_disclaimer]"
-                   value="<?= $resourceEngine['resource_disclaimer']; ?>">
             <input type="checkbox" id="<?= $name; ?>"
                    name="<?= $option_name ?>[<?= $name; ?>][<?= $nextEngineIndex; ?>][enabled]" <?= $isEnabled; ?>>
             <?= sprintf($resourceEngine['resource_name'], ''); ?>
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <label>
+            <input type="number" id="<?= $name; ?>"
+                   name="<?= $option_name ?>[<?= $name; ?>][<?= $nextEngineIndex; ?>][resource_disclaimer]"
+                   value="<?= $resourceEngine['resource_disclaimer']; ?>">
         </label>
     </fieldset>
 

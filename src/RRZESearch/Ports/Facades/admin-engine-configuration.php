@@ -4,33 +4,14 @@
         $nextResourceIndex = 0;
         foreach ($resources as $resource) {
             $rowColor = ($nextResourceIndex % 2) ? '#bbb' : '#ddd';
+            $uId = ($resource['resource_id'] !== '') ? $resource['resource_id'] : uniqid('rrze_', true);
+            /** Unique Id */
+            echo '<input type="hidden" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_id]" value="'.$uId.'" />';
+            /** Option Label */
+            echo '<input type="hidden" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_name]" value="'.$this->engines[$resource['resource_class']]['label'].'" />';
             ?>
             <tr bgcolor="<?php echo $rowColor; ?>">
                 <td style="vertical-align:top">
-                    <fieldset>
-                        <label class="resource_table_label">
-                            <span><?php echo __('Label', 'rrze-search'); ?></span>
-                            <?php
-                            $uId = ($resource['resource_id'] !== '') ? $resource['resource_id'] : uniqid('rrze_', true);
-                            echo '<input type="hidden" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_id]" value="'.$uId.'" />';
-                            /** Option Label */
-                            echo '<input type="text" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_name]" value="'.$resource['resource_name'].'" />';
-                            ?>
-                        </label>
-                    </fieldset>
-
-                    <fieldset>
-                        <label class="resource_table_label">
-                            <span><?php echo __('Disclaimer / Instructions', 'rrze-search'); ?></span>
-                            <?php
-                            /** Disclaimer Link Label */
-                            echo '<input type="text" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][link_label]" value="'.$resource['link_label'].'" />';
-                            ?>
-                        </label>
-                    </fieldset>
-                </td>
-
-                <td>
                     <fieldset>
                         <label class="resource_table_label">
                             <span><?php echo __('Type', 'rrze-search'); ?></span>
@@ -39,16 +20,16 @@
                             echo '<select id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_class]" class="regular-text">';
                             foreach ($this->engines as $key => $value) {
                                 if ($key === $resource['resource_class']) {
-                                    echo '<option value="'.$key.'" selected>'.$value.'</option>';
+                                    echo '<option value="'.$key.'" selected>'.$value['name'].'</option>';
                                 } else {
-                                    echo '<option value="'.$key.'" >'.$value.'</option>';
+                                    echo '<option value="'.$key.'" >'.$value['name'].'</option>';
                                 }
                             }
                             echo '</select>';
                             ?>
                         </label>
                     </fieldset>
-
+                </td><td>
                     <fieldset>
                         <label class="resource_table_label">
                             <span><?php echo __('API Key', 'rrze-search'); ?></span>
@@ -66,7 +47,8 @@
                 </td>
 
                 <td>
-                    <a href="javascript:rrze_resource_removal(<?php echo $nextResourceIndex; ?>)" class="button button-primary"><?php echo __('Remove', 'rrze-search'); ?></a>
+                    <a href="javascript:rrze_resource_removal(<?php echo $nextResourceIndex; ?>)"
+                       class="button button-primary"><?php echo __('Remove', 'rrze-search'); ?></a>
                 </td>
             </tr>
             <?php

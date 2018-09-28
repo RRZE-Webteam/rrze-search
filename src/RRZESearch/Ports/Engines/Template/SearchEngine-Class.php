@@ -31,7 +31,7 @@
 
 /** Use the following NAMESPACE */
 
-namespace RRZE\RRZESearch\Ports\Engines;
+namespace RRZE\RRZESearch\Ports\Engines\Classes;
 
 /** Implement the Contract Interface */
 
@@ -42,12 +42,8 @@ use RRZE\RRZESearch\Domain\Contract\Engine;
  *
  * Class SearchEngine
  */
-//class SearchEngine implements Engine
+//class SearchEngineClass implements Engine
 //{
-//    const NAME = 'Search Engine Custom Search';
-//
-//    const URI = 'https://api.server.net/v1';
-//
 //    /**
 //     * Query - interface defined
 //     *
@@ -116,5 +112,25 @@ use RRZE\RRZESearch\Domain\Contract\Engine;
 //    public static function getName(): string
 //    {
 //        return self::NAME;
+//    }
+//
+//    /**
+//     * Return the label of this engine
+//     *
+//     * @return string
+//     */
+//    public static function getLabel(): string
+//    {
+//        return self::LABEL;
+//    }
+//
+//    /**
+//     * Return the external link of this engine
+//     *
+//     * @return string
+//     */
+//    public static function getLinkLabel(): string
+//    {
+//        return self::LINK_LABEL;
 //    }
 //}

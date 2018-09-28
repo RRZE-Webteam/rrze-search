@@ -20,4 +20,18 @@ interface Engine
      * @return string
      */
     public static function getName(): string;
+
+    /**
+     * Return the label for this engine
+     *
+     * @return string
+     */
+    public static function getLabel(): string;
+
+    /**
+     * Return the label for this engine's external link
+     *
+     * @return string
+     */
+    public static function getLinkLabel(): string;
 }

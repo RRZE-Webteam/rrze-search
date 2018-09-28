@@ -29,22 +29,19 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace RRZE\RRZESearch\Ports\Engines;
+namespace RRZE\RRZESearch\Ports\Engines\Classes;
 
 use RRZE\RRZESearch\Domain\Contract\Engine;
+use WP_Query;
 
 /**
- * Class BingSearch
+ * Class WordPressSearch
  *
  * @package RRZE\RRZESearch\Ports\Engines
  */
-class BingSearch implements Engine
+class WordPressSearch implements Engine
 {
-    const NAME = 'Microsoft Bing';
-
-    const URI = 'https://api.cognitive.microsoft.com/bingcustomsearch/v7.0/search';
-//    const URI = 'https://api.cognitive.microsoft.com/bing/v7.0/search'; // Documentation Example
-
+    const URI = '/wp-json/wp/v2/posts';
     /**
      * Query - interface defined
      *
@@ -56,52 +53,28 @@ class BingSearch implements Engine
      */
     public function Query(string $query, string $key, int $startPage)
     {
-        $context = stream_context_create(
-            array(
-                'http' => array(
-                    'header' => "Ocp-Apim-Subscription-Key: $key\r\n",
-                    'method' => 'GET'
-                )
-            )
-        );
+        $results = new WP_Query(array(
+            'post_type'      => 'any',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            's'              => $query,
+        ));
 
-        $params = array(
-            'q'            => $query,
-            'customconfig' => 3022471055,
-            'mkt'          => 'de-DE',
-            'safesearch'   => 'Moderate',
-            'count'        => 10,
-            'offset'       => 10 * intval($startPage)
-        );
-
-        set_error_handler(
-            create_function(
-                '$severity, $message, $file, $line',
-                'throw new ErrorException($message, $severity, $severity, $file, $line);'
-            )
-        );
-
-        try {
-            $result = file_get_contents(self::URI."?".http_build_query($params), false, $context);
-        } catch (\Exception $exception) {
-            echo 'HTTP request failed. Error was: '.$exception->getMessage().' PLEASE INFORM THE SYSTEM ADMINISTRATION';
-        }
-
-
-        /**
-         * NOTICE that you should be returning a json string
-         * ******************************************************************/
-        return $result;
+        return json_encode($results->posts);
     }
 
-    /**
-     * Return the name of this engine
-     *
-     * @return string
-     */
     public static function getName(): string
     {
         return self::NAME;
     }
 
+    public static function getLabel(): string
+    {
+        return self::LABEL;
+    }
+
+    public static function getLinkLabel(): string
+    {
+        return self::LINK_LABEL;
+    }
 }
