@@ -2,9 +2,8 @@
 
 namespace RRZE\RRZESearch\Application\Shortcode;
 
-use RRZE\RRZESearch\Infrastructure\Helper\Helper;
 
-class SearchResultsShortcode
+class ResultsShortcode
 {
     public $options;
 
@@ -22,7 +21,7 @@ class SearchResultsShortcode
 
     public function shortcodeInit()
     {
-        $resources = $this->options['rrze_search_resources'];
+        $resources  = $this->options['rrze_search_resources'];
         $query      = $_GET['q'];
         $startPage  = $_GET['start'] ?? '1';
         $resource   = $this->options['rrze_search_resources'][$_GET['se']];
@@ -33,7 +32,8 @@ class SearchResultsShortcode
         $this->searchEngine = new $resource['resource_class'];
 
         /** Define Search Engine Class Name */
-        $searchEngineClass = substr(strrchr($resource['resource_class'], '\\'), 1);
+        $searchEngineClass = str_replace('Adapter', 'Search',
+            substr(strrchr($resource['resource_class'], '\\'), 1));
 
         /**
          * Finalize Results

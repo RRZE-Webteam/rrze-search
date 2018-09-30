@@ -1,6 +1,6 @@
 <?php
 
-namespace RRZE\RRZESearch\Infrastructure;
+namespace RRZE\RRZESearch\Infrastructure\Database;
 
 class DatabaseApi
 {

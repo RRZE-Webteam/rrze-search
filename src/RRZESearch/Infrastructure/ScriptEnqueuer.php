@@ -2,7 +2,7 @@
 
 namespace RRZE\RRZESearch\Infrastructure;
 
-use RRZE\RRZESearch\Application\AppController;
+use RRZE\RRZESearch\Application\Controller\AppController;
 
 class ScriptEnqueuer extends AppController
 {

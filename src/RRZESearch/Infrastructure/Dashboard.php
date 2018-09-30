@@ -2,9 +2,9 @@
 
 namespace RRZE\RRZESearch\Infrastructure;
 
-use RRZE\RRZESearch\Application\AppController;
-use RRZE\RRZESearch\Infrastructure\Callback\AdminCallbacks;
-use RRZE\RRZESearch\Infrastructure\Callback\OptionsCallbacks;
+use RRZE\RRZESearch\Application\Controller\AppController;
+use RRZE\RRZESearch\Infrastructure\Persistence\OptionsCallbacks;
+use RRZE\RRZESearch\Infrastructure\Persistence\SettingsApi;
 
 class Dashboard extends AppController
 {
@@ -18,7 +18,7 @@ class Dashboard extends AppController
     {
         parent::__construct();
         $this->settings          = new SettingsApi();
-        $this->callbacks         = new AdminCallbacks();
+        $this->callbacks         = new DashboardPanels();
         $this->callbacks_options = new OptionsCallbacks();
     }
 

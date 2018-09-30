@@ -21,8 +21,8 @@ final class Init
             Infrastructure\Dashboard::class,
             Infrastructure\ScriptEnqueuer::class,
             Infrastructure\SettingsLink::class,
-            Application\WidgetController::class,
-            Application\ShortcodeController::class,
+            Application\Controller\WidgetController::class,
+            Application\Controller\ShortcodeController::class,
         ];
     }
 

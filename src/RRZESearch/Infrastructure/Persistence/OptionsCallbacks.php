@@ -1,8 +1,8 @@
 <?php
 
-namespace RRZE\RRZESearch\Infrastructure\Callback;
+namespace RRZE\RRZESearch\Infrastructure\Persistence;
 
-use RRZE\RRZESearch\Application\AppController;
+use RRZE\RRZESearch\Application\Controller\AppController;
 use RRZE\RRZESearch\Infrastructure\Helper\Helper;
 
 class OptionsCallbacks extends AppController
@@ -99,6 +99,8 @@ class OptionsCallbacks extends AppController
         $option_name  = $args['option_name'];
         $option_value = get_option($option_name);
 
+        $disclaimerPages = array();
+
         /**
          * Filter for Customer Filed value
          */
@@ -168,7 +170,6 @@ class OptionsCallbacks extends AppController
         /**
          * Define props used in template
          */
-        $disclaimerPages = array();
         $resources       = $option_value[$name];
 
         /** Resource table */

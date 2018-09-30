@@ -1,4 +1,5 @@
 <pre><?= print_r($this->engines); ?></pre>
+<pre><?= print_r($disclaimerPages); ?></pre>
 <pre><?= print_r($option_value['rrze_search_resources']); ?></pre>
 <pre><?= print_r($option_value['rrze_search_engines']); ?></pre>
 <?php

@@ -1,8 +1,8 @@
 <?php
 
-namespace RRZE\RRZESearch\Application;
+namespace RRZE\RRZESearch\Application\Controller;
 
-use RRZE\RRZESearch\Application\Widgets\SearchWidget;
+use RRZE\RRZESearch\Application\Widget\SearchWidget;
 
 class WidgetController extends AppController
 {

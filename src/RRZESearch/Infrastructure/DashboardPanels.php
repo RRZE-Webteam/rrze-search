@@ -1,10 +1,10 @@
 <?php
 
-namespace RRZE\RRZESearch\Infrastructure\Callback;
+namespace RRZE\RRZESearch\Infrastructure;
 
-use RRZE\RRZESearch\Application\AppController;
+use RRZE\RRZESearch\Application\Controller\AppController;
 
-class AdminCallbacks extends AppController
+class DashboardPanels extends AppController
 {
     public $settings;
     public $resources = '';

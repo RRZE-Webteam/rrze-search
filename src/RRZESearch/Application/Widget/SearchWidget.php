@@ -1,9 +1,8 @@
 <?php
 
-namespace RRZE\RRZESearch\Application\Widgets;
+namespace RRZE\RRZESearch\Application\Widget;
 
 use WP_Widget;
-use RRZE\RRZESearch\Infrastructure\Helper\Helper;
 
 class SearchWidget extends WP_Widget
 {
@@ -141,13 +140,6 @@ class SearchWidget extends WP_Widget
         $title         = !empty($instance['title']) ? $instance['title'] : '';
         $search_engine = !empty($instance['search_engine']) ? $instance['search_engine'] : '0';
         ?>
-        <p>
-            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php echo __('Display Title',
-                    'rrze-search'); ?>:</label>
-            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>"
-                   name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text"
-                   value="<?php echo esc_attr($title); ?>">
-        </p>
         <p>
             <label for="<?php echo $this->get_field_id('search_engine'); ?>"><?php echo __('Default Search Engine',
                     'rrze-search'); ?>:</label>

@@ -1,6 +1,8 @@
 <?php
 
-namespace RRZE\RRZESearch\Infrastructure;
+namespace RRZE\RRZESearch\Infrastructure\Persistence;
+
+use RRZE\RRZESearch\Infrastructure\Database\DatabaseApi;
 
 /**
  * Class SettingsApi

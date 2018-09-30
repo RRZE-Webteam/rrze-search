@@ -1,8 +1,8 @@
 <?php
 
-namespace RRZE\RRZESearch\Application;
+namespace RRZE\RRZESearch\Application\Controller;
 
-use RRZE\RRZESearch\Application\Shortcode\SearchResultsShortcode;
+use RRZE\RRZESearch\Application\Shortcode\ResultsShortcode;
 
 class ShortcodeController extends AppController
 {
@@ -11,7 +11,7 @@ class ShortcodeController extends AppController
         /**
          * TODO: Add condition to validate registration
          */
-        $search_results_shortcode = new SearchResultsShortcode();
+        $search_results_shortcode = new ResultsShortcode();
         $search_results_shortcode->register();
     }
 }
