@@ -1,10 +1,10 @@
 <?php
 
-namespace RRZE\RRZESearch\Infrastructure;
+namespace RRZE\RRZESearch\Infrastructure\Persistence;
 
 use RRZE\RRZESearch\Application\Controller\AppController;
 
-class DashboardPanels extends AppController
+class OptionsPanels extends AppController
 {
     public $settings;
     public $resources = '';
