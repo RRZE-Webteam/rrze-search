@@ -90,26 +90,16 @@ class OptionsCallbacks extends AppController
 
     /**
      * Render the engines table - Admin
+     * Facade: admin-engine-toggle.php
      *
      * @param array $args
      */
-    public function enginesTable(array $args): void
+    public function enginesToggle(array $args): void
     {
         $name         = $args['label_for'];
         $option_name  = $args['option_name'];
         $option_value = get_option($option_name);
 
-        $disclaimerPages = array();
-
-        /**
-         * Filter for Customer Filed value
-         */
-        foreach (get_pages() as $page) {
-            $meta = get_post_meta($page->ID);
-            if (isset($meta['rrze_search_resource_disclaimer'])) {
-                $disclaimerPages[] = $page;
-            }
-        }
 
         /** Add new Resources from Engine Collection */
         foreach ($option_value['rrze_search_resources'] as $resource) {
@@ -158,10 +148,11 @@ class OptionsCallbacks extends AppController
 
     /**
      * Render the resources table - Super Admin
+     * Facade: admin-engine-configuration.php
      *
      * @param array $args Arguments
      */
-    public function resourcesTable(array $args): void
+    public function enginesConfigure(array $args): void
     {
         $name         = $args['label_for'];
         $option_name  = $args['option_name'];
@@ -182,10 +173,11 @@ class OptionsCallbacks extends AppController
 
     /**
      * Renders disabled Input field with Search Results page name
+     * Facade: admin-results-page-input.php
      *
      * @param array $args Arguments
      */
-    public function disabledInput($args): void
+    public function resultsPage($args): void
     {
         $name          = $args['label_for'];
         $option_name   = $args['option_name'];

@@ -3,7 +3,7 @@
         <td>
             <input type="hidden" id="rrze_search_resources"
                    name="rrze_search_settings[rrze_search_resources][index][resource_id]"
-                   value="">
+                   value="uid">
             <input type="hidden" id="rrze_search_resources"
                    name="rrze_search_settings[rrze_search_resources][index][resource_name]"
                    value="">

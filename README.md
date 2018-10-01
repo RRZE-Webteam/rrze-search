@@ -21,19 +21,5 @@ Special instructions and other cataloged information
 - Define the Search Engine's Parameters and Filters
 - Recommended use of `cURL` to make request
 - Return `json` \stdClass
-
- 
----
-
-
-`Designating Disclaimer Page`
-- From the `WordPress Admin` go to `Pages`.
-- Enter `Edit Mode` and expand the `Screen Options` Panel.
-- Ensure `Custom Fields` is `selected`.
-- Close `Screen Options` Panel. **__*Optional*__
-- Add Custom Field `rrze_search_resource_disclaimer`.
-- Set Custom Field value to `true`.
-- `Return to Pages` and `Repeat Process`.
-
  
 ---

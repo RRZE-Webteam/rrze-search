@@ -7,6 +7,7 @@ function rrze_resource_removal(resource_id) {
     };
 
     jQuery.post(ajaxurl, data, function (success) {
+        console.log(success);
         if (success) {
             location.reload();
         }
@@ -17,12 +18,15 @@ jQuery(document).ready(function ($) {
     $('#rrze_search_add_resource_form').bind('click', function (e) {
         /** define resource count */
         let count = $('#rrze_search_resource_count').val();
+        /** define unique Id */
+        let uId = 'rrze_'+Math.random();
 
-        /** selected tempate content */
+        /** selected template content */
         let template = document.getElementsByTagName("template")[0];
 
         /** replace `index` with current count */
-        let partial = template.innerHTML.replace(/index/g, count);
+        /** replace `uid` with unique Id */
+        let partial = template.innerHTML.replace(/index/g, count).replace(/uid/g, uId);
 
         /** Append the partial */
         $('#rrze_search_resource_form tbody').append(partial);

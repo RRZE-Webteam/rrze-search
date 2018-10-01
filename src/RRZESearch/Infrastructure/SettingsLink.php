@@ -13,7 +13,7 @@ class SettingsLink extends AppController
 
     public function dashboard_link($links)
     {
-        $filter_link = '<a href="options-general.php?page=rrze_search">'.__('Settings', 'rrze-search').'</a>';
+        $filter_link = '<a href="admin.php?page=rrze_search">'.__('Settings', 'rrze-search').'</a>';
         $links[]     = $filter_link;
         return $links;
     }

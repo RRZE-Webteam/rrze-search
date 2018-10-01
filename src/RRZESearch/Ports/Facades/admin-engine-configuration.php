@@ -1,9 +1,11 @@
+<pre><?php echo print_r($option_value['rrze_search_resources']); ?></pre>
+
 <table id="rrze_search_resource_form" class="form-table" border="0">
     <tbody>
         <?php
         $nextResourceIndex = 0;
         foreach ($resources as $resource) {
-            $rowColor = ($nextResourceIndex % 2) ? '#bbb' : '#ddd';
+            $rowColor = ($nextResourceIndex % 2) ? '#ddd' : '#bbb';
             $uId = ($resource['resource_id'] !== '') ? $resource['resource_id'] : uniqid('rrze_', true);
             /** Unique Id */
             echo '<input type="hidden" class="regular-text" id="'.$name.'" name="'.$option_name.'['.$name.']['.$nextResourceIndex.'][resource_id]" value="'.$uId.'" />';

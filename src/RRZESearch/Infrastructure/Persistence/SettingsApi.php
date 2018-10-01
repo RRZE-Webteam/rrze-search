@@ -137,13 +137,19 @@ class SettingsApi
         $option_value = $option['rrze_search_resources'];
         unset($option_value[$index]);
 
+        $nextItemIndex = 0;
         foreach ($option_value as $item) {
-            $resources[] = $item;
+            if ($nextItemIndex !== $index){
+                $resources[] = $item;
+            }
+            $nextItemIndex++;
         }
 
         $option['rrze_search_resources'] = $resources;
 
-        $update = update_option($option_name, $option);
+        wp_cache_flush();
+        $update = update_option($option_name, $option, false);
+        echo json_encode(['message' => $option]);
         echo json_encode($update);
         die();
     }

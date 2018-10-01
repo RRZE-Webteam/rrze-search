@@ -8,7 +8,7 @@ use RRZE\RRZESearch\Ports\Engines\Classes\WordPressSearch;
 class WordPressAdapter extends WordPressSearch
 {
     const NAME = 'WordPress Native Search';
-    const LABEL = 'Default';
+    const LABEL = 'Internal Search';
     const LINK_LABEL = 'Privacy Policy';
 
     public static function getName(): string
