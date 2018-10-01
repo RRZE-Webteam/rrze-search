@@ -147,7 +147,7 @@ class SettingsApi
 
         $option['rrze_search_resources'] = $resources;
 
-        wp_cache_flush();
+        flush_rewrite_rules();
         $update = update_option($option_name, $option, false);
         echo json_encode(['message' => $option]);
         echo json_encode($update);

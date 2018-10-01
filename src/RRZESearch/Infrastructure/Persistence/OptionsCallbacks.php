@@ -38,8 +38,8 @@ class OptionsCallbacks extends AppController
                 $engineName                      = pathinfo($adapterFile, PATHINFO_FILENAME);
                 $engineClassName                 = 'RRZE\\RRZESearch\\Ports\\Engines\\Adapters\\'.$engineName;
                 $this->engines[$engineClassName] = [
-                    'name' => \call_user_func([$engineClassName, 'getName']),
-                    'label' => \call_user_func([$engineClassName, 'getLabel']),
+                    'name'       => \call_user_func([$engineClassName, 'getName']),
+                    'label'      => \call_user_func([$engineClassName, 'getLabel']),
                     'link_label' => \call_user_func([$engineClassName, 'getLinkLabel'])
                 ];
             }
@@ -65,9 +65,15 @@ class OptionsCallbacks extends AppController
 
         /** Configured Search Engines - Super Admin Level */
         $output['rrze_search_resources'] = ($input['rrze_search_resources']) ? $input['rrze_search_resources'] : $option['rrze_search_resources'];
+        foreach ($output['rrze_search_resources'] as $key => $resource) {
+            $output['rrze_search_resources'][$key]['resource_name'] = $this->engines[$resource['resource_class']]['label'];
+        }
 
         /** Installed Search Engines - Regular Admin Level */
         $output['rrze_search_engines'] = ($input['rrze_search_engines']) ? $input['rrze_search_engines'] : $option['rrze_search_engines'];
+        foreach ($output['rrze_search_resources'] as $key => $resource) {
+            $output['rrze_search_engines'][$key]['resource_name'] = $this->engines[$resource['resource_class']]['label'];
+        }
 
         /** Page ID for Search Results */
         $output['rrze_search_page_id'] = ($input['rrze_search_page_id']) ? $input['rrze_search_page_id'] : $option['rrze_search_page_id'];
@@ -100,16 +106,26 @@ class OptionsCallbacks extends AppController
         $option_name  = $args['option_name'];
         $option_value = get_option($option_name);
 
+        /**
+         * Define props used in template
+         */
+        $engines = $option_value[$name];
+
+        /** Clean up the array */
+        foreach ($engines as $key => $engine) {
+            if (!isset($engine['resource_id'])) {
+                unset($engines[$key]);
+            }
+        }
 
         /** Add new Resources from Engine Collection */
         foreach ($option_value['rrze_search_resources'] as $resource) {
             if (!Helper::isResourceEngine($option_name, $resource['resource_id'])) {
-                $option_value[$name][] = [
+                $engines[] = [
                     'resource_id'         => $resource['resource_id'],
                     'resource_name'       => $resource['resource_name'],
                     'resource_class'      => $resource['resource_class'],
                     'resource_disclaimer' => $resource['resource_disclaimer'],
-                    'link_label'          => $resource['link_label'],
                     'enabled'             => false
                 ];
             }
@@ -117,32 +133,15 @@ class OptionsCallbacks extends AppController
 
         /** Remove old Engines missing from Resources Collection */
         $nextResourceIndex = 0;
-        foreach ($option_value['rrze_search_engines'] as $engine) {
+        foreach ($engines as $engine) {
             if (!Helper::isEngineResource($option_name, $engine['resource_id'])) {
-                array_splice($option_value['rrze_search_engines'], $nextResourceIndex - 1, 1);
+                array_splice($engines, $nextResourceIndex - 1, 1);
             }
             $nextResourceIndex++;
         }
 
-        /** Update Labels */
-//        echo '<pre>';
-//        print_r($option_value['rrze_search_engines']);
-//        print_r($option_value['rrze_search_resources']);
-//        $nextResourceIndex = 0;
-//        foreach ($option_value['rrze_search_engines'] as $engine) {
-//            $_resource = Helper::getResourceById($option_name, $engine['resource_id']);
-//            echo $nextResourceIndex.': '.PHP_EOL;
-//            print_r($engine['resource_id']);
-//            echo PHP_EOL;
-
-//            if ($engine['resource_name'] !== $_resource['resource_name']){
-//                $option_value['rrze_search_engines'][$nextResourceIndex]['resource_name'] = $_resource['resource_name'];
-//            }
-        $nextResourceIndex++;
-//        }
-//        echo '</pre>';
-
         /** Engine table */
+        $engines = array_values($engines);
         require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-engine-toggle.php';
     }
 
@@ -161,7 +160,7 @@ class OptionsCallbacks extends AppController
         /**
          * Define props used in template
          */
-        $resources       = $option_value[$name];
+        $resources = $option_value[$name];
 
         /** Resource table */
         require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-engine-configuration.php';

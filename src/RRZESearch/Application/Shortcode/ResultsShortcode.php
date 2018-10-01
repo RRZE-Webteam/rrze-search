@@ -21,6 +21,7 @@ class ResultsShortcode
 
     public function shortcodeInit()
     {
+        $engines = $this->options['rrze_search_engines'];
         $resources  = $this->options['rrze_search_resources'];
         $query      = $_GET['q'];
         $startPage  = $_GET['start'] ?? '1';

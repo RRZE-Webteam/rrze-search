@@ -1,3 +1,5 @@
+Google Results
+
 <div id="resultStats"><?php echo sprintf(__('About %1$s results', 'rrze-search'),
         $results['searchInformation']['formattedTotalResults']); ?>
     <nobr> (<?php echo $results['searchInformation']['formattedSearchTime']; ?> seconds)&nbsp;</nobr>

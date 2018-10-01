@@ -1,4 +1,4 @@
-console.log('rrze-search-admin-script initiated!');
+// console.log('rrze-search-admin-script initiated!');
 
 function rrze_resource_removal(resource_id) {
     let data = {
@@ -7,7 +7,6 @@ function rrze_resource_removal(resource_id) {
     };
 
     jQuery.post(ajaxurl, data, function (success) {
-        console.log(success);
         if (success) {
             location.reload();
         }

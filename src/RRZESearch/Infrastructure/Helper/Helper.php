@@ -16,8 +16,8 @@ class Helper
     public static function isResourceEngine($option_name, $resource_id): bool
     {
         $bool         = false;
-        $option_value = get_option($option_name);
-        foreach ($option_value['rrze_search_engines'] as $engine) {
+        $option = get_option($option_name);
+        foreach ($option['rrze_search_engines'] as $engine) {
             if ($engine['resource_id'] === $resource_id) {
                 $bool = true;
             }
