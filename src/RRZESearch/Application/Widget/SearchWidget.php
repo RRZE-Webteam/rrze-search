@@ -164,7 +164,13 @@ class SearchWidget extends WP_Widget
     {
         echo $args['before_widget'];
         $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? (int)$instance['search_engine'] : (int)$_COOKIE['rrze_search_engine_pref'];
-        $resources       = $this->options['rrze_search_engines'];
+
+        $resources       = [];
+        foreach ($this->options['rrze_search_engines'] as $key => $engine){
+            $class = new $engine['resource_class'];
+            $resources[$key] = $engine;
+            $resources[$key]['link_label'] = $class::getLinkLabel();
+        }
 
         include \dirname(__DIR__,
                 2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'widget.php';
@@ -182,7 +188,7 @@ class SearchWidget extends WP_Widget
         /** Ensure you're using $_POST['s'] for the q(uery) value, prior to redirect */
         $redirect_link = add_query_arg(array('q' => urlencode($_POST['s']), 'se' => $_POST['resource_id']),
             $results_page);
-        wp_redirect($redirect_link);
+        wp_redirect($results_page);
         exit;
     }
 }

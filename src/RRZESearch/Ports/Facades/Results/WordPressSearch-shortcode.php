@@ -4,15 +4,25 @@
 <?php foreach ($results as $result) { ?>
     <div class="record">
         <h3 style="padding-bottom:0;">
-            <a href="<?php echo $result['post_name']; ?>"><?php echo $result['post_title']; ?></a>
+            <a href="<?php echo get_permalink($result['ID']); ?>"><?php echo $result['post_title']; ?></a>
         </h3>
-<!--        <div class="search-meta">-->
-<!--            <span class="post-meta-defaulttype"> Page</span>-->
-<!--            <span class="post-meta-date">--><?php //echo date_format(date_create($result['post_modified']), 'F d, Y'); ?><!-- (Last change)</span>-->
-<!--        </div>-->
         <div class="snippet">
             <cite><?php echo $_SERVER['HTTP_HOST'].'/'.$result['post_name']; ?></cite>
             <div class="snippet-string"><?php echo $result['post_excerpt']; ?></div>
         </div>
     </div>
 <?php } ?>
+<hr>
+
+<div id="">
+    <?php
+    if (isset($results['queries']['previousPage'])) {
+        echo '<a href="'.$pageLink.'?q='.urlencode($_GET['q']).'&se='.$_GET['se'].'&start='.$results['queries']['previousPage'][0]['startIndex'].'">'.__('Previous Page', 'rrze-search').'</a>';
+    }
+    if (isset($results['queries']['previousPage'], $results['queries']['nextPage'])) {
+        echo '&nbsp;|&nbsp;';
+    }
+    if (isset($results['queries']['nextPage'])) {
+        echo '<a href="'.$pageLink.'?q='.urlencode($_GET['q']).'&se='.$_GET['se'].'&start='.$results['queries']['nextPage'][0]['startIndex'].'">'.__('Next Page', 'rrze-search').'</a>';
+    } ?>
+</div>

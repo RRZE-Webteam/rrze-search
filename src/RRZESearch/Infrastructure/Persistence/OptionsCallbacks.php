@@ -118,10 +118,14 @@ class OptionsCallbacks extends AppController
             }
         }
 
+//        echo '<pre>';
+//        print_r($option_value['rrze_search_resources']);
+//        echo '</pre>';
+
         /** Add new Resources from Engine Collection */
-        foreach ($option_value['rrze_search_resources'] as $resource) {
+        foreach ($option_value['rrze_search_resources'] as $key => $resource) {
             if (!Helper::isResourceEngine($option_name, $resource['resource_id'])) {
-                $engines[] = [
+                $engines[$key] = [
                     'resource_id'         => $resource['resource_id'],
                     'resource_name'       => $resource['resource_name'],
                     'resource_class'      => $resource['resource_class'],

@@ -56,4 +56,14 @@ class Helper
             }
         }
     }
+
+    public static function getEngineById($option_name, $resource_id)
+    {
+        $option_value = get_option($option_name);
+        foreach ($option_value['rrze_search_engines'] as $resource) {
+            if ($resource['resource_id'] === $resource_id) {
+                return $resource;
+            }
+        }
+    }
 }

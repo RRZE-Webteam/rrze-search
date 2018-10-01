@@ -21,7 +21,7 @@ class ResultsShortcode
 
     public function shortcodeInit()
     {
-        $engines = $this->options['rrze_search_engines'];
+        $engines    = $this->options['rrze_search_engines'];
         $resources  = $this->options['rrze_search_resources'];
         $query      = $_GET['q'];
         $startPage  = $_GET['start'] ?? '1';
@@ -33,8 +33,7 @@ class ResultsShortcode
         $this->searchEngine = new $resource['resource_class'];
 
         /** Define Search Engine Class Name */
-        $searchEngineClass = str_replace('Adapter', 'Search',
-            substr(strrchr($resource['resource_class'], '\\'), 1));
+        $searchEngineClass = substr(strrchr(get_parent_class($this->searchEngine), '\\'), 1);
 
         /**
          * Finalize Results
@@ -49,6 +48,8 @@ class ResultsShortcode
 
         /** Render the Search Engine Tabs */
         include \dirname(__DIR__, 2).$facadesDir.'search-tabs.php';
+
+        echo $searchEngineClass;
 
         /** Render the Search Engine Results */
         include \dirname(__DIR__,
