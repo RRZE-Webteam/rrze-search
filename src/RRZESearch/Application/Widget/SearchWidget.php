@@ -198,6 +198,11 @@ class SearchWidget extends WP_Widget
             $resources[$key]['link_label'] = $class::getLinkLabel();
         }
 
+        $staticLinks = trim(file_get_contents(\dirname(__DIR__,
+                2).DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'widget-static-links.json'));
+        $staticLinks = strlen($staticLinks) ? json_decode($staticLinks) : [];
+        $staticLinks = is_array($staticLinks) ? $staticLinks : [];
+
         include \dirname(__DIR__,
                 2).DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'widget.php';
         echo $args['after_widget'];

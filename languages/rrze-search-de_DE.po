@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-10-03 17:33+0200\n"
-"PO-Revision-Date: 2018-10-03 17:35+0200\n"
+"POT-Creation-Date: 2018-10-03 20:46+0200\n"
+"PO-Revision-Date: 2018-10-03 20:47+0200\n"
 "Last-Translator: Joschi Kuphal <joschi@tollwerk.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -23,15 +23,15 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-5: package-lock.json\n"
 "X-Poedit-SearchPathExcluded-6: package.json\n"
 
-#: src/RRZESearch/Application/Widget/SearchWidget.php:87
+#: src/RRZESearch/Application/Widget/SearchWidget.php:88
 msgid "RRZE Search Sidebar"
 msgstr "RRZE Such-Randspalte"
 
-#: src/RRZESearch/Application/Widget/SearchWidget.php:89
+#: src/RRZESearch/Application/Widget/SearchWidget.php:90
 msgid "Used to display the widget"
 msgstr "Wird verwendet, um das Widget anzuzeigen"
 
-#: src/RRZESearch/Application/Widget/SearchWidget.php:168
+#: src/RRZESearch/Application/Widget/SearchWidget.php:169
 msgid "Default Search Engine"
 msgstr "Standardsuchmaschine"
 
@@ -92,51 +92,61 @@ msgstr ""
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: src/RRZESearch/Ports/Facades/Results/GoogleSearch-shortcode.php:1
-#: src/RRZESearch/Ports/Facades/Results/WordPressSearch-shortcode.php:1
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:1
+#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:1
 #, php-format
 msgid "About %1$s results"
 msgstr "Ungefähr %1$s Ergebnisse"
 
-#: src/RRZESearch/Ports/Facades/Results/GoogleSearch-shortcode.php:23
-#: src/RRZESearch/Ports/Facades/Results/WordPressSearch-shortcode.php:20
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:23
+#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:20
 msgid "Previous Page"
 msgstr "Vorherige Seite"
 
-#: src/RRZESearch/Ports/Facades/Results/GoogleSearch-shortcode.php:29
-#: src/RRZESearch/Ports/Facades/Results/WordPressSearch-shortcode.php:26
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:29
+#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:26
 msgid "Next Page"
 msgstr "Nächste Seite"
 
-#: src/RRZESearch/Ports/Facades/admin-engine-configuration.php:17
-#: src/RRZESearch/Ports/Facades/admin-engine-template.php:13
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:17
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:13
 msgid "Type"
 msgstr "Typ"
 
-#: src/RRZESearch/Ports/Facades/admin-engine-configuration.php:36
-#: src/RRZESearch/Ports/Facades/admin-engine-template.php:27
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:36
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:27
 msgid "API Key"
 msgstr "API-Schlüssel"
 
-#: src/RRZESearch/Ports/Facades/admin-engine-configuration.php:40
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:40
 msgid "No API Key"
 msgstr "Kein API-Schlüssel"
 
-#: src/RRZESearch/Ports/Facades/admin-engine-configuration.php:52
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:52
 msgid "Remove"
 msgstr "Löschen"
 
-#: src/RRZESearch/Ports/Facades/admin-engine-configuration.php:63
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:63
 msgid "Add Search Engine"
 msgstr "Suchmaschine hinzufügen"
 
-#: src/RRZESearch/Ports/Facades/admin-engine-template.php:30
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:30
 msgid "Leave blank if no API Key"
 msgstr "Leer lassen, wenn kein API-Schlüssel notwendig"
 
-#: src/RRZESearch/Ports/Facades/admin-engine-toggle.php:27
-msgid "Privacy Policy / Instruction Page ID"
-msgstr "Datenschutz- / Instruktionsseite (ID)"
+#: src/RRZESearch/Infrastructure/Templates/widget.php:79
+msgid "Available search engines"
+msgstr "Verfügbare Suchmaschinen"
+
+#: src/RRZESearch/Infrastructure/Templates/widget.php:81
+msgid "Please select one of the available search engines:"
+msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
+
+#~ msgid "Please select one of the available search engines"
+#~ msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
+
+#~ msgid "Privacy Policy / Instruction Page ID"
+#~ msgstr "Datenschutz- / Instruktionsseite (ID)"
 
 #~ msgid "Display Title"
 #~ msgstr "Titel anzeigen"

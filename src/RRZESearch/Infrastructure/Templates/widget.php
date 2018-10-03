@@ -75,9 +75,11 @@
             </header>
             <!--            <div id="search-panel" class="search-panel" style="background-color: #fff; width:800px; left:-450px; position: absolute" -hidden>-->
             <div id="search-panel" class="search-panel" hidden>
-                <div class="search-settings" role="radiogroup" aria-labelledby="search-engines">
-                    <p id="search-engines"><?php echo translate('Bitte wählen Sie einen verfügbaren Suchdienst:',
-                            'fau'); ?></p>
+                <div class="search-settings" role="radiogroup"
+                     aria-labelledby="<?php echo __('Available search engines',
+                         'rrze-search'); ?>">
+                    <p id="search-engines"><?php echo __('Please select one of the available search engines:',
+                            'rrze-search'); ?></p>
                     <?php
                     $nextTabIndex = 0;
                     foreach ($resources as $key => $resource):
@@ -92,9 +94,11 @@
                                 '';
                             ?>
                             <label>
-                                <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?>
-                                       class="search-engine"
-                                       value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
+                                <span>
+                                    <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?>
+                                           class="search-engine"
+                                           value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
+                                </span>
                                 <span>
                                     <?php if (strlen($searchEngineDisclaimer)) {
                                         echo sprintf($resource['resource_name'], $searchEngineDisclaimer);

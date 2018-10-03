@@ -24,7 +24,7 @@
             </td>
             <td>
                 <label class="resource_table_label">
-                    <span><?php echo __('Privacy Policy / Instruction Page ID', 'rrze-search'); ?></span>
+                    <span><?php _e('Privacy Policy / Instruction Page ID', 'rrze-search'); ?></span>
                     <input type="number" id="<?= $name; ?>"
                            name="<?= $optionName ?>[<?= $name; ?>][<?= $nextEngineIndex; ?>][resource_disclaimer]"
                            value="<?= $resourceEngine['resource_disclaimer']; ?>">
