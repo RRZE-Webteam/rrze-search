@@ -1,4 +1,5 @@
 <?php
+
 /*
 Plugin Name: RRZE Search
 Plugin URI: https://www.tollwerk.de
@@ -11,13 +12,10 @@ Text Domain: rrze-search
 Domain Path: /languages
 */
 
-/**
- * @package RRZESearch
- */
+// Prevent abuse
 defined('ABSPATH') || exit;
-/**
- * Composer's Autoload
- */
+
+// Include composer autoloader
 if (file_exists(dirname(__FILE__).'/vendor/autoload.php')) {
     require_once(dirname(__FILE__).'/vendor/autoload.php');
 }
@@ -27,10 +25,10 @@ if (file_exists(dirname(__FILE__).'/vendor/autoload.php')) {
  */
 function activate_rrze_search_plugin()
 {
-    RRZE\RRZESearch\Init::activate();
+    RRZE\RRZESearch\Ports\Multisearch::activate();
 }
 
-/** WP Activation Hook */
+// WP Activation Hook
 register_activation_hook(__FILE__, 'activate_rrze_search_plugin');
 
 /**
@@ -38,16 +36,14 @@ register_activation_hook(__FILE__, 'activate_rrze_search_plugin');
  */
 function deactivate_rrze_search_plugin()
 {
-    RRZE\RRZESearch\Init::deactivate();
+    RRZE\RRZESearch\Ports\Multisearch::deactivate();
 }
 
-/** WP Deactivation Hook */
+// WP Deactivation Hook
 register_deactivation_hook(__FILE__, 'deactivate_rrze_search_plugin');
 
-/**
- * Bootstrap the Plugin
- */
-if (class_exists(\RRZE\RRZESearch\Init::class)) {
-    RRZE\RRZESearch\Init::bootstrap();
+// Bootstrap the Plugin
+if (class_exists(\RRZE\RRZESearch\Ports\Multisearch::class)) {
+    RRZE\RRZESearch\Ports\Multisearch::bootstrap();
 }
 

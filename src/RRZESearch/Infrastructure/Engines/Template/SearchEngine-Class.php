@@ -31,7 +31,7 @@
 
 /** Use the following NAMESPACE */
 
-namespace RRZE\RRZESearch\Ports\Engines\Foundations;
+namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
 
 /** Implement the Contract Interface */
 

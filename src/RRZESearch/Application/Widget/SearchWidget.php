@@ -199,7 +199,7 @@ class SearchWidget extends WP_Widget
         }
 
         include \dirname(__DIR__,
-                2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'widget.php';
+                2).DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'widget.php';
         echo $args['after_widget'];
     }
 

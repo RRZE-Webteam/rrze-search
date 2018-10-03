@@ -5,7 +5,7 @@
  *
  * @category   Artefakt
  * @package    Artefakt\Core
- * @subpackage RRZE\RRZESearch\Ports\Engines\Foundations
+ * @subpackage RRZE\RRZESearch\Infrastructure\Engines\Foundations
  * @author     Joschi Kuphal <joschi@tollwerk.de> / @jkphl
  * @copyright  Copyright © 2018 Joschi Kuphal <joschi@tollwerk.de> / @jkphl
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
@@ -34,7 +34,7 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace RRZE\RRZESearch\Ports\Engines\Foundations;
+namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
 
 use RRZE\RRZESearch\Domain\Contract\Engine;
 

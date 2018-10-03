@@ -1,9 +1,9 @@
 <?php
 
-namespace RRZE\RRZESearch\Ports\Engines\Adapters;
+namespace RRZE\RRZESearch\Infrastructure\Engines\Adapters;
 
 
-use RRZE\RRZESearch\Ports\Engines\Foundations\SearchEngineClass;
+use RRZE\RRZESearch\Infrastructure\Engines\Foundations\SearchEngineClass;
 
 //class SearchEngineAdapter extends SearchEngineClass
 //{

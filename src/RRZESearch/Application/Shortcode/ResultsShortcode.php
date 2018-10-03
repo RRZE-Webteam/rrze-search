@@ -40,13 +40,13 @@ class ResultsShortcode
      */
     public function shortcodeInit()
     {
-        $engines    = $this->options['rrze_search_engines'];
-        $resources  = $this->options['rrze_search_resources'];
-        $query      = $_GET['q'];
-        $startPage  = $_GET['start'] ?? '1';
-        $resource   = $this->options['rrze_search_resources'][$_GET['se']];
-        $pageLink   = get_permalink($this->options['rrze_search_page_id']);
-        $facadesDir = DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR;
+        $engines      = $this->options['rrze_search_engines'];
+        $resources    = $this->options['rrze_search_resources'];
+        $query        = $_GET['q'];
+        $startPage    = $_GET['start'] ?? '1';
+        $resource     = $this->options['rrze_search_resources'][$_GET['se']];
+        $pageLink     = get_permalink($this->options['rrze_search_page_id']);
+        $templatesDir = DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR;
 
         // Define the Search Engine Resource & class name
         $this->searchEngine = new $resource['resource_class'];
@@ -58,9 +58,9 @@ class ResultsShortcode
         $results      = is_array($queryResults) ? $queryResults : json_decode($queryResults, true);
 
         // Render the Search Engine Tabs
-        include \dirname(__DIR__, 2).$facadesDir.'search-tabs.php';
+        include \dirname(__DIR__, 2).$templatesDir.'search-tabs.php';
 
         // Render the Search Engine Results
-        include \dirname(__DIR__, 2).$facadesDir.'Results'.DIRECTORY_SEPARATOR.$searchEngineClass.'-shortcode.php';
+        include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.$searchEngineClass.'-shortcode.php';
     }
 }

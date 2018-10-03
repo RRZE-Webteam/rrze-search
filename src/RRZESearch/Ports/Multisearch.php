@@ -1,14 +1,19 @@
 <?php
 
-namespace RRZE\RRZESearch;
+namespace RRZE\RRZESearch\Ports;
+
+use RRZE\RRZESearch\Application\Controller\ShortcodeController;
+use RRZE\RRZESearch\Application\Controller\WidgetController;
+use RRZE\RRZESearch\Infrastructure\Dashboard;
+use RRZE\RRZESearch\Infrastructure\ScriptEnqueuer;
+use RRZE\RRZESearch\Infrastructure\SettingsLink;
 
 /**
- * Class Init
- * Bootstrap the Plugin
+ * Multisearch facade
  *
  * @package RRZE\RRZESearch
  */
-final class Init
+class Multisearch
 {
     /**
      * Return Services Array for Bootstrap
@@ -18,11 +23,11 @@ final class Init
     public static function getServices(): array
     {
         return [
-            Infrastructure\Dashboard::class,
-            Infrastructure\ScriptEnqueuer::class,
-            Infrastructure\SettingsLink::class,
-            Application\Controller\WidgetController::class,
-            Application\Controller\ShortcodeController::class,
+            Dashboard::class,
+            ScriptEnqueuer::class,
+            SettingsLink::class,
+            WidgetController::class,
+            ShortcodeController::class,
         ];
     }
 
@@ -84,10 +89,10 @@ final class Init
     private static function updateResultsPageStatus($status): void
     {
         $options = get_option('rrze_search_settings');
-        $page_id = $options['rrze_search_page_id'];
+        $pageId  = $options['rrze_search_page_id'];
 
-        if ($page_id !== '') {
-            $page                = get_post($page_id, 'ARRAY_A');
+        if ($pageId !== '') {
+            $page                = get_post($pageId, 'ARRAY_A');
             $page['post_status'] = $status;
         }
 

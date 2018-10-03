@@ -21,11 +21,11 @@ class OptionsCallbacks extends AppController
     protected $engines = [];
 
     /**
-     * Facades directory
+     * Templates directory
      *
      * @var string
      */
-    protected $facadesDir;
+    protected $templatesDir;
 
     /**
      * Constructor
@@ -36,11 +36,11 @@ class OptionsCallbacks extends AppController
 
         // Define search engines
         $adapterDirectory = \dirname(__DIR__,
-                2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Engines'.DIRECTORY_SEPARATOR.'Adapters';
+                2).DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Engines'.DIRECTORY_SEPARATOR.'Adapters';
         foreach (scandir($adapterDirectory, SCANDIR_SORT_NONE) as $adapterFile) {
             if ($adapterFile !== '.' && $adapterFile !== '..') {
                 $engineName                      = pathinfo($adapterFile, PATHINFO_FILENAME);
-                $engineClassName                 = 'RRZE\\RRZESearch\\Ports\\Engines\\Adapters\\'.$engineName;
+                $engineClassName                 = 'RRZE\\RRZESearch\\Infrastructure\\Engines\\Adapters\\'.$engineName;
                 $this->engines[$engineClassName] = [
                     'name'       => \call_user_func([$engineClassName, 'getName']),
                     'label'      => \call_user_func([$engineClassName, 'getLabel']),
@@ -49,8 +49,8 @@ class OptionsCallbacks extends AppController
             }
         }
 
-        // Shortcut to Facades
-        $this->facadesDir = $this->pluginPath.implode(DIRECTORY_SEPARATOR, ['RRZESearch', 'Ports', 'Facades']);
+        // Shortcut to template directory
+        $this->templatesDir = $this->pluginPath.implode(DIRECTORY_SEPARATOR, ['RRZESearch', 'Infrastructure', 'Templates']);
     }
 
     /**
@@ -105,7 +105,7 @@ class OptionsCallbacks extends AppController
     /**
      * Render the engines table (admin functionality)
      *
-     * Facade: admin-engine-toggle.php
+     * Template: admin-engine-toggle.php
      *
      * @param array $args
      */
@@ -144,13 +144,13 @@ class OptionsCallbacks extends AppController
 
         // Engine table
         $engines = array_values($engines);
-        require $this->facadesDir.DIRECTORY_SEPARATOR.'admin-engine-toggle.php';
+        require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-toggle.php';
     }
 
     /**
      * Render the resources table (superadmin functionality)
      *
-     * Facade: admin-engine-configuration.php
+     * Template: admin-engine-configuration.php
      *
      * @param array $args Arguments
      */
@@ -164,16 +164,16 @@ class OptionsCallbacks extends AppController
         $resources = $optionValue[$name];
 
         // Resource table
-        require $this->facadesDir.DIRECTORY_SEPARATOR.'admin-engine-configuration.php';
+        require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-configuration.php';
 
         // Resource template
-        require $this->facadesDir.DIRECTORY_SEPARATOR.'admin-engine-template.php';
+        require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-template.php';
     }
 
     /**
      * Renders disabled input field with search results page name
      *
-     * Facade: admin-results-page-input.php
+     * Template: admin-results-page-input.php
      *
      * @param array $args Arguments
      */
@@ -202,7 +202,7 @@ class OptionsCallbacks extends AppController
             }
 
             if (get_post($optionValue[$name])) {
-                require $this->facadesDir.DIRECTORY_SEPARATOR.'admin-results-page-input.php';
+                require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-results-page-input.php';
             } else {
                 echo __('Oh no! Someone deleted the results Page! No worries, Another one will be generated when you click [ Save Changes ]',
                     'rrze-search');

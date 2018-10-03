@@ -33,7 +33,7 @@ class OptionsPanels extends AppController
      */
     public function adminDashboard()
     {
-        return require($this->pluginPath.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'admin-dashboard.php');
+        return require($this->pluginPath.'RRZESearch'.DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'admin-dashboard.php');
     }
 
     /**
@@ -43,6 +43,6 @@ class OptionsPanels extends AppController
      */
     public function superAdminDashboard()
     {
-        return require($this->pluginPath.'RRZESearch'.DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR.'admin-dashboard-super.php');
+        return require($this->pluginPath.'RRZESearch'.DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'admin-dashboard-super.php');
     }
 }

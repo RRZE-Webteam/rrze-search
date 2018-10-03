@@ -1,8 +1,8 @@
 <?php
 
-namespace RRZE\RRZESearch\Ports\Engines\Adapters;
+namespace RRZE\RRZESearch\Infrastructure\Engines\Adapters;
 
-use RRZE\RRZESearch\Ports\Engines\Foundations\WordPressSearch;
+use RRZE\RRZESearch\Infrastructure\Engines\Foundations\WordPressSearch;
 
 /**
  * WordPress Native Search

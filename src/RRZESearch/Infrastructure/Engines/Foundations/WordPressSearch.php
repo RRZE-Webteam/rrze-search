@@ -30,7 +30,7 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace RRZE\RRZESearch\Ports\Engines\Foundations;
+namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
 
 use WP_Query;
 

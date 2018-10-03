@@ -29,13 +29,13 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace RRZE\RRZESearch\Ports\Engines\Foundations;
+namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
 
 
 /**
  * Class GoogleSearch
  *
- * @package RRZE\RRZESearch\Ports\Engines
+ * @package RRZE\RRZESearch\Infrastructure\Engines
  */
 /**
  * Google Custom Search Engine
