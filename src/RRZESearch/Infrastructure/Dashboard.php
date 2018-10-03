@@ -7,22 +7,59 @@ use RRZE\RRZESearch\Infrastructure\Persistence\OptionsCallbacks;
 use RRZE\RRZESearch\Infrastructure\Persistence\OptionsPanels;
 use RRZE\RRZESearch\Infrastructure\Persistence\SettingsApi;
 
+/**
+ * Dashboard
+ *
+ * @package    RRZE\RRZESearch
+ * @subpackage RRZE\RRZESearch\Infrastructure
+ */
 class Dashboard extends AppController
 {
-    public $settings;
-    public $callbacks;
-    public $callbacks_options;
-    public $pages = array();
-    public $subpages = array();
+    /**
+     * Settings API
+     *
+     * @var SettingsApi
+     */
+    protected $settings;
+    /**
+     * Callbacks
+     *
+     * @var OptionsPanels
+     */
+    protected $callbacks;
+    /**
+     * Callbacks options
+     *
+     * @var OptionsCallbacks
+     */
+    protected $callbacksOptions;
+    /**
+     * Pages
+     *
+     * @var array
+     */
+    protected $pages = [];
+    /**
+     * Subpages
+     *
+     * @var array
+     */
+    protected $subpages = [];
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct();
-        $this->settings          = new SettingsApi();
-        $this->callbacks         = new OptionsPanels();
-        $this->callbacks_options = new OptionsCallbacks();
+        $this->settings         = new SettingsApi();
+        $this->callbacks        = new OptionsPanels();
+        $this->callbacksOptions = new OptionsCallbacks();
     }
 
+    /**
+     * Registration
+     */
     public function register(): void
     {
         $this->pagesConfiguration();
@@ -40,47 +77,44 @@ class Dashboard extends AppController
     {
         $slug = 'rrze_search';
 
-        /**
-         * Option Admin Page aka Dashboard
-         */
-        $this->pages = array(
-            array(
+        // Option Admin Page aka Dashboard
+        $this->pages = [
+            [
                 'page_title' => __('Settings › Search', 'rrze-search'),
                 'menu_title' => 'RRZE Suche',
                 'capability' => 'manage_options',
                 'menu_slug'  => $slug,
-                'callback'   => array($this->callbacks, 'adminDashboard'),
+                'callback'   => [$this->callbacks, 'adminDashboard'],
                 'icon_url'   => 'dashicons-search'
-            )
-        );
+            ]
+        ];
 
-        /**
-         * Sub Page is used for the Super Admin Functionality
-         */
-        $this->subpages = array(
-            array(
+        // Sub Page is used for the Super Admin Functionality
+        $this->subpages = [
+            [
                 'parent_slug' => 'rrze_search',
                 'page_title'  => __('Settings › Search', 'rrze-search'),
                 'menu_title'  => __('Configuration', 'rrze-search'),
                 'capability'  => 'manage_options',
                 'menu_slug'   => $slug.'_su',
-                'callback'    => array($this->callbacks, 'superAdminDashboard')
-            )
-        );
+                'callback'    => [$this->callbacks, 'superAdminDashboard']
+            ]
+        ];
     }
 
+    /**
+     * Set the settings
+     */
     public function setSettings(): void
     {
-        /**
-         * In relation to register_setting() from the WP Settings API
-         */
-        $args = array(
-            array(
+        // In relation to register_setting() from the WP Settings API
+        $args = [
+            [
                 'option_group' => 'rrze_search_settings',
                 'option_name'  => 'rrze_search_settings',
-                'callback'     => array($this->callbacks_options, 'sanitize')
-            )
-        );
+                'callback'     => [$this->callbacksOptions, 'sanitize']
+            ]
+        ];
 
         $this->settings->setSettings($args);
     }
@@ -90,20 +124,20 @@ class Dashboard extends AppController
      */
     public function setSections(): void
     {
-        $args = array(
-            array(
+        $args = [
+            [
                 'id'       => 'rrze_search_admin_section',
                 'title'    => __('Settings › Search', 'rrze-search'),
-                'callback' => array($this->callbacks_options, 'printAdminSection'),
+                'callback' => [$this->callbacksOptions, 'printAdminSection'],
                 'page'     => 'rrze_search'
-            ),
-            array(
+            ],
+            [
                 'id'       => 'rrze_search_super_admin_section',
                 'title'    => __('Settings › Search', 'rrze-search'),
-                'callback' => array($this->callbacks_options, 'printSuperAdminSection'),
+                'callback' => [$this->callbacksOptions, 'printSuperAdminSection'],
                 'page'     => 'rrze_search_su'
-            )
-        );
+            ]
+        ];
         $this->settings->setSections($args);
     }
 
@@ -112,41 +146,41 @@ class Dashboard extends AppController
      */
     public function setFields(): void
     {
-        $args = array(
-            array(
+        $args = [
+            [
                 'id'       => 'rrze_search_resources',
                 'title'    => __('Search Engines', 'rrze-search'),
-                'callback' => array($this->callbacks_options, 'enginesConfigure'),
+                'callback' => [$this->callbacksOptions, 'enginesConfigure'],
                 'page'     => 'rrze_search_su',
                 'section'  => 'rrze_search_super_admin_section',
-                'args'     => array(
+                'args'     => [
                     'option_name' => 'rrze_search_settings',
                     'label_for'   => 'rrze_search_resources',
-                )
-            ),
-            array(
+                ]
+            ],
+            [
                 'id'       => 'rrze_search_engines',
                 'title'    => __('Search Engines', 'rrze-search'),
-                'callback' => array($this->callbacks_options, 'enginesToggle'),
+                'callback' => [$this->callbacksOptions, 'enginesToggle'],
                 'page'     => 'rrze_search',
                 'section'  => 'rrze_search_admin_section',
-                'args'     => array(
+                'args'     => [
                     'option_name' => 'rrze_search_settings',
                     'label_for'   => 'rrze_search_engines'
-                )
-            ),
-            array(
+                ]
+            ],
+            [
                 'id'       => 'rrze_search_page_id',
                 'title'    => __('Search Results Page', 'rrze-search'),
-                'callback' => array($this->callbacks_options, 'resultsPage'),
+                'callback' => [$this->callbacksOptions, 'resultsPage'],
                 'page'     => 'rrze_search_su',
                 'section'  => 'rrze_search_super_admin_section',
-                'args'     => array(
+                'args'     => [
                     'option_name' => 'rrze_search_settings',
                     'label_for'   => 'rrze_search_page_id', // matches ID
-                )
-            )
-        );
+                ]
+            ]
+        ];
         $this->settings->setFields($args);
     }
 }

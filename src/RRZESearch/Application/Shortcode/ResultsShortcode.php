@@ -2,23 +2,42 @@
 
 namespace RRZE\RRZESearch\Application\Shortcode;
 
-
+/**
+ * Search Results Shortcode
+ *
+ * @package    RRZE\RRZESearch
+ * @subpackage RRZE\RRZESearch\Application
+ */
 class ResultsShortcode
 {
+    /**
+     * Results options
+     *
+     * @var array
+     */
     public $options;
 
     public $searchEngine;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->options = get_option('rrze_search_settings');
     }
 
+    /**
+     * Register an associated shortcode
+     */
     public function register()
     {
         add_shortcode('rrze_search_results', array($this, 'shortcodeInit'));
     }
 
+    /**
+     * Shortcode initialization
+     */
     public function shortcodeInit()
     {
         $engines    = $this->options['rrze_search_engines'];
@@ -29,30 +48,19 @@ class ResultsShortcode
         $pageLink   = get_permalink($this->options['rrze_search_page_id']);
         $facadesDir = DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Facades'.DIRECTORY_SEPARATOR;
 
-        /** Define the Search Engine Resource */
+        // Define the Search Engine Resource & class name
         $this->searchEngine = new $resource['resource_class'];
-
-        /** Define Search Engine Class Name */
-        $searchEngineClass = substr(strrchr(get_parent_class($this->searchEngine), '\\'), 1);
-
-        /**
-         * Finalize Results
-         */
-        $query_results = $this->searchEngine->Query($query, $resource['resource_key'], $startPage);
-
-        if (gettype($query_results) === 'array') {
-            $results = $query_results;
-        } else {
-            $results = json_decode($query_results, true);
-        }
-
-        /** Render the Search Engine Tabs */
-        include \dirname(__DIR__, 2).$facadesDir.'search-tabs.php';
-
+        $searchEngineClass  = substr(strrchr(get_parent_class($this->searchEngine), '\\'), 1);
         echo $searchEngineClass;
 
-        /** Render the Search Engine Results */
-        include \dirname(__DIR__,
-                2).$facadesDir.'Results'.DIRECTORY_SEPARATOR.$searchEngineClass.'-shortcode.php';
+        // Finalize Results
+        $queryResults = $this->searchEngine->query($query, $resource['resource_key'], $startPage);
+        $results      = is_array($queryResults) ? $queryResults : json_decode($queryResults, true);
+
+        // Render the Search Engine Tabs
+        include \dirname(__DIR__, 2).$facadesDir.'search-tabs.php';
+
+        // Render the Search Engine Results
+        include \dirname(__DIR__, 2).$facadesDir.'Results'.DIRECTORY_SEPARATOR.$searchEngineClass.'-shortcode.php';
     }
 }

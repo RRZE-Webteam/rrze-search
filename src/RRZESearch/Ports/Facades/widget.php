@@ -11,8 +11,6 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-use RRZE\RRZESearch\Infrastructure\Helper\Helper;
-
 /***********************************************************************************
  *  The MIT License (MIT)
  *
@@ -62,11 +60,11 @@ use RRZE\RRZESearch\Infrastructure\Helper\Helper;
                        placeholder="<?php _e('Suchen nach...', 'fau'); ?>" autocomplete="off" tabindex="0">
                 <?php
                 if (get_theme_mod('search_allowfilter')) {
-                    $autosearch_types = get_theme_mod('search_post_types_checked');
-                    $listtypes        = fau_get_searchable_fields();
+                    $autosearchTypes = get_theme_mod('search_post_types_checked');
+                    $listtypes       = fau_get_searchable_fields();
                     if (is_array($listtypes)) {
                         foreach ($listtypes as $type) {
-                            if (in_array($type, $autosearch_types)) {
+                            if (in_array($type, $autosearchTypes)) {
                                 echo '<input type="hidden" name="post_type[]" value="'.$type.'">'."\n";
                             }
                         }
@@ -85,12 +83,13 @@ use RRZE\RRZESearch\Infrastructure\Helper\Helper;
                     foreach ($resources as $key => $resource):
                         if ($resource['enabled']) {
                             ++$nextTabIndex;
-                            $link_label             = $resource['link_label'];
+                            $linkLabel              = trim($resource['link_label']);
                             $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
                             $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
                             $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
-                            $searchEngineDisclaimer = strlen($resource['resource_disclaimer']) ? '(<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">'.$link_label.'</a>) ' : null;
-
+                            $searchEngineDisclaimer = strlen($resource['resource_disclaimer']) ?
+                                ' (<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">'.$linkLabel.'</a>) ' :
+                                '';
                             ?>
                             <label>
                                 <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?>

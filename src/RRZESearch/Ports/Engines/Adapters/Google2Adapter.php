@@ -8,7 +8,7 @@ use RRZE\RRZESearch\Ports\Engines\Classes\GoogleSearch;
 class Google2Adapter extends GoogleSearch
 {
     const NAME = 'Google Custom Search 2';
-    const LABEL = 'Google Web Search';
+    const LABEL = 'Google Web Search%s';
     const LINK_LABEL = 'Google\'s Privacy Policy';
 
     public static function getName(): string

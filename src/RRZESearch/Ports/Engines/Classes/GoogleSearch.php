@@ -52,7 +52,7 @@ class GoogleSearch implements Engine
      *
      * @return mixed
      */
-    public function Query(string $query, string $key, int $startPage)
+    public function query(string $query, string $key, int $startPage)
     {
         $params = array();
 

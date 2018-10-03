@@ -2,17 +2,24 @@
 
 namespace RRZE\RRZESearch\Domain\Contract;
 
+/**
+ * Search Engine Interface
+ *
+ * @package    RRZE\RRZESearch
+ * @subpackage RRZE\RRZESearch\Domain
+ */
 interface Engine
 {
     /**
-     * Query - Make your request and return it's results
+     * Query — Make your request and return its results
      *
-     * @param string $query
-     * @param string $key
-     * @param int $startPage
+     * @param string $query  Query string
+     * @param string $key    API key
+     * @param int $startPage Start page
      *
+     * @return mixed Search results
      */
-    public function Query(string $query, string $key, int $startPage);
+    public function query(string $query, string $key, int $startPage);
 
     /**
      * Return the name of this engine

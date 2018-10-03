@@ -5,70 +5,130 @@ namespace RRZE\RRZESearch\Infrastructure\Persistence;
 use RRZE\RRZESearch\Infrastructure\Database\DatabaseApi;
 
 /**
- * Class SettingsApi
- * @package RRZE\RRZESearch\Domain
+ * Settings API
+ *
+ * @package    RRZE\RRZESearch
+ * @subpackage RRZE\RRZESearch\Infrastructure
  */
 class SettingsApi
 {
-    public $admin_pages = array();
-    public $admin_subpages = array();
-    public $settings = array();
-    public $sections = array();
-    public $fields = array();
+    /**
+     * Admin pages
+     *
+     * @var array
+     */
+    protected $adminPages = [];
+    /**
+     * Admin subpages
+     *
+     * @var array
+     */
+    protected $adminSubpages = [];
+    /**
+     * Settings
+     *
+     * @var array
+     */
+    protected $settings = [];
+    /**
+     * Sections
+     *
+     * @var array
+     */
+    protected $sections = [];
+    /**
+     * Fields
+     *
+     * @var array
+     */
+    protected $fields = [];
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->db = new DatabaseApi();
     }
 
+    /**
+     * Register the admin menu and settings
+     */
     public function register()
     {
-        if ( ! empty($this->admin_pages) || ! empty($this->admin_subpages) ) {
-            add_action( 'admin_menu', array( $this, 'addAdminMenu' ) );
+        if (!empty($this->adminPages) || !empty($this->adminSubpages)) {
+            add_action('admin_menu', array($this, 'addAdminMenu'));
         }
-        if ( !empty($this->settings) ) {
-            add_action( 'admin_init', array( $this, 'registerCustomFields' ) );
+        if (!empty($this->settings)) {
+            add_action('admin_init', array($this, 'registerCustomFields'));
             add_action('wp_ajax_resourceRemoval', array($this, 'resourceRemoval'));
         }
     }
 
+    /**
+     * Add the admin pages
+     *
+     * @param array $pages
+     *
+     * @return $this
+     */
     public function addPages(array $pages)
     {
-        $this->admin_pages = $pages;
+        $this->adminPages = $pages;
 
         return $this;
     }
 
-    public function withSubPage( string $title = null )
+    /**
+     * ??
+     *
+     * @param string|null $title
+     *
+     * @return SettingsApi Self reference
+     */
+    public function withSubPage(string $title = null)
     {
-        if ( empty($this->admin_pages) ) {
+        if (empty($this->adminPages)) {
             return $this;
         }
-        $admin_page = $this->admin_pages[0];
-        $subpage = array(
-            array(
-                'parent_slug' => $admin_page['menu_slug'],
-                'page_title' => $admin_page['page_title'],
-                'menu_title' => ($title) ? $title : $admin_page['menu_title'],
-                'capability' => $admin_page['capability'],
-                'menu_slug' => $admin_page['menu_slug'],
-                'callback' => $admin_page['callback']
-            )
-        );
-        $this->admin_subpages = $subpage;
+        $adminPage           = $this->adminPages[0];
+        $subpage             = [
+            [
+                'parent_slug' => $adminPage['menu_slug'],
+                'page_title'  => $adminPage['page_title'],
+                'menu_title'  => ($title) ? $title : $adminPage['menu_title'],
+                'capability'  => $adminPage['capability'],
+                'menu_slug'   => $adminPage['menu_slug'],
+                'callback'    => $adminPage['callback']
+            ]
+        ];
+        $this->adminSubpages = $subpage;
+
         return $this;
     }
 
-    public function addSubPages( array $pages )
+    /**
+     * Add the supages
+     *
+     * @param array $pages Subpages
+     *
+     * @return SettingsApi Self reference
+     */
+    public function addSubPages(array $pages)
     {
-        $this->admin_subpages = array_merge( $this->admin_subpages, $pages );
+        $this->adminSubpages = array_merge($this->adminSubpages, $pages);
+
         return $this;
     }
 
+    /**
+     * Add pages to the admin menu
+     */
     public function addAdminMenu()
     {
-        foreach ( $this->admin_pages as $page ) {
-            add_menu_page( $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], $page['callback'], $page['icon_url'], $page['position'] );
+        foreach ($this->adminPages as $page) {
+            add_menu_page($page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'],
+                $page['callback'], $page['icon_url'], $page['position']);
         }
 
         global $current_user;
@@ -76,13 +136,20 @@ class SettingsApi
         array_shift($user_roles);
 
         if (is_super_admin($current_user->ID)) {
-            foreach ( $this->admin_subpages as $page ) {
-                add_submenu_page( $page['parent_slug'], $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], $page['callback'] );
+            foreach ($this->adminSubpages as $page) {
+                add_submenu_page($page['parent_slug'], $page['page_title'], $page['menu_title'], $page['capability'],
+                    $page['menu_slug'], $page['callback']);
             }
         }
     }
 
-
+    /**
+     * Set the settings
+     *
+     * @param array $settings Settings
+     *
+     * @return SettingsApi Self reference
+     */
     public function setSettings(array $settings)
     {
         $this->settings = $settings;
@@ -90,6 +157,13 @@ class SettingsApi
         return $this;
     }
 
+    /**
+     * Set the sections
+     *
+     * @param array $sections Sections
+     *
+     * @return SettingsApi Self reference
+     */
     public function setSections(array $sections)
     {
         $this->sections = $sections;
@@ -97,6 +171,13 @@ class SettingsApi
         return $this;
     }
 
+    /**
+     * Set the fields
+     *
+     * @param array $fields
+     *
+     * @return SettingsApi Self reference
+     */
     public function setFields(array $fields)
     {
         $this->fields = $fields;
@@ -104,21 +185,22 @@ class SettingsApi
         return $this;
     }
 
+    /**
+     * Register custom fields
+     */
     public function registerCustomFields()
     {
-        /**
-         * Register Setting
-         */
+        // Register Setting
         foreach ($this->settings as $setting) {
             register_setting($setting["option_group"], $setting["option_name"],
                 (isset($setting["callback"]) ? $setting["callback"] : ''));
         }
-        // add settings section
+        // Add settings section
         foreach ($this->sections as $section) {
             add_settings_section($section["id"], $section["title"],
                 (isset($section["callback"]) ? $section["callback"] : ''), $section["page"]);
         }
-        // add settings field
+        // Add settings field
         foreach ($this->fields as $field) {
             add_settings_field($field["id"], $field["title"], (isset($field["callback"]) ? $field["callback"] : ''),
                 $field["page"], $field["section"], (isset($field["args"]) ? $field["args"] : ''));
@@ -126,41 +208,41 @@ class SettingsApi
     }
 
     /**
-     * Additional function.
+     * Remove a resource
      */
     public function resourceRemoval()
     {
-        $resources    = [];
-        $index        = $_POST['resource_id'];
-        $option_name  = 'rrze_search_settings';
-        $option       = get_option($option_name);
-        $option_value = $option['rrze_search_resources'];
-        unset($option_value[$index]);
+        $resources   = [];
+        $index       = $_POST['resource_id'];
+        $optionName  = 'rrze_search_settings';
+        $option      = get_option($optionName);
+        $optionValue = $option['rrze_search_resources'];
+        unset($optionValue[$index]);
 
         $nextItemIndex = 0;
-        foreach ($option_value as $item) {
-            if ($nextItemIndex !== $index){
+        foreach ($optionValue as $item) {
+            if ($nextItemIndex !== $index) {
                 $resources[] = $item;
             }
-            $nextItemIndex++;
+            ++$nextItemIndex;
         }
 
         $option['rrze_search_resources'] = $resources;
 
         flush_rewrite_rules();
-        $update = update_option($option_name, $option, false);
+        $update = update_option($optionName, $option, false);
         echo json_encode(['message' => $option]);
         echo json_encode($update);
         die();
     }
 
+    /**
+     * Return a list of posts
+     *
+     * @return array|null|object
+     */
     public function getPosts()
     {
         return $this->db->get_posts();
     }
-
-    /**
-     * mysql filter
-     * SELECT * FROM `wp_options` WHERE `option_name` LIKE 'rrze_search_settings'
-     */
 }

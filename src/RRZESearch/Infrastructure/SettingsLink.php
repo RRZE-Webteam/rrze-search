@@ -4,17 +4,33 @@ namespace RRZE\RRZESearch\Infrastructure;
 
 use RRZE\RRZESearch\Application\Controller\AppController;
 
+/**
+ * Settings Link
+ *
+ * @package    RRZE\RRZESearch
+ * @subpackage RRZE\RRZESearch\Infrastructure
+ */
 class SettingsLink extends AppController
 {
+    /**
+     * Registration
+     */
     public function register()
     {
-        add_filter( 'plugin_action_links_'.$this->plugin, array( $this, 'dashboard_link' ) );
+        add_filter('plugin_action_links_'.$this->plugin, array($this, 'dashboardLink'));
     }
 
-    public function dashboard_link($links)
+    /**
+     * Add the dashboard link
+     *
+     * @param array $links Existing links
+     *
+     * @return array Amended links
+     */
+    public function dashboardLink($links)
     {
-        $filter_link = '<a href="admin.php?page=rrze_search">'.__('Settings', 'rrze-search').'</a>';
-        $links[]     = $filter_link;
+        $links[] = '<a href="admin.php?page=rrze_search">'.__('Settings', 'rrze-search').'</a>';
+
         return $links;
     }
 }

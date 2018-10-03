@@ -2,68 +2,93 @@
 
 namespace RRZE\RRZESearch\Infrastructure\Helper;
 
-
+/**
+ * Universal Helper
+ *
+ * @package    RRZE\RRZESearch
+ * @subpackage RRZE\RRZESearch\Infrastructure
+ */
 class Helper
 {
     /**
-     * Check if a Resource is an Engine
+     * Check if a resource is an engine
      *
-     * @param $option_name
-     * @param $resource_id
+     * @param string $optionName Option name
+     * @param string $resourceId Resource ID
      *
-     * @return bool
+     * @return bool Is an engine
      */
-    public static function isResourceEngine($option_name, $resource_id): bool
+    public static function isResourceEngine($optionName, $resourceId): bool
     {
-        $bool         = false;
-        $option = get_option($option_name);
+        $option = get_option($optionName);
         foreach ($option['rrze_search_engines'] as $engine) {
-            if ($engine['resource_id'] === $resource_id) {
-                $bool = true;
+            if ($engine['resource_id'] === $resourceId) {
+                return true;
             }
         }
 
-        return $bool;
+        return false;
     }
 
     /**
-     * Check if an Engine is a Resource
+     * Check if an engine is a resource
      *
-     * @param $option_name
-     * @param $resource_id
+     * @param string $optionName Option name
+     * @param string $resourceId Resource ID
      *
      * @return bool
      */
-    public static function isEngineResource($option_name, $resource_id): bool
+    public static function isEngineResource($optionName, $resourceId): bool
     {
-        $bool         = false;
-        $option_value = get_option($option_name);
-        foreach ($option_value['rrze_search_resources'] as $resource) {
-            if ($resource['resource_id'] === $resource_id) {
-                $bool = true;
+        $optionValue = get_option($optionName);
+        foreach ($optionValue['rrze_search_resources'] as $resource) {
+            if ($resource['resource_id'] === $resourceId) {
+                return true;
             }
         }
 
-        return $bool;
+        return false;
     }
 
-    public static function getResourceById($option_name, $resource_id)
+    /**
+     * Return a resource by ID
+     *
+     * @param string $optionName Option name
+     * @param string $resourceId Resource ID
+     *
+     * @return mixed
+     * @throws \OutOfRangeException If the resource ID is unknown
+     */
+    public static function getResourceById($optionName, $resourceId)
     {
-        $option_value = get_option($option_name);
-        foreach ($option_value['rrze_search_resources'] as $resource) {
-            if ($resource['resource_id'] === $resource_id) {
+        $optionValue = get_option($optionName);
+        foreach ($optionValue['rrze_search_resources'] as $resource) {
+            if ($resource['resource_id'] === $resourceId) {
                 return $resource;
             }
         }
+
+        throw new \OutOfRangeException(sprintf('Unknown resource ID "%s"', $resourceId), 1538577491);
     }
 
-    public static function getEngineById($option_name, $resource_id)
+    /**
+     * Return an engine by ID
+     *
+     * @param string $optionName Option name
+     * @param string $resourceId Resource ID
+     *
+     * @return mixed
+     * @throws \OutOfRangeException If the engine ID is unknown
+     */
+    public static function getEngineById($optionName, $resourceId)
     {
-        $option_value = get_option($option_name);
-        foreach ($option_value['rrze_search_engines'] as $resource) {
-            if ($resource['resource_id'] === $resource_id) {
+        $optionValue = get_option($optionName);
+        foreach ($optionValue['rrze_search_engines'] as $resource) {
+            if ($resource['resource_id'] === $resourceId) {
                 return $resource;
             }
         }
+
+        throw new \OutOfRangeException(sprintf('Unknown engine ID "%s"', $resourceId), 1538577502);
     }
 }

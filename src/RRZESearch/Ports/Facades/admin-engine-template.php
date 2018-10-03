@@ -22,7 +22,6 @@
             </fieldset>
         </td>
         <td>
-
             <fieldset>
                 <label class="resource_table_label">
                     <span><?php echo __('API Key', 'rrze-search'); ?></span>
@@ -32,7 +31,6 @@
                 </label>
             </fieldset>
         </td>
-
         <td>&nbsp;</td>
     </tr>
 </template>

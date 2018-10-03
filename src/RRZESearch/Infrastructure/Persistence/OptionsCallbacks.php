@@ -5,19 +5,27 @@ namespace RRZE\RRZESearch\Infrastructure\Persistence;
 use RRZE\RRZESearch\Application\Controller\AppController;
 use RRZE\RRZESearch\Infrastructure\Helper\Helper;
 
+/**
+ * Options callback
+ *
+ * @package    RRZE\RRZESearch
+ * @subpackage RRZE\RRZESearch\Infrastructure
+ */
 class OptionsCallbacks extends AppController
 {
     /**
      * Registered search engines
      *
-     * @var array
+     * @var array[]
      */
     protected $engines = [];
 
     /**
+     * Facades directory
+     *
      * @var string
      */
-    private $facades_dir;
+    protected $facadesDir;
 
     /**
      * Constructor
@@ -26,11 +34,7 @@ class OptionsCallbacks extends AppController
     {
         parent::__construct();
 
-        /**
-         * Define Search Engines
-         *
-         * Usage: $this->engines
-         */
+        // Define search engines
         $adapterDirectory = \dirname(__DIR__,
                 2).DIRECTORY_SEPARATOR.'Ports'.DIRECTORY_SEPARATOR.'Engines'.DIRECTORY_SEPARATOR.'Adapters';
         foreach (scandir($adapterDirectory, SCANDIR_SORT_NONE) as $adapterFile) {
@@ -45,31 +49,29 @@ class OptionsCallbacks extends AppController
             }
         }
 
-        /**
-         * Shortcut to Facades
-         */
-        $this->facades_dir = $this->plugin_path.implode(DIRECTORY_SEPARATOR, ['RRZESearch', 'Ports', 'Facades']);
+        // Shortcut to Facades
+        $this->facadesDir = $this->pluginPath.implode(DIRECTORY_SEPARATOR, ['RRZESearch', 'Ports', 'Facades']);
     }
 
     /**
      * Sanitize Options Submitted
      *
-     * @param $input
+     * @param array $input Submitted options
      *
-     * @return array
+     * @return array Sanitized options
      */
     public function sanitize($input): array
     {
         $option = get_option('rrze_search_settings');
-        $output = array();
+        $output = [];
 
-        /** Configured Search Engines - Super Admin Level */
+        // Configured Search Engines - Super Admin Level
         $output['rrze_search_resources'] = ($input['rrze_search_resources']) ? $input['rrze_search_resources'] : $option['rrze_search_resources'];
         foreach ($output['rrze_search_resources'] as $key => $resource) {
             $output['rrze_search_resources'][$key]['resource_name'] = $this->engines[$resource['resource_class']]['label'];
         }
 
-        /** Installed Search Engines - Regular Admin Level */
+        // Installed Search Engines - Regular Admin Level
         $output['rrze_search_engines'] = ($input['rrze_search_engines']) ? $input['rrze_search_engines'] : $option['rrze_search_engines'];
         foreach ($output['rrze_search_resources'] as $key => $resource) {
             $output['rrze_search_engines'][$key]['resource_name'] = $this->engines[$resource['resource_class']]['label'];
@@ -84,47 +86,43 @@ class OptionsCallbacks extends AppController
         return $output;
     }
 
+    /**
+     * Print the admin section
+     */
     public function printAdminSection(): void
     {
         echo __('Enable Search Engines', 'rrze-search');
     }
 
+    /**
+     * Print the superadmin section
+     */
     public function printSuperAdminSection(): void
     {
         echo __('Configure Search Engines', 'rrze-search');
     }
 
     /**
-     * Render the engines table - Admin
+     * Render the engines table (admin functionality)
+     *
      * Facade: admin-engine-toggle.php
      *
      * @param array $args
      */
     public function enginesToggle(array $args): void
     {
-        $name         = $args['label_for'];
-        $option_name  = $args['option_name'];
-        $option_value = get_option($option_name);
+        $name        = $args['label_for'];
+        $optionName  = $args['option_name'];
+        $optionValue = get_option($optionName);
 
-        /**
-         * Define props used in template
-         */
-        $engines = $option_value[$name];
+        // Define and clean up props used in template
+        $engines = array_filter($optionValue[$name], function ($engine) {
+            return !empty($engine['resource_id']);
+        });
 
-        /** Clean up the array */
-        foreach ($engines as $key => $engine) {
-            if (!isset($engine['resource_id'])) {
-                unset($engines[$key]);
-            }
-        }
-
-//        echo '<pre>';
-//        print_r($option_value['rrze_search_resources']);
-//        echo '</pre>';
-
-        /** Add new Resources from Engine Collection */
-        foreach ($option_value['rrze_search_resources'] as $key => $resource) {
-            if (!Helper::isResourceEngine($option_name, $resource['resource_id'])) {
+        // Add new Resources from Engine Collection
+        foreach ($optionValue['rrze_search_resources'] as $key => $resource) {
+            if (!Helper::isResourceEngine($optionName, $resource['resource_id'])) {
                 $engines[$key] = [
                     'resource_id'         => $resource['resource_id'],
                     'resource_name'       => $resource['resource_name'],
@@ -135,64 +133,60 @@ class OptionsCallbacks extends AppController
             }
         }
 
-        /** Remove old Engines missing from Resources Collection */
+        // Remove old Engines missing from Resources Collection
         $nextResourceIndex = 0;
         foreach ($engines as $engine) {
-            if (!Helper::isEngineResource($option_name, $engine['resource_id'])) {
+            if (!Helper::isEngineResource($optionName, $engine['resource_id'])) {
                 array_splice($engines, $nextResourceIndex - 1, 1);
             }
-            $nextResourceIndex++;
+            ++$nextResourceIndex;
         }
 
-        /** Engine table */
+        // Engine table
         $engines = array_values($engines);
-        require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-engine-toggle.php';
+        require $this->facadesDir.DIRECTORY_SEPARATOR.'admin-engine-toggle.php';
     }
 
     /**
-     * Render the resources table - Super Admin
+     * Render the resources table (superadmin functionality)
+     *
      * Facade: admin-engine-configuration.php
      *
      * @param array $args Arguments
      */
     public function enginesConfigure(array $args): void
     {
-        $name         = $args['label_for'];
-        $option_name  = $args['option_name'];
-        $option_value = get_option($option_name);
+        $name        = $args['label_for'];
+        $optionName  = $args['option_name'];
+        $optionValue = get_option($optionName);
 
-        /**
-         * Define props used in template
-         */
-        $resources = $option_value[$name];
+        // Define props used in template
+        $resources = $optionValue[$name];
 
-        /** Resource table */
-        require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-engine-configuration.php';
+        // Resource table
+        require $this->facadesDir.DIRECTORY_SEPARATOR.'admin-engine-configuration.php';
 
-        /** Resource template */
-        require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-engine-template.php';
-
+        // Resource template
+        require $this->facadesDir.DIRECTORY_SEPARATOR.'admin-engine-template.php';
     }
 
     /**
-     * Renders disabled Input field with Search Results page name
+     * Renders disabled input field with search results page name
+     *
      * Facade: admin-results-page-input.php
      *
      * @param array $args Arguments
      */
     public function resultsPage($args): void
     {
-        $name          = $args['label_for'];
-        $option_name   = $args['option_name'];
-        $options_value = get_option($option_name);
+        $name        = $args['label_for'];
+        $optionName  = $args['option_name'];
+        $optionValue = get_option($optionName);
 
-        if (array_key_exists($name, $options_value)) {
-            /**
-             * Test the Permalink to ensure current user isn't overwriting post created by another user
-             */
-            if ($options_value[$name] === '' || !get_permalink($options_value[$name])) {
-
-                $rrze_search_page     = array(
+        if (array_key_exists($name, $optionValue)) {
+            // Test the Permalink to ensure current user isn't overwriting post created by another user
+            if ($optionValue[$name] === '' || !get_permalink($optionValue[$name])) {
+                $rrze_search_page    = [
                     'post_date'     => date('Y-m-d H:i:s'),
                     'post_date_gmt' => date('Y-m-d H:i:s'),
                     'post_content'  => '[rrze_search_results]',
@@ -201,15 +195,14 @@ class OptionsCallbacks extends AppController
                     'post_status'   => 'publish',
                     'post_type'     => 'page',
                     'post_excerpt'  => __('Search Result Page utilized by RRZE Search Plugin', 'rrze-search'),
-                );
-                $rrze_search_page_id  = wp_insert_post($rrze_search_page);
-                $options_value[$name] = $rrze_search_page_id;
-                update_option($option_name, $options_value, true);
+                ];
+                $rrze_search_page_id = wp_insert_post($rrze_search_page);
+                $optionValue[$name]  = $rrze_search_page_id;
+                update_option($optionName, $optionValue, true);
             }
 
-
-            if (get_post($options_value[$name])) {
-                require $this->facades_dir.DIRECTORY_SEPARATOR.'admin-results-page-input.php';
+            if (get_post($optionValue[$name])) {
+                require $this->facadesDir.DIRECTORY_SEPARATOR.'admin-results-page-input.php';
             } else {
                 echo __('Oh no! Someone deleted the results Page! No worries, Another one will be generated when you click [ Save Changes ]',
                     'rrze-search');

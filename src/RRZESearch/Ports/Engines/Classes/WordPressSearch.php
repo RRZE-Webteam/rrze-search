@@ -51,7 +51,7 @@ class WordPressSearch implements Engine
      *
      * @return mixed
      */
-    public function Query(string $query, string $key, int $startPage)
+    public function query(string $query, string $key, int $startPage)
     {
         $results = new WP_Query(array(
             'post_type'      => 'any',
