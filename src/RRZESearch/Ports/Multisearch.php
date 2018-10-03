@@ -36,13 +36,12 @@ class Multisearch
      */
     public static function bootstrap(): void
     {
-        /**
-         * Pre-load Language Pack to ensure translation before bootstrapping
-         */
+        // Pre-load Language Pack to ensure translation before bootstrapping
         $languagePath = sprintf('%s/languages/', dirname(plugin_basename(__FILE__), 3));
         load_plugin_textdomain('rrze-search', false, $languagePath);
 
-        foreach (self::getServices() as $class) {
+        // Run through all services
+        foreach (static::getServices() as $class) {
             $service = new $class;
             if (\is_callable([$service, 'register'])) {
                 $service->register();
@@ -57,10 +56,10 @@ class Multisearch
     {
         flush_rewrite_rules();
 
-        /** Validate Settings Option Exists */
+        // Validate Settings Option Exists
         if (!get_option('rrze_search_settings')) {
 
-            /** Enter Default Values */
+            // Enter Default Values
             update_option('rrze_search_settings', [
                 'rrze_search_resources' => [
                     ['resource_name' => 'Default', 'resource_key' => '']
