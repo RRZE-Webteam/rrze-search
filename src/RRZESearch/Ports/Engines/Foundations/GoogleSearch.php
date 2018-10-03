@@ -29,18 +29,27 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace RRZE\RRZESearch\Ports\Engines\Classes;
+namespace RRZE\RRZESearch\Ports\Engines\Foundations;
 
-
-use RRZE\RRZESearch\Domain\Contract\Engine;
 
 /**
  * Class GoogleSearch
  *
  * @package RRZE\RRZESearch\Ports\Engines
  */
-class GoogleSearch implements Engine
+/**
+ * Google Custom Search Engine
+ *
+ * @package    RRZE\RRZESearch
+ * @subpackage RRZE\RRZESearch\Ports
+ */
+class GoogleSearch extends AbstractSearchEngine
 {
+    /**
+     * Request URI
+     *
+     * @var string
+     */
     const URI = 'https://www.googleapis.com/customsearch/v1?cx=011945293402966620832:n0bvaqo6yl4&key={key}&q={query}';
 
     /**
@@ -54,12 +63,12 @@ class GoogleSearch implements Engine
      */
     public function query(string $query, string $key, int $startPage)
     {
-        $params = array();
+        $params = [];
 
         /**
          * Append the StartPage Index and rebuild the URI
          */
-        $uri        = self::URI.'&start='.$startPage;
+        $uri        = static::URI.'&start='.$startPage;
         $parsed_url = parse_url($uri);
         $_uri       = $parsed_url['scheme'].'://'.$parsed_url['host'].$parsed_url['path'].'?';
         $_params    = explode('&', $parsed_url['query']);
@@ -80,22 +89,16 @@ class GoogleSearch implements Engine
                     $params[$split[0]] = $split[1];
             }
         }
-        /**
-         * Rejoin the parameters to URI
-         */
+        // Rejoin the parameters to URI
         $_uri .= http_build_query($params);
 
-        /**
-         * Curl Headers
-         */
-        $headers = array(
+        // cURL headers
+        $headers = [
             'Content-length: 0',
             'Content-type: application/json'
-        );
+        ];
 
-        /**
-         * Curl Options Array
-         */
+        // cURL options
         $curlOptions = array(
             CURLOPT_HTTPHEADER     => $headers,
             CURLOPT_HEADER         => false,
@@ -109,33 +112,14 @@ class GoogleSearch implements Engine
             CURLOPT_FOLLOWLOCATION => 1
         );
 
-        /**
-         * Try to make query request
-         */
+        // Try to make query request
         $curl = curl_init();
         curl_setopt_array($curl, $curlOptions);
 
-        /**
-         * Finalize query request
-         */
+        // Finalize query request
         $results = curl_exec($curl);
         curl_close($curl);
 
         return $results;
-    }
-
-    public static function getName(): string
-    {
-        return self::NAME;
-    }
-
-    public static function getLabel(): string
-    {
-        return self::LABEL;
-    }
-
-    public static function getLinkLabel(): string
-    {
-        return self::LINK_LABEL;
     }
 }

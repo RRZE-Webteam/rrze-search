@@ -2,27 +2,32 @@
 
 namespace RRZE\RRZESearch\Ports\Engines\Adapters;
 
+use RRZE\RRZESearch\Ports\Engines\Foundations\GoogleSearch;
 
-use RRZE\RRZESearch\Ports\Engines\Classes\GoogleSearch;
-
+/**
+ * Google Custom Search (Variant 1)
+ *
+ * @package    RRZE\RRZESearch
+ * @subpackage RRZE\RRZESearch\Ports
+ */
 class Google1Adapter extends GoogleSearch
 {
+    /**
+     * Search engine name
+     *
+     * @var string
+     */
     const NAME = 'Google Custom Search 1';
+    /**
+     * Search engine label (with optional placeholder %s for link label)
+     *
+     * @var string
+     */
     const LABEL = 'Google FAU CS';
+    /**
+     * Privacy policy / instruction page link label
+     *
+     * @var string
+     */
     const LINK_LABEL = 'READ FAU\'s Instructions';
-
-    public static function getName(): string
-    {
-        return self::NAME;
-    }
-
-    public static function getLabel(): string
-    {
-        return self::LABEL;
-    }
-
-    public static function getLinkLabel(): string
-    {
-        return self::LINK_LABEL;
-    }
 }

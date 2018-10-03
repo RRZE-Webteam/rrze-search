@@ -3,7 +3,7 @@
 namespace RRZE\RRZESearch\Ports\Engines\Adapters;
 
 
-use RRZE\RRZESearch\Ports\Engines\Classes\SearchEngineClass;
+use RRZE\RRZESearch\Ports\Engines\Foundations\SearchEngineClass;
 
 //class SearchEngineAdapter extends SearchEngineClass
 //{

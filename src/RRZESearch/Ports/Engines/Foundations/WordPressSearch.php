@@ -1,4 +1,5 @@
 <?php
+
 /***********************************************************************************
  *
  * RRZE-Websteam
@@ -29,19 +30,26 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace RRZE\RRZESearch\Ports\Engines\Classes;
+namespace RRZE\RRZESearch\Ports\Engines\Foundations;
 
-use RRZE\RRZESearch\Domain\Contract\Engine;
 use WP_Query;
 
 /**
- * Class WordPressSearch
+ * WordPress Search Engine
  *
- * @package RRZE\RRZESearch\Ports\Engines
+ * @package    RRZE\RRZESearch
+ * @subpackage RRZE\RRZESearch\Ports
  */
-class WordPressSearch implements Engine
+class WordPressSearch extends AbstractSearchEngine
 {
+    /**
+     * Request URI
+     *
+     * @var string
+     * @todo For what?
+     */
     const URI = '/wp-json/wp/v2/posts';
+
     /**
      * Query - interface defined
      *
@@ -53,28 +61,13 @@ class WordPressSearch implements Engine
      */
     public function query(string $query, string $key, int $startPage)
     {
-        $results = new WP_Query(array(
+        $results = new WP_Query([
             'post_type'      => 'any',
             'post_status'    => 'publish',
             'posts_per_page' => -1,
             's'              => $query,
-        ));
+        ]);
 
         return json_encode($results->posts);
-    }
-
-    public static function getName(): string
-    {
-        return self::NAME;
-    }
-
-    public static function getLabel(): string
-    {
-        return self::LABEL;
-    }
-
-    public static function getLinkLabel(): string
-    {
-        return self::LINK_LABEL;
     }
 }
