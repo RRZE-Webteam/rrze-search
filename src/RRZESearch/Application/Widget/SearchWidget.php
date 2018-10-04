@@ -221,7 +221,7 @@ class SearchWidget extends WP_Widget
             ['q' => urlencode($_POST['s']), 'se' => $_POST['resource_id']],
             $results_page
         );
-        wp_redirect($results_page);
+        wp_redirect($redirect_link);
         exit;
     }
 }

@@ -51,7 +51,6 @@ class ResultsShortcode
         // Define the Search Engine Resource & class name
         $this->searchEngine = new $resource['resource_class'];
         $searchEngineClass  = substr(strrchr(get_parent_class($this->searchEngine), '\\'), 1);
-        echo $searchEngineClass;
 
         // Finalize Results
         $queryResults = $this->searchEngine->query($query, $resource['resource_key'], $startPage);
