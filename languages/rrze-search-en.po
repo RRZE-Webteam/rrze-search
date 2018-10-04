@@ -1,0 +1,169 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: RRZE Search\n"
+"POT-Creation-Date: 2018-10-04 11:31+0200\n"
+"PO-Revision-Date: 2018-10-04 11:31+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: fixture\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: vendor\n"
+"X-Poedit-SearchPathExcluded-3: composer.json\n"
+"X-Poedit-SearchPathExcluded-4: gulpfile.js\n"
+"X-Poedit-SearchPathExcluded-5: package-lock.json\n"
+"X-Poedit-SearchPathExcluded-6: package.json\n"
+
+#: src/RRZESearch/Application/Widget/SearchWidget.php:88
+msgid "widget.sidebar.name"
+msgstr "RRZE Search Sidebar"
+
+#: src/RRZESearch/Application/Widget/SearchWidget.php:90
+msgid "widget.sidebar.description"
+msgstr "Used to display the widget"
+
+#: src/RRZESearch/Application/Widget/SearchWidget.php:169
+msgid "widget.form.label"
+msgstr "Default Search Engine"
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:69
+msgid "dashboard.subpage"
+msgstr "Search Engines"
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:83
+msgid "dashboard.pagesTitle"
+msgstr "Settings › Search"
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:84
+msgid "RRZE Suche"
+msgstr ""
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:96
+msgid "dashboard.subpagesTitle"
+msgstr "Settings › Search"
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:97
+msgid "dashboard.subpagesMenu"
+msgstr "Configuration"
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:130
+#: src/RRZESearch/Infrastructure/Dashboard.php:136
+msgid "dashboard.sectionTitle"
+msgstr "Settings › Search"
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:152
+msgid "dashboard.fields.resources.title"
+msgstr "Search Engines"
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:163
+msgid "dashboard.fields.engines.title"
+msgstr "Search Engines"
+
+#: src/RRZESearch/Infrastructure/Dashboard.php:174
+msgid "dashboard.fields.pageId.title"
+msgstr "Search Results Page"
+
+#: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:95
+msgid "options.callback.adminSection"
+msgstr "Enable Search Engines"
+
+#: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:103
+msgid "options.callback.superAdminSection"
+msgstr "Configure Search Engines"
+
+#: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:195
+msgid "options.callback.results.postTitle"
+msgstr "RRZE Search Results"
+
+#: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:198
+msgid "options.callback.results.postExcerpt"
+msgstr "Search Result Page utilized by RRZE Search Plugin"
+
+#: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:208
+msgid "options.callback.results.message.postDeleted"
+msgstr ""
+"Oh no! Someone deleted the results Page! No worries, Another one will be "
+"generated when you click [ Save Changes ]"
+
+#: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:211
+msgid "options.callback.results.message.postMissing"
+msgstr ""
+"Search Results Page doesn't exist, yet! No worries, one will be generated "
+"when you click [ Save Changes ]"
+
+#: src/RRZESearch/Infrastructure/SettingsLink.php:32
+msgid "plugin.settings.link"
+msgstr "Settings"
+
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:1
+#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:1
+msgid "engine.results.stats.count"
+msgstr "About %1$s results"
+
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:23
+#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:20
+msgid "engine.results.navigation.previousPage"
+msgstr "Previous Page"
+
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:29
+#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:26
+msgid "engine.results.navigation.nextPage"
+msgstr "Next Page"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:17
+msgid "dashboard.engine.configuration.resourceClass.label"
+msgstr "Type"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:36
+msgid "dashboard.engine.configuration.resourceKey.label"
+msgstr "API Key"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:40
+msgid "dashboard.engine.configuration.resourceKey.placeholder"
+msgstr "No API Key"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:52
+msgid "dashboard.engine.configuration.button.removeResource"
+msgstr "Remove"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:63
+msgid "dashboard.engine.configuration.button.addResource"
+msgstr "Add Search Engine"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:13
+msgid "dashboard.engine.template.resourceClass.label"
+msgstr "Type"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:27
+msgid "dashboard.engine.template.resourceKey.label"
+msgstr "API Key"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:30
+msgid "dashboard.engine.template.resourceKey.placeholder"
+msgstr "Leave blank if no API Key"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-toggle.php:27
+msgid "dashboard.engine.toggle.disclaimer.label"
+msgstr "Privacy Policy / Instruction Page ID"
+
+#: src/RRZESearch/Infrastructure/Templates/widget.php:79
+msgid "widget.frontend.searchSettigns.aria.label"
+msgstr "Available search engines"
+
+#: src/RRZESearch/Infrastructure/Templates/widget.php:81
+msgid "widget.frontend.searchSettings.p.label"
+msgstr "Please select one of the available search engines:"
+
+#~ msgid "engine.results.navigation.nextpage"
+#~ msgstr "NextPage"
+
+#~ msgid "Local Search"
+#~ msgstr "Lokale Suche"
