@@ -55,7 +55,7 @@
                 <label for="headsearchinput"><?php _e('Geben Sie hier den Suchbegriff ein, um in diesem Webauftritt zu suchen:',
                         'fau'); ?></label>
                 <span class="searchicon"> </span>
-                <input id="headsearchinput" class="search-terms" type="text" value="<?php the_search_query(); ?>"
+                <input id="headsearchinput" class="search-terms" type="text" value="<?= $_GET['q']; ?>"
                        name="s"
                        placeholder="<?php _e('Suchen nach...', 'fau'); ?>" autocomplete="off" tabindex="0">
                 <?php

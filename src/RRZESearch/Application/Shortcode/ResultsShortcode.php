@@ -61,5 +61,8 @@ class ResultsShortcode
 
         // Render the Search Engine Results
         include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.$searchEngineClass.'-shortcode.php';
+
+        // Render the Pagination
+        include \dirname(__DIR__, 2).$templatesDir.'search-pagination.php';
     }
 }
