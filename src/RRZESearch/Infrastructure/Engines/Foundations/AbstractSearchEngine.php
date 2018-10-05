@@ -64,6 +64,12 @@ abstract class AbstractSearchEngine implements Engine
      * @var string
      */
     const LINK_LABEL = 'Abstract link label';
+    /**
+     * Redirect Link
+     *
+     * @var string
+     */
+    const REDIRECT_LINK = 'Abstract redirect link';
 
     /**
      * Return the search engine name
@@ -73,6 +79,16 @@ abstract class AbstractSearchEngine implements Engine
     public static function getName(): string
     {
         return static::NAME;
+    }
+
+    /**
+     * Return redirect link
+     *
+     * @return string
+     */
+    public static function getRedirectLink(): string
+    {
+        return static::REDIRECT_LINK;
     }
 
     /**

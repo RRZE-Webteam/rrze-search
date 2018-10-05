@@ -51,6 +51,12 @@ class GoogleSearch extends AbstractSearchEngine
      * @var string
      */
     const URI = 'https://www.googleapis.com/customsearch/v1?cx=011945293402966620832:n0bvaqo6yl4&key={key}&q={query}';
+    /**
+     * Redirect Link
+     *
+     * @var string
+     */
+    const REDIRECT_LINK = '/rrze_search_page';
 
     /**
      * Query

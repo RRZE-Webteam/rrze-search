@@ -42,13 +42,8 @@ use WP_Query;
  */
 class WordPressSearch extends AbstractSearchEngine
 {
-    /**
-     * Request URI
-     *
-     * @var string
-     * @todo For what?
-     */
-    const URI = '/wp-json/wp/v2/posts';
+
+    const REDIRECT_LINK = '/';
 
     /**
      * Query - interface defined

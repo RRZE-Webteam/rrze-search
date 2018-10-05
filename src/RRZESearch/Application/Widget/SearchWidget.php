@@ -213,14 +213,19 @@ class SearchWidget extends WP_Widget
      */
     public function widgetSubmit()
     {
-        setcookie('rrze_search_engine_pref', $_POST['resource_id'], 0, '/');
-        $results_page = get_permalink($this->options['rrze_search_page_id']);
+        $resourceId = $_POST['resource_id'];
+        setcookie('rrze_search_engine_pref', $resourceId, 0, '/');
+
+        $engine = $this->options['rrze_search_engines'][$resourceId]['resource_class'];
+        $class = new $engine;
+        $results_page = $class->getRedirectLink();
 
         // Ensure you're using $_POST['s'] for the q(uery) value, prior to redirect
         $redirect_link = add_query_arg(
-            ['q' => urlencode($_POST['s']), 'se' => $_POST['resource_id']],
+            ['q' => urlencode($_POST['s']), 'se' => $resourceId],
             $results_page
         );
+
         wp_redirect($redirect_link);
         exit;
     }

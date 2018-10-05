@@ -29,6 +29,13 @@ interface Engine
     public static function getName(): string;
 
     /**
+     * Return the redirect link
+     *
+     * @return string
+     */
+    public static function getRedirectLink(): string;
+
+    /**
      * Return the label for this engine
      *
      * @return string
