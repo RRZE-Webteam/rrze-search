@@ -1,18 +1,16 @@
-<div id="resultStats"><?php echo sprintf(__('About %1$s results', 'rrze-search'),
+<h2><?php _e('Search results','rrze-search'); ?></h2>
+<p class="meta-resultinfo"><?php echo sprintf(__('About %1$s results', 'rrze-search'),
         $results['searchInformation']['formattedTotalResults']); ?>
-    <nobr> (<?php echo $results['searchInformation']['formattedSearchTime']; ?> seconds)&nbsp;</nobr>
-</div>
-<?php foreach ($results['items'] as $result) {
-    ?>
-    <div class="record">
-        <h3 style="padding-bottom:0">
-            <a href="<?php echo $result['link']; ?>" target="_blank"><?php echo $result['title']; ?></a>
-        </h3>
-        <div class="snippet">
-            <cite><?php echo $result['link']; ?></cite><br>
-            <div class="snippet-string"><?php echo $result['snippet']; ?></div>
-        </div>
-    </div>
+    (<?php echo $results['searchInformation']['formattedSearchTime']; ?> seconds)
+</p>
+<ul class="searchresults">
+    <?php foreach ($results['items'] as $result) : ?>
+        <li class="search-result res-page">
+            <h3><a href="<?php echo $result['link']; ?>"><?php echo htmlspecialchars($result['title']); ?></a></h3>
+            <div class="search-meta"><a href="<?php echo $result['link']; ?>"><cite><?php echo htmlspecialchars($result['link']); ?></cite></a></div>
+            <p><?php echo htmlspecialchars($result['snippet']); ?></p>
+        </li>
     <?php
-} ?>
-<hr>
+    endforeach;
+    ?>
+</ul>
