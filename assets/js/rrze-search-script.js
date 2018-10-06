@@ -42,18 +42,15 @@ jQuery(document).ready(function ($) {
      * Close the search
      *
      * @param {Event} e Event
-     * @param {bool} toggleBtn Via toggle button
      */
-    function closeDialog(e, toggleBtn) {
+    function closeDialog(e) {
         keyHandle.disengage(); // undo listening to keyboard
         tabHandle.disengage(); // undo trapping Tab key focus
         hiddenHandle.disengage(); // undo hiding elements outside of the dialog
         disabledHandle.disengage(); // undo disabling elements outside of the dialog
 
-        // If the dialog wasn't closed via the toggle button: hide the search dialog option panel
-        if (!toggleBtn) {
-            $(panel).prop('hidden', true);
-        }
+        // Hide the search panel
+        $(panel).prop('hidden', true);
     }
 
     /**
@@ -75,26 +72,27 @@ jQuery(document).ready(function ($) {
             context: context, // context === dialog
             defaultToContext: true,
         });
-        if (element) {
-            element.focus();
-            element.select();
-        }
+        element && element.focus();
     };
 
     /**
      * Override the default search toggle method to open / close the search modal
      *
      * @param {Boolean} onOff Enable / disable the search panel
+     * @param {Number} source Open type
      * @private
      */
-    toggle._toggleSearch = function (onOff) {
-        this._expanded = onOff;
-        $body.toggleClass('search-toggled', this._expanded);
-        this.setAttribute('aria-expanded', this._expanded ? 'true' : 'false');
-        if (this._expanded) {
-            openDialog(focusOnVisible);
-        } else {
-            closeDialog(null, this);
+    toggle._toggleSearch = function (onOff, source) {
+        if (onOff !== this._expanded) {
+            this._expanded = onOff;
+            this._source = this._expanded ? (source || 0) : 0;
+            $body.toggleClass('search-toggled', this._expanded);
+            this.setAttribute('aria-expanded', this._expanded ? 'true' : 'false');
+            if (this._expanded) {
+                openDialog(focusOnVisible);
+            } else {
+                closeDialog();
+            }
         }
     }
 
@@ -105,7 +103,18 @@ jQuery(document).ready(function ($) {
         toggle._toggleSearch(false);
     }
 
-    // $(searchinput).focus(openDialog);
+    $(searchinput).click(function () {
+        toggle._toggleSearch(true, 1);
+    }).keyup(function (e) {
+        if ([9, 16].indexOf(e.which) < 0) { // Ignore <TAB> and <SHIFT>
+            var length = $(this).val().length;
+            if (length && !toggle._expanded) {
+                toggle._toggleSearch(true, 2);
+            } else if (!length && toggle._expanded && (toggle._source === 2)) {
+                collapseSearch();
+            }
+        }
+    });
     $(dialog).submit(collapseSearch);
     $('.search-engine').click(toggleDisclaimer);
 
