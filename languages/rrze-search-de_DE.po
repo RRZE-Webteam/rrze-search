@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-10-08 14:42+0200\n"
-"PO-Revision-Date: 2018-10-08 14:42+0200\n"
+"POT-Creation-Date: 2018-10-08 17:01+0200\n"
+"PO-Revision-Date: 2018-10-08 17:03+0200\n"
 "Last-Translator: Joschi Kuphal <joschi@tollwerk.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -56,14 +56,39 @@ msgstr "Konfiguration"
 msgid "Search Results Page"
 msgstr "Suchergebnisseite"
 
-#: src/RRZESearch/Infrastructure/Engines/Adapters/Google1Adapter.php:36
-#: src/RRZESearch/Infrastructure/Engines/Adapters/Google2Adapter.php:36
-msgid "Google FAU Search"
-msgstr "Google FAU Suche"
+#: src/RRZESearch/Infrastructure/Engines/Adapters/Google1Adapter.php:42
+msgid "Google1 FAU Search"
+msgstr "Google1 FAU Suche"
+
+#: src/RRZESearch/Infrastructure/Engines/Adapters/Google1Adapter.php:47
+#, php-format
+msgid "Google FAU CS%s"
+msgstr "Google FAU CS%s"
+
+#: src/RRZESearch/Infrastructure/Engines/Adapters/Google1Adapter.php:52
+msgid "READ FAU's Instructions"
+msgstr "Lies die Anweisungen von FAU"
+
+#: src/RRZESearch/Infrastructure/Engines/Adapters/Google2Adapter.php:42
+msgid "Google2 FAU Search"
+msgstr "Google2 FAU Suche"
+
+#: src/RRZESearch/Infrastructure/Engines/Adapters/Google2Adapter.php:46
+#, php-format
+msgid "Google Web Search%s"
+msgstr "Google Web Suche%s"
+
+#: src/RRZESearch/Infrastructure/Engines/Adapters/Google2Adapter.php:51
+msgid "Google Privacy Policy"
+msgstr "Google Datenschutzrichtlinie"
 
 #: src/RRZESearch/Infrastructure/Engines/Adapters/WordPressAdapter.php:36
 msgid "Local Website Search"
 msgstr "Lokale Web Suche"
+
+#: src/RRZESearch/Infrastructure/Engines/Template/SearchEngine-Adapter.php:47
+msgid "Your Label with Translation Support"
+msgstr "Ihr Label mit Übersetzungsunterstützung"
 
 #: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:94
 msgid "Enable Search Engines"
@@ -172,17 +197,11 @@ msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
 #~ msgid "Label"
 #~ msgstr "Bezeichnung"
 
-#~ msgid "Disclaimer / Instructions"
-#~ msgstr "Datenschutz / Anleitung"
-
 #~ msgid "---"
 #~ msgstr "---"
 
 #~ msgid "My Search Engine"
 #~ msgstr "Meine Suchmaschine"
-
-#~ msgid "Privacy Policy"
-#~ msgstr "Datenschutz"
 
 #~ msgid "Search Engine Types"
 #~ msgstr "Suchmaschine Typ"
