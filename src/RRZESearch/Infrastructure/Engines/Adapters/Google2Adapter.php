@@ -30,6 +30,12 @@ class Google2Adapter extends GoogleSearch
      * @var string
      */
     const LINK_LABEL = 'Google Privacy Policy';
+    /**
+     * Google Custom Search ID
+     *
+     * @var string
+     */
+    const ID = '011945293402966620832:n0bvaqo6yl4';
 
     public static function getName(): string
     {

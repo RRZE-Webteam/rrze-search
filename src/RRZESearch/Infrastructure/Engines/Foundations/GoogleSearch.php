@@ -37,6 +37,7 @@ namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
  *
  * @package RRZE\RRZESearch\Infrastructure\Engines
  */
+
 /**
  * Google Custom Search Engine
  *
@@ -50,7 +51,8 @@ class GoogleSearch extends AbstractSearchEngine
      *
      * @var string
      */
-    const URI = 'https://www.googleapis.com/customsearch/v1?cx=011945293402966620832:n0bvaqo6yl4&key={key}&q={query}';
+//    const URI = 'https://www.googleapis.com/customsearch/v1?cx=011945293402966620832:n0bvaqo6yl4&key={key}&q={query}';
+    const URI = 'https://www.googleapis.com/customsearch/v1?cx={id}&key={key}&q={query}';
     /**
      * Redirect Link
      *
@@ -75,6 +77,7 @@ class GoogleSearch extends AbstractSearchEngine
          * Append the StartPage Index and rebuild the URI
          */
         $uri        = static::URI.'&start='.$startPage;
+        $gcsId      = static::ID;
         $parsed_url = parse_url($uri);
         $_uri       = $parsed_url['scheme'].'://'.$parsed_url['host'].$parsed_url['path'].'?';
         $_params    = explode('&', $parsed_url['query']);
@@ -85,6 +88,9 @@ class GoogleSearch extends AbstractSearchEngine
         foreach ($_params as $param) {
             $split = explode('=', $param);
             switch ($split[1]) {
+                case '{id}':
+                    $params[$split[0]] = rawurlencode($gcsId);
+                    break;
                 case '{key}':
                     $params[$split[0]] = rawurlencode($key);
                     break;
