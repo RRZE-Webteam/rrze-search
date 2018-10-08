@@ -39,6 +39,15 @@ class Google2Adapter extends GoogleSearch
 
     public static function getName(): string
     {
-        return __('Google FAU Search', 'rrze-search');
+        return __('Google2 FAU Search', 'rrze-search');
+    }
+    public static function getLabel(): string
+    {
+        return __('Google Web Search%s','rrze-search');
+    }
+
+    public static function getLinkLabel(): string
+    {
+        return __('Google Privacy Policy', 'rrze-search');
     }
 }

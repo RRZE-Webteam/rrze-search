@@ -39,6 +39,16 @@ class Google1Adapter extends GoogleSearch
 
     public static function getName(): string
     {
-        return __('Google FAU Search', 'rrze-search');
+        return __('Google1 FAU Search', 'rrze-search');
+    }
+
+    public static function getLabel(): string
+    {
+        return __('Google FAU CS%s','rrze-search');
+    }
+
+    public static function getLinkLabel(): string
+    {
+        return __('READ FAU\'s Instructions', 'rrze-search');
     }
 }
