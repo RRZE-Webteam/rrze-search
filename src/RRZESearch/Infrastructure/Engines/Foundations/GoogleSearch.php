@@ -29,6 +29,7 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
+// Use the following NAMESPACE
 namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
 
 
@@ -42,7 +43,7 @@ namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
  * Google Custom Search Engine
  *
  * @package    RRZE\RRZESearch
- * @subpackage RRZE\RRZESearch\Ports
+ * @subpackage RRZE\RRZESearch\Infrastructure
  */
 class GoogleSearch extends AbstractSearchEngine
 {
