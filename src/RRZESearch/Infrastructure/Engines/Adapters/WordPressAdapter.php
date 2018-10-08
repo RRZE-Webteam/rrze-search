@@ -23,7 +23,7 @@ class WordPressAdapter extends WordPressSearch
      *
      * @var string
      */
-    const LABEL = 'Internal Search';
+    const LABEL = 'Internal Search%s';
     /**
      * Privacy policy / instruction page link label
      *

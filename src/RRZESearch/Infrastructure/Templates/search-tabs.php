@@ -1,16 +1,23 @@
+<pre>
+    <?php
+    echo PHP_EOL;
+    foreach ($engines as $key => $engine) {
+       echo (!empty($_GET['se']) && ((int)($_GET['se']) == $resourceIndex)) ? 'true' : 'false';
+        echo '<hr>';
+    }
+    ?>
+</pre>
 <ul class="results-tabs"><?php
-    $resourceIndex = 0;
-
     // Run through all search engines
     foreach ($engines as $key => $engine) {
         $class     = new $engine['resource_class'];
         if ($engine['enabled']) :
             $tabMeta = ((int)$_GET['se'] == $key) ? 'aria-current="page"' : '';
             $_q    = ($class->getRedirectLink() !== '/') ? 'q' : 's';
-            $query = http_build_query([$_q => $_GET['q'], 'se' => ++$resourceIndex]);
+            $query = http_build_query([$_q => $_GET['q'], 'se' => $key]);
             $href  = $class->getRedirectLink().'?'.$query;
             ?>
-            <li><?php if (!empty($_GET['se']) && (intval($_GET['se']) == $resourceIndex)): ?><span
+            <li><?php if (!empty($_GET['se']) && (intval($_GET['se']) == $key)): ?><span
                 class="current"><?= htmlspecialchars(sprintf($engine['resource_name'],
             '')); ?></span>
         <?php
@@ -19,6 +26,7 @@
                 '')); ?></a><?php
         endif; ?></li><?php
         endif;
+        ++$resourceIndex;
     }
     ?>
 </ul>

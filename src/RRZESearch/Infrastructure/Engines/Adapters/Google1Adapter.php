@@ -23,7 +23,7 @@ class Google1Adapter extends GoogleSearch
      *
      * @var string
      */
-    const LABEL = 'Google FAU CS';
+    const LABEL = 'Google FAU CS%s';
     /**
      * Privacy policy / instruction page link label
      *
