@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-10-03 20:46+0200\n"
-"PO-Revision-Date: 2018-10-03 20:47+0200\n"
+"POT-Creation-Date: 2018-10-08 14:42+0200\n"
+"PO-Revision-Date: 2018-10-08 14:42+0200\n"
 "Last-Translator: Joschi Kuphal <joschi@tollwerk.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __\n"
@@ -56,6 +56,15 @@ msgstr "Konfiguration"
 msgid "Search Results Page"
 msgstr "Suchergebnisseite"
 
+#: src/RRZESearch/Infrastructure/Engines/Adapters/Google1Adapter.php:36
+#: src/RRZESearch/Infrastructure/Engines/Adapters/Google2Adapter.php:36
+msgid "Google FAU Search"
+msgstr "Google FAU Suche"
+
+#: src/RRZESearch/Infrastructure/Engines/Adapters/WordPressAdapter.php:36
+msgid "Local Website Search"
+msgstr "Lokale Web Suche"
+
 #: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:94
 msgid "Enable Search Engines"
 msgstr "Suchmaschinen aktivieren"
@@ -92,21 +101,18 @@ msgstr ""
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:1
-#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:1
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:2
+#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:7
 #, php-format
 msgid "About %1$s results"
 msgstr "Ungefähr %1$s Ergebnisse"
 
-#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:23
-#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:20
-msgid "Previous Page"
-msgstr "Vorherige Seite"
-
-#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:29
-#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:26
-msgid "Next Page"
-msgstr "Nächste Seite"
+#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:5
+msgid ""
+"Es wird nur in diesem Webauftritt gesucht. Um Dokumente und Seiten aus "
+"anderen Webauftritten zu finden, nutzen Sie die jeweils dort zu findende "
+"Suchmaschine oder verwenden eine Internet-Suchmaschine."
+msgstr ""
 
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:17
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:13
@@ -134,11 +140,19 @@ msgstr "Suchmaschine hinzufügen"
 msgid "Leave blank if no API Key"
 msgstr "Leer lassen, wenn kein API-Schlüssel notwendig"
 
-#: src/RRZESearch/Infrastructure/Templates/widget.php:79
+#: src/RRZESearch/Infrastructure/Templates/search-pagination.php:13
+msgid "Previous Page"
+msgstr "Vorherige Seite"
+
+#: src/RRZESearch/Infrastructure/Templates/search-pagination.php:26
+msgid "Next Page"
+msgstr "Nächste Seite"
+
+#: src/RRZESearch/Infrastructure/Templates/widget.php:80
 msgid "Available search engines"
 msgstr "Verfügbare Suchmaschinen"
 
-#: src/RRZESearch/Infrastructure/Templates/widget.php:81
+#: src/RRZESearch/Infrastructure/Templates/widget.php:82
 msgid "Please select one of the available search engines:"
 msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
 
@@ -205,6 +219,3 @@ msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
 
 #~ msgid "New Search Engine"
 #~ msgstr "Neu Suchmaschine"
-
-#~ msgid "Local Search"
-#~ msgstr "Lokale Suche"

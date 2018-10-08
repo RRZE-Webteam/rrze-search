@@ -30,4 +30,9 @@ class Google2Adapter extends GoogleSearch
      * @var string
      */
     const LINK_LABEL = 'Google Privacy Policy';
+
+    public static function getName(): string
+    {
+        return __('Google FAU Search', 'rrze-search');
+    }
 }

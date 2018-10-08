@@ -30,4 +30,9 @@ class Google1Adapter extends GoogleSearch
      * @var string
      */
     const LINK_LABEL = 'READ FAU\'s Instructions';
+
+    public static function getName(): string
+    {
+        return __('Google FAU Search', 'rrze-search');
+    }
 }
