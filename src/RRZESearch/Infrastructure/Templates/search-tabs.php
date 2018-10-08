@@ -1,12 +1,3 @@
-<pre>
-    <?php
-    echo PHP_EOL;
-    foreach ($engines as $key => $engine) {
-       echo (!empty($_GET['se']) && ((int)($_GET['se']) == $resourceIndex)) ? 'true' : 'false';
-        echo '<hr>';
-    }
-    ?>
-</pre>
 <ul class="results-tabs"><?php
     // Run through all search engines
     foreach ($engines as $key => $engine) {
@@ -17,16 +8,20 @@
             $query = http_build_query([$_q => $_GET['q'], 'se' => $key]);
             $href  = $class->getRedirectLink().'?'.$query;
             ?>
-            <li><?php if (!empty($_GET['se']) && (intval($_GET['se']) == $key)): ?><span
-                class="current"><?= htmlspecialchars(sprintf($engine['resource_name'],
-            '')); ?></span>
-        <?php
-        else: ?><a
-            href="<?= htmlspecialchars($href); ?>" <?= $tabMeta; ?>><?= htmlspecialchars(sprintf($engine['resource_name'],
-                '')); ?></a><?php
-        endif; ?></li><?php
+            <li><?php
+            /**
+             * Replaced the `!empty` function with isset;
+             * Also not using the resourceIndex since the loop returns the $key;
+             */
+            if (isset($_GET['se']) && (intval($_GET['se']) == $key)): ?><span
+                    class="current"><?= htmlspecialchars(sprintf($engine['resource_name'],
+                '')); ?></span>
+            <?php
+            else: ?><a
+                href="<?= htmlspecialchars($href); ?>" <?= $tabMeta; ?>><?= htmlspecialchars(sprintf($engine['resource_name'],
+                    '')); ?></a><?php
+            endif; ?></li><?php
         endif;
-        ++$resourceIndex;
     }
     ?>
 </ul>
