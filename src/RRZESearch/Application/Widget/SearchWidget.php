@@ -216,13 +216,15 @@ class SearchWidget extends WP_Widget
         $resourceId = $_POST['resource_id'];
         setcookie('rrze_search_engine_pref', $resourceId, 0, '/');
 
-        $engine = $this->options['rrze_search_engines'][$resourceId]['resource_class'];
-        $class = new $engine;
+        $engine       = $this->options['rrze_search_engines'][$resourceId]['resource_class'];
+        $class        = new $engine;
         $results_page = $class->getRedirectLink();
+
+        $_q = ($class->getRedirectLink() !== '/') ? 'q' : 's';
 
         // Ensure you're using $_POST['s'] for the q(uery) value, prior to redirect
         $redirect_link = add_query_arg(
-            ['q' => urlencode($_POST['s']), 'se' => $resourceId],
+            [$_q => urlencode($_POST['s']), 'se' => $resourceId],
             $results_page
         );
 
