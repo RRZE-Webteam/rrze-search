@@ -16,18 +16,18 @@ class Helper
      * @param string $optionName Option name
      * @param string $resourceId Resource ID
      *
-     * @return bool Is an engine
+     * @return array|null Is an engine
      */
-    public static function isResourceEngine($optionName, $resourceId): bool
+    public static function isResourceEngine($optionName, $resourceId): ?array
     {
         $option = get_option($optionName);
         foreach ($option['rrze_search_engines'] as $engine) {
             if ($engine['resource_id'] === $resourceId) {
-                return true;
+                return $engine;
             }
         }
 
-        return false;
+        return  null;
     }
 
     /**

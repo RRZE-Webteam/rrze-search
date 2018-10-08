@@ -50,7 +50,8 @@ class OptionsCallbacks extends AppController
         }
 
         // Shortcut to template directory
-        $this->templatesDir = $this->pluginPath.implode(DIRECTORY_SEPARATOR, ['RRZESearch', 'Infrastructure', 'Templates']);
+        $this->templatesDir = $this->pluginPath.implode(DIRECTORY_SEPARATOR,
+                ['RRZESearch', 'Infrastructure', 'Templates']);
     }
 
     /**
@@ -114,36 +115,27 @@ class OptionsCallbacks extends AppController
         $name        = $args['label_for'];
         $optionName  = $args['option_name'];
         $optionValue = get_option($optionName);
-
-        // Define and clean up props used in template
-        $engines = array_filter($optionValue[$name], function ($engine) {
-            return !empty($engine['resource_id']);
-        });
-
+        $engines     = [];
+        /**
+         * TODO: Move the following snippet to where the Super Admin make it's changes
+         */
         // Add new Resources from Engine Collection
-        foreach ($optionValue['rrze_search_resources'] as $key => $resource) {
-            if (!Helper::isResourceEngine($optionName, $resource['resource_id'])) {
-                $engines[$key] = [
+        foreach ($optionValue['rrze_search_resources'] as $resource) {
+            $engine = Helper::isResourceEngine($optionName, $resource['resource_id']);
+            if (empty($engine)) {
+                $engine = [
                     'resource_id'         => $resource['resource_id'],
-                    'resource_name'       => $resource['resource_name'],
-                    'resource_class'      => $resource['resource_class'],
                     'resource_disclaimer' => $resource['resource_disclaimer'],
                     'enabled'             => false
                 ];
             }
-        }
-
-        // Remove old Engines missing from Resources Collection
-        $nextResourceIndex = 0;
-        foreach ($engines as $engine) {
-            if (!Helper::isEngineResource($optionName, $engine['resource_id'])) {
-                array_splice($engines, $nextResourceIndex - 1, 1);
-            }
-            ++$nextResourceIndex;
+            $engine['resource_name']  = $resource['resource_name'];
+            $engine['resource_class'] = $resource['resource_class'];
+            $engines[]                = $engine;
         }
 
         // Engine table
-        $engines = array_values($engines);
+        //$engines = array_values($engines);
         require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-toggle.php';
     }
 
