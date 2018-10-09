@@ -225,7 +225,6 @@ class SettingsApi
         }
         $resources = (count($resources) > 0) ? $resources : 'empty';
 
-        wp_cache_delete ( 'rrze_search_settings', 'options' );
         $update = update_option($optionName, [
             'rrze_search_resources' => $resources,
             'rrze_search_engines' => $option['rrze_search_engines'],
