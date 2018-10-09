@@ -217,32 +217,22 @@ class SettingsApi
         $optionName  = 'rrze_search_settings';
         $option      = get_option($optionName);
         $optionValue = $option['rrze_search_resources'];
-        unset($optionValue[$index]);
 
-        $nextItemIndex = 0;
-        foreach ($optionValue as $item) {
-            if ($nextItemIndex !== $index) {
-                $resources[] = $item;
+        foreach ($optionValue as $key => $value) {
+            if ($key !== (int)$index) {
+                $resources[] = $value;
             }
-            ++$nextItemIndex;
         }
+        $resources = (count($resources) > 0) ? $resources : 'empty';
 
-        $option['rrze_search_resources'] = $resources;
+        wp_cache_delete ( 'rrze_search_settings', 'options' );
+        $update = update_option($optionName, [
+            'rrze_search_resources' => $resources,
+            'rrze_search_engines' => $option['rrze_search_engines'],
+            'rrze_search_page_id' => $option['rrze_search_page_id'],
+        ], 'yes');
 
-        flush_rewrite_rules();
-        $update = update_option($optionName, $option, false);
-        echo json_encode(['message' => $option]);
         echo json_encode($update);
         die();
-    }
-
-    /**
-     * Return a list of posts
-     *
-     * @return array|null|object
-     */
-    public function getPosts()
-    {
-        return $this->db->get_posts();
     }
 }

@@ -6,9 +6,9 @@
             $rowColor = ($nextResourceIndex % 2) ? '#ddd' : '#bbb';
             $uId      = ($resource['resource_id'] !== '') ? $resource['resource_id'] : uniqid('rrze_', true);
             /** Unique Id */
-            echo '<input type="hidden" class="regular-text" id="'.$name.'" name="'.$optionName.'['.$name.']['.$nextResourceIndex.'][resource_id]" value="'.$uId.'" />';
+            echo '<input type="hidden" class="regular-text" id="'.$fieldName.'" name="'.$optionName.'['.$fieldName.']['.$nextResourceIndex.'][resource_id]" value="'.$uId.'" />';
             /** Option Label */
-            echo '<input type="hidden" class="regular-text" id="'.$name.'" name="'.$optionName.'['.$name.']['.$nextResourceIndex.'][resource_name]" value="'.$resource['resource_name'].'" />';
+            echo '<input type="hidden" class="regular-text" id="'.$fieldName.'" name="'.$optionName.'['.$fieldName.']['.$nextResourceIndex.'][resource_name]" value="'.$resource['resource_name'].'" />';
             ?>
             <tr bgcolor="<?php echo $rowColor; ?>">
                 <td style="vertical-align:top">
@@ -17,8 +17,8 @@
                             <span><?php echo __('Type', 'rrze-search'); ?></span>
                             <?php
                             /** Search Engine Class */
-                            echo '<select id="'.$name.'" name="'.$optionName.'['.$name.']['.$nextResourceIndex.'][resource_class]" class="regular-text">';
-                            foreach ($this->engines as $key => $value) {
+                            echo '<select id="'.$fieldName.'" name="'.$optionName.'['.$fieldName.']['.$nextResourceIndex.'][resource_class]" class="regular-text">';
+                            foreach ($this->enginesClassCollection as $key => $value) {
                                 if ($key === $resource['resource_class']) {
                                     echo '<option value="'.$key.'" selected>'.$value['name'].'</option>';
                                 } else {
@@ -37,10 +37,10 @@
                             <?php
                             /** API Key */
                             if ($resource['resource_key'] === '') {
-                                echo '<input class="regular-text" type="text" id="'.$name.'" name="'.$optionName.'['.$name.']['.$nextResourceIndex.'][resource_key]" placeholder="'.__('No API Key',
+                                echo '<input class="regular-text" type="text" id="'.$fieldName.'" name="'.$optionName.'['.$fieldName.']['.$nextResourceIndex.'][resource_key]" placeholder="'.__('No API Key',
                                         'rrze-search').'" value="" />';
                             } else {
-                                echo '<input class="regular-text" type="text" id="'.$name.'" name="'.$optionName.'['.$name.']['.$nextResourceIndex.'][resource_key]" value="'.$resource['resource_key'].'" />';
+                                echo '<input class="regular-text" type="text" id="'.$fieldName.'" name="'.$optionName.'['.$fieldName.']['.$nextResourceIndex.'][resource_key]" value="'.$resource['resource_key'].'" />';
                             }
                             ?>
                         </label>

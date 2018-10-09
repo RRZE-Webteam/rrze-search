@@ -5,18 +5,17 @@ namespace RRZE\RRZESearch\Infrastructure\Persistence;
 use RRZE\RRZESearch\Application\Controller\AppController;
 
 /**
- * Options Panels
+ * Options Pages
  *
  * @package    RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Infrastructure
  */
-class OptionsPanels extends AppController
+class OptionsPages extends AppController
 {
     /**
      * Settings
      *
-     * @var
-     * @todo Data type? Really public?
+     * @var array
      */
     public $settings;
     /**

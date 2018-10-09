@@ -25,17 +25,4 @@ class DatabaseApi
         $this->wpdb =& $GLOBALS['wpdb'];
     }
 
-    /**
-     * Return a list of all post IDs and titles
-     *
-     * @return array|null|object
-     * @todo Still needed?
-     */
-    public function get_posts()
-    {
-        return $this->wpdb->get_results(
-            "SELECT `ID`,`post_title` FROM `wp_posts` WHERE `post_type` LIKE 'page'",
-            ARRAY_A
-        );
-    }
 }

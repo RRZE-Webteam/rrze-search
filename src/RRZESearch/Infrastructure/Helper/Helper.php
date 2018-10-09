@@ -91,4 +91,16 @@ class Helper
 
         throw new \OutOfRangeException(sprintf('Unknown engine ID "%s"', $resourceId), 1538577502);
     }
+
+    /**
+     * Return a Directory Path
+     *
+     * @param $folders
+     *
+     * @return string
+     */
+    public static function toDirectory($folders)
+    {
+        return implode(DIRECTORY_SEPARATOR, $folders);
+    }
 }

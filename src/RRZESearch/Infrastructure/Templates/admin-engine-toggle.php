@@ -9,25 +9,25 @@
         <tr bgcolor="<?php echo $rowColor; ?>">
             <td>
                 <label>
-                    <input type="hidden" id="<?= $name; ?>"
-                           name="<?= $optionName ?>[<?= $name; ?>][<?= $nextEngineIndex; ?>][resource_id]"
+                    <input type="hidden" id="<?= $fieldName; ?>"
+                           name="<?= $optionName ?>[<?= $fieldName; ?>][<?= $nextEngineIndex; ?>][resource_id]"
                            value="<?= $resourceEngine['resource_id']; ?>">
-                    <input type="hidden" id="<?= $name; ?>"
-                           name="<?= $optionName ?>[<?= $name; ?>][<?= $nextEngineIndex; ?>][resource_name]"
+                    <input type="hidden" id="<?= $fieldName; ?>"
+                           name="<?= $optionName ?>[<?= $fieldName; ?>][<?= $nextEngineIndex; ?>][resource_name]"
                            value="<?= $resourceEngine['resource_name']; ?>">
-                    <input type="hidden" id="<?= $name; ?>"
-                           name="<?= $optionName ?>[<?= $name; ?>][<?= $nextEngineIndex; ?>][resource_class]"
+                    <input type="hidden" id="<?= $fieldName; ?>"
+                           name="<?= $optionName ?>[<?= $fieldName; ?>][<?= $nextEngineIndex; ?>][resource_class]"
                            value="<?= $resourceEngine['resource_class']; ?>">
-                    <input type="checkbox" id="<?= $name; ?>"
-                           name="<?= $optionName ?>[<?= $name; ?>][<?= $nextEngineIndex; ?>][enabled]" <?= $isEnabled; ?>>
+                    <input type="checkbox" id="<?= $fieldName; ?>"
+                           name="<?= $optionName ?>[<?= $fieldName; ?>][<?= $nextEngineIndex; ?>][enabled]" <?= $isEnabled; ?>>
                     <?= sprintf($resourceEngine['resource_name'], ''); ?>
                 </label>
             </td>
             <td>
                 <label class="resource_table_label">
                     <span><?php _e('Privacy Policy / Instruction Page ID', 'rrze-search'); ?></span>
-                    <input type="number" id="<?= $name; ?>"
-                           name="<?= $optionName ?>[<?= $name; ?>][<?= $nextEngineIndex; ?>][resource_disclaimer]"
+                    <input type="number" id="<?= $fieldName; ?>"
+                           name="<?= $optionName ?>[<?= $fieldName; ?>][<?= $nextEngineIndex; ?>][resource_disclaimer]"
                            value="<?= $resourceEngine['resource_disclaimer']; ?>">
                 </label>
             </td>

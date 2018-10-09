@@ -14,12 +14,12 @@ class ShortcodeController extends AppController
 {
     /**
      * Register a new shortcode
-     *
-     * @todo Add condition to validate registration
      */
     public function register()
     {
-        $search_results_shortcode = new ResultsShortcode();
-        $search_results_shortcode->register();
+        if (!$this->activated('rrze_search')) {
+            $search_results_shortcode = new ResultsShortcode();
+            $search_results_shortcode->register();
+        }
     }
 }

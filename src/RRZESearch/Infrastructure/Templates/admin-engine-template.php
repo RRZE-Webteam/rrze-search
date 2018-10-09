@@ -15,7 +15,7 @@
                             name="rrze_search_settings[rrze_search_resources][index][resource_class]">
                         <?php
                         echo PHP_EOL;
-                        foreach ($this->engines as $key => $value) {
+                        foreach ($this->enginesClassCollection as $key => $value) {
                             echo '<option value="'.$key.'" >'.$value['name'].'</option>';
                         } ?></select>
                 </label>

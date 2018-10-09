@@ -3,8 +3,8 @@ function rrze_resource_removal(resource_id) {
         'action': 'resourceRemoval',
         'resource_id': resource_id
     };
-
     jQuery.post(ajaxurl, data, function (success) {
+        console.log(success);
         if (success) {
             location.reload();
         }
@@ -16,7 +16,7 @@ jQuery(document).ready(function ($) {
         /** define resource count */
         var count = $('#rrze_search_resource_count').val();
         /** define unique Id */
-        var uId = 'rrze_'+Math.random();
+        var uId = 'rrze_' + Math.random();
 
         /** selected template content */
         var template = document.getElementsByTagName("template")[0];

@@ -3,8 +3,10 @@
 namespace RRZE\RRZESearch\Infrastructure;
 
 use RRZE\RRZESearch\Application\Controller\AppController;
-use RRZE\RRZESearch\Infrastructure\Persistence\OptionsCallbacks;
-use RRZE\RRZESearch\Infrastructure\Persistence\OptionsPanels;
+use RRZE\RRZESearch\Infrastructure\Persistence\OptionsFields;
+use RRZE\RRZESearch\Infrastructure\Persistence\OptionsPages;
+use RRZE\RRZESearch\Infrastructure\Persistence\OptionsSections;
+use RRZE\RRZESearch\Infrastructure\Persistence\OptionsSettings;
 use RRZE\RRZESearch\Infrastructure\Persistence\SettingsApi;
 
 /**
@@ -21,18 +23,30 @@ class Dashboard extends AppController
      * @var SettingsApi
      */
     protected $settings;
-    /**
-     * Callbacks
-     *
-     * @var OptionsPanels
-     */
-    protected $callbacks;
+
     /**
      * Callbacks options
      *
-     * @var OptionsCallbacks
+     * @var OptionsFields
      */
-    protected $callbacksOptions;
+    protected $callbacksFields;
+    /**
+     * Option Pages
+     *
+     * @var OptionsPages
+     */
+    protected $callbacksPages;
+    /**
+     * Option Sections
+     *
+     * @var OptionsSections
+     */
+    protected $callbacksSections;
+    /**
+     * Option Settings (Sanitation Function)
+     * @var OptionsSettings
+     */
+    protected $callbackSettings;
     /**
      * Pages
      *
@@ -52,9 +66,11 @@ class Dashboard extends AppController
     public function __construct()
     {
         parent::__construct();
-        $this->settings         = new SettingsApi();
-        $this->callbacks        = new OptionsPanels();
-        $this->callbacksOptions = new OptionsCallbacks();
+        $this->settings          = new SettingsApi();
+        $this->callbacksFields   = new OptionsFields();
+        $this->callbacksPages    = new OptionsPages();
+        $this->callbacksSections = new OptionsSections();
+        $this->callbackSettings  = new OptionsSettings();
     }
 
     /**
@@ -84,7 +100,7 @@ class Dashboard extends AppController
                 'menu_title' => 'RRZE Suche',
                 'capability' => 'manage_options',
                 'menu_slug'  => $slug,
-                'callback'   => [$this->callbacks, 'adminDashboard'],
+                'callback'   => [$this->callbacksPages, 'adminDashboard'],
                 'icon_url'   => 'dashicons-search'
             ]
         ];
@@ -97,7 +113,7 @@ class Dashboard extends AppController
                 'menu_title'  => __('Configuration', 'rrze-search'),
                 'capability'  => 'manage_options',
                 'menu_slug'   => $slug.'_su',
-                'callback'    => [$this->callbacks, 'superAdminDashboard']
+                'callback'    => [$this->callbacksPages, 'superAdminDashboard']
             ]
         ];
     }
@@ -112,7 +128,7 @@ class Dashboard extends AppController
             [
                 'option_group' => 'rrze_search_settings',
                 'option_name'  => 'rrze_search_settings',
-                'callback'     => [$this->callbacksOptions, 'sanitize']
+                'callback'     => [$this->callbackSettings, 'sanitize']
             ]
         ];
 
@@ -128,13 +144,13 @@ class Dashboard extends AppController
             [
                 'id'       => 'rrze_search_admin_section',
                 'title'    => __('Settings › Search', 'rrze-search'),
-                'callback' => [$this->callbacksOptions, 'printAdminSection'],
+                'callback' => [$this->callbacksSections, 'printAdminSection'],
                 'page'     => 'rrze_search'
             ],
             [
                 'id'       => 'rrze_search_super_admin_section',
                 'title'    => __('Settings › Search', 'rrze-search'),
-                'callback' => [$this->callbacksOptions, 'printSuperAdminSection'],
+                'callback' => [$this->callbacksSections, 'printSuperAdminSection'],
                 'page'     => 'rrze_search_su'
             ]
         ];
@@ -150,7 +166,7 @@ class Dashboard extends AppController
             [
                 'id'       => 'rrze_search_resources',
                 'title'    => __('Search Engines', 'rrze-search'),
-                'callback' => [$this->callbacksOptions, 'enginesConfigure'],
+                'callback' => [$this->callbacksFields, 'enginesConfigure'],
                 'page'     => 'rrze_search_su',
                 'section'  => 'rrze_search_super_admin_section',
                 'args'     => [
@@ -161,7 +177,7 @@ class Dashboard extends AppController
             [
                 'id'       => 'rrze_search_engines',
                 'title'    => __('Search Engines', 'rrze-search'),
-                'callback' => [$this->callbacksOptions, 'enginesToggle'],
+                'callback' => [$this->callbacksFields, 'enginesToggle'],
                 'page'     => 'rrze_search',
                 'section'  => 'rrze_search_admin_section',
                 'args'     => [
@@ -172,7 +188,7 @@ class Dashboard extends AppController
             [
                 'id'       => 'rrze_search_page_id',
                 'title'    => __('Search Results Page', 'rrze-search'),
-                'callback' => [$this->callbacksOptions, 'resultsPage'],
+                'callback' => [$this->callbacksFields, 'resultsPage'],
                 'page'     => 'rrze_search_su',
                 'section'  => 'rrze_search_super_admin_section',
                 'args'     => [
