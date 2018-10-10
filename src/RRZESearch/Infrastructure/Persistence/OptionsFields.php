@@ -44,15 +44,8 @@ class OptionsFields extends AppController
         $optionName  = $args['option_name'];
         $optionValue = get_option($optionName);
 
-//        echo '<pre>';
-//        echo $fieldName.': '.PHP_EOL;
-//        print_r($optionValue[$fieldName]);
-//        print_r($this->enginesClassCollection);
-//        echo PHP_EOL;
-//        echo '</pre>';
-
         // Define props used in template
-        $engines     = $optionValue[$fieldName];
+        $engines = $optionValue[$fieldName];
 
         // Engine table
         require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-toggle.php';
@@ -70,20 +63,6 @@ class OptionsFields extends AppController
         $fieldName   = $args['label_for'];
         $optionName  = $args['option_name'];
         $optionValue = get_option($optionName);
-
-        echo '<table border="1">';
-        echo '<td style="font-size:0.9em;">';
-            echo 'rrze_search_engines: '.PHP_EOL;
-            echo '<pre>';
-            print_r($optionValue['rrze_search_engines']);
-            echo '</pre>';
-        echo '</td><td style="font-size:0.9em;">';
-            echo $fieldName.': '.PHP_EOL;
-            echo '<pre>';
-            print_r($optionValue[$fieldName]);
-            echo '</pre>';
-        echo '</td>';
-        echo '</table>';
 
         // Define props used in template
         $resources = $optionValue[$fieldName];
