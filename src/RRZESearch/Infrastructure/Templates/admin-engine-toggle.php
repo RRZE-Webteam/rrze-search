@@ -24,12 +24,14 @@
                 </label>
             </td>
             <td>
+                <?php if (strpos($resourceEngine['resource_name'], '%s')) { ?>
                 <label class="resource_table_label">
                     <span><?php _e('Privacy Policy / Instruction Page ID', 'rrze-search'); ?></span>
                     <input type="number" id="<?= $fieldName; ?>"
                            name="<?= $optionName ?>[<?= $fieldName; ?>][<?= $nextEngineIndex; ?>][resource_disclaimer]"
                            value="<?= $resourceEngine['resource_disclaimer']; ?>">
                 </label>
+                <?php } ?>
             </td>
         </tr>
         <?php
