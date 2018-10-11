@@ -47,6 +47,7 @@ namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
  */
 class GoogleSearch extends AbstractSearchEngine
 {
+    const NAME = 'Google Custom Search';
     /**
      * Request URI
      *
@@ -134,5 +135,10 @@ class GoogleSearch extends AbstractSearchEngine
         curl_close($curl);
 
         return $results;
+    }
+
+    public static function getName(): string
+    {
+        return __('Google FAU Search', 'rrze-search');
     }
 }

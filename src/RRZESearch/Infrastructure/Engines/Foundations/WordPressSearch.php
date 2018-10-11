@@ -42,6 +42,7 @@ use WP_Query;
  */
 class WordPressSearch extends AbstractSearchEngine
 {
+    const NAME = 'Native WordPress Search';
 
     const REDIRECT_LINK = '/';
 
@@ -64,5 +65,10 @@ class WordPressSearch extends AbstractSearchEngine
         ]);
 
         return json_encode($results->posts);
+    }
+
+    public static function getName(): string
+    {
+        return __('Local Website Search', 'rrze-search');
     }
 }

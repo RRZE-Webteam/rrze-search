@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-10-08 17:01+0200\n"
-"PO-Revision-Date: 2018-10-08 17:03+0200\n"
+"POT-Creation-Date: 2018-10-11 16:02+0200\n"
+"PO-Revision-Date: 2018-10-11 16:02+0200\n"
 "Last-Translator: Joschi Kuphal <joschi@tollwerk.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -35,54 +35,32 @@ msgstr "Wird verwendet, um das Widget anzuzeigen"
 msgid "Default Search Engine"
 msgstr "Standardsuchmaschine"
 
-#: src/RRZESearch/Infrastructure/Dashboard.php:69
-#: src/RRZESearch/Infrastructure/Dashboard.php:152
-#: src/RRZESearch/Infrastructure/Dashboard.php:163
+#: src/RRZESearch/Infrastructure/Dashboard.php:85
+#: src/RRZESearch/Infrastructure/Dashboard.php:168
+#: src/RRZESearch/Infrastructure/Dashboard.php:179
 msgid "Search Engines"
 msgstr "Suchmaschinen"
 
-#: src/RRZESearch/Infrastructure/Dashboard.php:83
-#: src/RRZESearch/Infrastructure/Dashboard.php:96
-#: src/RRZESearch/Infrastructure/Dashboard.php:130
-#: src/RRZESearch/Infrastructure/Dashboard.php:136
+#: src/RRZESearch/Infrastructure/Dashboard.php:99
+#: src/RRZESearch/Infrastructure/Dashboard.php:112
+#: src/RRZESearch/Infrastructure/Dashboard.php:146
+#: src/RRZESearch/Infrastructure/Dashboard.php:152
 msgid "Settings › Search"
 msgstr "Einstellungen › Suche"
 
-#: src/RRZESearch/Infrastructure/Dashboard.php:97
+#: src/RRZESearch/Infrastructure/Dashboard.php:113
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: src/RRZESearch/Infrastructure/Dashboard.php:174
+#: src/RRZESearch/Infrastructure/Dashboard.php:190
 msgid "Search Results Page"
 msgstr "Suchergebnisseite"
 
-#: src/RRZESearch/Infrastructure/Engines/Adapters/Google1Adapter.php:42
-msgid "Google1 FAU Search"
-msgstr "Google1 FAU Suche"
+#: src/RRZESearch/Infrastructure/Engines/Foundations/GoogleSearch.php:142
+msgid "Google FAU Search"
+msgstr "Google FAU Such"
 
-#: src/RRZESearch/Infrastructure/Engines/Adapters/Google1Adapter.php:47
-#, php-format
-msgid "Google FAU CS%s"
-msgstr "Google FAU CS%s"
-
-#: src/RRZESearch/Infrastructure/Engines/Adapters/Google1Adapter.php:52
-msgid "READ FAU's Instructions"
-msgstr "Lies die Anweisungen von FAU"
-
-#: src/RRZESearch/Infrastructure/Engines/Adapters/Google2Adapter.php:42
-msgid "Google2 FAU Search"
-msgstr "Google2 FAU Suche"
-
-#: src/RRZESearch/Infrastructure/Engines/Adapters/Google2Adapter.php:46
-#, php-format
-msgid "Google Web Search%s"
-msgstr "Google Web Suche%s"
-
-#: src/RRZESearch/Infrastructure/Engines/Adapters/Google2Adapter.php:51
-msgid "Google Privacy Policy"
-msgstr "Google Datenschutzrichtlinie"
-
-#: src/RRZESearch/Infrastructure/Engines/Adapters/WordPressAdapter.php:36
+#: src/RRZESearch/Infrastructure/Engines/Foundations/WordPressSearch.php:72
 msgid "Local Website Search"
 msgstr "Lokale Web Suche"
 
@@ -90,23 +68,15 @@ msgstr "Lokale Web Suche"
 msgid "Your Label with Translation Support"
 msgstr "Ihr Label mit Übersetzungsunterstützung"
 
-#: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:94
-msgid "Enable Search Engines"
-msgstr "Suchmaschinen aktivieren"
-
-#: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:102
-msgid "Configure Search Engines"
-msgstr "Suchmaschinen konfigurieren"
-
-#: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:194
+#: src/RRZESearch/Infrastructure/Persistence/OptionsFields.php:98
 msgid "RRZE Search Results"
 msgstr "RRZE Suchergebnisse"
 
-#: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:197
+#: src/RRZESearch/Infrastructure/Persistence/OptionsFields.php:101
 msgid "Search Result Page utilized by RRZE Search Plugin"
 msgstr "Suchergebnisseite, die vom RRZE Search Plugin verwendet wird"
 
-#: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:207
+#: src/RRZESearch/Infrastructure/Persistence/OptionsFields.php:111
 msgid ""
 "Oh no! Someone deleted the results Page! No worries, Another one will be "
 "generated when you click [ Save Changes ]"
@@ -114,13 +84,21 @@ msgstr ""
 "Oh nein! Jemand hat die Ergebnisseite gelöscht! Keine Sorge, eine weitere "
 "wird generiert, sobald Sie auf [Änderungen speichern] klicken"
 
-#: src/RRZESearch/Infrastructure/Persistence/OptionsCallbacks.php:211
+#: src/RRZESearch/Infrastructure/Persistence/OptionsFields.php:115
 msgid ""
 "Search Results Page doesn't exist, yet! No worries, one will be generated "
 "when you click [ Save Changes ]"
 msgstr ""
 "Die Suchergebnisse Seite existiert noch nicht! Keine Sorge, sie wird "
 "generiert, sobald Sie auf [Änderungen speichern] klicken"
+
+#: src/RRZESearch/Infrastructure/Persistence/OptionsSections.php:20
+msgid "Enable Search Engines"
+msgstr "Suchmaschinen aktivieren"
+
+#: src/RRZESearch/Infrastructure/Persistence/OptionsSections.php:28
+msgid "Configure Search Engines"
+msgstr "Suchmaschinen konfigurieren"
 
 #: src/RRZESearch/Infrastructure/SettingsLink.php:32
 msgid "Settings"
@@ -139,25 +117,25 @@ msgid ""
 "Suchmaschine oder verwenden eine Internet-Suchmaschine."
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:17
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:18
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:13
 msgid "Type"
 msgstr "Typ"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:36
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:37
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:27
 msgid "API Key"
 msgstr "API-Schlüssel"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:40
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:41
 msgid "No API Key"
 msgstr "Kein API-Schlüssel"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:52
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:53
 msgid "Remove"
 msgstr "Löschen"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:63
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:64
 msgid "Add Search Engine"
 msgstr "Suchmaschine hinzufügen"
 
@@ -177,9 +155,24 @@ msgstr "Nächste Seite"
 msgid "Available search engines"
 msgstr "Verfügbare Suchmaschinen"
 
-#: src/RRZESearch/Infrastructure/Templates/widget.php:82
+#: src/RRZESearch/Infrastructure/Templates/widget.php:81
 msgid "Please select one of the available search engines:"
 msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
+
+#~ msgid "Google Search"
+#~ msgstr "Google Suche"
+
+#~ msgid "Google FAU CS%s"
+#~ msgstr "Google FAU CS%s"
+
+#~ msgid "READ FAU's Instructions"
+#~ msgstr "Lies die Anweisungen von FAU"
+
+#~ msgid "Google Web Search%s"
+#~ msgstr "Google Web Suche%s"
+
+#~ msgid "Google Privacy Policy"
+#~ msgstr "Google Datenschutzrichtlinie"
 
 #~ msgid "Please select one of the available search engines"
 #~ msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"

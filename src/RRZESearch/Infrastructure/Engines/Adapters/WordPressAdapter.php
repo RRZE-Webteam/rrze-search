@@ -13,26 +13,15 @@ use RRZE\RRZESearch\Infrastructure\Engines\Foundations\WordPressSearch;
 class WordPressAdapter extends WordPressSearch
 {
     /**
-     * Search engine name
-     *
-     * @var string
-     */
-    const NAME = 'WordPress Native Search';
-    /**
      * Search engine label (with optional placeholder %s for link label)
      *
      * @var string
      */
-    const LABEL = 'Local Website Search%s';
+    const LABEL = 'Local Website Search';
     /**
      * Privacy policy / instruction page link label
      *
      * @var string
      */
     const LINK_LABEL = 'Privacy Policy';
-
-    public static function getName(): string
-    {
-        return __('Local Website Search', 'rrze-search');
-    }
 }

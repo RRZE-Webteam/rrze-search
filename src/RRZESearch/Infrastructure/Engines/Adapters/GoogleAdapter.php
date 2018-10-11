@@ -10,14 +10,8 @@ use RRZE\RRZESearch\Infrastructure\Engines\Foundations\GoogleSearch;
  * @package    RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Ports
  */
-class Google1Adapter extends GoogleSearch
+class GoogleAdapter extends GoogleSearch
 {
-    /**
-     * Search engine name
-     *
-     * @var string
-     */
-    const NAME = 'Google Custom Search 1';
     /**
      * Search engine label (with optional placeholder %s for link label)
      *
@@ -36,19 +30,4 @@ class Google1Adapter extends GoogleSearch
      * @var string
      */
     const ID = '011945293402966620832:n0bvaqo6yl4';
-
-    public static function getName(): string
-    {
-        return __('Google1 FAU Search', 'rrze-search');
-    }
-
-    public static function getLabel(): string
-    {
-        return __('Google FAU CS%s','rrze-search');
-    }
-
-    public static function getLinkLabel(): string
-    {
-        return __('READ FAU\'s Instructions', 'rrze-search');
-    }
 }
