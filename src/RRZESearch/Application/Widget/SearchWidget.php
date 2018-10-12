@@ -201,22 +201,20 @@ class SearchWidget extends WP_Widget
         $resources       = [];
         $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? (int)$instance['search_engine'] : (int)$_COOKIE['rrze_search_engine_pref'];
 
-        if ($this->options['rrze_search_engines'] !== 'empty') {
-            foreach ($this->options['rrze_search_engines'] as $key => $engine) {
-                /** @var Engine $class */
-                $class                         = new $engine['resource_class'];
-                $resources[$key]               = $engine;
-                $resources[$key]['link_label'] = $class::getLinkLabel();
-            }
-
-            $staticLinks = trim(file_get_contents(\dirname(__DIR__,
-                    2).DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'widget-static-links.json'));
-            $staticLinks = strlen($staticLinks) ? json_decode($staticLinks) : [];
-            $staticLinks = is_array($staticLinks) ? $staticLinks : [];
-
-            include \dirname(__DIR__,
-                    2).DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'widget.php';
+        foreach ($this->options['rrze_search_engines'] as $key => $engine) {
+            /** @var Engine $class */
+            $class                         = new $engine['resource_class'];
+            $resources[$key]               = $engine;
+            $resources[$key]['link_label'] = $class::getLinkLabel();
         }
+
+        $staticLinks = trim(file_get_contents(\dirname(__DIR__,
+                2).DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'widget-static-links.json'));
+        $staticLinks = strlen($staticLinks) ? json_decode($staticLinks) : [];
+        $staticLinks = is_array($staticLinks) ? $staticLinks : [];
+
+        include \dirname(__DIR__,
+                2).DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'widget.php';
 
         echo $args['after_widget'];
     }
