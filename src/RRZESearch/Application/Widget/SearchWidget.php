@@ -64,8 +64,8 @@ class SearchWidget extends WP_Widget
             'customize_selective_refresh' => true,
         ];
 
-        $this->options    = get_option('rrze_search_settings');
-        $this->pluginPath = plugin_dir_url(dirname(__FILE__, 2));
+        $this->options                = get_option('rrze_search_settings');
+        $this->pluginPath             = plugin_dir_url(dirname(__FILE__, 2));
         $this->enginesClassCollection = Helper::adapterCollection();
 
         register_activation_hook(__FILE__, [$this, 'widgetSubmit']);
@@ -197,23 +197,27 @@ class SearchWidget extends WP_Widget
     public function widget($args, $instance)
     {
         echo $args['before_widget'];
+
+        $resources       = [];
         $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? (int)$instance['search_engine'] : (int)$_COOKIE['rrze_search_engine_pref'];
 
-        $resources = [];
-        foreach ($this->options['rrze_search_engines'] as $key => $engine) {
-            /** @var Engine $class */
-            $class                         = new $engine['resource_class'];
-            $resources[$key]               = $engine;
-            $resources[$key]['link_label'] = $class::getLinkLabel();
+        if (!empty($this->options['rrze_search_engines'])) {
+            foreach ($this->options['rrze_search_engines'] as $key => $engine) {
+                /** @var Engine $class */
+                $class                         = new $engine['resource_class'];
+                $resources[$key]               = $engine;
+                $resources[$key]['link_label'] = $class::getLinkLabel();
+            }
+
+            $staticLinks = trim(file_get_contents(\dirname(__DIR__,
+                    2).DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'widget-static-links.json'));
+            $staticLinks = strlen($staticLinks) ? json_decode($staticLinks) : [];
+            $staticLinks = is_array($staticLinks) ? $staticLinks : [];
+
+            include \dirname(__DIR__,
+                    2).DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'widget.php';
         }
 
-        $staticLinks = trim(file_get_contents(\dirname(__DIR__,
-                2).DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'widget-static-links.json'));
-        $staticLinks = strlen($staticLinks) ? json_decode($staticLinks) : [];
-        $staticLinks = is_array($staticLinks) ? $staticLinks : [];
-
-        include \dirname(__DIR__,
-                2).DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'widget.php';
         echo $args['after_widget'];
     }
 
