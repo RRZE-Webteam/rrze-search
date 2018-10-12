@@ -223,7 +223,7 @@ class SettingsApi
                 $resources[] = $value;
             }
         }
-        $resources = (count($resources) > 0) ? $resources : 'empty';
+        $resources = (count($resources) > 0) ? $resources : ' ';
 
         $update = update_option($optionName, [
             'rrze_search_resources' => $resources,

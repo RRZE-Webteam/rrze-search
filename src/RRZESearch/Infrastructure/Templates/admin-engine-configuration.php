@@ -3,6 +3,9 @@
     <tbody>
         <?php
         $nextResourceIndex = 0;
+        if($resources === 'empty'){
+            die();
+        }
         foreach ($resources as $resource) {
             $rowColor = ($nextResourceIndex % 2) ? '#ddd' : '#bbb';
             $uId      = ($resource['resource_id'] !== '') ? $resource['resource_id'] : uniqid('rrze_', true);
