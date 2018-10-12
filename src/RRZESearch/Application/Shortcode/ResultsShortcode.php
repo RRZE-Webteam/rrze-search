@@ -53,7 +53,7 @@ class ResultsShortcode
         $searchEngineClass  = substr(strrchr(get_parent_class($this->searchEngine), '\\'), 1);
 
         // Finalize Results
-        $queryResults = $this->searchEngine->query($query, $resource['resource_key'], $startPage);
+        $queryResults = $this->searchEngine->query($query, $resource['args'], $startPage);
         $results      = is_array($queryResults) ? $queryResults : json_decode($queryResults, true);
 
 //        echo '<pre>';

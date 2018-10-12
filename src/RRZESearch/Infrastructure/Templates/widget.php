@@ -95,7 +95,7 @@
                             $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
                             $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
                             $searchEngineDisclaimer = strpos($this->enginesClassCollection[$resource['resource_class']]['label'],
-                                    '%s') ?
+                                '%s') ?
                                 ' (<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">'.$linkLabel.'</a>) ' :
                                 '';
                             ?>
@@ -108,7 +108,8 @@
                                 <span>
                                     <?php
                                     $resourceName = (strpos($this->enginesClassCollection[$resource['resource_class']]['label'],
-                                        '%s') && strpos($resource['resource_name'], '%s') === false) ? $resource['resource_name'].'%s': $resource['resource_name'];
+                                            '%s') && strpos($resource['resource_name'],
+                                            '%s') === false) ? $resource['resource_name'].'%s' : $resource['resource_name'];
                                     if (strlen($searchEngineDisclaimer)) {
                                         echo sprintf($resourceName, $searchEngineDisclaimer);
                                     } else {

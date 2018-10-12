@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-10-12 09:51+0200\n"
+"POT-Creation-Date: 2018-10-12 11:33+0200\n"
 "PO-Revision-Date: 2018-09-03 13:00+0200\n"
 "Last-Translator: Philip Saa <cowglow@gmail.com>\n"
 "Language-Team: \n"
@@ -56,11 +56,11 @@ msgstr ""
 msgid "Search Results Page"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Engines/Foundations/GoogleSearch.php:142
+#: src/RRZESearch/Infrastructure/Engines/Foundations/GoogleSearch.php:97
 msgid "Google FAU Search"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Engines/Foundations/WordPressSearch.php:72
+#: src/RRZESearch/Infrastructure/Engines/Foundations/WordPressSearch.php:71
 msgid "Local Website Search"
 msgstr ""
 
@@ -111,29 +111,25 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:36
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:27
-msgid "API Key"
-msgstr ""
-
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:40
-msgid "No API Key"
+#, php-format
+msgid "Variable%s"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:51
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:65
 msgid "Remove"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:58
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:72
 msgid "Label"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:75
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:89
 msgid "Add Search Engine"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:30
-msgid "Leave blank if no API Key"
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:25
+msgid "Additional Configuration can be made after you Save Changes"
 msgstr ""
 
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-toggle.php:30

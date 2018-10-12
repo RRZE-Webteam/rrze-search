@@ -24,10 +24,5 @@ class GoogleAdapter extends GoogleSearch
      * @var string
      */
     const LINK_LABEL = 'READ FAU\'s Instructions';
-    /**
-     * Google Custom Search ID
-     *
-     * @var string
-     */
-    const ID = '011945293402966620832:n0bvaqo6yl4';
+
 }

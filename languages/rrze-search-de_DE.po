@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-10-12 09:51+0200\n"
-"PO-Revision-Date: 2018-10-12 09:51+0200\n"
+"POT-Creation-Date: 2018-10-12 11:33+0200\n"
+"PO-Revision-Date: 2018-10-12 11:34+0200\n"
 "Last-Translator: Joschi Kuphal <joschi@tollwerk.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -56,11 +56,11 @@ msgstr "Konfiguration"
 msgid "Search Results Page"
 msgstr "Suchergebnisseite"
 
-#: src/RRZESearch/Infrastructure/Engines/Foundations/GoogleSearch.php:142
+#: src/RRZESearch/Infrastructure/Engines/Foundations/GoogleSearch.php:97
 msgid "Google FAU Search"
 msgstr "Google FAU Such"
 
-#: src/RRZESearch/Infrastructure/Engines/Foundations/WordPressSearch.php:72
+#: src/RRZESearch/Infrastructure/Engines/Foundations/WordPressSearch.php:71
 msgid "Local Website Search"
 msgstr "Lokale Web Suche"
 
@@ -122,30 +122,28 @@ msgstr ""
 msgid "Type"
 msgstr "Typ"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:36
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:27
-msgid "API Key"
-msgstr "API-Schlüssel"
-
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:40
-msgid "No API Key"
-msgstr "Kein API-Schlüssel"
+#, php-format
+msgid "Variable%s"
+msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:51
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:65
 msgid "Remove"
 msgstr "Löschen"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:58
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:72
 msgid "Label"
 msgstr "Bezeichnung"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:75
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:89
 msgid "Add Search Engine"
 msgstr "Suchmaschine hinzufügen"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:30
-msgid "Leave blank if no API Key"
-msgstr "Leer lassen, wenn kein API-Schlüssel notwendig"
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:25
+msgid "Additional Configuration can be made after you Save Changes"
+msgstr ""
+"Nach dem Speichern von Änderungen kann eine zusätzliche Konfiguration "
+"vorgenommen werden"
 
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-toggle.php:30
 msgid "Privacy Policy / Instruction Page ID"
@@ -166,6 +164,15 @@ msgstr "Verfügbare Suchmaschinen"
 #: src/RRZESearch/Infrastructure/Templates/widget.php:83
 msgid "Please select one of the available search engines:"
 msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
+
+#~ msgid "API Key"
+#~ msgstr "API-Schlüssel"
+
+#~ msgid "No API Key"
+#~ msgstr "Kein API-Schlüssel"
+
+#~ msgid "Leave blank if no API Key"
+#~ msgstr "Leer lassen, wenn kein API-Schlüssel notwendig"
 
 #~ msgid "Google Search"
 #~ msgstr "Google Suche"

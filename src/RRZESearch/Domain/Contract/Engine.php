@@ -13,13 +13,13 @@ interface Engine
     /**
      * Query — Make your request and return its results
      *
-     * @param string $query  Query string
-     * @param string $key    API key
-     * @param int $startPage Start page
+     * @param string $query
+     * @param array $args
+     * @param int $startPage
      *
      * @return mixed Search results
      */
-    public function query(string $query, string $key, int $startPage);
+    public function query(string $query, array $args, int $startPage);
 
     /**
      * Return the name of this engine

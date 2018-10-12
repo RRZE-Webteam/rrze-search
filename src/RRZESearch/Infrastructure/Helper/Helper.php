@@ -13,6 +13,7 @@ class Helper
 
     public static function adapterCollection(): array
     {
+        // Employed by AppController Class & SearchWidget Class
         $enginesClassCollection = [];
 
         // Define path to Adapter Class Directory
@@ -31,14 +32,18 @@ class Helper
                 $enginesClassCollection[$engineClassName] = [
                     'name'       => \call_user_func([$engineClassName, 'getName']),
                     'label'      => \call_user_func([$engineClassName, 'getLabel']),
-                    'link_label' => \call_user_func([$engineClassName, 'getLinkLabel'])
+                    'link_label' => \call_user_func([$engineClassName, 'getLinkLabel']),
                 ];
+                if (is_callable([$engineClassName, 'getVariables'])){
+                    $enginesClassCollection[$engineClassName]['variables'] = \call_user_func([$engineClassName, 'getVariables']);
+                }
             }
         }
         return $enginesClassCollection;
     }
     /**
      * Check if a resource is an engine
+     * TODO: Consider Cutting
      *
      * @param string $optionName Option name
      * @param string $resourceId Resource ID
@@ -61,6 +66,7 @@ class Helper
 
     /**
      * Check if an engine is a resource
+     * TODO: Consider Cutting
      *
      * @param string $optionName Option name
      * @param string $resourceId Resource ID
@@ -81,6 +87,7 @@ class Helper
 
     /**
      * Return a resource by ID
+     * TODO: Consider Cutting
      *
      * @param string $optionName Option name
      * @param string $resourceId Resource ID
@@ -111,6 +118,7 @@ class Helper
      */
     public static function getEngineById($optionName, $resourceId)
     {
+        // Employed by OptionsSettings Class
         $optionValue = get_option($optionName);
         foreach ($optionValue['rrze_search_engines'] as $resource) {
             if ($resource['resource_id'] === $resourceId) {
@@ -130,6 +138,7 @@ class Helper
      */
     public static function toDirectory($folders)
     {
+        // Employed by OptionsFields Class
         return implode(DIRECTORY_SEPARATOR, $folders);
     }
 }

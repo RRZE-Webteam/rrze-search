@@ -29,15 +29,7 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-// Use the following NAMESPACE
 namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
-
-
-/**
- * Class GoogleSearch
- *
- * @package RRZE\RRZESearch\Infrastructure\Engines
- */
 
 /**
  * Google Custom Search Engine
@@ -48,63 +40,26 @@ namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
 class GoogleSearch extends AbstractSearchEngine
 {
     const NAME = 'Google Custom Search';
-    /**
-     * Request URI
-     *
-     * @var string
-     */
-//    const URI = 'https://www.googleapis.com/customsearch/v1?cx=011945293402966620832:n0bvaqo6yl4&key={key}&q={query}';
-    const URI = 'https://www.googleapis.com/customsearch/v1?cx={id}&key={key}&q={query}';
-    /**
-     * Redirect Link
-     *
-     * @var string
-     */
+
     const REDIRECT_LINK = '/rrze_search_page';
 
     /**
      * Query
      *
      * @param string $query
-     * @param string $key
+     * @param array $args
      * @param int $startPage
      *
      * @return mixed
      */
-    public function query(string $query, string $key, int $startPage)
+    public function query(string $query, array $args, int $startPage)
     {
-        $params = [];
-
-        /**
-         * Append the StartPage Index and rebuild the URI
-         */
-        $uri        = static::URI.'&start='.$startPage;
-        $gcsId      = static::ID;
-        $parsed_url = parse_url($uri);
-        $_uri       = $parsed_url['scheme'].'://'.$parsed_url['host'].$parsed_url['path'].'?';
-        $_params    = explode('&', $parsed_url['query']);
-
-        /**
-         * Replace {key}, {query} placeholder
-         */
-        foreach ($_params as $param) {
-            $split = explode('=', $param);
-            switch ($split[1]) {
-                case '{id}':
-                    $params[$split[0]] = rawurlencode($gcsId);
-                    break;
-                case '{key}':
-                    $params[$split[0]] = rawurlencode($key);
-                    break;
-                case '{query}':
-                    $params[$split[0]] = rawurlencode($query);
-                    break;
-                default:
-                    $params[$split[0]] = $split[1];
-            }
-        }
-        // Rejoin the parameters to URI
-        $_uri .= http_build_query($params);
+        $_uri = sprintf('https://www.googleapis.com/customsearch/v1?cx=%s&key=%s&q=%s&start=%s',
+            $args['cx'],
+            $args['key'],
+            $query,
+            $startPage
+        );
 
         // cURL headers
         $headers = [
@@ -140,5 +95,10 @@ class GoogleSearch extends AbstractSearchEngine
     public static function getName(): string
     {
         return __('Google FAU Search', 'rrze-search');
+    }
+
+    public static function getVariables(): array
+    {
+        return ['cx','key'];
     }
 }

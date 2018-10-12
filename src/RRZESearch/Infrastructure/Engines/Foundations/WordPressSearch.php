@@ -1,5 +1,4 @@
 <?php
-
 /***********************************************************************************
  *
  * RRZE-Websteam
@@ -50,12 +49,12 @@ class WordPressSearch extends AbstractSearchEngine
      * Query - interface defined
      *
      * @param string $query
-     * @param string $key
+     * @param array $args
      * @param int $startPage
      *
      * @return mixed
      */
-    public function query(string $query, string $key, int $startPage)
+    public function query(string $query, array $args, int $startPage)
     {
         $results = new WP_Query([
             'post_type'      => 'any',

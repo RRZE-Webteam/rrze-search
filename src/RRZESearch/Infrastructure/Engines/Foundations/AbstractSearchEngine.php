@@ -46,12 +46,20 @@ use RRZE\RRZESearch\Domain\Contract\Engine;
  */
 abstract class AbstractSearchEngine implements Engine
 {
+    // Defined in foundation class
     /**
      * Search engine name
      *
      * @var string
      */
     const NAME = 'Abstract name';
+    /**
+     * Redirect Link
+     *
+     * @var string
+     */
+    const REDIRECT_LINK = 'Abstract redirect link';
+
     /**
      * Search engine label (with optional placeholder %s for link label)
      *
@@ -64,12 +72,6 @@ abstract class AbstractSearchEngine implements Engine
      * @var string
      */
     const LINK_LABEL = 'Abstract link label';
-    /**
-     * Redirect Link
-     *
-     * @var string
-     */
-    const REDIRECT_LINK = 'Abstract redirect link';
 
     /**
      * Return the search engine name

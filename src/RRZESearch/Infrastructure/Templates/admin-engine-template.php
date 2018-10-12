@@ -21,16 +21,8 @@
                 </label>
             </fieldset>
         </td>
-        <td>
-            <fieldset>
-                <label class="resource_table_label">
-                    <span><?php echo __('API Key', 'rrze-search'); ?></span>
-                    <input type="text" class="regular-text" id="rrze_search_resources"
-                           name="rrze_search_settings[rrze_search_resources][index][resource_key]"
-                           placeholder="<?php echo __('Leave blank if no API Key', 'rrze-search'); ?>" value="">
-                </label>
-            </fieldset>
+        <td colspan="2">
+            <?= __('Additional Configuration can be made after you Save Changes', 'rrze-seaerch'); ?>
         </td>
-        <td>&nbsp;</td>
     </tr>
 </template>
