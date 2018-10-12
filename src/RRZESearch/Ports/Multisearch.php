@@ -63,7 +63,8 @@ class Multisearch
             update_option('rrze_search_settings', [
                 'rrze_search_resources' => [
                     ['resource_name' => 'Default', 'resource_key' => '']
-                ]
+                ],
+                'rrze_search_engines' => []
             ]);
         }
         self::updateResultsPageStatus('publish');
