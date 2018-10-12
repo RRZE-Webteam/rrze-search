@@ -4,7 +4,6 @@
     (<?php echo $results['searchInformation']['formattedSearchTime']; ?> seconds)
 </p>
 <ul class="searchresults">
-    <pre><?php print_r($results['items']);?></pre>
     <?php foreach ($results['items'] as $result) : ?>
         <li class="search-result res-page">
             <h3><a href="<?php echo $result['link']; ?>"><?php echo htmlspecialchars($result['title']); ?></a></h3>
