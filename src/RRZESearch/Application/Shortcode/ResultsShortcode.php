@@ -56,10 +56,6 @@ class ResultsShortcode
         $queryResults = $this->searchEngine->query($query, $resource['args'], $startPage);
         $results      = is_array($queryResults) ? $queryResults : json_decode($queryResults, true);
 
-//        echo '<pre>';
-//        print_r($this->options['rrze_search_engines']);
-//        echo '</pre>';
-
         // Render the Search Engine Tabs
         include \dirname(__DIR__, 2).$templatesDir.'search-tabs.php';
 

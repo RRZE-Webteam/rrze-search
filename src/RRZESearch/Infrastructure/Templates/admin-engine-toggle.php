@@ -1,5 +1,4 @@
 <?php settings_errors(); ?>
-<pre><?php print_r($engines); ?></pre>
 <table id="rrze_search_resource_form" class="form-table" border="0">
     <?php
     $nextEngineIndex = 0;

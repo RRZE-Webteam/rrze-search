@@ -85,9 +85,6 @@
                     <?php
                     $nextTabIndex = 0;
                     foreach ($resources as $key => $resource):
-//                        echo $resource['resource_class'].'<br>';
-//                        echo strpos($this->enginesClassCollection[$resource['resource_class']]['label'], '%s');
-//                        echo strlen($resource['resource_disclaimer']);
                         if ($resource['enabled']) {
                             ++$nextTabIndex;
                             $linkLabel              = trim($resource['link_label']);

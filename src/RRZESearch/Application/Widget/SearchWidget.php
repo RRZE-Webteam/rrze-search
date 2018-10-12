@@ -198,14 +198,16 @@ class SearchWidget extends WP_Widget
     {
         echo $args['before_widget'];
 
-        $resources       = [];
         $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? (int)$instance['search_engine'] : (int)$_COOKIE['rrze_search_engine_pref'];
+        $resources       = [];
 
         foreach ($this->options['rrze_search_engines'] as $key => $engine) {
             /** @var Engine $class */
             $class                         = new $engine['resource_class'];
+            $resource                      = Helper::getResourceById('rrze_search_settings', $engine['resource_id']);
             $resources[$key]               = $engine;
             $resources[$key]['link_label'] = $class::getLinkLabel();
+            $resources[$key]['args']       = $resource['args'];
         }
 
         $staticLinks = trim(file_get_contents(\dirname(__DIR__,
