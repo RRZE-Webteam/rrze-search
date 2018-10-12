@@ -4,7 +4,7 @@
         <?php
         $nextResourceIndex = 0;
         if($resources === 'empty'){
-            die();
+            $resources = [];
         }
         foreach ($resources as $resource) {
             $rowColor = ($nextResourceIndex % 2) ? '#ddd' : '#bbb';
