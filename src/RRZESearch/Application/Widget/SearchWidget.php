@@ -201,7 +201,7 @@ class SearchWidget extends WP_Widget
         $resources       = [];
         $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? (int)$instance['search_engine'] : (int)$_COOKIE['rrze_search_engine_pref'];
 
-        if (!empty($this->options['rrze_search_engines'])) {
+        if ($this->options['rrze_search_engines'] !== 'empty') {
             foreach ($this->options['rrze_search_engines'] as $key => $engine) {
                 /** @var Engine $class */
                 $class                         = new $engine['resource_class'];
