@@ -3,6 +3,7 @@
 namespace RRZE\RRZESearch\Application\Widget;
 
 use RRZE\RRZESearch\Domain\Contract\Engine;
+use RRZE\RRZESearch\Infrastructure\Helper\Helper;
 use WP_Widget;
 
 /**
@@ -43,6 +44,12 @@ class SearchWidget extends WP_Widget
      * @var string
      */
     public $pluginPath;
+    /**
+     * Registered search engines
+     *
+     * @var array[]
+     */
+    public $enginesClassCollection = [];
 
     /**
      * Constructor
@@ -59,6 +66,8 @@ class SearchWidget extends WP_Widget
 
         $this->options    = get_option('rrze_search_settings');
         $this->pluginPath = plugin_dir_url(dirname(__FILE__, 2));
+        $this->enginesClassCollection = Helper::adapterCollection();
+
         register_activation_hook(__FILE__, [$this, 'widgetSubmit']);
         parent::__construct($this->widgetId, $this->widgetName);
     }

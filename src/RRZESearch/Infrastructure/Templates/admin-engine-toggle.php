@@ -1,4 +1,5 @@
 <?php settings_errors(); ?>
+<!--<pre>--><?php //print_r($engines); ?><!--</pre>-->
 <table id="rrze_search_resource_form" class="form-table" border="0">
     <?php
     $nextEngineIndex = 0;
@@ -24,9 +25,9 @@
                 </label>
             </td>
             <td>
-                <?php if (strpos($resourceEngine['resource_name'], '%s')) { ?>
+                <?php if (strpos($this->enginesClassCollection[$resourceEngine['resource_class']]['label'], '%s')) { ?>
                 <label class="resource_table_label">
-                    <span><?php _e('Privacy Policy / Instruction Page ID', 'rrze-search'); ?></span>
+                    <span><?php __('Privacy Policy / Instruction Page ID', 'rrze-search'); ?></span>
                     <input type="number" id="<?= $fieldName; ?>"
                            name="<?= $optionName ?>[<?= $fieldName; ?>][<?= $nextEngineIndex; ?>][resource_disclaimer]"
                            value="<?= $resourceEngine['resource_disclaimer']; ?>">

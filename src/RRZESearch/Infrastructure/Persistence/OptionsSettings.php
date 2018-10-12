@@ -29,14 +29,16 @@ class OptionsSettings extends AppController
         // Configured Search Engines - Super Admin Level
         $output['rrze_search_resources'] = ($input['rrze_search_resources']) ? $input['rrze_search_resources'] : $option['rrze_search_resources'];
         foreach ($output['rrze_search_resources'] as $key => $resource) {
-            $output['rrze_search_resources'][$key]['resource_name'] = $this->enginesClassCollection[$resource['resource_class']]['label'];
+            if ($output['rrze_search_resources'][$key]['resource_name'] === ''){
+                $output['rrze_search_resources'][$key]['resource_name'] = $this->enginesClassCollection[$resource['resource_class']]['label'];
+            }
         }
 
         // Installed Search Engines - Regular Admin Level
         $output['rrze_search_engines'] = ($input['rrze_search_engines']) ? $input['rrze_search_engines'] : $option['rrze_search_engines'];
-        foreach ($output['rrze_search_resources'] as $key => $resource) {
-            $output['rrze_search_engines'][$key]['resource_name'] = $this->enginesClassCollection[$resource['resource_class']]['label'];
-        }
+//        foreach ($output['rrze_search_resources'] as $key => $resource) {
+//            $output['rrze_search_engines'][$key]['resource_name'] = $this->enginesClassCollection[$resource['resource_class']]['label'];
+//        }
 
         /** Page ID for Search Results */
         $output['rrze_search_page_id'] = ($input['rrze_search_page_id']) ? $input['rrze_search_page_id'] : $option['rrze_search_page_id'];
@@ -78,7 +80,11 @@ class OptionsSettings extends AppController
 
             // Update Labels
             foreach ($option['rrze_search_engines'] as $key => $engine) {
-                $engineCollectionUpdate[$key]['resource_name']  = $this->enginesClassCollection[$input['rrze_search_resources'][$key]['resource_class']]['label'];
+                if($input['rrze_search_resources'][$key]['resource_name'] !== '') {
+                    $engineCollectionUpdate[$key]['resource_name']  = $input['rrze_search_resources'][$key]['resource_name'];
+                } else {
+                    $engineCollectionUpdate[$key]['resource_name']  = $this->enginesClassCollection[$input['rrze_search_resources'][$key]['resource_class']]['label'];
+                }
                 $engineCollectionUpdate[$key]['resource_class'] = $input['rrze_search_resources'][$key]['resource_class'];
 
                 // Automatically disable the engine when Class changed

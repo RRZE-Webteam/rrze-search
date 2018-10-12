@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-10-11 16:02+0200\n"
-"PO-Revision-Date: 2018-10-11 16:02+0200\n"
+"POT-Creation-Date: 2018-10-12 09:51+0200\n"
+"PO-Revision-Date: 2018-10-12 09:51+0200\n"
 "Last-Translator: Joschi Kuphal <joschi@tollwerk.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -23,15 +23,15 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-5: package-lock.json\n"
 "X-Poedit-SearchPathExcluded-6: package.json\n"
 
-#: src/RRZESearch/Application/Widget/SearchWidget.php:88
+#: src/RRZESearch/Application/Widget/SearchWidget.php:97
 msgid "RRZE Search Sidebar"
 msgstr "RRZE Such-Randspalte"
 
-#: src/RRZESearch/Application/Widget/SearchWidget.php:90
+#: src/RRZESearch/Application/Widget/SearchWidget.php:99
 msgid "Used to display the widget"
 msgstr "Wird verwendet, um das Widget anzuzeigen"
 
-#: src/RRZESearch/Application/Widget/SearchWidget.php:169
+#: src/RRZESearch/Application/Widget/SearchWidget.php:178
 msgid "Default Search Engine"
 msgstr "Standardsuchmaschine"
 
@@ -117,31 +117,39 @@ msgid ""
 "Suchmaschine oder verwenden eine Internet-Suchmaschine."
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:18
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:17
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:13
 msgid "Type"
 msgstr "Typ"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:37
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:36
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:27
 msgid "API Key"
 msgstr "API-Schlüssel"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:41
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:40
 msgid "No API Key"
 msgstr "Kein API-Schlüssel"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:53
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:51
 msgid "Remove"
 msgstr "Löschen"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:64
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:58
+msgid "Label"
+msgstr "Bezeichnung"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:75
 msgid "Add Search Engine"
 msgstr "Suchmaschine hinzufügen"
 
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:30
 msgid "Leave blank if no API Key"
 msgstr "Leer lassen, wenn kein API-Schlüssel notwendig"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-toggle.php:30
+msgid "Privacy Policy / Instruction Page ID"
+msgstr "Datenschutz- / Instruktionsseite (ID)"
 
 #: src/RRZESearch/Infrastructure/Templates/search-pagination.php:13
 msgid "Previous Page"
@@ -155,7 +163,7 @@ msgstr "Nächste Seite"
 msgid "Available search engines"
 msgstr "Verfügbare Suchmaschinen"
 
-#: src/RRZESearch/Infrastructure/Templates/widget.php:81
+#: src/RRZESearch/Infrastructure/Templates/widget.php:83
 msgid "Please select one of the available search engines:"
 msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
 
@@ -177,18 +185,12 @@ msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
 #~ msgid "Please select one of the available search engines"
 #~ msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
 
-#~ msgid "Privacy Policy / Instruction Page ID"
-#~ msgstr "Datenschutz- / Instruktionsseite (ID)"
-
 #~ msgid "Display Title"
 #~ msgstr "Titel anzeigen"
 
 #~ msgid "Check the box to enabled the %s Search Engine"
 #~ msgstr ""
 #~ "Aktivieren Sie das Kontrollkästchen, um die Suchmaschine %s  zu aktivieren"
-
-#~ msgid "Label"
-#~ msgstr "Bezeichnung"
 
 #~ msgid "---"
 #~ msgstr "---"

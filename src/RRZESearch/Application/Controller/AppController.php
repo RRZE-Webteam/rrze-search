@@ -49,26 +49,7 @@ class AppController
         /** @var string plugin: rrze-search/rrze-search.php */
         $this->plugin     = plugin_basename(\dirname(__FILE__, 5)).'/rrze-search.php';
 
-        // Define path to Adapter Class Directory
-        $adapterDirectory = \dirname(__DIR__, 2).DIRECTORY_SEPARATOR.Helper::toDirectory([
-                'Infrastructure',
-                'Engines',
-                'Adapters'
-            ]);
-
-        // Scan the directory for Search Engine resources (i.e. the Adapters)
-        foreach (scandir($adapterDirectory, SCANDIR_SORT_NONE) as $adapterFile) {
-            if ($adapterFile !== '.' && $adapterFile !== '..') {
-                $engineName      = pathinfo($adapterFile, PATHINFO_FILENAME);
-                $engineClassName = 'RRZE\\RRZESearch\\Infrastructure\\Engines\\Adapters\\'.$engineName;
-                // Add to our array collection
-                $this->enginesClassCollection[$engineClassName] = [
-                    'name'       => \call_user_func([$engineClassName, 'getName']),
-                    'label'      => \call_user_func([$engineClassName, 'getLabel']),
-                    'link_label' => \call_user_func([$engineClassName, 'getLinkLabel'])
-                ];
-            }
-        }
+        $this->enginesClassCollection = Helper::adapterCollection();
     }
 
     /**

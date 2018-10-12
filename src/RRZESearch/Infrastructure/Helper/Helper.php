@@ -10,6 +10,33 @@ namespace RRZE\RRZESearch\Infrastructure\Helper;
  */
 class Helper
 {
+
+    public static function adapterCollection(): array
+    {
+        $enginesClassCollection = [];
+
+        // Define path to Adapter Class Directory
+        $adapterDirectory = \dirname(__DIR__, 2).DIRECTORY_SEPARATOR.self::toDirectory([
+                'Infrastructure',
+                'Engines',
+                'Adapters'
+            ]);
+
+        // Scan the directory for Search Engine resources (i.e. the Adapters)
+        foreach (scandir($adapterDirectory, SCANDIR_SORT_NONE) as $adapterFile) {
+            if ($adapterFile !== '.' && $adapterFile !== '..') {
+                $engineName      = pathinfo($adapterFile, PATHINFO_FILENAME);
+                $engineClassName = 'RRZE\\RRZESearch\\Infrastructure\\Engines\\Adapters\\'.$engineName;
+                // Add to our array collection
+                $enginesClassCollection[$engineClassName] = [
+                    'name'       => \call_user_func([$engineClassName, 'getName']),
+                    'label'      => \call_user_func([$engineClassName, 'getLabel']),
+                    'link_label' => \call_user_func([$engineClassName, 'getLinkLabel'])
+                ];
+            }
+        }
+        return $enginesClassCollection;
+    }
     /**
      * Check if a resource is an engine
      *

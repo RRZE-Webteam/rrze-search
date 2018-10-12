@@ -77,19 +77,25 @@
             <!--            <div id="search-panel" class="search-panel" style="background-color: #fff; width:800px; left:-450px; position: absolute" -hidden>-->
             <div id="search-panel" class="search-panel" hidden>
                 <div class="search-settings" role="radiogroup"
-                     aria-label="<?php echo __('Available search engines', 'rrze-search'); ?>" aria-labelledby="search-engines">
-                    <p id="search-engines" class="screen-reader-text"><?php echo __('Please select one of the available search engines:',
+                     aria-label="<?php echo __('Available search engines', 'rrze-search'); ?>"
+                     aria-labelledby="search-engines">
+                    <p id="search-engines"
+                       class="screen-reader-text"><?php echo __('Please select one of the available search engines:',
                             'rrze-search'); ?></p>
                     <?php
                     $nextTabIndex = 0;
                     foreach ($resources as $key => $resource):
+//                        echo $resource['resource_class'].'<br>';
+//                        echo strpos($this->enginesClassCollection[$resource['resource_class']]['label'], '%s');
+//                        echo strlen($resource['resource_disclaimer']);
                         if ($resource['enabled']) {
                             ++$nextTabIndex;
                             $linkLabel              = trim($resource['link_label']);
                             $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
                             $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
                             $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
-                            $searchEngineDisclaimer = strlen($resource['resource_disclaimer']) ?
+                            $searchEngineDisclaimer = strpos($this->enginesClassCollection[$resource['resource_class']]['label'],
+                                    '%s') ?
                                 ' (<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">'.$linkLabel.'</a>) ' :
                                 '';
                             ?>
@@ -100,12 +106,13 @@
                                            value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
                                 </span>
                                 <span>
-                                    <?php if (strlen($searchEngineDisclaimer)) {
-                                        echo sprintf($resource['resource_name'], $searchEngineDisclaimer);
+                                    <?php
+                                    $resourceName = (strpos($this->enginesClassCollection[$resource['resource_class']]['label'],
+                                        '%s') && strpos($resource['resource_name'], '%s') === false) ? $resource['resource_name'].'%s': $resource['resource_name'];
+                                    if (strlen($searchEngineDisclaimer)) {
+                                        echo sprintf($resourceName, $searchEngineDisclaimer);
                                     } else {
                                         echo sprintf($resource['resource_name'], '');
-
-
                                     } ?></span>
                             </label>
                             <?php
