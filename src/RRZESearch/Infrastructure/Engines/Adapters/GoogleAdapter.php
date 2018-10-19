@@ -17,12 +17,12 @@ class GoogleAdapter extends GoogleSearch
      *
      * @var string
      */
-    const LABEL = 'Google FAU CS%s';
+    const LABEL = 'Google FAU Search';
     /**
      * Privacy policy / instruction page link label
      *
      * @var string
      */
-    const LINK_LABEL = 'READ FAU\'s Instructions';
+    const LINK_LABEL = 'Privacy Disclaimer';
 
 }

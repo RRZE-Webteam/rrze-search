@@ -127,8 +127,7 @@ class SettingsApi
     public function addAdminMenu()
     {
         foreach ($this->adminPages as $page) {
-            add_menu_page($page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'],
-                $page['callback'], $page['icon_url'], $page['position']);
+            add_menu_page($page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'],  $page['callback'], $page['icon_url']);
         }
 
         global $current_user;

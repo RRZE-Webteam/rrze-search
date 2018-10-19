@@ -50,7 +50,11 @@
                                 <label class="resource_table_label">
                                     <span><?= strtoupper($engineVariable); ?></span>
                                     <?php
-                                    echo '<input type="text" class="regular-text" id="'.$fieldName.'" name="'.$optionName.'['.$fieldName.']['.$nextResourceIndex.'][args]['.$engineVariable.']" value="'.$resource['args'][$engineVariable].'" />';
+				    $preval = '';
+				    if ((isset($resource['args'])) && (isset($resource['args'][$engineVariable]))) {
+					$preval = $resource['args'][$engineVariable];
+				    }
+                                    echo '<input type="text" class="regular-text" id="'.$fieldName.'" name="'.$optionName.'['.$fieldName.']['.$nextResourceIndex.'][args]['.$engineVariable.']" value="'.$preval.'" />';
                                     ?>
                                 </label>
                             </fieldset>
