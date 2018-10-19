@@ -37,7 +37,7 @@ class Multisearch
     public static function bootstrap(): void
     {
         // Pre-load Language Pack to ensure translation before bootstrapping
-        $languagePath = sprintf('%s/languages/', dirname(plugin_basename(__FILE__), 3));
+        $languagePath = sprintf('%s/languages/', dirname(plugin_basename(__FILE__), 4));
         load_plugin_textdomain('rrze-search', false, $languagePath);
 
         // Run through all services
