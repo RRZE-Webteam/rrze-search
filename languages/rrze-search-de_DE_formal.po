@@ -1,19 +1,19 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
 "POT-Creation-Date: 2018-10-19 16:34+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Philip Saa <cowglow@gmail.com>\n"
-"Language-Team: \n"
-"Language: \n"
+"PO-Revision-Date: 2018-10-19 16:35+0000\n"
+"Last-Translator: Wolfgang Wiese <wolfgang.wiese@fau.de>\n"
+"Language-Team: Deutsch (Sie)\n"
+"Language: de_DE_formal\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-Basepath: ..\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: fixture\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
@@ -21,32 +21,33 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-3: composer.json\n"
 "X-Poedit-SearchPathExcluded-4: gulpfile.js\n"
 "X-Poedit-SearchPathExcluded-5: package-lock.json\n"
-"X-Poedit-SearchPathExcluded-6: package.json"
+"X-Poedit-SearchPathExcluded-6: package.json\n"
+"Report-Msgid-Bugs-To: "
 
 #: src/RRZESearch/Infrastructure/SettingsLink.php:32
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: src/RRZESearch/Infrastructure/Dashboard.php:85
 #: src/RRZESearch/Infrastructure/Dashboard.php:168
 #: src/RRZESearch/Infrastructure/Dashboard.php:179
 msgid "Search Engines"
-msgstr ""
+msgstr "Suchmaschinen"
 
 #: src/RRZESearch/Infrastructure/Dashboard.php:99
 #: src/RRZESearch/Infrastructure/Dashboard.php:112
 #: src/RRZESearch/Infrastructure/Dashboard.php:146
 #: src/RRZESearch/Infrastructure/Dashboard.php:152
 msgid "Settings › Search"
-msgstr ""
+msgstr "Einstellungen › Suche"
 
 #: src/RRZESearch/Infrastructure/Dashboard.php:113
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguration"
 
 #: src/RRZESearch/Infrastructure/Dashboard.php:190
 msgid "Search Results Page"
-msgstr ""
+msgstr "Suchergebnisseite"
 
 #: src/RRZESearch/Infrastructure/Templates/widget-static-links.php:39
 msgid "Quicklinks"
@@ -55,114 +56,118 @@ msgstr ""
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:13
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:19
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: src/RRZESearch/Infrastructure/Templates/widget.php:94
 msgid "Available search engines"
-msgstr ""
+msgstr "Verfügbare Suchmaschinen"
 
 #: src/RRZESearch/Infrastructure/Templates/widget.php:97
 msgid "Please select one of the available search engines:"
-msgstr ""
+msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
 
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:37
 msgid "Label"
-msgstr ""
+msgstr "Bezeichnung"
 
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:66
 msgid "Remove"
-msgstr ""
+msgstr "Löschen"
 
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:77
 msgid "Add Search Engine"
-msgstr ""
+msgstr "Suchmaschine hinzufügen"
 
 #: src/RRZESearch/Infrastructure/Templates/search-pagination.php:12
 msgid "Previous Page"
-msgstr ""
+msgstr "Vorherige Seite"
 
 #: src/RRZESearch/Infrastructure/Templates/search-pagination.php:25
 msgid "Next Page"
-msgstr ""
+msgstr "Nächste Seite"
 
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-toggle.php:29
 msgid "Privacy Policy / Instruction Page ID"
-msgstr ""
+msgstr "Datenschutz- / Instruktionsseite (ID)"
 
 #: src/RRZESearch/Infrastructure/Persistence/OptionsSections.php:20
 msgid "Enable Search Engines"
-msgstr ""
+msgstr "Suchmaschinen aktivieren"
 
 #: src/RRZESearch/Infrastructure/Persistence/OptionsSections.php:28
 msgid "Configure Search Engines"
-msgstr ""
+msgstr "Suchmaschinen konfigurieren"
 
 #: src/RRZESearch/Infrastructure/Persistence/OptionsFields.php:98
 msgid "RRZE Search Results"
-msgstr ""
+msgstr "RRZE Suchergebnisse"
 
 #: src/RRZESearch/Infrastructure/Persistence/OptionsFields.php:101
 msgid "Search Result Page utilized by RRZE Search Plugin"
-msgstr ""
+msgstr "Suchergebnisseite, die vom RRZE Search Plugin verwendet wird"
 
 #: src/RRZESearch/Infrastructure/Persistence/OptionsFields.php:111
 msgid ""
 "Oh no! Someone deleted the results Page! No worries, Another one will be "
 "generated when you click [ Save Changes ]"
 msgstr ""
+"Oh nein! Jemand hat die Ergebnisseite gelöscht! Keine Sorge, eine weitere "
+"wird generiert, sobald Sie auf [Änderungen speichern] klicken"
 
 #: src/RRZESearch/Infrastructure/Persistence/OptionsFields.php:115
 msgid ""
 "Search Results Page doesn't exist, yet! No worries, one will be generated "
 "when you click [ Save Changes ]"
 msgstr ""
+"Die Suchergebnisse Seite existiert noch nicht! Keine Sorge, sie wird "
+"generiert, sobald Sie auf [Änderungen speichern] klicken"
 
 #: src/RRZESearch/Application/Widget/SearchWidget.php:97
 msgid "RRZE Search Sidebar"
-msgstr ""
+msgstr "RRZE Such-Randspalte"
 
 #: src/RRZESearch/Application/Widget/SearchWidget.php:99
 msgid "Used to display the widget"
-msgstr ""
+msgstr "Wird verwendet, um das Widget anzuzeigen"
 
 #: src/RRZESearch/Application/Widget/SearchWidget.php:178
 msgid "Default Search Engine"
-msgstr ""
+msgstr "Standardsuchmaschine"
 
 #: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:4
 #: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:8
 msgid "Search results"
-msgstr ""
+msgstr "Suchergebnisse"
 
 #: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:6
 #: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:9
 #, php-format
 msgid "About %1$s results"
-msgstr ""
+msgstr "Ungefähr %1$s Ergebnisse"
 
 #: src/RRZESearch/Infrastructure/Templates/Results/Error-shortcode.php:7
 msgid "The search could not be performed."
-msgstr ""
+msgstr "Die Suche konnte nicht ausgeführt werden."
 
 #: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:11
 msgid "seconds"
-msgstr ""
+msgstr "Sekunden"
 
 #: src/RRZESearch/Infrastructure/Templates/Results/Error-NoQuery.php:7
 msgid "Please enter a search string."
-msgstr ""
+msgstr "Bitte geben Sie einen Suchbegriff ein."
 
 #: src/RRZESearch/Infrastructure/Engines/Template/SearchEngine-Adapter.php:47
 msgid "Your Label with Translation Support"
-msgstr ""
+msgstr "Ihr Label mit Übersetzungsunterstützung"
 
 #: src/RRZESearch/Infrastructure/Engines/Foundations/WordPressSearch.php:71
 msgid "Local Website Search"
-msgstr ""
+msgstr "Lokale Web Suche"
 
 #: src/RRZESearch/Infrastructure/Engines/Foundations/GoogleSearch.php:97
 msgid "Google FAU Search"
-msgstr ""
+msgstr "Google FAU Suche"
 
 #. Name of the plugin
 msgid "RRZE Search"

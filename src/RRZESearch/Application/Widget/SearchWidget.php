@@ -207,7 +207,10 @@ class SearchWidget extends WP_Widget
             $resource                      = Helper::getResourceById('rrze_search_settings', $engine['resource_id']);
             $resources[$key]               = $engine;
             $resources[$key]['link_label'] = $class::getLinkLabel();
-            $resources[$key]['args']       = $resource['args'];
+	    $resources[$key]['args']	   = array();
+	    if (isset($resource['args'])) {
+		$resources[$key]['args']       = $resource['args'];
+	    }
         }
 
         $staticLinks = trim(file_get_contents(\dirname(__DIR__,

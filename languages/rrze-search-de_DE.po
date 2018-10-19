@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-10-12 11:33+0200\n"
-"PO-Revision-Date: 2018-10-12 11:34+0200\n"
-"Last-Translator: Joschi Kuphal <joschi@tollwerk.de>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2018-10-19 16:34+0000\n"
+"PO-Revision-Date: 2018-10-19 16:35+0000\n"
+"Last-Translator: Wolfgang Wiese <wolfgang.wiese@fau.de>\n"
+"Language-Team: Deutsch\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __\n"
@@ -22,18 +22,11 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-4: gulpfile.js\n"
 "X-Poedit-SearchPathExcluded-5: package-lock.json\n"
 "X-Poedit-SearchPathExcluded-6: package.json\n"
+"Report-Msgid-Bugs-To: "
 
-#: src/RRZESearch/Application/Widget/SearchWidget.php:97
-msgid "RRZE Search Sidebar"
-msgstr "RRZE Such-Randspalte"
-
-#: src/RRZESearch/Application/Widget/SearchWidget.php:99
-msgid "Used to display the widget"
-msgstr "Wird verwendet, um das Widget anzuzeigen"
-
-#: src/RRZESearch/Application/Widget/SearchWidget.php:178
-msgid "Default Search Engine"
-msgstr "Standardsuchmaschine"
+#: src/RRZESearch/Infrastructure/SettingsLink.php:32
+msgid "Settings"
+msgstr "Einstellungen"
 
 #: src/RRZESearch/Infrastructure/Dashboard.php:85
 #: src/RRZESearch/Infrastructure/Dashboard.php:168
@@ -56,17 +49,54 @@ msgstr "Konfiguration"
 msgid "Search Results Page"
 msgstr "Suchergebnisseite"
 
-#: src/RRZESearch/Infrastructure/Engines/Foundations/GoogleSearch.php:97
-msgid "Google FAU Search"
-msgstr "Google FAU Such"
+#: src/RRZESearch/Infrastructure/Templates/widget-static-links.php:39
+msgid "Quicklinks"
+msgstr ""
 
-#: src/RRZESearch/Infrastructure/Engines/Foundations/WordPressSearch.php:71
-msgid "Local Website Search"
-msgstr "Lokale Web Suche"
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:13
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:19
+msgid "Type"
+msgstr "Typ"
 
-#: src/RRZESearch/Infrastructure/Engines/Template/SearchEngine-Adapter.php:47
-msgid "Your Label with Translation Support"
-msgstr "Ihr Label mit Übersetzungsunterstützung"
+#: src/RRZESearch/Infrastructure/Templates/widget.php:94
+msgid "Available search engines"
+msgstr "Verfügbare Suchmaschinen"
+
+#: src/RRZESearch/Infrastructure/Templates/widget.php:97
+msgid "Please select one of the available search engines:"
+msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:37
+msgid "Label"
+msgstr "Bezeichnung"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:66
+msgid "Remove"
+msgstr "Löschen"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:77
+msgid "Add Search Engine"
+msgstr "Suchmaschine hinzufügen"
+
+#: src/RRZESearch/Infrastructure/Templates/search-pagination.php:12
+msgid "Previous Page"
+msgstr "Vorherige Seite"
+
+#: src/RRZESearch/Infrastructure/Templates/search-pagination.php:25
+msgid "Next Page"
+msgstr "Nächste Seite"
+
+#: src/RRZESearch/Infrastructure/Templates/admin-engine-toggle.php:29
+msgid "Privacy Policy / Instruction Page ID"
+msgstr "Datenschutz- / Instruktionsseite (ID)"
+
+#: src/RRZESearch/Infrastructure/Persistence/OptionsSections.php:20
+msgid "Enable Search Engines"
+msgstr "Suchmaschinen aktivieren"
+
+#: src/RRZESearch/Infrastructure/Persistence/OptionsSections.php:28
+msgid "Configure Search Engines"
+msgstr "Suchmaschinen konfigurieren"
 
 #: src/RRZESearch/Infrastructure/Persistence/OptionsFields.php:98
 msgid "RRZE Search Results"
@@ -92,151 +122,66 @@ msgstr ""
 "Die Suchergebnisse Seite existiert noch nicht! Keine Sorge, sie wird "
 "generiert, sobald Sie auf [Änderungen speichern] klicken"
 
-#: src/RRZESearch/Infrastructure/Persistence/OptionsSections.php:20
-msgid "Enable Search Engines"
-msgstr "Suchmaschinen aktivieren"
+#: src/RRZESearch/Application/Widget/SearchWidget.php:97
+msgid "RRZE Search Sidebar"
+msgstr "RRZE Such-Randspalte"
 
-#: src/RRZESearch/Infrastructure/Persistence/OptionsSections.php:28
-msgid "Configure Search Engines"
-msgstr "Suchmaschinen konfigurieren"
+#: src/RRZESearch/Application/Widget/SearchWidget.php:99
+msgid "Used to display the widget"
+msgstr "Wird verwendet, um das Widget anzuzeigen"
 
-#: src/RRZESearch/Infrastructure/SettingsLink.php:32
-msgid "Settings"
-msgstr "Einstellungen"
+#: src/RRZESearch/Application/Widget/SearchWidget.php:178
+msgid "Default Search Engine"
+msgstr "Standardsuchmaschine"
 
-#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:2
-#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:7
+#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:4
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:8
+msgid "Search results"
+msgstr "Suchergebnisse"
+
+#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:6
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:9
 #, php-format
 msgid "About %1$s results"
 msgstr "Ungefähr %1$s Ergebnisse"
 
-#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:5
-msgid ""
-"Es wird nur in diesem Webauftritt gesucht. Um Dokumente und Seiten aus "
-"anderen Webauftritten zu finden, nutzen Sie die jeweils dort zu findende "
-"Suchmaschine oder verwenden eine Internet-Suchmaschine."
+#: src/RRZESearch/Infrastructure/Templates/Results/Error-shortcode.php:7
+msgid "The search could not be performed."
+msgstr "Die Suche konnte nicht ausgeführt werden."
+
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:11
+msgid "seconds"
+msgstr "Sekunden"
+
+#: src/RRZESearch/Infrastructure/Templates/Results/Error-NoQuery.php:7
+msgid "Please enter a search string."
+msgstr "Bitte geben Sie einen Suchbegriff ein."
+
+#: src/RRZESearch/Infrastructure/Engines/Template/SearchEngine-Adapter.php:47
+msgid "Your Label with Translation Support"
+msgstr "Ihr Label mit Übersetzungsunterstützung"
+
+#: src/RRZESearch/Infrastructure/Engines/Foundations/WordPressSearch.php:71
+msgid "Local Website Search"
+msgstr "Lokale Web Suche"
+
+#: src/RRZESearch/Infrastructure/Engines/Foundations/GoogleSearch.php:97
+msgid "Google FAU Search"
+msgstr "Google FAU Suche"
+
+#. Name of the plugin
+msgid "RRZE Search"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:17
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:13
-msgid "Type"
-msgstr "Typ"
-
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:40
-#, php-format
-msgid "Variable%s"
+#. Description of the plugin
+msgid "a WordPress Search Plugin by tollwerk GmbH"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:65
-msgid "Remove"
-msgstr "Löschen"
-
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:72
-msgid "Label"
-msgstr "Bezeichnung"
-
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:89
-msgid "Add Search Engine"
-msgstr "Suchmaschine hinzufügen"
-
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:25
-msgid "Additional Configuration can be made after you Save Changes"
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://www.tollwerk.de"
 msgstr ""
-"Nach dem Speichern von Änderungen kann eine zusätzliche Konfiguration "
-"vorgenommen werden"
 
-#: src/RRZESearch/Infrastructure/Templates/admin-engine-toggle.php:30
-msgid "Privacy Policy / Instruction Page ID"
-msgstr "Datenschutz- / Instruktionsseite (ID)"
-
-#: src/RRZESearch/Infrastructure/Templates/search-pagination.php:13
-msgid "Previous Page"
-msgstr "Vorherige Seite"
-
-#: src/RRZESearch/Infrastructure/Templates/search-pagination.php:26
-msgid "Next Page"
-msgstr "Nächste Seite"
-
-#: src/RRZESearch/Infrastructure/Templates/widget.php:80
-msgid "Available search engines"
-msgstr "Verfügbare Suchmaschinen"
-
-#: src/RRZESearch/Infrastructure/Templates/widget.php:83
-msgid "Please select one of the available search engines:"
-msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
-
-#~ msgid "API Key"
-#~ msgstr "API-Schlüssel"
-
-#~ msgid "No API Key"
-#~ msgstr "Kein API-Schlüssel"
-
-#~ msgid "Leave blank if no API Key"
-#~ msgstr "Leer lassen, wenn kein API-Schlüssel notwendig"
-
-#~ msgid "Google Search"
-#~ msgstr "Google Suche"
-
-#~ msgid "Google FAU CS%s"
-#~ msgstr "Google FAU CS%s"
-
-#~ msgid "READ FAU's Instructions"
-#~ msgstr "Lies die Anweisungen von FAU"
-
-#~ msgid "Google Web Search%s"
-#~ msgstr "Google Web Suche%s"
-
-#~ msgid "Google Privacy Policy"
-#~ msgstr "Google Datenschutzrichtlinie"
-
-#~ msgid "Please select one of the available search engines"
-#~ msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
-
-#~ msgid "Display Title"
-#~ msgstr "Titel anzeigen"
-
-#~ msgid "Check the box to enabled the %s Search Engine"
-#~ msgstr ""
-#~ "Aktivieren Sie das Kontrollkästchen, um die Suchmaschine %s  zu aktivieren"
-
-#~ msgid "---"
-#~ msgstr "---"
-
-#~ msgid "My Search Engine"
-#~ msgstr "Meine Suchmaschine"
-
-#~ msgid "Search Engine Types"
-#~ msgstr "Suchmaschine Typ"
-
-#~ msgid "New Resource Label"
-#~ msgstr "Neues Ressourcen-Label"
-
-#~ msgid "Resource Label"
-#~ msgstr "Ressourcenbeschriftung"
-
-#~ msgid "Class Name"
-#~ msgstr "Klassenname"
-
-#~ msgid "Disclaimer Link"
-#~ msgstr "Link zum Haftungsausschluss"
-
-#~ msgid "Configure your plugin."
-#~ msgstr "Plugin konfigurieren."
-
-#~ msgid "Accessible only to SuperAdmins"
-#~ msgstr "Nur für SuperAdmins zugänglich"
-
-#~ msgid "Search Engine Label"
-#~ msgstr "Suchmaschinen-Label"
-
-#~ msgid "Option Label"
-#~ msgstr "Optionsbeschriftung"
-
-#~ msgid "WordPress Search"
-#~ msgstr "WordPress-Suche"
-
-#~ msgid "No API Key Required"
-#~ msgstr "Kein API-Schlüssel erforderlich"
-
-#~ msgid "New Search Engine"
-#~ msgstr "Neu Suchmaschine"
+#. Author of the plugin
+msgid "tollwerk"
+msgstr ""

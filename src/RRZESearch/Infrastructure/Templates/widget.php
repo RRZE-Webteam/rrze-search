@@ -55,7 +55,21 @@
                 <label for="headsearchinput"><?php _e('Geben Sie hier den Suchbegriff ein, um in diesem Webauftritt zu suchen:',
                         'fau'); ?></label>
                 <span class="searchicon"> </span>
-                <?php $queryValue = (isset($_GET['q']) ? $_GET['q'] : $_GET['s']); ?>
+                <?php 
+		
+		$queryValue = '';
+		if (isset($_GET['q'])) {
+		    $queryValue = esc_attr($_GET['q']);
+		} elseif (isset($_GET['s'])) {
+		    $queryValue = esc_attr($_GET['s']);
+		}
+		
+		
+		// Unübersichtliche Geekcodesyntax liefert eine Warning, weil auch nach isset von 's' gefragt werden müsste. 
+		// $queryValue = (isset($_GET['q']) ? $_GET['q'] : $_GET['s']); 
+		
+		
+		?>
                 <input id="headsearchinput" class="search-terms" type="text" value="<?= $queryValue; ?>"
                        name="s"
                        placeholder="<?php _e('Suchen nach...', 'fau'); ?>" autocomplete="off" tabindex="0">
@@ -85,7 +99,7 @@
                     <?php
                     $nextTabIndex = 0;
                     foreach ($resources as $key => $resource):
-                        if ($resource['enabled']) {
+                        if ((isset($resource['enabled'])) && ($resource['enabled'])) {
                             ++$nextTabIndex;
                             $linkLabel              = trim($resource['link_label']);
                             $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
