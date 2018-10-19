@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-10-19 13:49+0000\n"
-"PO-Revision-Date: 2018-10-19 13:51+0000\n"
+"POT-Creation-Date: 2018-10-19 16:34+0000\n"
+"PO-Revision-Date: 2018-10-19 16:35+0000\n"
 "Last-Translator: Wolfgang Wiese <wolfgang.wiese@fau.de>\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -78,11 +78,11 @@ msgstr "Löschen"
 msgid "Add Search Engine"
 msgstr "Suchmaschine hinzufügen"
 
-#: src/RRZESearch/Infrastructure/Templates/search-pagination.php:13
+#: src/RRZESearch/Infrastructure/Templates/search-pagination.php:12
 msgid "Previous Page"
 msgstr "Vorherige Seite"
 
-#: src/RRZESearch/Infrastructure/Templates/search-pagination.php:26
+#: src/RRZESearch/Infrastructure/Templates/search-pagination.php:25
 msgid "Next Page"
 msgstr "Nächste Seite"
 
@@ -135,12 +135,12 @@ msgid "Default Search Engine"
 msgstr "Standardsuchmaschine"
 
 #: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:4
-#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:1
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:8
 msgid "Search results"
 msgstr "Suchergebnisse"
 
 #: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:6
-#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:2
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:9
 #, php-format
 msgid "About %1$s results"
 msgstr "Ungefähr %1$s Ergebnisse"
@@ -148,6 +148,10 @@ msgstr "Ungefähr %1$s Ergebnisse"
 #: src/RRZESearch/Infrastructure/Templates/Results/Error-shortcode.php:7
 msgid "The search could not be performed."
 msgstr "Die Suche konnte nicht ausgeführt werden."
+
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:11
+msgid "seconds"
+msgstr "Sekunden"
 
 #: src/RRZESearch/Infrastructure/Templates/Results/Error-NoQuery.php:7
 msgid "Please enter a search string."

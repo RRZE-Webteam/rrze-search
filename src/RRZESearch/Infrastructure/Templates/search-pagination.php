@@ -8,9 +8,8 @@
                     'start' => $results['queries']['previousPage'][0]['startIndex'],
                 ]);
             ?>
-            <a href="<?= htmlspecialchars($previousLink); ?>">
-                <span class="meta-nav">←</span>
-                <?= htmlspecialchars(__('Previous Page', 'rrze-search')); ?>
+            <a class="prev" href="<?= htmlspecialchars($previousLink); ?>">
+                <span class="meta-nav">&larr;</span> <?= htmlspecialchars(__('Previous Page', 'rrze-search')); ?>
             </a>
         <?php
         endif;
@@ -22,9 +21,8 @@
                     'start' => $results['queries']['nextPage'][0]['startIndex'],
                 ]);
             ?>
-            <a href="<?= htmlspecialchars($nextLink); ?>">
-                <?= htmlspecialchars(__('Next Page', 'rrze-search')); ?>
-                <span class="meta-nav">→</span>
+            <a class="next" href="<?= htmlspecialchars($nextLink); ?>">
+                <?= htmlspecialchars(__('Next Page', 'rrze-search')); ?> <span class="meta-nav">&rarr;</span> 
             </a>
         <?php
         endif;
