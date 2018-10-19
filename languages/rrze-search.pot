@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-10-19 09:25+0000\n"
+"POT-Creation-Date: 2018-10-19 13:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Philip Saa <cowglow@gmail.com>\n"
 "Language-Team: \n"
@@ -129,14 +129,23 @@ msgstr ""
 msgid "Default Search Engine"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:7
+#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:4
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:1
+msgid "Search results"
+msgstr ""
+
+#: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:6
 #: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:2
 #, php-format
 msgid "About %1$s results"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:1
-msgid "Search results"
+#: src/RRZESearch/Infrastructure/Templates/Results/Error-shortcode.php:7
+msgid "The search could not be performed."
+msgstr ""
+
+#: src/RRZESearch/Infrastructure/Templates/Results/Error-NoQuery.php:7
+msgid "Please enter a search string."
 msgstr ""
 
 #: src/RRZESearch/Infrastructure/Engines/Template/SearchEngine-Adapter.php:47

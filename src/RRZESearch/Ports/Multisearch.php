@@ -2,12 +2,16 @@
 
 namespace RRZE\RRZESearch\Ports;
 
+
 use RRZE\RRZESearch\Application\Controller\ShortcodeController;
 use RRZE\RRZESearch\Application\Controller\WidgetController;
 use RRZE\RRZESearch\Infrastructure\Dashboard;
 use RRZE\RRZESearch\Infrastructure\ScriptEnqueuer;
 use RRZE\RRZESearch\Infrastructure\SettingsLink;
 
+
+
+    
 /**
  * Multisearch facade
  *
@@ -36,11 +40,9 @@ class Multisearch
      */
     public static function bootstrap(): void
     {
-        // Pre-load Language Pack to ensure translation before bootstrapping
-        $languagePath = sprintf('%s/languages/', dirname(plugin_basename(__FILE__), 4));
-        load_plugin_textdomain('rrze-search', false, $languagePath);
-
+    
         // Run through all services
+
         foreach (static::getServices() as $class) {
             $service = new $class;
             if (\is_callable([$service, 'register'])) {
@@ -48,14 +50,14 @@ class Multisearch
             }
         }
     }
-
+    
     /**
      * Plugin Activation
      */
     public static function activate(): void
     {
         flush_rewrite_rules();
-
+	
         // Validate Settings Option Exists
         if (!get_option('rrze_search_settings')) {
 
