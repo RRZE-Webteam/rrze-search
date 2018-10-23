@@ -6,7 +6,7 @@ Plugin URI: https://www.tollwerk.de
 description: a WordPress Search Plugin by tollwerk GmbH
 Author: tollwerk
 Author URI: https://www.tollwerk.de
-Version: 0.1.4
+Version: 0.1.5
 License: GPL2
 Text Domain: rrze-search
 Domain Path: /languages
@@ -51,7 +51,10 @@ function rrze_search_init() {
 function activate_rrze_search_plugin() {
     rrze_search_textdomain();
     system_requirements();
-    
+     // Include composer autoloader
+    if (file_exists(dirname(__FILE__).'/vendor/autoload.php')) {
+	require_once(dirname(__FILE__).'/vendor/autoload.php');
+    }
     RRZE\RRZESearch\Ports\Multisearch::activate();
 }
 
@@ -61,6 +64,10 @@ function activate_rrze_search_plugin() {
  * Plugin Deactivation Function
  */
 function deactivate_rrze_search_plugin() {
+     // Include composer autoloader
+    if (file_exists(dirname(__FILE__).'/vendor/autoload.php')) {
+	require_once(dirname(__FILE__).'/vendor/autoload.php');
+    }
     RRZE\RRZESearch\Ports\Multisearch::deactivate();
 }
 
