@@ -43,6 +43,7 @@
  */
 
 global $staticLinks;
+global $privacyLabel;
 
 ?>
     <dialog id="search-header" class="search-header searchform" aria-labelledby="search-title" open><?php
@@ -107,10 +108,15 @@ global $staticLinks;
                             $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
                             $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
                             $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
-                            $searchEngineDisclaimer = strpos($this->enginesClassCollection[$resource['resource_class']]['label'],
-                                '%s') ?
-                                ' (<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">'.$linkLabel.'</a>) ' :
-                                '';
+			    $searchEngineDisclaimer = '';
+			    
+			    if ((isset($resource['resource_disclaimer'])) && (intval($resource['resource_disclaimer'])>0) ) {
+				$searchEngineDisclaimer = ' (<a href="'.get_permalink($resource['resource_disclaimer']).'"';
+				if (!empty($privacylabeltarget)) {
+				    $searchEngineDisclaimer .= ' target="'.$privacylabeltarget.'"';
+				}
+				$searchEngineDisclaimer .= ' tabindex="'.$searchEngineActive.'">'.$privacyLabel.'</a>)';
+			    }
                             ?>
                             <label>
                                 <span>
@@ -119,15 +125,12 @@ global $staticLinks;
                                            value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
                                 </span>
                                 <span>
-                                    <?php
-                                    $resourceName = (strpos($this->enginesClassCollection[$resource['resource_class']]['label'],
-                                            '%s') && strpos($resource['resource_name'],
-                                            '%s') === false) ? $resource['resource_name'].'%s' : $resource['resource_name'];
-                                    if (strlen($searchEngineDisclaimer)) {
-                                        echo sprintf($resourceName, $searchEngineDisclaimer);
-                                    } else {
-                                        echo sprintf($resource['resource_name'], '');
-                                    } ?></span>
+                                    <?php    
+				    echo $resource['resource_name'];
+				    if (!empty($searchEngineDisclaimer)) {
+					echo $searchEngineDisclaimer;
+				    } ?>
+				</span>
                             </label>
                             <?php
                         }

@@ -26,3 +26,7 @@ $staticLinks = array(
 	    ),
 	)
 );
+
+
+$privacyLabel = __('Privacy Disclaimer', 'rrze-search');
+$privacylabeltarget = '_blank';
