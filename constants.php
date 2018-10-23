@@ -5,10 +5,14 @@
 
 
 // Links for overlay on clicking into search field
+
 $staticLinks = array( 
-	
 	'tab1'	=> array(
-	    'header' => __('Portale','fau'),
+	    'header' => __('Portale', 'rrze-search' ),
+	    'text'  => __('Hier könnte ihr Text stehen')    
+	),
+	'tab2'	=> array(
+	    'header' => __('Portale', 'rrze-search' ),
 	    'links' => array(
 		'link1'  => array(
 		    'label'	    => __('Mein Campus', 'rrze-search' ),

@@ -1,9 +1,7 @@
-$left_col: 75%;
-$text_color: #fff;
-$primary_blue: #003366;
 
-@import "../../../../themes/FAU-Einrichtungen/css/sass/_variables.scss";
-@import "../../../../themes/FAU-Einrichtungen/css/sass/mixins/_mixins.scss";
+
+@import "variables";
+@import "mixins";
 
 [hidden] {
 	display: none;
@@ -30,7 +28,7 @@ $primary_blue: #003366;
 	margin: 0;
 	background: transparent;
 	position: static;
-	width: 100%;
+	// width: 100%;
 	height: auto;
 	text-align: left !important; /* Remove as soon as possible */
 }
@@ -53,6 +51,11 @@ form[role=search] {
 
 .search-panel {
 	padding: 1em 0;
+	
+	&.no-links {
+	    flex-direction: initial;
+	    padding: 8px 0 5px 0;
+	}
 }
 
 .meta-search .searchform .search-settings {
@@ -83,7 +86,19 @@ form[role=search] {
 		+ label {
 			margin-top: .5em;
 		}
+		
+		
 	}
+}
+
+.meta-search .searchform  .search-panel.no-links .search-settings  {
+    border-left: none;
+    
+    label {
+		    display: table-cell;
+		    width: auto;
+		    padding-right: 15px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -91,11 +106,25 @@ form[role=search] {
 		.meta-links {
 			display: none;
 		}
+		
 		.meta-tools {
 			width: 100%;
 		}
+		.searchform {
+		   width: 100%
+		}
 	}
-
+	.search-toggled.active-meta-widget {
+	    .meta-tools {
+		width: 90%;
+	    }
+	    .searchform {
+		width: 80%;
+	    }
+	}
+	
+	
+	
 	.search-panel {
 		padding: 2em 0;
 		display: flex;
@@ -104,11 +133,12 @@ form[role=search] {
 
 	.search-settings {
 		width: calc(100% / 3);
-
 		border-left: 1px solid #c5c9ce;
 		padding-left: 1em;
 	}
-
+	.no-links .search-settings {
+	    width: 100%;
+	}
 	.search-static-links {
 		width: calc(200% / 3);
 

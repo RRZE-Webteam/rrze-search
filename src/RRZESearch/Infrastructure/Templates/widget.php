@@ -41,6 +41,9 @@
  * @param array $instance        Instance parameters
  * @param array $preferredEngine Preferred search engine
  */
+
+global $staticLinks;
+
 ?>
     <dialog id="search-header" class="search-header searchform" aria-labelledby="search-title" open><?php
         if (!empty($instance['title'])) {
@@ -48,7 +51,6 @@
         }
         ?>
         <form method="post" action="<?= admin_url('admin-post.php'); ?>" role="search">
-            <!-- Required hidden form input. Defines the action that should be executed by the submission to admin-post.php -->
             <input type="hidden" name="action" value="widget_form_submit">
             <header>
                 <h2 id="search-title" class="screen-reader-text"><?php echo get_theme_mod('title_hero_search'); ?></h2>
@@ -88,8 +90,8 @@
                 ?>
                 <input type="submit" id="searchsubmit" value="<?php _e('Finden', 'fau'); ?>" tabindex="2">
             </header>
-            <!--            <div id="search-panel" class="search-panel" style="background-color: #fff; width:800px; left:-450px; position: absolute" -hidden>-->
-            <div id="search-panel" class="search-panel" hidden>
+	    
+	    <div id="search-panel" class="search-panel<?php if (count($staticLinks)<=0) { echo ' no-links';} ?>" hidden>
                 <div class="search-settings" role="radiogroup"
                      aria-label="<?php echo __('Available search engines', 'rrze-search'); ?>"
                      aria-labelledby="search-engines">
@@ -132,7 +134,9 @@
                     endforeach;
                     ?>
                 </div>
+		<?php if (count($staticLinks)) { ?>
                 <div class="search-static-links"><?php include __DIR__.DIRECTORY_SEPARATOR.'widget-static-links.php'; ?></div>
+		<?php } ?>
             </div>
         </form>
     </dialog>
