@@ -41,7 +41,7 @@ if (count($staticLinks)):
     <div class="search-static-links-columns" data-columns="<?= count($staticLinks); ?>"><?php
     foreach ($staticLinks as $searchLinkColumn):
 	if (((isset($searchLinkColumn['links'])) && (is_array($searchLinkColumn['links']))) 
-	    || (isset($searchLinkColumn['text']))) { ?>
+	    || (isset($searchLinkColumn['text'])) || (isset($searchLinkColumn['html'])) ) { ?>
 	<div class="search-static-links-column">
 	    <?php 
 	    if (!empty($searchLinkColumn['header'])) { ?><h3><?= htmlspecialchars($searchLinkColumn['header']); ?></h3><?php } 
@@ -61,7 +61,9 @@ if (count($staticLinks)):
 		endif;
 	    endforeach;
 	    ?></ul>
-	    <?php } elseif (isset($searchLinkColumn['text'])) { ?>
+	    <?php } elseif (isset($searchLinkColumn['html'])) { 
+		echo $searchLinkColumn['html'];
+	    } elseif (isset($searchLinkColumn['text'])) { ?>
 		<p><?php echo esc_html($searchLinkColumn['text']); ?></p>
 	    <?php } ?>
 	</div><?php

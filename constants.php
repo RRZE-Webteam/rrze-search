@@ -7,7 +7,9 @@
 // Links for overlay on clicking into search field
 
 $staticLinks = array( 
-	
+	'tab1'	=> array(
+	    'html'  => '<img role="presentation" src="/wp-content/uploads/sites/9/2018/10/FAU-Logo-240x65.svg" width="" height="" alt="">',
+	),
 	'tab2'	=> array(
 	    'header' => __('Portale', 'rrze-search' ),
 	    'links' => array(
