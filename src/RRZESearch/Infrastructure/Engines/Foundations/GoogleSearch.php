@@ -57,7 +57,7 @@ class GoogleSearch extends AbstractSearchEngine
         $_uri = sprintf('https://www.googleapis.com/customsearch/v1?cx=%s&key=%s&q=%s&start=%s',
             $args['cx'],
             $args['key'],
-            $query,
+            urlencode($query),
             $startPage
         );
 

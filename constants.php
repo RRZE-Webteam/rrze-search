@@ -8,7 +8,7 @@
 
 $staticLinks = array( 
 	'tab1'	=> array(
-	    'html'  => '<img role="presentation" src="https://www.beta.wordpress.rrze.fau.de/wp-content/themes/FAU-Einrichtungen-BETA/img/logos/fau-logo-240x65.svg" width="200" height="54" alt="">',
+	    'html'  => '<img role="presentation" src="'.plugins_url('assets/img', __FILE__).'/fau-logo.svg" width="200" height="54" alt="">',
 	),
 	'tab2'	=> array(
 	    'header' => __('Portale', 'rrze-search' ),
