@@ -8,7 +8,6 @@
  */
 
 global $staticLinks;
-global $privacyLabel;
 
 ?>
     <dialog id="search-header" class="search-header searchform" aria-labelledby="search-title" open><?php
@@ -52,15 +51,13 @@ global $privacyLabel;
             </header>
 	    <div id="search-panel" class="search-panel<?php if (count($staticLinks)<=0) { echo ' no-links';} ?>" hidden>
                 <div class="search-settings" role="radiogroup" aria-label="<?php echo __('Available search engines', 'rrze-search'); ?>">
-                    <p id="search-engines"
-                       class="screen-reader-text"><?php echo __('Please select one of the available search engines:',
+                    <p id="search-engines" class="screen-reader-text"><?php echo __('Please select one of the available search engines:',
                             'rrze-search'); ?></p>
                     <?php
                     $nextTabIndex = 0;
                     foreach ($resources as $key => $resource):
                         if ((isset($resource['enabled'])) && ($resource['enabled'])) {
                             ++$nextTabIndex;
-                            $linkLabel              = trim($resource['link_label']);
                             $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
                             $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
                             $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
@@ -71,22 +68,17 @@ global $privacyLabel;
 				if (!empty($privacylabeltarget)) {
 				    $searchEngineDisclaimer .= ' target="'.$privacylabeltarget.'"';
 				}
-				$searchEngineDisclaimer .= ' tabindex="'.$searchEngineActive.'">'.$privacyLabel.'</a>)';
+				$searchEngineDisclaimer .= ' tabindex="'.$searchEngineActive.'">'.__('Privacy Disclaimer', 'rrze-search').'</a>)';
 			    }
                             ?>
                             <label>
                                 <span>
-                                    <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?>
-                                           class="search-engine"
-                                           value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
+                                    <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?> class="search-engine" value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
                                 </span>
-                                <span>
-                                    <?php    
-				    echo $resource['resource_name'];
-				    if (!empty($searchEngineDisclaimer)) {
-					echo $searchEngineDisclaimer;
-				    } ?>
-				</span>
+                                <span><?php    
+				    echo esc_attr($resource['resource_name']);
+				    if (!empty($searchEngineDisclaimer)) { echo $searchEngineDisclaimer; } 
+				?></span>
                             </label>
                             <?php
                         }
