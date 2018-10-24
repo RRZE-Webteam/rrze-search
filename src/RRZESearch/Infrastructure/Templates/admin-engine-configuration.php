@@ -1,5 +1,5 @@
 <?php settings_errors(); ?>
-<table id="rrze_search_resource_form" class="form-table" border="0">
+<table id="rrze_search_resource_form" class="form-table">
     <tbody>
         <?php
         $nextResourceIndex = 0;

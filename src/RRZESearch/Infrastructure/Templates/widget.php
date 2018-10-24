@@ -1,39 +1,4 @@
 <?php
-
-/**
- * data
- *
- * @category   Artefakt
- * @package    Artefakt\Core
- * @subpackage ${NAMESPACE}
- * @author     Joschi Kuphal <joschi@tollwerk.de> / @jkphl
- * @copyright  Copyright © 2018 Joschi Kuphal <joschi@tollwerk.de> / @jkphl
- * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
- */
-
-/***********************************************************************************
- *  The MIT License (MIT)
- *
- *  Copyright © 2018 tollwerk GmbH <info@tollwerk.de>
- *
- *  Permission is hereby granted, free of charge, to any person obtaining a copy of
- *  this software and associated documentation files (the "Software"), to deal in
- *  the Software without restriction, including without limitation the rights to
- *  use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- *  the Software, and to permit persons to whom the Software is furnished to do so,
- *  subject to the following conditions:
- *
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- *
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- *  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- *  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- *  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- ***********************************************************************************/
-
 /**
  * Widget include template
  *
@@ -43,6 +8,7 @@
  */
 
 global $staticLinks;
+global $privacyLabel;
 
 ?>
     <dialog id="search-header" class="search-header searchform" aria-labelledby="search-title" open><?php
@@ -65,12 +31,6 @@ global $staticLinks;
 		} elseif (isset($_GET['s'])) {
 		    $queryValue = esc_attr($_GET['s']);
 		}
-		
-		
-		// Unübersichtliche Geekcodesyntax liefert eine Warning, weil auch nach isset von 's' gefragt werden müsste. 
-		// $queryValue = (isset($_GET['q']) ? $_GET['q'] : $_GET['s']); 
-		
-		
 		?>
                 <input id="headsearchinput" class="search-terms" type="text" value="<?= $queryValue; ?>"
                        name="s"
@@ -90,11 +50,8 @@ global $staticLinks;
                 ?>
                 <input type="submit" id="searchsubmit" value="<?php _e('Finden', 'fau'); ?>" tabindex="2">
             </header>
-	    
 	    <div id="search-panel" class="search-panel<?php if (count($staticLinks)<=0) { echo ' no-links';} ?>" hidden>
-                <div class="search-settings" role="radiogroup"
-                     aria-label="<?php echo __('Available search engines', 'rrze-search'); ?>"
-                     aria-labelledby="search-engines">
+                <div class="search-settings" role="radiogroup" aria-label="<?php echo __('Available search engines', 'rrze-search'); ?>">
                     <p id="search-engines"
                        class="screen-reader-text"><?php echo __('Please select one of the available search engines:',
                             'rrze-search'); ?></p>
@@ -107,10 +64,15 @@ global $staticLinks;
                             $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
                             $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
                             $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
-                            $searchEngineDisclaimer = strpos($this->enginesClassCollection[$resource['resource_class']]['label'],
-                                '%s') ?
-                                ' (<a href="'.get_permalink($resource['resource_disclaimer']).'" target="_blank" tabindex="'.$searchEngineActive.'">'.$linkLabel.'</a>) ' :
-                                '';
+			    $searchEngineDisclaimer = '';
+			    
+			    if ((isset($resource['resource_disclaimer'])) && (intval($resource['resource_disclaimer'])>0) ) {
+				$searchEngineDisclaimer = ' (<a href="'.get_permalink($resource['resource_disclaimer']).'"';
+				if (!empty($privacylabeltarget)) {
+				    $searchEngineDisclaimer .= ' target="'.$privacylabeltarget.'"';
+				}
+				$searchEngineDisclaimer .= ' tabindex="'.$searchEngineActive.'">'.$privacyLabel.'</a>)';
+			    }
                             ?>
                             <label>
                                 <span>
@@ -119,15 +81,12 @@ global $staticLinks;
                                            value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
                                 </span>
                                 <span>
-                                    <?php
-                                    $resourceName = (strpos($this->enginesClassCollection[$resource['resource_class']]['label'],
-                                            '%s') && strpos($resource['resource_name'],
-                                            '%s') === false) ? $resource['resource_name'].'%s' : $resource['resource_name'];
-                                    if (strlen($searchEngineDisclaimer)) {
-                                        echo sprintf($resourceName, $searchEngineDisclaimer);
-                                    } else {
-                                        echo sprintf($resource['resource_name'], '');
-                                    } ?></span>
+                                    <?php    
+				    echo $resource['resource_name'];
+				    if (!empty($searchEngineDisclaimer)) {
+					echo $searchEngineDisclaimer;
+				    } ?>
+				</span>
                             </label>
                             <?php
                         }

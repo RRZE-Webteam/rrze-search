@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
-"POT-Creation-Date: 2018-10-19 16:34+0000\n"
+"POT-Creation-Date: 2018-10-24 08:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Philip Saa <cowglow@gmail.com>\n"
 "Language-Team: \n"
@@ -22,6 +22,26 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-4: gulpfile.js\n"
 "X-Poedit-SearchPathExcluded-5: package-lock.json\n"
 "X-Poedit-SearchPathExcluded-6: package.json"
+
+#: constants.php:12
+msgid "Portale"
+msgstr ""
+
+#: constants.php:15
+msgid "Mein Campus"
+msgstr ""
+
+#: constants.php:19
+msgid "UnivIS"
+msgstr ""
+
+#: constants.php:23
+msgid "Lageplan"
+msgstr ""
+
+#: constants.php:31
+msgid "Privacy Disclaimer"
+msgstr ""
 
 #: src/RRZESearch/Infrastructure/SettingsLink.php:32
 msgid "Settings"
@@ -48,8 +68,8 @@ msgstr ""
 msgid "Search Results Page"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/widget-static-links.php:39
-msgid "Quicklinks"
+#: src/RRZESearch/Infrastructure/Templates/widget-static-links.php:40
+msgid "Search suggestions"
 msgstr ""
 
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-template.php:13
@@ -57,11 +77,11 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/widget.php:94
+#: src/RRZESearch/Infrastructure/Templates/widget.php:54
 msgid "Available search engines"
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/widget.php:97
+#: src/RRZESearch/Infrastructure/Templates/widget.php:56
 msgid "Please select one of the available search engines:"
 msgstr ""
 
@@ -75,6 +95,10 @@ msgstr ""
 
 #: src/RRZESearch/Infrastructure/Templates/admin-engine-configuration.php:77
 msgid "Add Search Engine"
+msgstr ""
+
+#: src/RRZESearch/Infrastructure/Templates/search-pagination.php:1
+msgid "More search results"
 msgstr ""
 
 #: src/RRZESearch/Infrastructure/Templates/search-pagination.php:12
@@ -130,12 +154,12 @@ msgid "Default Search Engine"
 msgstr ""
 
 #: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:4
-#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:8
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:10
 msgid "Search results"
 msgstr ""
 
 #: src/RRZESearch/Infrastructure/Templates/Results/WordPressSearch-shortcode.php:6
-#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:9
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:11
 #, php-format
 msgid "About %1$s results"
 msgstr ""
@@ -144,7 +168,7 @@ msgstr ""
 msgid "The search could not be performed."
 msgstr ""
 
-#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:11
+#: src/RRZESearch/Infrastructure/Templates/Results/GoogleSearch-shortcode.php:13
 msgid "seconds"
 msgstr ""
 

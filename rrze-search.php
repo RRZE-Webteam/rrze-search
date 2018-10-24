@@ -1,12 +1,11 @@
 <?php
-
 /*
 Plugin Name: RRZE Search
 Plugin URI: https://www.tollwerk.de
 description: a WordPress Search Plugin by tollwerk GmbH
 Author: tollwerk
 Author URI: https://www.tollwerk.de
-Version: 0.1.5
+Version: 0.1.7
 License: GPL2
 Text Domain: rrze-search
 Domain Path: /languages
@@ -71,11 +70,16 @@ function deactivate_rrze_search_plugin() {
     RRZE\RRZESearch\Ports\Multisearch::deactivate();
 }
 
-
+/**
+ * Load Textdomain
+ */
 function rrze_search_textdomain() {
 	load_plugin_textdomain('rrze-search', FALSE, sprintf('%s/languages/', dirname(plugin_basename(__FILE__))));
 }
 
+/**
+ * Check Systemrequirements. We dont wont to hassle about outdated noob installations :)
+ */
 function system_requirements() {
     $error = '';
 

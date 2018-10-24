@@ -1,0 +1,15 @@
+/*
+Formating GCSE results
+*/
+
+.gcse {
+    h3 {
+	margin-top: 5px; 
+	padding-bottom: 0;
+    }
+    .displaylink em {
+	color: $gcsedisplaylinkcolor;
+    }
+    
+    
+}

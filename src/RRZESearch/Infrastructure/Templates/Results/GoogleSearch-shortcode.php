@@ -2,10 +2,12 @@
 
     $withthumb = get_theme_mod('search_display_post_thumbnails');
     $thumb = '';
+    global $SnippletAllowedtags;
+   
 ?>
 
-<div class="search-results">
-<h2><?php __('Search results','rrze-search'); ?></h2>
+<div class="search-results gcse">
+<h2><?php _e('Search results','rrze-search'); ?></h2>
 <p class="meta-resultinfo"><?php echo sprintf(__('About %1$s results', 'rrze-search'),
         $results['searchInformation']['formattedTotalResults']); ?>
     (<?php echo $results['searchInformation']['formattedSearchTime']; echo ' '.__('seconds', 'rrze-search'); ?>)
@@ -17,32 +19,38 @@
 	?>
 
         <li class="search-result res-post">
-            <h3><a href="<?php echo $result['link']; ?>"><?php echo htmlspecialchars($result['title']); ?></a></h3>
+	    <h3><a href="<?php echo $result['link']; ?>"><?php echo htmlspecialchars($result['title']); ?></a></h3>
             <div class="search-meta">
-		<span class="post-meta-defaulttype"> <em><?php echo htmlspecialchars($result['displayLink']); ?></em></span>
-	    </div>
-	    
-	    
-		<?php
-    		if ((isset($result['pagemap'])) && (isset($result['pagemap']['cse_image']))) {
-		    $thumb = $result['pagemap']['cse_image'][0]['src'];
+		<?php 
+		$linktype = 'post-meta-defaulttype';
+		if (isset($result['mime'])) {
+		    if (strpos($result['mime'],'application') !==false) {
+			$linktype = 'post-meta-attachment';
+		    }
 		}
-		if (($withthumb==true) && (!empty($thumb)))  {
-		    echo '<div class="row">'."\n";  
-		    echo "\t\t".'<div class="searchresult-image" role="presentation">'."\n"; 
+		?>
+		<span class="<?php echo $linktype;?> displaylink"> <em><?php echo htmlspecialchars($result['link']); ?></em></span>
+	    </div> 
+	    <?php
+	    if ((isset($result['pagemap'])) && (isset($result['pagemap']['cse_image'])) ) {
+		$thumb = esc_url($result['pagemap']['cse_image'][0]['src'],['https']);
+		// only allow https-URLs
+	    }
+	    if (($withthumb==true) && (!empty($thumb)))  {
+		echo '<div class="row">'."\n";  
+		echo "\t\t".'<div class="searchresult-image" role="presentation">'."\n"; 
 
-		    echo '<img src="'.fau_esc_url($thumb).'"  alt="">';
-		    echo "\t\t".'</div>'."\n"; 
-		    echo "\t\t".'<div class="searchresult-imagetext">'."\n"; 
+		echo '<img src="'.esc_url($thumb).'"  alt="">';
+		echo "\t\t".'</div>'."\n"; 
+		echo "\t\t".'<div class="searchresult-imagetext">'."\n"; 
 
-		}
+	    }
 
-		echo '<p class="snippet"><em>'.htmlspecialchars($result['snippet']).'</em></p>';
-		
-		
-		if (($withthumb==true) && (!empty($thumb)))  {
-		    echo "\t</div>\n";
-		}
+	    echo '<p class="snippet">'.wp_kses($result['htmlSnippet'],$SnippletAllowedtags).'</p>';
+
+	    if (($withthumb==true) && (!empty($thumb)))  {
+		echo "\t</div>\n";
+	    }
 	    ?>
         </li>
     <?php

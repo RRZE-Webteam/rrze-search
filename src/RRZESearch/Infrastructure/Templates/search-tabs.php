@@ -9,10 +9,6 @@
             $href  = $class->getRedirectLink().'?'.$query;
             ?>
             <li><?php
-            /**
-             * Replaced the `!empty` function with isset;
-             * Also not using the resourceIndex since the loop returns the $key;
-             */
             if (isset($_GET['se']) && (intval($_GET['se']) == $key)): ?><span
                     class="current"><?= htmlspecialchars(sprintf($engine['resource_name'],
                 '')); ?></span>
