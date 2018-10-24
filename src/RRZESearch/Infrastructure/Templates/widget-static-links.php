@@ -39,45 +39,36 @@ global $staticLinks;
 if (count($staticLinks)):
     ?><h2 class="screen-reader-text"><?php _e('Search suggestions', 'rrze-search'); ?></h2>
     <div class="search-static-links-columns" data-columns="<?= count($staticLinks); ?>"><?php
+    foreach ($staticLinks as $searchLinkColumn):
+	if (((isset($searchLinkColumn['links'])) && (is_array($searchLinkColumn['links']))) 
+	    || (isset($searchLinkColumn['text'])) || (isset($searchLinkColumn['html'])) ) { ?>
+	<div class="search-static-links-column">
+	    <?php 
+	    if (!empty($searchLinkColumn['header'])) { ?><h3><?= htmlspecialchars($searchLinkColumn['header']); ?></h3><?php } 
 
-        foreach ($staticLinks as $searchLinkColumn):
-	    if (((isset($searchLinkColumn['links'])) && (is_array($searchLinkColumn['links']))) 
-		|| (isset($searchLinkColumn['text']))) 
-		
-		
-		{ ?>
-            <div class="search-static-links-column">
-		<?php 
-		if (!empty($searchLinkColumn['header'])) { ?><h3><?= htmlspecialchars($searchLinkColumn['header']); ?></h3><?php } 
-		
-		if ((isset($searchLinkColumn['links'])) && (is_array($searchLinkColumn['links']))) {  ?>
-                <ul><?php
-                foreach ($searchLinkColumn['links'] as $link):
-                    if (!empty($link['label'])):
-			$linkTarget = $linkClass = '';
-		    
-			if (isset($link['class'])) {
-			    $linkClass = ' class="'.htmlspecialchars($link['class']).'"';
-			}                
-			if (isset($link['target'])) {
-			    $linkTarget = ' target="'.htmlspecialchars($link['target']).'"';
-			}
-                        ?>
-                        <li<?= $linkClass; ?>>
-                        <a href="<?= empty($link['href']) ? '#' : htmlspecialchars($link['href']); ?>"
-                           tabindex="<?= $nextTabIndex; ?>" <?= $linkTarget; ?>><?= $link['label']; ?></a>
-                        </li><?php
-                    endif;
-                endforeach;
-                ?></ul>
-		
-		<?php } elseif (isset($searchLinkColumn['text'])) { ?>
-		    <p><?php echo esc_html($searchLinkColumn['text']); ?></p>
-		<?php } ?>
-		
-            </div><?php
-	    }
-        endforeach; ?>
+	    if ((isset($searchLinkColumn['links'])) && (is_array($searchLinkColumn['links']))) {  ?>
+	    <ul><?php
+	    foreach ($searchLinkColumn['links'] as $link):
+		if (!empty($link['label'])):
+		    $linkTarget = $linkClass = '';
+		    if (isset($link['class'])) {
+			$linkClass = ' class="'.htmlspecialchars($link['class']).'"';
+		    }                
+		    if (isset($link['target'])) {
+			$linkTarget = ' target="'.htmlspecialchars($link['target']).'"';
+		    }
+		    ?><li<?= $linkClass; ?>><a href="<?= empty($link['href']) ? '#' : htmlspecialchars($link['href']); ?>" tabindex="<?= $nextTabIndex; ?>" <?= $linkTarget; ?>><?= $link['label']; ?></a></li><?php
+		endif;
+	    endforeach;
+	    ?></ul>
+	    <?php } elseif (isset($searchLinkColumn['html'])) { 
+		echo $searchLinkColumn['html'];
+	    } elseif (isset($searchLinkColumn['text'])) { ?>
+		<p><?php echo esc_html($searchLinkColumn['text']); ?></p>
+	    <?php } ?>
+	</div><?php
+	}
+    endforeach; ?>
     </div>
 <?php
 endif;

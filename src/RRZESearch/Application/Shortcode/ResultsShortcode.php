@@ -64,12 +64,11 @@ class ResultsShortcode
 	    // Render the Search Engine Results
 	    include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'Error-NoQuery.php';
 
-	} elseif ((!empty($useengine)) && (isset($resource))) {
+	} elseif (isset($resource)) {
 	    $startPage    = 1;    
 	    if ((isset($_GET['start'])) && (absint($_GET['start']) > 0)) {
 	        $startPage = absint($_GET['start']);
 	    }
-	    
 	    
 	     // Render the Search Engine Tabs
 	    include \dirname(__DIR__, 2).$templatesDir.'search-tabs.php';
