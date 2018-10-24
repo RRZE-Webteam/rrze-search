@@ -116,7 +116,7 @@ form[role=search] {
 	}
 	.search-toggled.active-meta-widget {
 	    .meta-tools {
-		width: 90%;
+		width: 100%;
 	    }
 	    .searchform {
 		width: 80%;
@@ -158,5 +158,11 @@ label.resource_table_label {
 	}
 }
 
+// Links in Overlay
 @import "static-links";
+
+// Tabs on tob of results
 @import "result-tabs";
+
+// Styles for Results of GCSE
+@import "result-gcse-entries";

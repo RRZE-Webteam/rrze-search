@@ -1,4 +1,4 @@
-<nav class="navigation paging-navigation" role="navigation">
+<nav class="navigation paging-navigation" aria-label="<?php _e('More search results','rrze-search'); ?>">
     <div class="nav-links">
         <?php
         if (isset($results['queries']['previousPage'])):
