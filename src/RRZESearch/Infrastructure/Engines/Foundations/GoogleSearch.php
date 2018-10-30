@@ -43,6 +43,15 @@ class GoogleSearch extends AbstractSearchEngine
 
     const REDIRECT_LINK = '/rrze_search_page';
 
+    // Constant Options fpr our Search
+    // See also https://developers.google.com/custom-search/v1/cse/list
+    const GCSE_OPTIONS = array(
+	    'safe'  => 'active',	    
+	    'filter'	=> 1,
+	);
+    
+    
+    
     /**
      * Query
      *
@@ -52,8 +61,7 @@ class GoogleSearch extends AbstractSearchEngine
      *
      * @return mixed
      */
-    public function query(string $query, array $args, int $startPage)
-    {
+    public function query(string $query, array $args, int $startPage) {
         $_uri = sprintf('https://www.googleapis.com/customsearch/v1?cx=%s&key=%s&q=%s&start=%s',
             $args['cx'],
             $args['key'],
@@ -66,6 +74,12 @@ class GoogleSearch extends AbstractSearchEngine
             'Content-length: 0',
             'Content-type: application/json'
         ];
+
+	if ((self::GCSE_OPTIONS) && (!empty(self::GCSE_OPTIONS))) {
+	    $addquery = http_build_query(self::GCSE_OPTIONS);
+	    $_uri .= '&'.$addquery;
+	}
+	
 
         // cURL options
         $curlOptions = array(
@@ -84,7 +98,6 @@ class GoogleSearch extends AbstractSearchEngine
         // Try to make query request
         $curl = curl_init();
         curl_setopt_array($curl, $curlOptions);
-
         // Finalize query request
         $results = curl_exec($curl);
         curl_close($curl);

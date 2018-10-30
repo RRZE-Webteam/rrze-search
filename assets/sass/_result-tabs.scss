@@ -7,7 +7,8 @@
 	padding: 0;
 	margin: 0;
 	display: flex;
-
+	border-bottom: 1px solid $colorContentBorders;
+	
 	li {
 		list-style-type: none;
 		padding: 0;
@@ -37,6 +38,7 @@
 		.current {
 			background: #fff;
 			border: 1px solid $colorContentBorders;
+			border-bottom: none;
 			padding: 6px 10px;
 			text-decoration: none;
 			color: $colorButton;

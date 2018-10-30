@@ -15,8 +15,7 @@ class ScriptEnqueuer extends AppController
     /**
      * Registration
      */
-    public function register()
-    {
+    public function register() {
         add_action('wp_enqueue_scripts', [$this, 'enqueuePluginScripts']);
         add_action('admin_enqueue_scripts', [$this, 'enqueueAdminScripts']);
     }
@@ -52,4 +51,5 @@ class ScriptEnqueuer extends AppController
             true
         );
     }
+    
 }
