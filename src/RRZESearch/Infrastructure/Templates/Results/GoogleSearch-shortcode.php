@@ -23,7 +23,11 @@
             <div class="search-meta">
 		<?php 
 		$linktype = 'post-meta-defaulttype';
-		if (isset($result['mime'])) {
+		
+		
+		if ((isset($result['pagemap'])) && (isset($result['pagemap']['person']))) {
+		    $linktype = 'post-meta-kontakt';
+		} elseif (isset($result['mime'])) {
 		    if (strpos($result['mime'],'application') !==false) {
 			$linktype = 'post-meta-attachment';
 		    }
