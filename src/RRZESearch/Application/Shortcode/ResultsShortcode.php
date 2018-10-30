@@ -46,6 +46,7 @@ class ResultsShortcode
 	$templatesDir = DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR;
 	
 	$query = '';
+	
 	if (isset($_GET['q'])) {
 	    $query = esc_attr($_GET['q']);
 	} elseif (isset($_GET['s'])) {
@@ -69,7 +70,6 @@ class ResultsShortcode
 	    if ((isset($_GET['start'])) && (absint($_GET['start']) > 0)) {
 	        $startPage = absint($_GET['start']);
 	    }
-	    
 	     // Render the Search Engine Tabs
 	    include \dirname(__DIR__, 2).$templatesDir.'search-tabs.php';
 
