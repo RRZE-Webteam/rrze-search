@@ -65,7 +65,7 @@ class GoogleSearch extends AbstractSearchEngine
         $_uri = sprintf('https://www.googleapis.com/customsearch/v1?cx=%s&key=%s&q=%s&start=%s',
             $args['cx'],
             $args['key'],
-            urlencode($query),
+            rawurlencode($query),
             $startPage
         );
 
@@ -80,12 +80,12 @@ class GoogleSearch extends AbstractSearchEngine
 	    $_uri .= '&'.$addquery;
 	}
 	
-
+	
         // cURL options
         $curlOptions = array(
             CURLOPT_HTTPHEADER     => $headers,
             CURLOPT_HEADER         => false,
-            CURLOPT_URL            => urldecode($_uri),
+            CURLOPT_URL            => $_uri,
             CURLOPT_SSL_VERIFYPEER => 0,
             CURLOPT_SSL_VERIFYHOST => 0,
             CURLOPT_RETURNTRANSFER => true,
