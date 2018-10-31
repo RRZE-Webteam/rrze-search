@@ -7,6 +7,7 @@
 ?>
 
 <div class="search-results gcse">
+        
 <h2><?php _e('Search results','rrze-search'); ?></h2>
 <p class="meta-resultinfo"><?php echo sprintf(__('About %1$s results', 'rrze-search'),
         $results['searchInformation']['formattedTotalResults']); ?>
