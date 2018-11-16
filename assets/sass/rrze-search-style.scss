@@ -30,7 +30,7 @@
 	position: static;
 	// width: 100%;
 	height: auto;
-	text-align: left !important; /* Remove as soon as possible */
+	text-align: left; /* Remove as soon as possible */
 }
 
 form[role=search] {
@@ -45,9 +45,7 @@ form[role=search] {
 	}
 }
 
-.search-terms {
-	flex-basis: 100%;
-}
+
 
 .search-panel {
 	padding: 1em 0;
@@ -101,6 +99,12 @@ form[role=search] {
     }
 }
 
+.search-toggled {
+    .search-terms {
+		    flex-basis: 100%;
+    }
+}
+
 @media (min-width: 768px) {
 	.search-toggled {
 		.meta-links {
@@ -113,6 +117,7 @@ form[role=search] {
 		.searchform {
 		   width: 100%
 		}
+		
 	}
 	.search-toggled.active-meta-widget {
 	    .meta-tools {
