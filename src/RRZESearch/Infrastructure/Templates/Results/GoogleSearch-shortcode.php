@@ -62,6 +62,9 @@
     endforeach;
     ?>
 </ul>
+
+<div class="gcsc-branding" lang="en"><span class="gcsc-branding-text">powered by</span> <a href="http://cse.google.com/cse/?hl=de" target="_blank" class="gcsc-branding-clickable"><img src="https://www.google.com/cse/static/images/1x/googlelogo_grey_46x15dp.png" class="gcsc-branding-img-noclear" alt="Google" srcset="https://www.google.com/cse/static/images/2x/googlelogo_grey_46x15dp.png 2x"></a><span class="gcsc-branding-text gcsc-branding-text-name">CSE</span></div>
+
 </div>
 
 	

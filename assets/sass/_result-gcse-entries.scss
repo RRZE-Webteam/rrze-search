@@ -14,3 +14,40 @@ Formating GCSE results
     
     
 }
+.gcsc-branding {
+    padding-top: 4px;
+    padding-left: 8px;
+    padding-right: 8px; 
+    display: flex;
+    
+    
+    .gcsc-branding-text {
+	color: #666;
+	margin: 0 2px;
+	white-space: nowrap;
+	vertical-align: top;
+	padding-bottom: 2px;
+	text-align: right;
+	font-size: 11px;
+    }
+    .gcsc-branding-text:first-child {
+	flex-grow: 1;
+    }
+    #content & img,
+    img.gsc-branding-img, 
+    img.gsc-branding-img-noclear, 
+    img.gcsc-branding-img, 
+    img.gcsc-branding-img-noclear {
+	margin: 0 0 0 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	border: none;
+	display: inline;
+	box-shadow: none;
+    }
+    .gcsc-branding-img-noclear {
+	width: auto;
+	vertical-align: bottom;
+    }
+}
+
