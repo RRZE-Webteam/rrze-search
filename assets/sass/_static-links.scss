@@ -36,6 +36,17 @@
 	}
 }
 
+.search-settings {
+    label a {
+	&::after {
+	    font: normal normal normal 14px/1 FontAwesome;
+	    content: "\f06a";
+	    margin-left: 2px;
+	    font-size: 0.8rem;
+	}
+    }
+}
+
 @media (min-width: 768px) {
 	.search-static-links {
 		margin-top: 0;
