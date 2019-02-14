@@ -20,7 +20,7 @@
 			font: normal normal normal 14px/1 FontAwesome;
 			content: "\f105";
 			display: table-cell;
-			width: 20px;
+			width: 15px;
 		}
 	}
 
@@ -38,11 +38,18 @@
 
 .search-settings {
     label a {
-	&::after {
+	font-weight: bold;
+	
+	&:after {
 	    font: normal normal normal 14px/1 FontAwesome;
-	    content: "\f06a";
-	    margin-left: 2px;
+	    content: "\f176";
+	    margin: 3px;
 	    font-size: 0.8rem;
+	    display: inline-block;
+	    -o-transform: rotate(45deg);
+	    -webkit-transform: rotate(45deg);
+	    transform: rotate(45deg);
+	    
 	}
     }
 }

@@ -17,7 +17,7 @@ global $staticLinks;
         ?>
         <form method="post" action="<?= admin_url('admin-post.php'); ?>" role="search">
             <input type="hidden" name="action" value="widget_form_submit">
-            <header>
+            <header aria-labelledby="search-title">
                 <h2 id="search-title" class="screen-reader-text"><?php echo get_theme_mod('title_hero_search'); ?></h2>
                 <label for="headsearchinput"><?php _e('Geben Sie hier den Suchbegriff ein, um in diesem Webauftritt zu suchen:',
                         'fau'); ?></label>
