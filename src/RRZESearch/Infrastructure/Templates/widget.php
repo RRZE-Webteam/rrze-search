@@ -10,15 +10,10 @@
 global $staticLinks;
 
 ?>
-    <dialog id="search-header" class="search-header searchform" aria-labelledby="search-title" open><?php
-        if (!empty($instance['title'])) {
-            echo $args['before_title'].apply_filters('widget_title', $instance['title']).$args['after_title'];
-        }
-        ?>
+    <dialog id="search-header" class="search-header searchform" open>
         <form method="post" action="<?= admin_url('admin-post.php'); ?>" role="search">
             <input type="hidden" name="action" value="widget_form_submit">
-            <header aria-labelledby="search-title">
-                <h2 id="search-title" class="screen-reader-text"><?php echo get_theme_mod('title_hero_search'); ?></h2>
+            <header>
                 <label for="headsearchinput"><?php _e('Geben Sie hier den Suchbegriff ein, um in diesem Webauftritt zu suchen:',
                         'fau'); ?></label>
                 <span class="searchicon"> </span>
