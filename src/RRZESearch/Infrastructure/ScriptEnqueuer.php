@@ -25,8 +25,8 @@ class ScriptEnqueuer extends AppController
      */
     public function enqueueAdminScripts()
     {
-        wp_enqueue_style('rrze-search-style', $this->pluginUrl.'assets/css/rrze-search-style.css');
-        wp_enqueue_script('rrze-search-script', $this->pluginUrl.'assets/js/rrze-search-admin-script.min.js', '', false,
+        wp_enqueue_style('rrze-search-style', $this->pluginUrl.'/css/rrze-search.css');
+        wp_enqueue_script('rrze-search-script', $this->pluginUrl.'/js/rrze-search-admin-script.js', '', false,
             true);
     }
 
@@ -35,17 +35,17 @@ class ScriptEnqueuer extends AppController
      */
     public function enqueuePluginScripts()
     {
-        wp_enqueue_style('rrze-search-style', $this->pluginUrl.'assets/css/rrze-search-style.css');
+        wp_enqueue_style('rrze-search-style', $this->pluginUrl.'/css/rrze-search.css');
         wp_enqueue_script(
             'rrze-search-script-a11y',
-            $this->pluginUrl.'assets/js/ally.min.js',
+            $this->pluginUrl.'/js/ally.min.js',
             ['fau-scripts'],
             false,
             true
         );
         wp_enqueue_script(
             'rrze-search-script',
-            $this->pluginUrl.'assets/js/rrze-search-script.min.js',
+            $this->pluginUrl.'/js/rrze-search-script.js',
             ['rrze-search-script-a11y'],
             false,
             true

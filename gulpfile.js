@@ -1,24 +1,91 @@
 'use strict';
 
-const gulp = require('gulp');
-const sass = require('gulp-sass');
-const rename = require("gulp-rename");
-const uglify = require("gulp-uglify");
+const
+    {src, dest, watch, series} = require('gulp'),
+    sass = require('gulp-sass')(require('sass')),
+    cleancss = require('gulp-clean-css'),
+    postcss = require('gulp-postcss'),
+    autoprefixer = require('autoprefixer'),
+    uglify = require('gulp-uglify'),
+    bump = require('gulp-bump'),
+    semver = require('semver'),
+    info = require('./package.json'),
+    wpPot = require('gulp-wp-pot'),
+    touch = require('gulp-touch-cmd')
+;
 
-gulp.task('sass', function () {
-    return gulp.src('./assets/sass/**/*.scss')
-        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
-        .pipe(gulp.dest('./assets/css'));
-});
 
-gulp.task('js', function () {
-    return gulp.src(['./assets/js/*.js', '!./assets/js/*.min.js'])
-        .pipe(uglify()).on('error', function (err) { console.log(err.toString()); })
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('./assets/js'));
-});
+function css() {
+    return src('./src/sass/*.scss', {
+            sourcemaps: false
+        })
+        .pipe(sass())
+        .pipe(postcss([autoprefixer()]))
+        .pipe(cleancss())
+        .pipe(dest('./css'))
+	.pipe(touch());
+}
+function cssdev() {
+    return src('./src/sass/*.scss', {
+            sourcemaps: true
+        })
+        .pipe(sass())
+        .pipe(postcss([autoprefixer()]))
+        .pipe(dest('./css'))
+	.pipe(touch());
+}
+function js() {
+    return src(['./src/js/*.js'])
+	.pipe(uglify())
+	.pipe(dest('./js'))
+	.pipe(touch());
+}
 
-gulp.task('watch', function () {
-    gulp.watch('./assets/sass/**/*.scss', ['sass']);
-    gulp.watch('./assets/js/*.js', ['js']);
-});
+function patchPackageVersion() {
+    var newVer = semver.inc(info.version, 'patch');
+    return src(['./package.json', './' + info.main])
+        .pipe(bump({
+            version: newVer
+        }))
+        .pipe(dest('./'))
+	.pipe(touch());
+};
+function prereleasePackageVersion() {
+    var newVer = semver.inc(info.version, 'prerelease');
+    return src(['./package.json', './' + info.main])
+        .pipe(bump({
+            version: newVer
+        }))
+	.pipe(dest('./'))
+	.pipe(touch());;
+};
+
+function updatepot()  {
+  return src("**/*.php")
+  .pipe(
+      wpPot({
+        domain: info.textdomain,
+        package: info.name,
+	team: info.author.name,
+	bugReport: info.repository.issues,
+	ignoreTemplateNameHeader: true
+ 
+      })
+    )
+  .pipe(dest(`languages/${info.textdomain}.pot`))
+  .pipe(touch());
+};
+
+
+function startWatch() {
+    watch('./src/sass/*.scss', css);
+    watch('./src/js/*.js', js);
+}
+
+exports.css = css;
+exports.js = js;
+exports.dev = series(js, cssdev, prereleasePackageVersion);
+exports.build = series(js, css, patchPackageVersion);
+exports.pot = updatepot;
+
+exports.default = css;
