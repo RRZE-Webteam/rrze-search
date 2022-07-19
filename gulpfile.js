@@ -3,7 +3,6 @@
 const
     {src, dest, watch, series} = require('gulp'),
     sass = require('gulp-sass')(require('sass')),
-    cleancss = require('gulp-clean-css'),
     postcss = require('gulp-postcss'),
     autoprefixer = require('autoprefixer'),
     uglify = require('gulp-uglify'),
@@ -11,35 +10,54 @@ const
     semver = require('semver'),
     info = require('./package.json'),
     wpPot = require('gulp-wp-pot'),
-    touch = require('gulp-touch-cmd')
+    touch = require('gulp-touch-cmd'),
+    rename = require('gulp-rename'),
+    cssnano = require('cssnano')
+
 ;
 
 
 function css() {
+    var plugins = [
+        autoprefixer(),
+        cssnano()
+    ];
     return src('./src/sass/*.scss', {
             sourcemaps: false
         })
         .pipe(sass())
-        .pipe(postcss([autoprefixer()]))
-        .pipe(cleancss())
-        .pipe(dest('./css'))
+        .pipe(postcss(plugins))
+        .pipe(dest(info.target.css))
 	.pipe(touch());
 }
 function cssdev() {
+     var plugins = [
+        autoprefixer()
+    ];
     return src('./src/sass/*.scss', {
             sourcemaps: true
         })
         .pipe(sass())
-        .pipe(postcss([autoprefixer()]))
-        .pipe(dest('./css'))
+        .pipe(postcss(plugins))
+        .pipe(dest(info.target.css))
 	.pipe(touch());
 }
-function js() {
-    return src(['./src/js/*.js'])
-	.pipe(uglify())
-	.pipe(dest('./js'))
-	.pipe(touch());
+
+function makefrontendjs() {
+    return src([info.source.js + 'rrze-search.js'])
+   // .pipe(uglify())
+    .pipe(rename("rrze-search.js"))
+    .pipe(dest(info.target.js))
+    .pipe(touch());
 }
+function makebackendjs() {
+    return src([info.source.js + 'rrze-search-admin.js'])
+    .pipe(uglify())
+    .pipe(rename("rrze-search-admin.js"))
+    .pipe(dest(info.target.js))
+    .pipe(touch());
+}
+
 
 function patchPackageVersion() {
     var newVer = semver.inc(info.version, 'patch');
@@ -83,9 +101,11 @@ function startWatch() {
 }
 
 exports.css = css;
-exports.js = js;
-exports.dev = series(js, cssdev, prereleasePackageVersion);
-exports.build = series(js, css, patchPackageVersion);
+exports.js = series(makefrontendjs, makebackendjs);
+exports.mainjs = makefrontendjs;
+exports.backendjs =makebackendjs;
+exports.dev = series(makefrontendjs, makebackendjs, cssdev, prereleasePackageVersion);
+exports.build = series(makefrontendjs, makebackendjs, css, patchPackageVersion);
 exports.pot = updatepot;
 
 exports.default = css;

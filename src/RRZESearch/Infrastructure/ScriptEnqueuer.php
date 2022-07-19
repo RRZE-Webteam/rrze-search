@@ -23,33 +23,18 @@ class ScriptEnqueuer extends AppController
     /**
      * Enqueue the admin scripts
      */
-    public function enqueueAdminScripts()
-    {
-        wp_enqueue_style('rrze-search-style', $this->pluginUrl.'/css/rrze-search.css');
-        wp_enqueue_script('rrze-search-script', $this->pluginUrl.'/js/rrze-search-admin-script.js', '', false,
-            true);
+    public function enqueueAdminScripts()  {
+        wp_enqueue_style('rrze-search-style', $this->pluginUrl.'css/rrze-search.css');
+        wp_enqueue_script('rrze-search-script', $this->pluginUrl.'js/rrze-search-admin.js', '', false, true);
     }
 
     /**
      * Enqueue the plugin scripts
      */
-    public function enqueuePluginScripts()
-    {
-        wp_enqueue_style('rrze-search-style', $this->pluginUrl.'/css/rrze-search.css');
-        wp_enqueue_script(
-            'rrze-search-script-a11y',
-            $this->pluginUrl.'/js/ally.min.js',
-            ['fau-scripts'],
-            false,
-            true
-        );
-        wp_enqueue_script(
-            'rrze-search-script',
-            $this->pluginUrl.'/js/rrze-search-script.js',
-            ['rrze-search-script-a11y'],
-            false,
-            true
-        );
+    public function enqueuePluginScripts()  {
+        wp_enqueue_style('rrze-search-style', $this->pluginUrl.'css/rrze-search.css');
+        wp_enqueue_script('rrze-search-script-a11y', $this->pluginUrl.'js/ally.min.js', ['fau-scripts'], false, true);
+        wp_enqueue_script('rrze-search-script', $this->pluginUrl.'js/rrze-search.js',['rrze-search-script-a11y'], false, true);
     }
     
 }

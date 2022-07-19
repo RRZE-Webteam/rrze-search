@@ -1,0 +1,275 @@
+/*-----------------------------------------------------------------------------------*/
+/* CSS Adjustment for WordPress Plugin RRZE-Search
+/*-----------------------------------------------------------------------------------*/
+
+.search-toggled {
+    &.fau-theme .meta-widget.cms-workflow-widget,
+    &.fau-theme .meta-widget.rrze-multilang-widget {
+        @media (min-width: $screen-sm) {
+            display: none;
+        }
+    }
+
+    &.active-meta-widget {
+
+        .searchform {
+            padding-left: 15px;
+            padding-right: 15px;
+            @media (min-width: $screen-sm) {
+                width: 100%;
+            }
+        }
+    }
+
+    @media (min-width: $screen-sm) {
+        .meta-search .searchform input[type="text"] {
+            margin-left: 25px;
+        }
+    }
+
+    form[role="search"] header {
+        max-width: 50em;
+        margin: 0 auto;
+    }
+}
+
+
+.meta-search .searchform .search-settings label {
+
+    @media (max-width: $screen-sm) {
+        white-space: normal;
+
+        a {
+            text-decoration: underline;
+            font-weight: normal;
+        }
+        a::after {
+            display: none;
+        }
+    }
+
+    span {
+        white-space: normal;
+    }
+}
+
+.wp-block-search__label {
+    margin-right: 0;
+}
+
+.sidebar-single .rrze_search {
+    dialog {
+        border: none;
+    }
+
+    form[role="search"] header {
+	display: block;
+    }
+
+   	    label {
+//		@extend .screen-reader-text;
+	    }
+	    input[type="text"] {
+		border: 1px solid  var(--color-primary-ci-hell);
+	//	max-width: min(15rem, 90%);
+		padding: 0.5rem 5rem 0.5rem 2rem;
+		height: inherit;
+		margin: 0;
+		width: 15rem;
+		
+		
+		background: var(--color-primary-ci-hell);
+		color: var(--color-primary-ci-hell-kontrast);
+
+		&:active,
+		&:target,
+		&:focus {
+			background-color: var(--color-primary-ci-hell2);
+			color: var(--color-primary-ci-hell2-kontrast);
+			outline-style: none;
+                        
+                       
+		}
+                &:focus::placeholder {
+                    color: var(--color-primary-ci-hell2-kontrast);
+                }
+	    }
+            input[type="text"]::placeholder {
+                color: var(--color-primary-ci-hell-kontrast);
+            }
+            
+	    input[type="submit"] {
+		    border: 1px solid var(--color-primary-ci-hell);
+	//	    @include buttoncolor();
+		    padding: 0.5rem 1rem;
+		    height: inherit;
+		    margin:0 0 0 -4rem;
+	    }
+	   
+
+    
+
+    
+}
+[hidden] {
+	display: none;
+}
+
+#search-backdrop {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 51, 102, .7);
+	z-index: 50;
+
+	.search-toggled & {
+		display: block;
+	}
+}
+
+.searchform {
+	display: block;
+	padding: 0;
+	margin: 0;
+	background: transparent;
+	position: static;
+	// width: 100%;
+	height: auto;
+	text-align: left; 
+}
+
+form[role=search] {
+	border: none;
+	padding: 0;
+	width: 100%;
+	margin: 0;
+	
+	header {
+		display: flex;
+		align-items: center;
+		transition: width .2s;
+	}
+}
+
+
+
+.search-panel {
+	padding: 1em 0;
+	
+	&.no-links {
+	    flex-direction: initial;
+	    padding: 8px 0 5px 0;
+	}
+}
+
+.meta-search .searchform .search-settings {
+
+	label {
+		position: static;
+		display: block;
+		padding: 0;
+		margin: 0;
+		height: auto;
+		width: 100%;
+		overflow: initial;
+		min-width: 0;
+		display: table;
+
+		> * {
+			display: table-cell;
+
+
+			&:last-child {
+				width: 100%;
+			}
+		}
+
+		+ label {
+			margin-top: .5em;
+		}
+		
+		
+	}
+}
+
+.meta-search .searchform  .search-panel.no-links .search-settings  {
+    border-left: none;
+    
+    label {
+		    display: table-cell;
+		    width: auto;
+		    padding-right: 15px;
+    }
+}
+
+.search-toggled {
+    .search-terms {
+		    flex-basis: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+	.search-toggled {
+		.meta-links {
+			display: none;
+		}
+		
+		.meta-tools {
+			width: 100%;
+		}
+		.searchform {
+		   width: 100%
+		}
+		
+	}
+	.search-toggled.active-meta-widget {
+	    .meta-tools {
+		width: 100%;
+	    }
+	    .searchform {
+		width: 80%;
+	    }
+	}
+	
+	
+	
+	.search-panel {
+		padding: 2em 0;
+		display: flex;
+		flex-direction: row-reverse;
+	}
+
+	.search-settings {
+		width: calc(100% / 3);
+		border-left: 1px solid #c5c9ce;
+		padding-left: 1em;
+	}
+	.no-links .search-settings {
+	    width: 100%;
+	}
+	.search-static-links {
+		width: calc(200% / 3);
+
+		.hero-navigation .quicklinks {
+			width: 50%;
+		}
+	}
+}
+
+label.resource_table_label {
+	display: block;
+	width: 100%;
+	white-space: nowrap;
+
+	span {
+		display: block;
+	}
+}
+
+/*----------------------------------------------------------------------------*/
+/* _fau-theme 
+/* Created on : 19.07.2022, 13:43:45
+/*----------------------------------------------------------------------------*/

@@ -10,13 +10,14 @@
 global $staticLinks;
 
 ?>
+    <button id="search-toggle" aria-expanded="false" aria-controls="search-header"><span><?php _e("Suche","fau"); ?></span></button>
     <dialog id="search-header" class="search-header searchform" open>
-        <form method="post" action="<?= admin_url('admin-post.php'); ?>" role="search">
+	<meta itemprop="url" content="<?php echo home_url('/'); ?>">
+        <form itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction" method="post" action="<?= admin_url('admin-post.php'); ?>" role="search">
+	    <meta itemprop="target" content="<?php echo home_url('/') ?>?s={s}">
             <input type="hidden" name="action" value="widget_form_submit">
             <header>
-                <label for="headsearchinput"><?php _e('Geben Sie hier den Suchbegriff ein, um in diesem Webauftritt zu suchen:',
-                        'fau'); ?></label>
-                <span class="searchicon"> </span>
+                <label for="headsearchinput"><?php _e('Geben Sie hier den Suchbegriff ein, um in diesem Webauftritt zu suchen:', 'fau'); ?></label>
                 <?php 
 		
 		$queryValue = '';
@@ -26,9 +27,8 @@ global $staticLinks;
 		    $queryValue = esc_attr($_GET['s']);
 		}
 		?>
-                <input id="headsearchinput" class="search-terms" type="text" value="<?= $queryValue; ?>"
-                       name="s"
-                       placeholder="<?php _e('Suchen nach...', 'fau'); ?>" autocomplete="off" tabindex="0">
+                <input itemprop="query-input" id="headsearchinput" class="search-terms" type="text" value="<?= $queryValue; ?>"
+                       name="s" placeholder="<?php _e('Suchen nach...', 'fau'); ?>" autocomplete="off" tabindex="0">
                 <?php
                 if (get_theme_mod('search_allowfilter')) {
                     $autosearchTypes = get_theme_mod('search_post_types_checked');
@@ -41,13 +41,13 @@ global $staticLinks;
                         }
                     }
                 }
+		
                 ?>
-                <input type="submit" id="searchsubmit" value="<?php _e('Finden', 'fau'); ?>" tabindex="2">
+                <input type="submit" id="searchsubmit" enterkeyhint="search" value="<?php _e('Finden', 'fau'); ?>" tabindex="2">
             </header>
 	    <div id="search-panel" class="search-panel<?php if (count($staticLinks)<=0) { echo ' no-links';} ?>" hidden>
                 <div class="search-settings" role="radiogroup" aria-label="<?php echo __('Available search engines', 'rrze-search'); ?>">
-                    <p id="search-engines" class="screen-reader-text"><?php echo __('Please select one of the available search engines:',
-                            'rrze-search'); ?></p>
+                    <p id="search-engines" class="screen-reader-text"><?php echo __('Please select one of the available search engines:','rrze-search'); ?></p>
                     <?php
                     $nextTabIndex = 0;
                     foreach ($resources as $key => $resource):
@@ -87,4 +87,3 @@ global $staticLinks;
         </form>
     </dialog>
 <?php
-

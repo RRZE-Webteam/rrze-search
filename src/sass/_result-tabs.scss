@@ -15,7 +15,6 @@
 		margin: 0;
 
 		span, a {
-			@include px2rem($font-size-pagination-links);
 			padding: 6px 10px;
 			text-align: center;
 			margin-right: 4px;

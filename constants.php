@@ -14,8 +14,8 @@ $staticLinks = array(
 	    'header' => __('Portale', 'rrze-search' ),
 	    'links' => array(
 		'link1'  => array(
-		    'label'	    => __('Mein Campus', 'rrze-search' ),
-		    'href'  => 'https://campus.fau.de/',
+		    'label'	    => __('Campo', 'rrze-search' ),
+		    'href'  => 'https://campo.fau.de/',
 		),
 		'link2'  => array(
 		    'label'	    => __('UnivIS', 'rrze-search' ),

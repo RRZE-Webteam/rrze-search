@@ -1,6 +1,6 @@
 {
   "name": "rrze-search",
-  "version": "0.2.3",
+  "version": "0.2.4-2",
   "description": "",
   "main": "rrze-search.php",
   "textdomain": "rrze-search",
@@ -12,6 +12,14 @@
     "url": "https://github.com/RRZE-Webteam/rrze-search",
     "issues": "https://github.com/RRZE-Webteam/rrze-search/issues",
     "clone": "git+https://github.com/RRZE-Webteam/rrze-search.git"
+  },
+  "source": {
+    "js": "./src/js/",
+    "sass": "./src/sass/"
+  },
+  "target": {
+    "js": "./js/",
+    "css": "./css/"
   },
   "browserslist": [
     "last 3 years"
@@ -31,14 +39,17 @@
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-bump": "^3.2.0",
-    "gulp-clean-css": "^4.3.0",
     "gulp-csso": "^3.0.1",
     "gulp-postcss": "^9.0.1",
     "gulp-sass": "^5.1.0",
     "gulp-touch-cmd": "0.0.1",
     "gulp-uglify": "^3.0.2",
     "gulp-wp-pot": "^2.4.3",
-    "sass": "^1.42.1",
+    "sass": "^1.5.1",
     "semver": "^6.3.0"
+  },
+  "dependencies": {
+    "cssnano": "^5.1.12",
+    "gulp-rename": "^2.0.0"
   }
 }
