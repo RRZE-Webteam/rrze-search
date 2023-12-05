@@ -5,7 +5,7 @@ Plugin URI: https://www.tollwerk.de
 description: a WordPress Search Plugin by tollwerk GmbH
 Author: tollwerk
 Author URI: https://www.tollwerk.de
-Version: 0.2.4-2
+Version: 0.2.5
 License: GPL2
 Text Domain: rrze-search
 Domain Path: /languages
@@ -32,17 +32,18 @@ register_deactivation_hook(__FILE__, 'deactivate_rrze_search_plugin');
 /**
  * Init
  */
-function rrze_search_init() {
+function rrze_search_init()
+{
     rrze_search_textdomain();
-    
+
     // Include composer autoloader
-    if (file_exists(dirname(__FILE__).'/vendor/autoload.php')) {
-	require_once(dirname(__FILE__).'/vendor/autoload.php');
+    if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
+        require_once(dirname(__FILE__) . '/vendor/autoload.php');
     }
-    
+
     // Bootstrap the Plugin
     if (class_exists(\RRZE\RRZESearch\Ports\Multisearch::class)) {
-	RRZE\RRZESearch\Ports\Multisearch::bootstrap();
+        RRZE\RRZESearch\Ports\Multisearch::bootstrap();
     }
 }
 
@@ -51,12 +52,13 @@ function rrze_search_init() {
 /**
  * Plugin Activation Function
  */
-function activate_rrze_search_plugin() {
+function activate_rrze_search_plugin()
+{
     rrze_search_textdomain();
     system_requirements();
-     // Include composer autoloader
-    if (file_exists(dirname(__FILE__).'/vendor/autoload.php')) {
-	require_once(dirname(__FILE__).'/vendor/autoload.php');
+    // Include composer autoloader
+    if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
+        require_once(dirname(__FILE__) . '/vendor/autoload.php');
     }
     RRZE\RRZESearch\Ports\Multisearch::activate();
 }
@@ -66,10 +68,11 @@ function activate_rrze_search_plugin() {
 /**
  * Plugin Deactivation Function
  */
-function deactivate_rrze_search_plugin() {
-     // Include composer autoloader
-    if (file_exists(dirname(__FILE__).'/vendor/autoload.php')) {
-	require_once(dirname(__FILE__).'/vendor/autoload.php');
+function deactivate_rrze_search_plugin()
+{
+    // Include composer autoloader
+    if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
+        require_once(dirname(__FILE__) . '/vendor/autoload.php');
     }
     RRZE\RRZESearch\Ports\Multisearch::deactivate();
 }
@@ -77,28 +80,30 @@ function deactivate_rrze_search_plugin() {
 /**
  * Load Textdomain
  */
-function rrze_search_textdomain() {
-	load_plugin_textdomain('rrze-search', FALSE, sprintf('%s/languages/', dirname(plugin_basename(__FILE__))));
+function rrze_search_textdomain()
+{
+    load_plugin_textdomain('rrze-search', FALSE, sprintf('%s/languages/', dirname(plugin_basename(__FILE__))));
 }
 
 /**
  * Check Systemrequirements. We dont wont to hassle about outdated noob installations :)
  */
-function system_requirements() {
+function system_requirements()
+{
     $error = '';
 
     if (version_compare(PHP_VERSION, RRZE_PHP_VERSION, '<')) {
-	$error = sprintf(__('Your server is running PHP version %s. Please upgrade at least to PHP version %s.', 'rrze-test'), PHP_VERSION, RRZE_PHP_VERSION);
+        $error = sprintf(__('Your server is running PHP version %s. Please upgrade at least to PHP version %s.', 'rrze-test'), PHP_VERSION, RRZE_PHP_VERSION);
     }
 
     if (version_compare($GLOBALS['wp_version'], RRZE_WP_VERSION, '<')) {
-	$error = sprintf(__('Your Wordpress version is %s. Please upgrade at least to Wordpress version %s.', 'rrze-test'), $GLOBALS['wp_version'], RRZE_WP_VERSION);
+        $error = sprintf(__('Your Wordpress version is %s. Please upgrade at least to Wordpress version %s.', 'rrze-test'), $GLOBALS['wp_version'], RRZE_WP_VERSION);
     }
 
     // Wenn die Überprüfung fehlschlägt, dann wird das Plugin automatisch deaktiviert.
     if (!empty($error)) {
-	deactivate_plugins(plugin_basename(__FILE__), FALSE, TRUE);
-	wp_die($error);
+        deactivate_plugins(plugin_basename(__FILE__), FALSE, TRUE);
+        wp_die($error);
     }
 }
 

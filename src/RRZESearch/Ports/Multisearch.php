@@ -11,7 +11,7 @@ use RRZE\RRZESearch\Infrastructure\SettingsLink;
 
 
 
-    
+
 /**
  * Multisearch facade
  *
@@ -40,7 +40,7 @@ class Multisearch
      */
     public static function bootstrap(): void
     {
-    
+
         // Run through all services
 
         foreach (static::getServices() as $class) {
@@ -50,14 +50,14 @@ class Multisearch
             }
         }
     }
-    
+
     /**
      * Plugin Activation
      */
     public static function activate(): void
     {
         flush_rewrite_rules();
-	
+
         // Validate Settings Option Exists
         if (!get_option('rrze_search_settings')) {
 
@@ -78,7 +78,7 @@ class Multisearch
     public static function deactivate(): void
     {
         flush_rewrite_rules();
-//        deactivate_plugins('rrze-search/rrze-search.php');
+        //        deactivate_plugins('rrze-search/rrze-search.php');
 //        unregister_sidebar('rrze-search-sidebar');
         self::updateResultsPageStatus('private');
     }
@@ -91,13 +91,16 @@ class Multisearch
     private static function updateResultsPageStatus($status): void
     {
         $options = get_option('rrze_search_settings');
-        $pageId  = $options['rrze_search_page_id'];
 
-        if ($pageId !== '') {
-            $page                = get_post($pageId, 'ARRAY_A');
-            $page['post_status'] = $status;
+        if (!empty($options['rrze_search_page_id'])) {
+            $pageId = $options['rrze_search_page_id'];
+
+            if ($pageId !== '') {
+                $page = get_post($pageId, 'ARRAY_A');
+                $page['post_status'] = $status;
+            }
+
+            wp_update_post($page);
         }
-
-        wp_update_post($page);
     }
 }
