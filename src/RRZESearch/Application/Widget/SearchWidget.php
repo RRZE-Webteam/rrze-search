@@ -224,18 +224,45 @@ class SearchWidget extends WP_Widget
      */
     public function widgetSubmit()
     {
-        $resourceId = $_POST['resource_id'];
-        setcookie('rrze_search_engine_pref', $resourceId, 0, '/');
+        $resourceId = isset($_POST['resource_id']) ? absint($_POST['resource_id']) : null;
 
-        $engine       = $this->options['rrze_search_engines'][$resourceId]['resource_class'];
-        $class        = new $engine;
+        $engines    = $this->options['rrze_search_engines'] ?? [];
+        $engineEntry = null;
+        $engineKey   = null;
+
+        if ($resourceId !== null && isset($engines[$resourceId])) {
+            $engineEntry = $engines[$resourceId];
+            $engineKey   = $resourceId;
+        }
+
+        if (!$engineEntry) {
+            foreach ($engines as $key => $candidate) {
+                if (!empty($candidate['resource_class']) && class_exists($candidate['resource_class'])) {
+                    $engineEntry = $candidate;
+                    $engineKey   = $key;
+                    break;
+                }
+            }
+        }
+
+        if (!$engineEntry || empty($engineEntry['resource_class']) || !class_exists($engineEntry['resource_class'])) {
+            wp_safe_redirect(add_query_arg('rrze_search_error', 'invalid_engine', wp_get_referer() ?: home_url('/')));
+            exit;
+        }
+
+        setcookie('rrze_search_engine_pref', (int)$engineKey, 0, '/');
+
+        $engineClass  = $engineEntry['resource_class'];
+        $class        = new $engineClass();
         $results_page = $class->getRedirectLink();
+
+        $searchTerm = isset($_POST['s']) ? sanitize_text_field(wp_unslash($_POST['s'])) : '';
 
         $_q = ($class->getRedirectLink() !== '/') ? 'q' : 's';
 
         // Ensure you're using $_POST['s'] for the q(uery) value, prior to redirect
         $redirect_link = add_query_arg(
-            [$_q => urlencode($_POST['s']), 'se' => $resourceId],
+            [$_q => $searchTerm, 'se' => (int)$engineKey],
             $results_page
         );
 

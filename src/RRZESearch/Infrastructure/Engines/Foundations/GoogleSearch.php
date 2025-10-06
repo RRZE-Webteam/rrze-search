@@ -62,47 +62,67 @@ class GoogleSearch extends AbstractSearchEngine
      * @return mixed
      */
     public function query(string $query, array $args, int $startPage) {
-        $_uri = sprintf('https://www.googleapis.com/customsearch/v1?cx=%s&key=%s&q=%s&start=%s',
-            $args['cx'],
-            $args['key'],
-            rawurlencode($query),
-            $startPage
-        );
+        if (empty($args['cx']) || empty($args['key'])) {
+            return [
+                'error' => [
+                    'code'    => 400,
+                    'message' => __('Google search credentials are missing. Please provide both API key and CX identifier.', 'rrze-search'),
+                ],
+            ];
+        }
 
-        // cURL headers
-        $headers = [
-            'Content-length: 0',
-            'Content-type: application/json'
+        $requestQueryArgs = [
+            'cx'    => $args['cx'],
+            'key'   => $args['key'],
+            'q'     => $query,
+            'start' => max(1, (int)$startPage),
         ];
 
-	if ((self::GCSE_OPTIONS) && (!empty(self::GCSE_OPTIONS))) {
-	    $addquery = http_build_query(self::GCSE_OPTIONS);
-	    $_uri .= '&'.$addquery;
-	}
-	
-	
-        // cURL options
-        $curlOptions = array(
-            CURLOPT_HTTPHEADER     => $headers,
-            CURLOPT_HEADER         => false,
-            CURLOPT_URL            => $_uri,
-            CURLOPT_SSL_VERIFYPEER => 0,
-            CURLOPT_SSL_VERIFYHOST => 0,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT        => 10,
-            CURLOPT_CONNECTTIMEOUT => 10,
-            CURLOPT_HEADER         => 0,
-            CURLOPT_FOLLOWLOCATION => 1
-        );
+        if (!empty(self::GCSE_OPTIONS)) {
+            $requestQueryArgs = array_merge($requestQueryArgs, self::GCSE_OPTIONS);
+        }
 
-        // Try to make query request
-        $curl = curl_init();
-        curl_setopt_array($curl, $curlOptions);
-        // Finalize query request
-        $results = curl_exec($curl);
-        curl_close($curl);
+        $requestUrl = add_query_arg($requestQueryArgs, 'https://www.googleapis.com/customsearch/v1');
 
-        return $results;
+        $response = wp_safe_remote_get($requestUrl, [
+            'timeout'   => 10,
+            'redirection' => 3,
+            'headers'   => [
+                'Accept' => 'application/json',
+            ],
+        ]);
+
+        if (is_wp_error($response)) {
+            return [
+                'error' => [
+                    'code'    => 500,
+                    'message' => $response->get_error_message(),
+                    'details' => [
+                        'wp_error_code' => $response->get_error_code(),
+                    ],
+                ],
+            ];
+        }
+
+        $statusCode = wp_remote_retrieve_response_code($response);
+        $body       = wp_remote_retrieve_body($response);
+
+        if ($statusCode >= 400) {
+            $decodedError = json_decode($body, true);
+
+            if (is_array($decodedError) && isset($decodedError['error'])) {
+                return $decodedError;
+            }
+
+            return [
+                'error' => [
+                    'code'    => $statusCode,
+                    'message' => $body ?: __('Google search request failed without a response body.', 'rrze-search'),
+                ],
+            ];
+        }
+
+        return $body;
     }
 
     public static function getName(): string
