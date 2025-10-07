@@ -2,84 +2,79 @@
 /**
  * Widget include template
  *
- * @param array $args            Widget parameters
- * @param array $instance        Instance parameters
+ * @param array $args Widget parameters
+ * @param array $instance Instance parameters
  * @param array $preferredEngine Preferred search engine
  */
 
-global $staticLinks;
+global
+
+$staticLinks;
 
 ?>
-    <button id="search-toggle" aria-expanded="false" aria-controls="search-header"><span><?php _e("Suche","fau"); ?></span></button>
-    <dialog id="search-header" class="search-header searchform" open>
-	<meta itemprop="url" content="<?php echo home_url('/'); ?>">
-        <form itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction" method="post" action="<?= admin_url('admin-post.php'); ?>" role="search">
-	    <meta itemprop="target" content="<?php echo home_url('/') ?>?s={s}">
-            <input type="hidden" name="action" value="widget_form_submit">
-            <header>
-                <label for="headsearchinput"><?php _e('Geben Sie hier den Suchbegriff ein, um in diesem Webauftritt zu suchen:', 'fau'); ?></label>
-                <?php 
-		
-		$queryValue = '';
-		if (isset($_GET['q'])) {
-		    $queryValue = esc_attr($_GET['q']);
-		} elseif (isset($_GET['s'])) {
-		    $queryValue = esc_attr($_GET['s']);
-		}
-		?>
-                <input itemprop="query-input" id="headsearchinput" class="search-terms" type="text" value="<?= $queryValue; ?>"
-                       name="s" placeholder="<?php _e('Suchen nach...', 'fau'); ?>" autocomplete="off" tabindex="0">
-                <?php
-                if (get_theme_mod('search_allowfilter')) {
-                    $autosearchTypes = get_theme_mod('search_post_types_checked');
-                    $listtypes       = fau_get_searchable_fields();
-                    if (is_array($listtypes)) {
-                        foreach ($listtypes as $type) {
-                            if (in_array($type, $autosearchTypes)) {
-                                echo '<input type="hidden" name="post_type[]" value="'.$type.'">'."\n";
-                            }
-                        }
-                    }
-                }
-		
-                ?>
-                <input type="submit" id="searchsubmit" enterkeyhint="search" value="<?php _e('Finden', 'fau'); ?>" tabindex="2">
-            </header>
-                <div class="search-settings" role="radiogroup" aria-label="<?php echo __('Available search engines', 'rrze-search'); ?>">
-                    <p id="search-engines" class="screen-reader-text"><?php echo __('Please select one of the available search engines:','rrze-search'); ?></p>
-                    <?php
-                    $nextTabIndex = 0;
-                    foreach ($resources as $key => $resource):
-                        if ((isset($resource['enabled'])) && ($resource['enabled'])) {
-                            ++$nextTabIndex;
-                            $searchEngineActive     = (($preferredEngine == $key) ? '1' : '-1');
-                            $searchEngineAttributes = 'tabindex="'.$searchEngineActive.'"';
-                            $searchEngineAttributes .= ' aria-checked="'.(($preferredEngine == $key) ? 'true' : 'false').'"';
-			    $searchEngineDisclaimer = '';
-			    
-			    if ((isset($resource['resource_disclaimer'])) && (intval($resource['resource_disclaimer'])>0) ) {
-				$searchEngineDisclaimer = ' (<a href="'.get_permalink($resource['resource_disclaimer']).'"';
-				if (!empty($privacylabeltarget)) {
-				    $searchEngineDisclaimer .= ' target="'.$privacylabeltarget.'"';
-				}
-				$searchEngineDisclaimer .= ' tabindex="'.$searchEngineActive.'">'.__('Privacy Disclaimer', 'rrze-search').'</a>)';
-			    }
-                            ?>
-                            <label>
-                                <span>
-                                    <input type="radio" name="resource_id" <?= $searchEngineAttributes; ?> class="search-engine" value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
-                                </span>
-                                <span><?php    
-				    echo esc_attr($resource['resource_name']);
-				    if (!empty($searchEngineDisclaimer)) { echo $searchEngineDisclaimer; } 
-				?></span>
-                            </label>
+    <div class="menu-modal__content" role="navigation" aria-label="Suchen">
+        <div class="menu-modal__search-wrapper"><h3 class="menu-modal__search-heading">Alle Seiten und Dokumente
+                durchsuchen:</h3>
+            <div class="fau-global-search__outer-wrapper">
+                <div class="fau-global-search-wrapper fau-global-search-wrapper--content-size wp-block-fau-elemental-fau-global-search">
+                    <form itemprop="potentialAction" itemscope id="fau-global-search-2"
+                          itemtype="https://schema.org/SearchAction" method="post"
+                          action="<?= admin_url('admin-post.php'); ?>" role="search">
+                        <div class="fau-global-search__input-wrapper">
+                            <input type="hidden" name="action" value="widget_form_submit">
+                            <input type="search" class="fau-global-search__input" name="s" placeholder="Suchen…"
+                                   value="" autocomplete="off" id="fau-global-search-2-input">
+                            <button type="submit" class="fau-global-search__button" id="searchsubmit"
+                                    enterkeyhint="search" value="<?php _e('Suchen', 'fau'); ?>"
+                                    tabindex="2">
+					<span class="fau-global-search__button-text">
+						Suchen					</span>
+                                <span class="fau-global-search__button-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="search-settings" role="radiogroup"
+                             aria-label="<?php echo __('Available search engines', 'rrze-search'); ?>">
+                            <p id="search-engines"
+                               class="screen-reader-text"><?php echo __('Please select one of the available search engines:', 'rrze-search'); ?></p>
                             <?php
-                        }
-                    endforeach;
-                    ?>
+                            $nextTabIndex = 0;
+                            foreach ($resources as $key => $resource):
+                                if ((isset($resource['enabled'])) && ($resource['enabled'])) {
+                                    ++$nextTabIndex;
+                                    $searchEngineActive = (($preferredEngine == $key) ? '1' : '-1');
+                                    $searchEngineAttributes = 'tabindex="' . $searchEngineActive . '"';
+                                    $searchEngineAttributes .= ' aria-checked="' . (($preferredEngine == $key) ? 'true' : 'false') . '"';
+                                    $searchEngineDisclaimer = '';
+
+                                    if ((isset($resource['resource_disclaimer'])) && (intval($resource['resource_disclaimer']) > 0)) {
+                                        $searchEngineDisclaimer = ' (<a href="' . get_permalink($resource['resource_disclaimer']) . '"';
+                                        if (!empty($privacylabeltarget)) {
+                                            $searchEngineDisclaimer .= ' target="' . $privacylabeltarget . '"';
+                                        }
+                                        $searchEngineDisclaimer .= ' tabindex="' . $searchEngineActive . '">' . __('Privacy Disclaimer', 'rrze-search') . '</a>)';
+                                    }
+                                    ?>
+                                    <label>
+                                <span>
+                                    <input type="radio"
+                                           name="resource_id" <?= $searchEngineAttributes; ?> class="search-engine"
+                                           value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
+                                </span>
+                                        <span><?php
+                                            echo esc_attr($resource['resource_name']);
+                                            if (!empty($searchEngineDisclaimer)) {
+                                                echo $searchEngineDisclaimer;
+                                            }
+                                            ?></span>
+                                    </label>
+                                    <?php
+                                }
+                            endforeach;
+                            ?>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </form>
-    </dialog>
+        </div>
+    </div>
 <?php
