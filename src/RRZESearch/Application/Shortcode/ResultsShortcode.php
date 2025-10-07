@@ -71,7 +71,7 @@ class ResultsShortcode
 	        $startPage = absint($_GET['start']);
 	    }
 	     // Render the Search Engine Tabs
-	    include \dirname(__DIR__, 2).$templatesDir.'search-tabs.php';
+	    //include \dirname(__DIR__, 2).$templatesDir.'search-tabs.php';
 
 	    // Define the Search Engine Resource & class name
 	    $this->searchEngine = new $resource['resource_class'];
@@ -102,7 +102,7 @@ class ResultsShortcode
 
 	} else {
 	     // Render the Search Engine Tabs
-	    include \dirname(__DIR__, 2).$templatesDir.'search-tabs.php';
+	    //include \dirname(__DIR__, 2).$templatesDir.'search-tabs.php';
 
 	    // Render the Search Engine Results
 	    include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'Error-shortcode.php';
