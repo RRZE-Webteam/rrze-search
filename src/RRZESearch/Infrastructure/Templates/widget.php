@@ -45,7 +45,6 @@ global $staticLinks;
                 ?>
                 <input type="submit" id="searchsubmit" enterkeyhint="search" value="<?php _e('Finden', 'fau'); ?>" tabindex="2">
             </header>
-	    <div id="search-panel" class="search-panel<?php if (count($staticLinks)<=0) { echo ' no-links';} ?>" hidden>
                 <div class="search-settings" role="radiogroup" aria-label="<?php echo __('Available search engines', 'rrze-search'); ?>">
                     <p id="search-engines" class="screen-reader-text"><?php echo __('Please select one of the available search engines:','rrze-search'); ?></p>
                     <?php
@@ -80,9 +79,6 @@ global $staticLinks;
                     endforeach;
                     ?>
                 </div>
-		<?php if (count($staticLinks)) { ?>
-                <div class="search-static-links"><?php include __DIR__.DIRECTORY_SEPARATOR.'widget-static-links.php'; ?></div>
-		<?php } ?>
             </div>
         </form>
     </dialog>

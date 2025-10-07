@@ -21,6 +21,7 @@ include_once('constants.php');
 
 
 add_action('plugins_loaded', 'rrze_search_init');
+add_action('init', 'rrze_search_textdomain');
 // WP Activation Hook
 
 
@@ -34,8 +35,6 @@ register_deactivation_hook(__FILE__, 'deactivate_rrze_search_plugin');
  */
 function rrze_search_init()
 {
-    rrze_search_textdomain();
-
     // Include composer autoloader
     if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
         require_once(dirname(__FILE__) . '/vendor/autoload.php');
