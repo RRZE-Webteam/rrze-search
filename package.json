@@ -1,6 +1,6 @@
 {
   "name": "rrze-search",
-  "version": "0.2.5",
+  "version": "0.2.6-0",
   "description": "",
   "main": "rrze-search.php",
   "textdomain": "rrze-search",
@@ -33,23 +33,23 @@
   },
   "license": "GNU General Public License v3",
   "devDependencies": {
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "autoprefixer": "^10.4.2",
-    "gulp": "^4.0.2",
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "autoprefixer": "^10.4.21",
+    "gulp": "^5.0.1",
     "gulp-babel": "^8.0.0",
     "gulp-bump": "^3.2.0",
-    "gulp-csso": "^3.0.1",
-    "gulp-postcss": "^9.0.1",
-    "gulp-sass": "^5.1.0",
+    "gulp-csso": "^4.0.1",
+    "gulp-postcss": "^10.0.0",
+    "gulp-sass": "^6.0.1",
     "gulp-touch-cmd": "0.0.1",
     "gulp-uglify": "^3.0.2",
-    "gulp-wp-pot": "^2.4.3",
-    "sass": "^1.5.1",
-    "semver": "^6.3.0"
+    "gulp-wp-pot": "^2.5.0",
+    "sass": "^1.93.2",
+    "semver": "^7.7.2"
   },
   "dependencies": {
-    "cssnano": "^5.1.12",
-    "gulp-rename": "^2.0.0"
+    "cssnano": "^7.1.1",
+    "gulp-rename": "^2.1.0"
   }
 }

@@ -95,7 +95,7 @@ class OptionsFields extends AppController
                     'post_date_gmt' => date('Y-m-d H:i:s'),
                     'post_content'  => '[rrze_search_results]',
                     'post_name'     => 'rrze_search_page',
-                    'post_title'    => __('RRZE Search Results', 'rrze-search'),
+                    'post_title'    => __('Global Search Results', 'rrze-search'),
                     'post_status'   => 'publish',
                     'post_type'     => 'page',
                     'post_excerpt'  => __('Search Result Page utilized by RRZE Search Plugin', 'rrze-search'),

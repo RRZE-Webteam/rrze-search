@@ -82,11 +82,7 @@ class ResultsShortcode
 	   
 	    if ((isset($results['error'])) && ($results['error']['code']>=400)) {
 		// Search was denied / was not possible by search provider
-		
-		echo "<!-- ";
-		var_dump($results);
-		echo " -->";
-		 
+
 		include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'Error-shortcode.php';
 		// Workaround with a message.  Later enter a fallback to local search here
 		

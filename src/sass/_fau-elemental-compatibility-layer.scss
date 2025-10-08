@@ -1,0 +1,18 @@
+/**
+This file overwrites styling for the FAU-Elemental Theme. You can safely remove it, if not needed any longer.
+*/
+
+body.wp-theme-FAU-Elemental {
+  div.search-results.gcse {
+    margin-inline: auto;
+    max-width: var(--small-max-width);
+  }
+
+  ul.searchresults {
+    padding-left: 0;
+    li.search-result {
+    }
+
+    list-style: none;
+  }
+}
