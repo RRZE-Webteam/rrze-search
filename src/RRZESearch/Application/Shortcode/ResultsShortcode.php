@@ -42,70 +42,57 @@ class ResultsShortcode
     {
         $engines      = $this->options['rrze_search_engines'];
         $resources    = $this->options['rrze_search_resources'];
-	$pageLink     = get_permalink($this->options['rrze_search_page_id']);
-	$templatesDir = DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR;
-	
-	$query = '';
-	
-	if (isset($_GET['q'])) {
-	    $query = esc_attr($_GET['q']);
-	} elseif (isset($_GET['s'])) {
-	    $query = esc_attr($_GET['s']);
-	}
-	$useengine = 0;
-	if (isset($_GET['se'])) {
-	    $useengine  = intval($_GET['se']);
-	}
-		
-	if ((isset($useengine)) && (isset($this->options['rrze_search_resources'][$useengine]))) {
-	    $resource     = $this->options['rrze_search_resources'][$useengine];
-	}
-			
-	if (empty($query)) {
-	    // Render the Search Engine Results
-	    include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'Error-NoQuery.php';
+        $pageLink     = get_permalink($this->options['rrze_search_page_id']);
+        $templatesDir = DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR;
 
-	} elseif (isset($resource)) {
-	    $startPage    = 1;    
-	    if ((isset($_GET['start'])) && (absint($_GET['start']) > 0)) {
-	        $startPage = absint($_GET['start']);
-	    }
-	     // Render the Search Engine Tabs
-	    //include \dirname(__DIR__, 2).$templatesDir.'search-tabs.php';
+        $query = '';
 
-	    // Define the Search Engine Resource & class name
-	    $this->searchEngine = new $resource['resource_class'];
-	    $searchEngineClass  = substr(strrchr(get_parent_class($this->searchEngine), '\\'), 1);
-	    // Finalize Results
-	    $queryResults = $this->searchEngine->query($query, $resource['args'], $startPage);
-	    $results      = is_array($queryResults) ? $queryResults : json_decode($queryResults, true);
-	   
-	    if ((isset($results['error'])) && ($results['error']['code']>=400)) {
-		// Search was denied / was not possible by search provider
+        if (isset($_GET['q'])) {
+            $query = sanitize_text_field(wp_unslash($_GET['q']));
+        } elseif (isset($_GET['s'])) {
+            $query = sanitize_text_field(wp_unslash($_GET['s']));
+        }
+        $useengine = 0;
+        if (isset($_GET['se'])) {
+            $useengine  = absint($_GET['se']);
+        }
 
-		include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'Error-shortcode.php';
-		// Workaround with a message.  Later enter a fallback to local search here
-		
-		
-	    }  else {
-		 // Render the Search Engine Results
-		include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.$searchEngineClass.'-shortcode.php';
+        if ((isset($useengine)) && (isset($resources[$useengine]))) {
+            $resource     = $resources[$useengine];
+        }
 
-		// Render the Pagination
-		include \dirname(__DIR__, 2).$templatesDir.'search-pagination.php';
-	    }
+        if (empty($query)) {
+            // Render the Search Engine Results
+            include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'Error-NoQuery.php';
+        } elseif (isset($resource)) {
+            $startPage    = 1;
+            if ((isset($_GET['start'])) && (absint($_GET['start']) > 0)) {
+                $startPage = absint($_GET['start']);
+            }
 
+            $availableEngines = $engines;
+            $preferredEngine  = (string)$useengine;
+            $currentQuery     = $query;
 
-	} else {
-	     // Render the Search Engine Tabs
-	    //include \dirname(__DIR__, 2).$templatesDir.'search-tabs.php';
+            $this->searchEngine = new $resource['resource_class'];
+            $searchEngineClass  = substr(strrchr(get_parent_class($this->searchEngine), '\\'), 1);
 
-	    // Render the Search Engine Results
-	    include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'Error-shortcode.php';
+            $queryResults = $this->searchEngine->query($query, $resource['args'], $startPage);
+            $results      = is_array($queryResults) ? $queryResults : json_decode($queryResults, true);
 
+            $currentEngineKey    = $useengine;
+            $currentEngineConfig = $resource;
 
-	   
-	}
-	
+            if ((isset($results['error'])) && ($results['error']['code']>=400)) {
+                include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'Error-shortcode.php';
+            }  else {
+                include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.$searchEngineClass.'-shortcode.php';
+                include \dirname(__DIR__, 2).$templatesDir.'search-pagination.php';
+            }
+
+        } else {
+            include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'Error-shortcode.php';
+        }
+
     }
 }

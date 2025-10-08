@@ -1,19 +1,21 @@
 <?php
 
-    $withthumb = get_theme_mod('search_display_post_thumbnails');
-    $thumb = '';
-    global $SnippletAllowedtags;
-   
+$withthumb = get_theme_mod('search_display_post_thumbnails');
+$thumb = '';
+global $SnippletAllowedtags;
+
+include dirname(__DIR__).'/partials/search-form.php';
+
 ?>
 
 <div class="search-results gcse">
-        
-<h2><?php _e('Search results','rrze-search'); ?></h2>
-<p class="meta-resultinfo"><?php echo sprintf(__('About %1$s results', 'rrze-search'),
-        $results['searchInformation']['formattedTotalResults']); ?>
-    (<?php echo $results['searchInformation']['formattedSearchTime']; echo ' '.__('seconds', 'rrze-search'); ?>)
-    
-</p>
+
+    <h2><?php printf(__('Search results for “%s”', 'rrze-search'), esc_html($currentQuery)); ?></h2>
+    <p class="meta-resultinfo"><?php echo sprintf(__('About %1$s results', 'rrze-search'),
+            $results['searchInformation']['formattedTotalResults']); ?>
+        (<?php echo $results['searchInformation']['formattedSearchTime']; echo ' '.__('seconds', 'rrze-search'); ?>)
+
+    </p>
 <ul class="searchresults">
     <?php foreach ($results['items'] as $result) : 
 	$thumb = '';
