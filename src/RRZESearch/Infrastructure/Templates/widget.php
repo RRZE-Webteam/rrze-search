@@ -37,35 +37,33 @@ $staticLinks;
                             <p id="search-engines"
                                class="screen-reader-text"><?php echo __('Please select one of the available search engines:', 'rrze-search'); ?></p>
                             <?php
-                            $nextTabIndex = 0;
+                            $idx = 0;
                             foreach ($resources as $key => $resource):
-                                if ((isset($resource['enabled'])) && ($resource['enabled'])) {
-                                    ++$nextTabIndex;
-                                    $searchEngineActive = (($preferredEngine == $key) ? '1' : '-1');
-                                    $searchEngineAttributes = 'tabindex="' . $searchEngineActive . '"';
-                                    $searchEngineAttributes .= ' aria-checked="' . (($preferredEngine == $key) ? 'true' : 'false') . '"';
+                                if (!empty($resource['enabled'])) {
+                                    $idx++;
+                                    $id = 'resource-' . esc_attr($key) . '-' . $idx; // eindeutige id
+                                    $isPreferred = ($preferredEngine == $key);
+                                    $tabIndex = $isPreferred ? '0' : '-1'; // 0 statt 1 für Fokussierbarkeit
                                     $searchEngineDisclaimer = '';
 
-                                    if ((isset($resource['resource_disclaimer'])) && (intval($resource['resource_disclaimer']) > 0)) {
-                                        $searchEngineDisclaimer = ' (<a href="' . get_permalink($resource['resource_disclaimer']) . '"';
-                                        if (!empty($privacylabeltarget)) {
-                                            $searchEngineDisclaimer .= ' target="' . $privacylabeltarget . '"';
-                                        }
-                                        $searchEngineDisclaimer .= ' tabindex="' . $searchEngineActive . '">' . __('Privacy Disclaimer', 'rrze-search') . '</a>)';
+                                    if (!empty($resource['resource_disclaimer'])) {
+                                        $searchEngineDisclaimer = ' (<a href="' . get_permalink($resource['resource_disclaimer']) . '"' .
+                                            (!empty($privacylabeltarget) ? ' target="' . $privacylabeltarget . '"' : '') .
+                                            '>' . __('Privacy Disclaimer', 'rrze-search') . '</a>)';
                                     }
                                     ?>
-                                    <label>
-                                <span>
-                                    <input type="radio"
-                                           name="resource_id" <?= $searchEngineAttributes; ?> class="search-engine"
-                                           value="<?= $key; ?>" <?= checked($preferredEngine, $key, false); ?>>
-                                </span>
-                                        <span><?php
-                                            echo esc_attr($resource['resource_name']);
-                                            if (!empty($searchEngineDisclaimer)) {
-                                                echo $searchEngineDisclaimer;
-                                            }
-                                            ?></span>
+                                    <input
+                                            type="radio"
+                                            id="<?= $id; ?>"
+                                            name="resource_id"
+                                            class="search-engine"
+                                            value="<?= esc_attr($key); ?>"
+                                        <?= checked($preferredEngine, $key, false); ?>
+                                            aria-checked="<?= $isPreferred ? 'true' : 'false'; ?>"
+                                            tabindex="<?= $tabIndex; ?>"
+                                    >
+                                    <label for="<?= $id; ?>">
+                                        <?= esc_html($resource['resource_name']); ?><?= $searchEngineDisclaimer; ?>
                                     </label>
                                     <?php
                                 }

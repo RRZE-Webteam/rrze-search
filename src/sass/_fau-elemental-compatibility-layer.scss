@@ -16,3 +16,100 @@ body.wp-theme-FAU-Elemental {
     list-style: none;
   }
 }
+
+
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper div.search-settings{
+  border-left: none;
+  padding-top: var(--Spacing-1x, 1rem);
+}
+
+.wp-theme-FAU-Elemental div.search-settings[role="radiogroup"]{
+  padding-top: var(--Spacing-4x, 1rem);
+}
+
+
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper{
+  border-left: none;
+}
+
+/* graceful degradation for ie8 */
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox'],
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio'] {
+  width:auto;
+  float:left;
+  margin-right: .75em;
+  background:transparent;
+  border:none;
+}
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox']:checked,
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox']:not(:checked),
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio']:checked,
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio']:not(:checked) {
+  background: transparent;
+  position: relative;
+  visibility: hidden;
+  margin:0;
+  padding:0;
+}
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox'] + label,
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio'] + label {
+  cursor: pointer;
+}
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox']:checked + label::before,
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox']:not(:checked) + label::before,
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio']:checked + label::before,
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio']:not(:checked) + label::before {
+  content:' ';
+  display:inline-block;
+  width: 17px;
+  height:17px;
+  position: relative;
+  top:4px;
+  border: 1px solid #bbb;
+  background: white;
+  margin-right: 1em;
+  box-shadow: inset 0 1px 1px 0 rgba(0,0,0,.1);
+}
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type=radio]:checked + label::before,
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type=radio]:not(:checked) + label::before {
+  border-radius: 30px;
+}
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox']:hover  + label::before,
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio']:hover  + label::before {
+  background:#04316a;
+  box-shadow: inset 0 0 0 2px white;
+}
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox']:checked  + label::before,
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio']:checked  + label::before {
+  background:black;
+  box-shadow: inset 0 0 0 2px white;
+}
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper div.search-settings {
+  width: 100%;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio'],
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper label{
+  margin-right: var(--Spacing-6x, 1rem);
+}
