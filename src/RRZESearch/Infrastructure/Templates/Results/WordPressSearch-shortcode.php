@@ -4,7 +4,7 @@ include dirname(__DIR__).'/partials/search-form.php';
 
 ?>
 
-<h2><?php printf(__('Search results for “%s”', 'rrze-search'), esc_html($currentQuery)); ?></h2>
+<h2><?php printf(__('Search results for "%s"', 'rrze-search'), esc_html($currentQuery)); ?></h2>
 
 <div id="resultStats"><?php echo sprintf(__('About %1$s results', 'rrze-search'),
         count($results)); ?>
