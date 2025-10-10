@@ -44,14 +44,6 @@ class SettingsApi
     protected $fields = [];
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->db = new DatabaseApi();
-    }
-
-    /**
      * Register the admin menu and settings
      */
     public function register()

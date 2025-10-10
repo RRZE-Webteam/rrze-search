@@ -189,3 +189,20 @@ div.search-results.gcse{
     }
   }
 }
+nav.paging-navigation div.nav-links{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  max-width: var(--small-max-width);
+  margin: 0 auto;
+
+  a.next{
+    justify-self: end;
+    grid-column: 2/3;
+  }
+
+  a.prev {
+    justify-self: start;
+    grid-column: 1/2;
+  }
+}
