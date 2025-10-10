@@ -113,3 +113,79 @@ body.wp-theme-FAU-Elemental {
 .wp-theme-FAU-Elemental .fau-global-search-wrapper label{
   margin-right: var(--Spacing-6x, 1rem);
 }
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper.fau-global-search-wrapper--content-size form fieldset.search-settings{
+  border: none;
+  color: #fff;
+  width: 100%;
+  padding-top: var(--Spacing-3x, 1rem);
+
+  input[type='checkbox']:checked + label::before,
+  input[type='checkbox']:not(:checked) + label::before,
+  input[type='radio']:checked + label::before,
+  input[type='radio']:not(:checked) + label::before {
+    border: 1px solid #fff;
+    background: #04316a;
+    margin-right: 1ch;
+    box-shadow: inset 0 1px 1px 0 rgba(0,0,0,.1);
+  }
+
+  input[type='checkbox']:hover  + label::before,
+  input[type='radio']:hover  + label::before {
+    background:#fff;
+    box-shadow: inset 0 0 0 3px #04316a;
+  }
+
+  input[type='checkbox']:checked  + label::before,
+  input[type='radio']:checked  + label::before {
+    background:#fff;
+    box-shadow: inset 0 0 0 3px #04316a;
+  }
+}
+
+div.search-results.gcse{
+  h2{
+    margin-bottom: var(--Spacing-1x, 1rem);
+  }
+
+  p.meta-resultinfo{
+    margin-bottom: var(--Spacing-10x, 1rem);
+  }
+
+  li.search-result.res-post{
+    background: var(--FAU-Col-FAU-Dunkelblau-12_5);
+    padding: var(--Spacing-6x, 1rem) var(--Spacing-10x, 1rem);
+    margin-bottom: var(--Spacing-6x, 1rem);
+
+    *{
+      padding-left: 0;
+    }
+
+    h3 a{
+      font-weight: 700;
+      text-underline-offset: var(--Spacing-1x);
+      font-size: var(--H-Heading-3);
+      color: var(--FAU-Col-FAU-Blau-100);
+      transition: all .2s ease-in-out;
+
+      &:hover{
+        text-decoration-thickness: 3px;
+        transition: all .2s ease-in-out;
+      }
+    }
+
+    h3{
+      margin-bottom: var(--Spacing-1x, 1rem);
+    }
+
+    div.search-meta .displaylink em{
+      color: var(--FAU-Col-FAU-Dunkelblau-100);
+      padding-left: 0;
+      margin-left: 0;
+    }
+
+    p.snippet{
+      margin-top: var(--Spacing-4x, 1rem);
+    }
+  }
+}
