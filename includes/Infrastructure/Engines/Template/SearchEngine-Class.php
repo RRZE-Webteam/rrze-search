@@ -30,7 +30,9 @@
  ***********************************************************************************/
 
 // Use the following NAMESPACE
-namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
+namespace RRZE\RRZESearch\Infrastructure\Engines\Template;
+
+use RRZE\RRZESearch\Infrastructure\Engines\Foundations\AbstractSearchEngine;
 
 /**
  * Class SearchEngineClass

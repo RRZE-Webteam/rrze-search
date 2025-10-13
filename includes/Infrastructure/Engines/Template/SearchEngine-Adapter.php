@@ -30,10 +30,9 @@
  ***********************************************************************************/
 
 // Use the following NAMESPACE
-namespace RRZE\RRZESearch\Infrastructure\Engines\Adapters;
+namespace RRZE\RRZESearch\Infrastructure\Engines\Template;
 
 // Extend to corresponding Foundation Class
-use RRZE\RRZESearch\Infrastructure\Engines\Foundations\SearchEngineClass;
 
 class SearchEngineAdapter extends SearchEngineClass
 {

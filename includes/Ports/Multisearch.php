@@ -10,8 +10,6 @@ use RRZE\RRZESearch\Infrastructure\ScriptEnqueuer;
 use RRZE\RRZESearch\Infrastructure\SettingsLink;
 
 
-
-
 /**
  * Multisearch facade
  *
