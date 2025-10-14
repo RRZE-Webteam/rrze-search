@@ -1,7 +1,7 @@
 <?php
 /***********************************************************************************
  *
- * RRZE-Websteam
+ * RRZE-Webteam
  * RRZE Search WordPress Plugin v1.0
  *
  * current file: SEARCH ENGINE Class Template
@@ -29,13 +29,16 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-// Use the following NAMESPACE
 namespace RRZE\RRZESearch\Infrastructure\Engines\Template;
+defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Infrastructure\Engines\Foundations\AbstractSearchEngine;
 
 /**
- * Class SearchEngineClass
+ * Template implementation showcasing how to build a multisearch adapter.
+ *
+ * Replace the placeholders with engine-specific configuration before using
+ * this class in production.
  *
  * @package RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Infrastructure
@@ -43,66 +46,48 @@ use RRZE\RRZESearch\Infrastructure\Engines\Foundations\AbstractSearchEngine;
 class SearchEngineClass extends AbstractSearchEngine
 {
     /**
-     * Redirect Link **(should remain as is)
-     *
-     * @var string
+     * Slug of the page that renders multisearch results.
      */
     const REDIRECT_LINK = '/rrze_search_page';
 
     /**
-     * Query - interface defined
+     * Executes the external search request and returns the raw payload.
      *
-     * @param string $query
-     * @param string $key
-     * @param int $startPage
+     * @param string $query User-entered search query.
+     * @param string $key API key or token required by the engine.
+     * @param int    $startPage 1-based page number for paginated results.
      *
-     * @return mixed
+     * @return string|\WP_Error Response body on success or the encountered error.
      */
     public function query(string $query, string $key, int $startPage)
     {
-        /**
-         * STEP 1 - Build the query
-         */
-        $params = array(
-            'key'    => '{key}',
-            'query'  => '{query}',
-            'filter' => '{filter}',
-        );
+        // STEP 1: Build the query parameters expected by the target API.
+        $params = [
+            'key'   => $key,
+            'q'     => $query,
+            'start' => max(1, $startPage),
+            // Replace the placeholders below with engine-specific parameters as needed.
+            'filter' => '{optional_filter}',
+            'cx'     => '{custom_search_engine_id}',
+        ];
 
-        /**
-         * STEP 2 - Build URL
-         */
-        $_uri = 'https://www.googleapis.com/customsearch/v1?cx={id}&key={key}&q={query}';
-        $_uri .= '?'.http_build_query($params);
+        // STEP 2: Combine the base endpoint with the query arguments.
+        $endpoint   = 'https://www.googleapis.com/customsearch/v1';
+        $requestUrl = add_query_arg($params, $endpoint);
 
-        /**
-         * STEP 3 - Curl headers array
-         */
-        $curlHeaders = array(
-            'Content-length: 0',
-            'Content-type: application/json'
-        );
+        // STEP 3: Dispatch the HTTP request via the WordPress HTTP API.
+        $response = wp_safe_remote_get($requestUrl, [
+            'headers' => [
+                'Accept'       => 'application/json',
+                'Content-Type' => 'application/json',
+            ],
+            'timeout' => 10,
+        ]);
 
-        /**
-         * STEP 4 - Curl options array
-         */
-        $curlOptions = array(
-            CURLOPT_HTTPHEADER => $curlHeaders,
-            CURLOPT_URL        => urldecode($_uri),
-        );
+        if (is_wp_error($response)) {
+            return $response;
+        }
 
-        /**
-         * STEP 5 - Make the request
-         */
-        $curl = curl_init();
-        curl_setopt_array($curl, $curlOptions);
-
-        /**
-         * STEP 6 - Finalize query request
-         */
-        $results = curl_exec($curl);
-        curl_close($curl);
-
-        return $results;
+        return wp_remote_retrieve_body($response);
     }
 }

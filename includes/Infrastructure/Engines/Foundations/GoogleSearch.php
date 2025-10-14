@@ -1,7 +1,7 @@
 <?php
 /***********************************************************************************
  *
- * RRZE-Websteam
+ * RRZE-Webteam
  * RRZE Search WordPress Plugin v1.0
  *
  * current file: SEARCH ENGINE Class Template
@@ -49,9 +49,7 @@ class GoogleSearch extends AbstractSearchEngine
 	    'safe'  => 'active',	    
 	    'filter'	=> 1,
 	);
-    
-    
-    
+
     /**
      * Query
      *
