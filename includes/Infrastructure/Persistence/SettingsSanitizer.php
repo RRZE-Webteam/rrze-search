@@ -7,21 +7,27 @@ use RRZE\RRZESearch\Application\Controller\AppController;
 use RRZE\RRZESearch\Infrastructure\Helper\Helper;
 
 /**
- * Options Sanitize
+ * Sanitizes and normalizes RRZE Search settings prior to persistence.
+ *
+ * Keeps resource and engine collections consistent by filling defaults,
+ * pruning stale records, and syncing metadata such as labels and classes.
  *
  * @package    RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Infrastructure
  */
-class OptionsSettings extends AppController
+class SettingsSanitizer extends AppController
 {
     /**
-     * Sanitize Options Submitted
+     * Sanitizes the submitted settings payload from the RRZE Search dashboard.
      *
-     * @param array $input Submitted options
+     * Ensures all resources have display names, keeps engine metadata aligned
+     * with their resource counterparts, and removes stale or empty entries.
      *
-     * @return array Sanitized options
+     * @param array<string, mixed> $input Raw settings submitted from the form.
+     *
+     * @return array<string, mixed> Cleaned settings ready for persistence.
      */
-    public function sanitize($input): array
+    public function sanitize(array $input): array
     {
         $name   = 'rrze_search_settings';
         $option = get_option($name);
@@ -41,12 +47,10 @@ class OptionsSettings extends AppController
 //            $output['rrze_search_engines'][$key]['resource_name'] = $this->enginesClassCollection[$resource['resource_class']]['label'];
 //        }
 
-        /** Page ID for Search Results */
+        // Persist the page ID used to surface search results.
         $output['rrze_search_page_id'] = ($input['rrze_search_page_id']) ? $input['rrze_search_page_id'] : $option['rrze_search_page_id'];
 
-        /**
-         * Sanitize $option['rrze_search_engines']
-         */
+        // Sanitize the engine collection to mirror the resource configuration.
         if ($input['rrze_search_resources']) {
             $engineCollectionUpdate = [];
 

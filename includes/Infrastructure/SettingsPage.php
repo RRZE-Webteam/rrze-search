@@ -7,7 +7,7 @@ use RRZE\RRZESearch\Application\Controller\AppController;
 use RRZE\RRZESearch\Infrastructure\Persistence\OptionsFields;
 use RRZE\RRZESearch\Infrastructure\Persistence\OptionsPages;
 use RRZE\RRZESearch\Infrastructure\Persistence\OptionsSections;
-use RRZE\RRZESearch\Infrastructure\Persistence\OptionsSettings;
+use RRZE\RRZESearch\Infrastructure\Persistence\SettingsSanitizer;
 use RRZE\RRZESearch\Infrastructure\Persistence\SettingsApi;
 
 /**
@@ -50,7 +50,7 @@ class SettingsPage extends AppController
     /**
      * Settings callbacks that sanitize submitted option values.
      *
-     * @var OptionsSettings
+     * @var SettingsSanitizer
      */
     protected $callbackSettings;
     /**
@@ -76,7 +76,7 @@ class SettingsPage extends AppController
         $this->callbacksFields   = new OptionsFields();
         $this->callbacksPages    = new OptionsPages();
         $this->callbacksSections = new OptionsSections();
-        $this->callbackSettings  = new OptionsSettings();
+        $this->callbackSettings  = new SettingsSanitizer();
     }
 
     /**
