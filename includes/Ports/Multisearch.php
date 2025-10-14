@@ -11,16 +11,20 @@ use RRZE\RRZESearch\Infrastructure\SettingsLink;
 
 
 /**
- * Multisearch facade
+ * Facade that wires the RRZE Search plugin services into WordPress.
+ *
+ * The class centralizes the registration of dashboard integrations, scripts,
+ * settings links, widgets, and shortcodes so they can be bootstrapped during
+ * plugin load, activation, and deactivation events.
  *
  * @package RRZE\RRZESearch
  */
 class Multisearch
 {
     /**
-     * Return Services Array for Bootstrap
+     * Returns the list of service classes that should be registered.
      *
-     * @return array
+     * @return array<int, class-string> Ordered list of service class names.
      */
     public static function getServices(): array
     {
@@ -34,13 +38,12 @@ class Multisearch
     }
 
     /**
-     * Bootstrap the Plugin's Services
+     * Instantiates each service and calls its register hook when available.
+     *
+     * @return void
      */
     public static function bootstrap(): void
     {
-
-        // Run through all services
-
         foreach (static::getServices() as $class) {
             $service = new $class;
             if (\is_callable([$service, 'register'])) {
@@ -50,16 +53,18 @@ class Multisearch
     }
 
     /**
-     * Plugin Activation
+     * Handles plugin activation by flushing rewrite rules and seeding defaults.
+     *
+     * Ensures the settings option exists with baseline values and publishes the
+     * RRZE Search results page so frontend queries resolve correctly.
+     *
+     * @return void
      */
     public static function activate(): void
     {
         flush_rewrite_rules();
 
-        // Validate Settings Option Exists
         if (!get_option('rrze_search_settings')) {
-
-            // Enter Default Values
             update_option('rrze_search_settings', [
                 'rrze_search_resources' => [
                     ['resource_name' => 'Default', 'resource_key' => '']
@@ -67,24 +72,30 @@ class Multisearch
                 'rrze_search_engines' => []
             ]);
         }
+
         self::updateResultsPageStatus('publish');
     }
 
     /**
-     * Plugin Deactivation
+     * Handles plugin deactivation by flushing rewrite rules and hiding outputs.
+     *
+     * Transitions the RRZE Search results page to a private status to prevent
+     * public access while the plugin remains inactive.
+     *
+     * @return void
      */
     public static function deactivate(): void
     {
         flush_rewrite_rules();
-        //        deactivate_plugins('rrze-search/rrze-search.php');
-//        unregister_sidebar('rrze-search-sidebar');
         self::updateResultsPageStatus('private');
     }
 
     /**
-     * Update Result's Page Status
+     * Updates the stored results page post status while preserving settings.
      *
-     * @param string $status
+     * @param string $status WordPress post status to assign (for example 'publish' or 'private').
+     *
+     * @return void
      */
     private static function updateResultsPageStatus($status): void
     {
