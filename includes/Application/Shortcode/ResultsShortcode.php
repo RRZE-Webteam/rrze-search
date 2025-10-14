@@ -1,9 +1,15 @@
 <?php
 
 namespace RRZE\RRZESearch\Application\Shortcode;
+defined( 'ABSPATH' ) || exit;
+
+use RRZE\RRZESearch\Domain\Contract\Engine;
 
 /**
- * Search Results Shortcode
+ * Renders the RRZE Search results via the `[rrze_search_results]` shortcode.
+ *
+ * Resolves the requested engine, executes the remote query, and loads the
+ * appropriate template while handling common error states.
  *
  * @package    RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Application
@@ -11,16 +17,21 @@ namespace RRZE\RRZESearch\Application\Shortcode;
 class ResultsShortcode
 {
     /**
-     * Results options
+     * Cached RRZE Search plugin options.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     public $options;
 
+    /**
+     * Engine instance executing the search query for the current request.
+     *
+     * @var Engine|null
+     */
     public $searchEngine;
 
     /**
-     * Constructor
+     * Loads plugin options used during shortcode execution.
      */
     public function __construct()
     {
@@ -28,17 +39,24 @@ class ResultsShortcode
     }
 
     /**
-     * Register an associated shortcode
+     * Registers the shortcode with WordPress.
+     *
+     * @return void
      */
-    public function register()
+    public function register(): void
     {
-        add_shortcode('rrze_search_results', array($this, 'shortcodeInit'));
+        add_shortcode('rrze_search_results', [$this, 'shortcodeInit']);
     }
 
     /**
-     * Shortcode initialization
+     * Handles the shortcode rendering lifecycle for search results.
+     *
+     * Determines the active engine from query parameters, runs the search, and
+     * includes the matching template or error view.
+     *
+     * @return void
      */
-    public function shortcodeInit()
+    public function shortcodeInit(): void
     {
         $engines      = $this->options['rrze_search_engines'];
         $resources    = $this->options['rrze_search_resources'];
