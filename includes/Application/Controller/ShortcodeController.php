@@ -5,7 +5,7 @@ namespace RRZE\RRZESearch\Application\Controller;
 use RRZE\RRZESearch\Application\Shortcode\ResultsShortcode;
 
 /**
- * Shortcode controller
+ * Registers the results shortcode when the plugin is active.
  *
  * @package    RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Application
@@ -13,9 +13,11 @@ use RRZE\RRZESearch\Application\Shortcode\ResultsShortcode;
 class ShortcodeController extends AppController
 {
     /**
-     * Register a new shortcode
+     * Hooks the `[rrze_search_results]` shortcode into WordPress.
+     *
+     * @return void
      */
-    public function register()
+    public function register(): void
     {
         if (!$this->activated('rrze_search')) {
             $search_results_shortcode = new ResultsShortcode();
