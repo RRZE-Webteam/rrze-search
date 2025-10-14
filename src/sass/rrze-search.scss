@@ -1,19 +1,14 @@
+@use "variables";
+@use "mixins";
 
-
-@import "variables";
-@import "mixins";
-
-
-
-// LTheem Definition
-@import "theme";
+// Theme Definition
+@use "theme";
 
 // Links in Overlay
-@import "static-links";
+@use "static-links";
 
-// Tabs on tob of results
-@import "result-tabs";
+// Tabs on top of results
+@use "result-tabs";
 
-// Styles for Results of GCSE
-@import "result-gcse-entries";
-@import "fau-elemental-compatibility-layer";
+@use "result-gcse-entries";
+@use "fau-elemental-compatibility-layer";
