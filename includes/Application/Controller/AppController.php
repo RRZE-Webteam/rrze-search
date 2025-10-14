@@ -5,7 +5,10 @@ namespace RRZE\RRZESearch\Application\Controller;
 use RRZE\RRZESearch\Infrastructure\Helper\Helper;
 
 /**
- * App Controller
+ * Base controller providing shared plugin metadata and helpers.
+ *
+ * Calculates canonical paths, URLs, and engine collections so concrete
+ * controllers can focus on registering widgets, shortcodes, or dashboards.
  *
  * @package    RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Application
@@ -13,32 +16,32 @@ use RRZE\RRZESearch\Infrastructure\Helper\Helper;
 class AppController
 {
     /**
-     * Plugin path
+     * Absolute path to the plugin root directory.
      *
      * @var string
      */
     public $pluginPath;
     /**
-     * Plugin URL
+     * Public URL pointing to the plugin root directory.
      *
      * @var string
      */
     public $pluginUrl;
     /**
-     * Plugin entry file
+     * Plugin basename used for registration and activation checks.
      *
      * @var string
      */
     public $plugin;
     /**
-     * Registered search engines
+     * Collection of available search engine adapters keyed by class name.
      *
-     * @var array[]
+     * @var array<string, array<string, mixed>>
      */
     public $enginesClassCollection = [];
 
     /**
-     * Constructor
+     * Bootstraps plugin metadata and the available engine adapters.
      */
     public function __construct()
     {
@@ -53,13 +56,13 @@ class AppController
     }
 
     /**
-     * Test whether a particular plugin option is activated
+     * Checks whether a particular plugin option flag is enabled.
      *
-     * @param mixed $key Option key
+     * @param string $key Option identifier to inspect.
      *
-     * @return bool Option is activated
+     * @return bool True when the option exists and evaluates to truthy.
      */
-    public function activated($key)
+    public function activated(string $key): bool
     {
         $option = get_option('rrze_search_settings');
 
