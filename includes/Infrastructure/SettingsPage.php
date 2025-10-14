@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || exit;
 use RRZE\RRZESearch\Application\Controller\AppController;
 use RRZE\RRZESearch\Infrastructure\Persistence\OptionsFields;
 use RRZE\RRZESearch\Infrastructure\Persistence\OptionsPages;
-use RRZE\RRZESearch\Infrastructure\Persistence\OptionsSections;
+use RRZE\RRZESearch\Infrastructure\Persistence\SectionRenderer;
 use RRZE\RRZESearch\Infrastructure\Persistence\SettingsSanitizer;
 use RRZE\RRZESearch\Infrastructure\Persistence\SettingsApi;
 
@@ -44,7 +44,7 @@ class SettingsPage extends AppController
     /**
      * Section callbacks that add explanatory content to settings sections.
      *
-     * @var OptionsSections
+     * @var SectionRenderer
      */
     protected $callbacksSections;
     /**
@@ -75,7 +75,7 @@ class SettingsPage extends AppController
         $this->settings          = new SettingsApi();
         $this->callbacksFields   = new OptionsFields();
         $this->callbacksPages    = new OptionsPages();
-        $this->callbacksSections = new OptionsSections();
+        $this->callbacksSections = new SectionRenderer();
         $this->callbackSettings  = new SettingsSanitizer();
     }
 

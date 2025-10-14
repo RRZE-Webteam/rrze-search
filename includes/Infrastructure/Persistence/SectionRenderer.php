@@ -6,15 +6,17 @@ defined( 'ABSPATH' ) || exit;
 use RRZE\RRZESearch\Application\Controller\AppController;
 
 /**
- * Options Sections
+ * Outputs section descriptions for the RRZE Search settings screens.
  *
  * @package    RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Infrastructure
  */
-class OptionsSections extends AppController
+class SectionRenderer extends AppController
 {
     /**
-     * Print the admin section
+     * Prints the section intro for regular administrators managing engines.
+     *
+     * @return void
      */
     public function printAdminSection(): void
     {
@@ -22,7 +24,9 @@ class OptionsSections extends AppController
     }
 
     /**
-     * Print the superadmin section
+     * Prints the section intro targeted at super administrators configuring engines.
+     *
+     * @return void
      */
     public function printSuperAdminSection(): void
     {
