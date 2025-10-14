@@ -34,30 +34,14 @@ body.wp-theme-FAU-Elemental {
   border-left: none;
 }
 
-/* graceful degradation for ie8 */
-.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox'],
-.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio'] {
-  width:auto;
-  float:left;
-  margin-right: .75em;
-  background:transparent;
-  border:none;
-}
-
-.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox']:checked,
-.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox']:not(:checked),
-.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio']:checked,
-.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio']:not(:checked) {
-  background: transparent;
-  position: relative;
-  visibility: hidden;
-  margin:0;
-  padding:0;
-}
-
 .wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox'] + label,
 .wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio'] + label {
   cursor: pointer;
+}
+
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio']:focus-visible + label,
+.wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='radio']:focus + label{
+  border-bottom: 3px solid orange;
 }
 
 .wp-theme-FAU-Elemental .fau-global-search-wrapper input[type='checkbox']:checked + label::before,
