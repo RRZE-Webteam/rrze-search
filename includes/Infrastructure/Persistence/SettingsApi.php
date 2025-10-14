@@ -1,11 +1,13 @@
 <?php
 
 namespace RRZE\RRZESearch\Infrastructure\Persistence;
-
-use RRZE\RRZESearch\Infrastructure\Database\DatabaseApi;
+defined( 'ABSPATH' ) || exit;
 
 /**
- * Settings API
+ * Lightweight wrapper around the WordPress Settings API for RRZE Search.
+ *
+ * Encapsulates menu registration, section and field wiring, and AJAX utilities
+ * so higher-level controllers can describe configuration screens declaratively.
  *
  * @package    RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Infrastructure
@@ -13,40 +15,42 @@ use RRZE\RRZESearch\Infrastructure\Database\DatabaseApi;
 class SettingsApi
 {
     /**
-     * Admin pages
+     * Definition of top-level admin pages handled by the settings API.
      *
-     * @var array
+     * @var array<int, array<string, mixed>>
      */
     protected $adminPages = [];
     /**
-     * Admin subpages
+     * Definition of submenu entries that extend the primary RRZE Search page.
      *
-     * @var array
+     * @var array<int, array<string, mixed>>
      */
     protected $adminSubpages = [];
     /**
-     * Settings
+     * `register_setting` payloads registered during `admin_init`.
      *
-     * @var array
+     * @var array<int, array<string, mixed>>
      */
     protected $settings = [];
     /**
-     * Sections
+     * Section definitions wired via `add_settings_section`.
      *
-     * @var array
+     * @var array<int, array<string, mixed>>
      */
     protected $sections = [];
     /**
-     * Fields
+     * Field definitions registered with `add_settings_field`.
      *
-     * @var array
+     * @var array<int, array<string, mixed>>
      */
     protected $fields = [];
 
     /**
-     * Register the admin menu and settings
+     * Hooks WordPress actions required to expose menus, settings, and AJAX.
+     *
+     * @return void
      */
-    public function register()
+    public function register(): void
     {
         if (!empty($this->adminPages) || !empty($this->adminSubpages)) {
             add_action('admin_menu', array($this, 'addAdminMenu'));
@@ -58,13 +62,13 @@ class SettingsApi
     }
 
     /**
-     * Add the admin pages
+     * Stores the top-level admin pages to be registered on `admin_menu`.
      *
-     * @param array $pages
+     * @param array<int, array<string, mixed>> $pages Menu configuration entries.
      *
-     * @return $this
+     * @return self
      */
-    public function addPages(array $pages)
+    public function addPages(array $pages): self
     {
         $this->adminPages = $pages;
 
@@ -72,13 +76,13 @@ class SettingsApi
     }
 
     /**
-     * ??
+     * Mirrors the first admin page into a submenu to provide a default entry.
      *
-     * @param string|null $title
+     * @param string|null $title Optional override for the submenu title.
      *
-     * @return SettingsApi Self reference
+     * @return self
      */
-    public function withSubPage(string $title = null)
+    public function withSubPage(?string $title = null): self
     {
         if (empty($this->adminPages)) {
             return $this;
@@ -100,13 +104,13 @@ class SettingsApi
     }
 
     /**
-     * Add the supages
+     * Appends additional submenu definitions to the stored configuration.
      *
-     * @param array $pages Subpages
+     * @param array<int, array<string, mixed>> $pages Subpage configuration entries.
      *
-     * @return SettingsApi Self reference
+     * @return self
      */
-    public function addSubPages(array $pages)
+    public function addSubPages(array $pages): self
     {
         $this->adminSubpages = array_merge($this->adminSubpages, $pages);
 
@@ -114,9 +118,11 @@ class SettingsApi
     }
 
     /**
-     * Add pages to the admin menu
+     * Registers stored admin pages and subpages with WordPress.
+     *
+     * @return void
      */
-    public function addAdminMenu()
+    public function addAdminMenu(): void
     {
         foreach ($this->adminPages as $page) {
             add_menu_page($page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'],  $page['callback'], $page['icon_url']);
@@ -135,13 +141,13 @@ class SettingsApi
     }
 
     /**
-     * Set the settings
+     * Persists `register_setting` arguments for later registration.
      *
-     * @param array $settings Settings
+     * @param array<int, array<string, mixed>> $settings Settings API definitions.
      *
-     * @return SettingsApi Self reference
+     * @return self
      */
-    public function setSettings(array $settings)
+    public function setSettings(array $settings): self
     {
         $this->settings = $settings;
 
@@ -149,13 +155,13 @@ class SettingsApi
     }
 
     /**
-     * Set the sections
+     * Persists section definitions for WordPress registration.
      *
-     * @param array $sections Sections
+     * @param array<int, array<string, mixed>> $sections Section configuration entries.
      *
-     * @return SettingsApi Self reference
+     * @return self
      */
-    public function setSections(array $sections)
+    public function setSections(array $sections): self
     {
         $this->sections = $sections;
 
@@ -163,13 +169,13 @@ class SettingsApi
     }
 
     /**
-     * Set the fields
+     * Persists field definitions for WordPress registration.
      *
-     * @param array $fields
+     * @param array<int, array<string, mixed>> $fields Field configuration entries.
      *
-     * @return SettingsApi Self reference
+     * @return self
      */
-    public function setFields(array $fields)
+    public function setFields(array $fields): self
     {
         $this->fields = $fields;
 
@@ -177,9 +183,11 @@ class SettingsApi
     }
 
     /**
-     * Register custom fields
+     * Registers settings, sections, and fields with the WordPress Settings API.
+     *
+     * @return void
      */
-    public function registerCustomFields()
+    public function registerCustomFields(): void
     {
         // Register Setting
         foreach ($this->settings as $setting) {
@@ -199,9 +207,13 @@ class SettingsApi
     }
 
     /**
-     * Remove a resource
+     * Handles AJAX requests for removing a multisearch resource entry.
+     *
+     * Expects `resource_id` in the POST body and echoes the update result as JSON.
+     *
+     * @return void
      */
-    public function resourceRemoval()
+    public function resourceRemoval(): void
     {
         $resources   = [];
         $index       = $_POST['resource_id'];
