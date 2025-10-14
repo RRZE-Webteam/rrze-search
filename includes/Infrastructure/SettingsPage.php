@@ -4,7 +4,7 @@ namespace RRZE\RRZESearch\Infrastructure;
 defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Application\Controller\AppController;
-use RRZE\RRZESearch\Infrastructure\Persistence\OptionsFields;
+use RRZE\RRZESearch\Infrastructure\Persistence\OptionFieldRenderer;
 use RRZE\RRZESearch\Infrastructure\Persistence\SettingsViews;
 use RRZE\RRZESearch\Infrastructure\Persistence\SectionRenderer;
 use RRZE\RRZESearch\Infrastructure\Persistence\SettingsSanitizer;
@@ -32,7 +32,7 @@ class SettingsPage extends AppController
     /**
      * Field callbacks that render the individual settings inputs.
      *
-     * @var OptionsFields
+     * @var OptionFieldRenderer
      */
     protected $callbacksFields;
     /**
@@ -73,7 +73,7 @@ class SettingsPage extends AppController
     {
         parent::__construct();
         $this->settings          = new SettingsApi();
-        $this->callbacksFields   = new OptionsFields();
+        $this->callbacksFields   = new OptionFieldRenderer();
         $this->callbacksPages    = new SettingsViews();
         $this->callbacksSections = new SectionRenderer();
         $this->callbackSettings  = new SettingsSanitizer();
