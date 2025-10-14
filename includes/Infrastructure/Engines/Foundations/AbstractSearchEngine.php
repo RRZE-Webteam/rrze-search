@@ -1,6 +1,4 @@
 <?php
-defined( 'ABSPATH' ) || exit;
-
 /**
  * data
  *
@@ -36,6 +34,7 @@ defined( 'ABSPATH' ) || exit;
  ***********************************************************************************/
 
 namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
+defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Domain\Contract\Engine;
 

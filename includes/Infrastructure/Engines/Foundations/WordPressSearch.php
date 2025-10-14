@@ -1,6 +1,4 @@
 <?php
-defined( 'ABSPATH' ) || exit;
-
 /***********************************************************************************
  *
  * RRZE-Websteam
@@ -32,6 +30,7 @@ defined( 'ABSPATH' ) || exit;
  ***********************************************************************************/
 
 namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
+defined( 'ABSPATH' ) || exit;
 
 use WP_Query;
 

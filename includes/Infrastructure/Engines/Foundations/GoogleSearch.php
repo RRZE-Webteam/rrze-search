@@ -1,6 +1,4 @@
 <?php
-defined( 'ABSPATH' ) || exit;
-
 /***********************************************************************************
  *
  * RRZE-Webteam
@@ -32,6 +30,7 @@ defined( 'ABSPATH' ) || exit;
  ***********************************************************************************/
 
 namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Google Custom Search Engine
