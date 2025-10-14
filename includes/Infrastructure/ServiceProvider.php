@@ -24,7 +24,7 @@ class ServiceProvider
     public static function getServices(): array
     {
         return [
-            Dashboard::class,
+            SettingsPage::class,
             ScriptEnqueuer::class,
             SettingsLink::class,
             WidgetController::class,
