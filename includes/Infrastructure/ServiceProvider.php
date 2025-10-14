@@ -1,12 +1,9 @@
 <?php
 
-namespace RRZE\RRZESearch\Ports;
+namespace RRZE\RRZESearch\Infrastructure;
 
 use RRZE\RRZESearch\Application\Controller\ShortcodeController;
 use RRZE\RRZESearch\Application\Controller\WidgetController;
-use RRZE\RRZESearch\Infrastructure\Dashboard;
-use RRZE\RRZESearch\Infrastructure\ScriptEnqueuer;
-use RRZE\RRZESearch\Infrastructure\SettingsLink;
 
 /**
  * Facade that wires the RRZE Search plugin services into WordPress.

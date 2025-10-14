@@ -16,7 +16,7 @@ defined('ABSPATH') || exit;
 const RRZE_PHP_VERSION = '8.4';
 const RRZE_WP_VERSION = '6.7';
 
-use RRZE\RRZESearch\Ports\ServiceProvider;
+use RRZE\RRZESearch\Infrastructure\ServiceProvider;
 
 // Loading constants
 include_once('constants.php');
@@ -50,7 +50,7 @@ function rrze_search_init(): void
     }
 
     // Bootstrap the Plugin
-    if (class_exists(\RRZE\RRZESearch\Ports\ServiceProvider::class)) {
+    if (class_exists(\RRZE\RRZESearch\Infrastructure\ServiceProvider::class)) {
         ServiceProvider::bootstrap();
     }
 }
