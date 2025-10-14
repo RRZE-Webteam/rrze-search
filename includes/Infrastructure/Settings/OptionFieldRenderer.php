@@ -1,6 +1,6 @@
 <?php
 
-namespace RRZE\RRZESearch\Infrastructure\Persistence;
+namespace RRZE\RRZESearch\Infrastructure\Settings;
 defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Application\Controller\AppController;

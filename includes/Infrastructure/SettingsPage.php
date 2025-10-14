@@ -4,11 +4,11 @@ namespace RRZE\RRZESearch\Infrastructure;
 defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Application\Controller\AppController;
-use RRZE\RRZESearch\Infrastructure\Persistence\OptionFieldRenderer;
-use RRZE\RRZESearch\Infrastructure\Persistence\SettingsViews;
-use RRZE\RRZESearch\Infrastructure\Persistence\SectionRenderer;
-use RRZE\RRZESearch\Infrastructure\Persistence\SettingsSanitizer;
-use RRZE\RRZESearch\Infrastructure\Persistence\SettingsApi;
+use RRZE\RRZESearch\Infrastructure\Settings\OptionFieldRenderer;
+use RRZE\RRZESearch\Infrastructure\Settings\SettingsViews;
+use RRZE\RRZESearch\Infrastructure\Settings\SectionRenderer;
+use RRZE\RRZESearch\Infrastructure\Settings\SettingsSanitizer;
+use RRZE\RRZESearch\Infrastructure\Settings\SettingsApi;
 
 /**
  * Coordinates the RRZE Search admin dashboard integration with WordPress.
