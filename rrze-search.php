@@ -13,7 +13,7 @@ Domain Path: /languages
 
 defined('ABSPATH') || exit;
 
-const RRZE_PHP_VERSION = '8.4';
+const RRZE_PHP_VERSION = '8.2';
 const RRZE_WP_VERSION = '6.7';
 
 use RRZE\RRZESearch\Infrastructure\ServiceProvider;
