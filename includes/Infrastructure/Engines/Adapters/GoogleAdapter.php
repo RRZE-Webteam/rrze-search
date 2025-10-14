@@ -5,10 +5,10 @@ namespace RRZE\RRZESearch\Infrastructure\Engines\Adapters;
 use RRZE\RRZESearch\Infrastructure\Engines\Foundations\GoogleSearch;
 
 /**
- * Google Custom Search (Variant 1)
+ * Configures the Google Custom Search adapter used by RRZE Search.
  *
  * @package    RRZE\RRZESearch
- * @subpackage RRZE\RRZESearch\Ports
+ * @subpackage RRZE\RRZESearch\Infrastructure
  */
 class GoogleAdapter extends GoogleSearch
 {
