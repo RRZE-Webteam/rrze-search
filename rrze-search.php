@@ -16,7 +16,7 @@ defined('ABSPATH') || exit;
 const RRZE_PHP_VERSION = '8.4';
 const RRZE_WP_VERSION = '6.7';
 
-use RRZE\RRZESearch\Ports\Multisearch;
+use RRZE\RRZESearch\Ports\ServiceProvider;
 
 // Loading constants
 include_once('constants.php');
@@ -50,8 +50,8 @@ function rrze_search_init(): void
     }
 
     // Bootstrap the Plugin
-    if (class_exists(\RRZE\RRZESearch\Ports\Multisearch::class)) {
-        Multisearch::bootstrap();
+    if (class_exists(\RRZE\RRZESearch\Ports\ServiceProvider::class)) {
+        ServiceProvider::bootstrap();
     }
 }
 
@@ -64,7 +64,7 @@ function rrze_search_plugin_activation(): void
     rrze_search_check_system_requirements();
     rrze_search_include_autoloader();
 
-    Multisearch::activate();
+    ServiceProvider::activate();
 }
 
 /**
@@ -73,7 +73,7 @@ function rrze_search_plugin_activation(): void
 function rrze_search_plugin_deactivation(): void
 {
     rrze_search_include_autoloader();
-    Multisearch::deactivate();
+    ServiceProvider::deactivate();
 }
 
 // ==================================================

@@ -2,13 +2,11 @@
 
 namespace RRZE\RRZESearch\Ports;
 
-
 use RRZE\RRZESearch\Application\Controller\ShortcodeController;
 use RRZE\RRZESearch\Application\Controller\WidgetController;
 use RRZE\RRZESearch\Infrastructure\Dashboard;
 use RRZE\RRZESearch\Infrastructure\ScriptEnqueuer;
 use RRZE\RRZESearch\Infrastructure\SettingsLink;
-
 
 /**
  * Facade that wires the RRZE Search plugin services into WordPress.
@@ -19,7 +17,7 @@ use RRZE\RRZESearch\Infrastructure\SettingsLink;
  *
  * @package RRZE\RRZESearch
  */
-class Multisearch
+class ServiceProvider
 {
     /**
      * Returns the list of service classes that should be registered.
@@ -97,7 +95,7 @@ class Multisearch
      *
      * @return void
      */
-    private static function updateResultsPageStatus($status): void
+    private static function updateResultsPageStatus(string $status): void
     {
         $options = get_option('rrze_search_settings');
 
