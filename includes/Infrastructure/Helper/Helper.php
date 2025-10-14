@@ -1,7 +1,7 @@
 <?php
 
 namespace RRZE\RRZESearch\Infrastructure\Helper;
-
+defined( 'ABSPATH' ) || exit;
 /**
  * Provides shared utility functions used across the RRZE Search plugin.
  *

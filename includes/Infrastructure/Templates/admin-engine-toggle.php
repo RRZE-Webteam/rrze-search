@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 <?php settings_errors(); ?>
 <table id="rrze_search_resource_form" class="form-table">
     <?php

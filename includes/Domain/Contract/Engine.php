@@ -1,6 +1,7 @@
 <?php
 
 namespace RRZE\RRZESearch\Domain\Contract;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Contract that all RRZE Search engine adapters must implement.

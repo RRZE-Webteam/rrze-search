@@ -5,7 +5,8 @@
   "main": "rrze-search.php",
   "textdomain": "rrze-search",
   "scripts": {
-    "build": "wp-scripts build"
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
   },
   "repository": {
     "type": "git",
@@ -33,11 +34,9 @@
   },
   "license": "GNU General Public License v3",
   "devDependencies": {
-    "@wordpress/scripts": "^30.24.0",
+    "@wordpress/scripts": "^30.25.0",
     "sass": "^1.93.2",
-    "webpack-remove-empty-scripts": "^1.1.1"
-  },
-  "dependencies": {
+    "webpack-remove-empty-scripts": "^1.1.1",
     "dotenv": "^17.2.3"
   }
 }

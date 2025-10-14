@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 <ul class="results-tabs">
     <?php
     // Run through all search engines

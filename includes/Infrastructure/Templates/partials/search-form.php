@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 $availableEngines = isset($availableEngines) ? (array) $availableEngines : [];
 $preferredEngine  = isset($preferredEngine) ? (string) $preferredEngine : '';
 $currentQuery     = isset($currentQuery) ? $currentQuery : '';

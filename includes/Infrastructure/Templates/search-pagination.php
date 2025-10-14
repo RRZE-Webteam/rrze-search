@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 <nav class="navigation paging-navigation" aria-label="<?php _e('More search results','rrze-search'); ?>">
     <div class="nav-links">
         <?php

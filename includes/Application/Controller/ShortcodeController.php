@@ -1,6 +1,7 @@
 <?php
 
 namespace RRZE\RRZESearch\Application\Controller;
+defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Application\Shortcode\ResultsShortcode;
 

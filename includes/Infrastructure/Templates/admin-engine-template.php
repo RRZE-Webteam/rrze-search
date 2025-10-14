@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 <template>
     <tr style="border: thin solid black; background-color: #F5F5F5">
         <td>

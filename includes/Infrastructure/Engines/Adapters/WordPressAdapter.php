@@ -1,6 +1,7 @@
 <?php
 
 namespace RRZE\RRZESearch\Infrastructure\Engines\Adapters;
+defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Infrastructure\Engines\Foundations\WordPressSearch;
 

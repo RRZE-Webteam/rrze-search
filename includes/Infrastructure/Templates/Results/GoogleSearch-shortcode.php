@@ -1,5 +1,5 @@
 <?php
-
+defined( 'ABSPATH' ) || exit;
 $withthumb = get_theme_mod('search_display_post_thumbnails');
 $thumb = '';
 global $SnippletAllowedtags;

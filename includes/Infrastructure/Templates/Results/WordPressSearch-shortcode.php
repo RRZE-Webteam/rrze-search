@@ -1,5 +1,5 @@
 <?php
-
+defined( 'ABSPATH' ) || exit;
 include dirname(__DIR__).'/partials/search-form.php';
 
 ?>

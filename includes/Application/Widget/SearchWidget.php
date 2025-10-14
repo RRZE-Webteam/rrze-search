@@ -1,6 +1,7 @@
 <?php
 
 namespace RRZE\RRZESearch\Application\Widget;
+defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Domain\Contract\Engine;
 use RRZE\RRZESearch\Infrastructure\Helper\Helper;
