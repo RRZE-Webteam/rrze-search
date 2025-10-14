@@ -1,11 +1,12 @@
 <?php
 
 namespace RRZE\RRZESearch\Application\Controller;
+defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Application\Widget\SearchWidget;
 
 /**
- * Widget controller
+ * Bootstraps the RRZE Search widget when the plugin is active.
  *
  * @package    RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Application\Controller
@@ -13,9 +14,11 @@ use RRZE\RRZESearch\Application\Widget\SearchWidget;
 class WidgetController extends AppController
 {
     /**
-     * One-time registration of the widget
+     * Registers the RRZE Search widget unless another instance is active.
+     *
+     * @return void
      */
-    public function register()
+    public function register(): void
     {
         if (!$this->activated('rrze_search')) {
             $search_widget = new SearchWidget();

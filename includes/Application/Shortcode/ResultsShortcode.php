@@ -111,6 +111,5 @@ class ResultsShortcode
         } else {
             include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'Error-shortcode.php';
         }
-
     }
 }
