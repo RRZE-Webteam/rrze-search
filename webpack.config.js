@@ -19,7 +19,8 @@ module.exports = {
         'js/backend/rrze-search-admin': './src/js/rrze-search-admin.js',
         'js/backend/rrze-search-admin-script': './src/js/rrze-search-admin-script.js',
         'js/frontend/rrze-search-script': './src/js/rrze-search-script.js',
-        'css/index' : './src/index.css.js',
+        'js/frontend/a11y': './src/js/ally.min.js',
+        'css/rrze-search' : './src/sass/rrze-search-index.css.js',
     },
     devtool: isProduction ? false : 'eval-source-map',
     module: {

@@ -1,1 +1,0 @@
-import './sass/rrze-search.scss';
