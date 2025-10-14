@@ -5,7 +5,7 @@ namespace RRZE\RRZESearch\Infrastructure;
 use RRZE\RRZESearch\Application\Controller\AppController;
 
 /**
- * Settings Link
+ * Adds a quick link from the plugins list to the RRZE Search settings page.
  *
  * @package    RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Infrastructure
@@ -13,23 +13,25 @@ use RRZE\RRZESearch\Application\Controller\AppController;
 class SettingsLink extends AppController
 {
     /**
-     * Registration
+     * Registers the plugin action link filter for the RRZE Search settings page.
+     *
+     * @return void
      */
-    public function register()
+    public function register(): void
     {
-        add_filter('plugin_action_links_'.$this->plugin, array($this, 'dashboardLink'));
+        add_filter('plugin_action_links_' . $this->plugin, [$this, 'dashboardLink']);
     }
 
     /**
-     * Add the dashboard link
+     * Appends the RRZE Search settings link to the plugin row actions.
      *
-     * @param array $links Existing links
+     * @param array<int, string> $links Existing action links for the plugin row.
      *
-     * @return array Amended links
+     * @return array<int, string> Modified action links including the settings URL.
      */
-    public function dashboardLink($links)
+    public function dashboardLink(array $links): array
     {
-        $links[] = '<a href="admin.php?page=rrze_search">'.__('Settings', 'rrze-search').'</a>';
+        $links[] = '<a href="admin.php?page=rrze_search">' . __('Settings', 'rrze-search') . '</a>';
 
         return $links;
     }
