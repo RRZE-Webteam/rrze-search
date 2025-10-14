@@ -3,14 +3,18 @@
 namespace RRZE\RRZESearch\Infrastructure\Helper;
 
 /**
- * Universal Helper
+ * Provides shared utility functions used across the RRZE Search plugin.
  *
  * @package    RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Infrastructure
  */
 class Helper
 {
-
+    /**
+     * Builds a collection of engine adapter metadata indexed by class name.
+     *
+     * @return array<string, array<string, mixed>> Map of adapter class names to display metadata.
+     */
     public static function adapterCollection(): array
     {
         // Employed by AppController Class & SearchWidget Class
@@ -42,15 +46,14 @@ class Helper
         return $enginesClassCollection;
     }
     /**
-     * Check if a resource is an engine
-     * TODO: Consider Cutting
+     * Determines whether a resource entry also exists in the engine collection.
      *
-     * @param string $optionName Option name
-     * @param string $resourceId Resource ID
+     * @param string $optionName WordPress option that stores plugin settings.
+     * @param string $resourceId Identifier assigned to the resource.
      *
-     * @return bool Is an engine
+     * @return bool True when the resource is registered as an engine.
      */
-    public static function isResourceEngine($optionName, $resourceId): bool
+    public static function isResourceEngine(string $optionName, string $resourceId): bool
     {
         $bool   = false;
         $option = get_option($optionName);
@@ -65,15 +68,14 @@ class Helper
     }
 
     /**
-     * Check if an engine is a resource
-     * TODO: Consider Cutting
+     * Determines whether an engine entry has a corresponding resource definition.
      *
-     * @param string $optionName Option name
-     * @param string $resourceId Resource ID
+     * @param string $optionName WordPress option that stores plugin settings.
+     * @param string $resourceId Identifier assigned to the engine.
      *
-     * @return bool
+     * @return bool True when the engine maps to a stored resource.
      */
-    public static function isEngineResource($optionName, $resourceId): bool
+    public static function isEngineResource(string $optionName, string $resourceId): bool
     {
         $optionValue = get_option($optionName);
         foreach ($optionValue['rrze_search_resources'] as $resource) {
@@ -86,16 +88,16 @@ class Helper
     }
 
     /**
-     * Return a resource by ID
-     * TODO: Consider Cutting
+     * Retrieves a specific resource configuration by its identifier.
      *
-     * @param string $optionName Option name
-     * @param string $resourceId Resource ID
+     * @param string $optionName WordPress option that stores plugin settings.
+     * @param string $resourceId Identifier assigned to the resource.
      *
-     * @return mixed
-     * @throws \OutOfRangeException If the resource ID is unknown
+     * @return array<string, mixed> Resource configuration array.
+     *
+     * @throws \OutOfRangeException If the resource ID is unknown.
      */
-    public static function getResourceById($optionName, $resourceId)
+    public static function getResourceById(string $optionName, string $resourceId): array
     {
         $optionValue = get_option($optionName);
         foreach ($optionValue['rrze_search_resources'] as $resource) {
@@ -108,15 +110,16 @@ class Helper
     }
 
     /**
-     * Return an engine by ID
+     * Retrieves a specific engine configuration by its identifier.
      *
-     * @param string $optionName Option name
-     * @param string $resourceId Resource ID
+     * @param string $optionName WordPress option that stores plugin settings.
+     * @param string $resourceId Identifier assigned to the engine.
      *
-     * @return mixed
-     * @throws \OutOfRangeException If the engine ID is unknown
+     * @return array<string, mixed> Engine configuration array.
+     *
+     * @throws \OutOfRangeException If the engine ID is unknown.
      */
-    public static function getEngineById($optionName, $resourceId)
+    public static function getEngineById(string $optionName, string $resourceId): array
     {
         // Employed by OptionsSettings Class
         $optionValue = get_option($optionName);
@@ -130,13 +133,13 @@ class Helper
     }
 
     /**
-     * Return a Directory Path
+     * Converts an ordered list of directory segments into a path string.
      *
-     * @param $folders
+     * @param array<int, string> $folders Ordered path segments.
      *
-     * @return string
+     * @return string Platform-specific directory path.
      */
-    public static function toDirectory($folders)
+    public static function toDirectory(array $folders): string
     {
         // Employed by OptionsFields Class
         return implode(DIRECTORY_SEPARATOR, $folders);
