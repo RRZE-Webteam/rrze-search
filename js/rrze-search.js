@@ -1,3 +1,9 @@
+/* global ally */
+/**
+ * Initializes the RRZE multisearch modal interactions once the DOM is ready.
+ *
+ * @param {jQuery} $ jQuery instance scoped to the ready handler.
+ */
 jQuery(document).ready(function ($) {
     var keyHandle;
     var tabHandle;
@@ -12,9 +18,10 @@ jQuery(document).ready(function ($) {
     var $body = $('body');
 
     /**
-     * Open the search modal
+     * Opens the search modal and traps focus within the dialog.
      *
-     * @param {Function} callback Callback function (optional)
+     * @param {Function} [callback] Optional callback executed once the dialog is visible.
+     * @return {void}
      */
     function openDialog(callback) {
         // focusedElementBeforeDialogOpened = document.activeElement;
@@ -31,7 +38,9 @@ jQuery(document).ready(function ($) {
     }
 
     /**
-     * Close the search modal by key (<ESC>)
+     * Closes the search modal when the escape key is pressed.
+     *
+     * @return {void}
      */
     function closeDialogByKey() {
         searchinput.blur();
@@ -39,11 +48,11 @@ jQuery(document).ready(function ($) {
     }
 
     /**
-     * Close the search
+     * Restores the document to its pre-modal state and hides the dialog.
      *
-     * @param {Event} e Event
+     * @return {void}
      */
-    function closeDialog(e) {
+    function closeDialog() {
         keyHandle.disengage(); // undo listening to keyboard
         tabHandle.disengage(); // undo trapping Tab key focus
         hiddenHandle.disengage(); // undo hiding elements outside of the dialog
@@ -54,18 +63,22 @@ jQuery(document).ready(function ($) {
     }
 
     /**
-     * Keyboard-enable the privacy policy / instruction for the current search engine (and disable all others)
+     * Toggles the disclaimer link accessibility state for the active engine.
+     *
+     * @this HTMLInputElement
+     * @return {void}
      */
     function toggleDisclaimer() {
-        $this = $(this);
+        var $this = $(this);
         $this.closest('[role=radiogroup]').find('[tabindex]').attr('tabindex', -1);
         $this.closest('label').find('a').add(this).attr('tabindex', this.checked ? 1 : -1);
     }
 
     /**
-     * Callback to focus the first tabbable form element inside a context
+     * Focuses the first tabbable element within the provided context.
      *
-     * @param {Element} context Context element
+     * @param {Element} context Context element received from ally.js.
+     * @return {void}
      */
     var focusOnVisible = function (context) {
         var element = ally.query.firstTabbable({
@@ -92,12 +105,12 @@ jQuery(document).ready(function ($) {
         });
 	*/
     /**
-     * Override the default search toggle method to open / close the search modal
+     * Overrides the default toggle behavior to manage modal open/close state.
      *
-     * @param {Boolean} onOff Enable / disable the search panel
-     * @param {Number} source Open type
-     * @private
-   */
+     * @param {boolean} onOff Whether the modal should be open.
+     * @param {number} [source] Optional indicator describing how the modal was opened.
+     * @return {void}
+     */
     toggle._toggleSearch = function (onOff, source) {
         if (onOff !== this._expanded) {
             this._expanded = onOff;
@@ -113,7 +126,9 @@ jQuery(document).ready(function ($) {
     }
 
     /**
-     * Collapse the search modal
+     * Collapses the search modal and resets toggle state.
+     *
+     * @return {void}
     */
     function collapseSearch() {
         toggle._toggleSearch(false);
