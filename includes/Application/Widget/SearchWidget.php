@@ -223,7 +223,6 @@ class SearchWidget extends WP_Widget
                 $resources[$key]['args'] = $resource['args'];
             }
         }
-
         include \dirname(__DIR__,
                 2) . DIRECTORY_SEPARATOR . 'Infrastructure' . DIRECTORY_SEPARATOR . 'Templates' . DIRECTORY_SEPARATOR . 'widget.php';
 

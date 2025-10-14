@@ -46,12 +46,14 @@ class AppController
     public function __construct()
     {
         /** @var string pluginPath: /www/accounts/fau/data/wp-content/plugins/rrze-search/src/ */
-        $this->pluginPath = plugin_dir_path(\dirname(__FILE__, 3));
-        /** @var string pluginUrl: https://[servername.net]/wp-content/plugins/rrze-search/ */
-        $this->pluginUrl  = plugin_dir_url(\dirname(__FILE__, 4));
-        /** @var string plugin: rrze-search/rrze-search.php */
-        $this->plugin     = plugin_basename(\dirname(__FILE__, 5)).'/rrze-search.php';
+        $this->pluginPath = plugin_dir_path(\dirname(__FILE__, 2));
 
+        /** @var string pluginUrl: https://[servername.net]/wp-content/plugins/rrze-search/ */
+
+        $this->pluginUrl  = plugin_dir_url(\dirname(__FILE__, 3));
+        /** @var string plugin: rrze-search/rrze-search.php */
+
+        $this->plugin     = plugin_basename(\dirname(__FILE__, 4)).'/rrze-search.php';
         $this->enginesClassCollection = Helper::adapterCollection();
     }
 
