@@ -3,7 +3,10 @@
 namespace RRZE\RRZESearch\Domain\Contract;
 
 /**
- * Search Engine Interface
+ * Contract that all RRZE Search engine adapters must implement.
+ *
+ * Defines the minimum surface for executing queries and exposing metadata so
+ * engines can be rendered consistently across the admin UI and frontend.
  *
  * @package    RRZE\RRZESearch
  * @subpackage RRZE\RRZESearch\Domain
@@ -11,41 +14,41 @@ namespace RRZE\RRZESearch\Domain\Contract;
 interface Engine
 {
     /**
-     * Query — Make your request and return its results
+     * Executes the external search request and returns the raw results.
      *
-     * @param string $query
-     * @param array $args
-     * @param int $startPage
+     * @param string               $query      User-entered search string.
+     * @param array<string, mixed> $args       Engine-specific configuration (keys, filters, etc.).
+     * @param int                  $startPage  1-based page number for paginated APIs.
      *
-     * @return mixed Search results
+     * @return mixed Search results as provided by the remote API implementation.
      */
     public function query(string $query, array $args, int $startPage);
 
     /**
-     * Return the name of this engine
+     * Returns the human-readable engine name shown in the admin interface.
      *
-     * @return string
+     * @return string Translated engine name.
      */
     public static function getName(): string;
 
     /**
-     * Return the redirect link
+     * Returns the relative URL that serves the search results page.
      *
-     * @return string
+     * @return string Redirect path used when forwarding search requests.
      */
     public static function getRedirectLink(): string;
 
     /**
-     * Return the label for this engine
+     * Returns the label displayed to users when selecting this engine.
      *
-     * @return string
+     * @return string Frontend-visible label.
      */
     public static function getLabel(): string;
 
     /**
-     * Return the label for this engine's external link
+     * Returns the label used when linking to the engine's policy or docs.
      *
-     * @return string
+     * @return string Description for the engine's external link.
      */
     public static function getLinkLabel(): string;
 }
