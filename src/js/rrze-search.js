@@ -1,15 +1,15 @@
 jQuery(document).ready(function ($) {
-    var keyHandle;
-    var tabHandle;
-    var disabledHandle;
-    var hiddenHandle;
-    var focusedElementBeforeDialogOpened;
-    var dialog = document.getElementById('search-header');
-    var panel = document.getElementById('search-panel');
-    var toggle = document.getElementById('search-toggle');
-    var searchinput = document.getElementById('headsearchinput');
-    var backdrop;
-    var $body = $('body');
+    let keyHandle;
+    let tabHandle;
+    let disabledHandle;
+    let hiddenHandle;
+    let focusedElementBeforeDialogOpened;
+    let dialog = document.getElementById('search-header');
+    let panel = document.getElementById('search-panel');
+    let toggle = document.getElementById('search-toggle');
+    let searchinput = document.getElementById('headsearchinput');
+    let backdrop;
+    let $body = $('body');
 
     /**
      * Open the search modal
@@ -67,30 +67,14 @@ jQuery(document).ready(function ($) {
      *
      * @param {Element} context Context element
      */
-    var focusOnVisible = function (context) {
-        var element = ally.query.firstTabbable({
+    let focusOnVisible = function (context) {
+        let element = ally.query.firstTabbable({
             context: context, // context === dialog
             defaultToContext: true,
         });
         element && element.focus();
     };
-
-
-/*
-   var searchToggle = document.getElementById('search-toggle');
-        searchToggle._expanded = false;
-        searchToggle._toggleSearch = function (onOff) {
-            this._expanded = onOff;
-            $body.toggleClass('search-toggled', this._expanded);
-            this.setAttribute('aria-expanded', this._expanded ? 'true' : 'false');
-            $("#headsearchinput")[this._expanded ? 'focus' : 'blur']();
-        };
-	
-        $(searchToggle).bind('click', function (event) {
-            event.preventDefault();
-            this._toggleSearch(!this._expanded);
-        });
-	*/
+    
     /**
      * Override the default search toggle method to open / close the search modal
      *
@@ -123,7 +107,7 @@ jQuery(document).ready(function ($) {
         toggle._toggleSearch(true, 1);
     }).keyup(function (e) {
         if ([9, 16].indexOf(e.which) < 0) { // Ignore <TAB> and <SHIFT>
-            var length = $(this).val().length;
+            let length = $(this).val().length;
             if (length && !toggle._expanded) {
                 toggle._toggleSearch(true, 2);
             } else if (!length && toggle._expanded && (toggle._source === 2)) {
@@ -133,11 +117,10 @@ jQuery(document).ready(function ($) {
     });
     $(dialog).submit(collapseSearch);
     
-
     $('.search-engine').click(toggleDisclaimer);
 
     // Create and enable the dialog backdrop
-    var $backdrop = $('<div id="search-backdrop"/>').click(collapseSearch);
+    let $backdrop = $('<div id="search-backdrop"/>').click(collapseSearch);
     $('#pagewrapper').before($backdrop);
     backdrop = $backdrop[0];
 

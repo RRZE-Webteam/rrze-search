@@ -9,15 +9,19 @@ class ComposerStaticInitdefb94034bc935e786fc579a19b00f35
     public static $prefixLengthsPsr4 = array (
         'R' => 
         array (
-            'RRZE\\' => 5,
+            'RRZE\\RRZESearch\\' => 16,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'RRZE\\' => 
+        'RRZE\\RRZESearch\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/includes',
         ),
+    );
+
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -25,6 +29,7 @@ class ComposerStaticInitdefb94034bc935e786fc579a19b00f35
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitdefb94034bc935e786fc579a19b00f35::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitdefb94034bc935e786fc579a19b00f35::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitdefb94034bc935e786fc579a19b00f35::$classMap;
 
         }, null, ClassLoader::class);
     }

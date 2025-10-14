@@ -1,0 +1,1 @@
+jQuery(document).ready(function(e){e("#rrze_search_add_resource_form").bind("click",function(r){var a=e("#rrze_search_resource_count").val(),c="rrze_"+Math.random(),n=document.getElementsByTagName("template")[0].innerHTML.replace(/index/g,a).replace(/uid/g,c);e("#rrze_search_resource_form tbody").append(n),e("#rrze_search_resource_count").val(parseInt(a)+1)})});
