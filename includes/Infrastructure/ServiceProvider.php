@@ -1,6 +1,7 @@
 <?php
 
 namespace RRZE\RRZESearch\Infrastructure;
+defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Application\Controller\ShortcodeController;
 use RRZE\RRZESearch\Application\Controller\WidgetController;
