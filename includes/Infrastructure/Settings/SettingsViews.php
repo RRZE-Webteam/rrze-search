@@ -20,7 +20,7 @@ class SettingsViews extends AppController
      */
     public function adminDashboard(): ?string
     {
-        return require $this->pluginPath . 'RRZESearch' . DIRECTORY_SEPARATOR . 'Infrastructure' . DIRECTORY_SEPARATOR . 'Templates' . DIRECTORY_SEPARATOR . 'admin-dashboard.php';
+        return require $this->pluginPath . 'Infrastructure' . DIRECTORY_SEPARATOR . 'Templates' . DIRECTORY_SEPARATOR . 'admin-dashboard.php';
     }
 
     /**
@@ -30,6 +30,6 @@ class SettingsViews extends AppController
      */
     public function superAdminDashboard(): ?string
     {
-        return require $this->pluginPath . 'RRZESearch' . DIRECTORY_SEPARATOR . 'Infrastructure' . DIRECTORY_SEPARATOR . 'Templates' . DIRECTORY_SEPARATOR . 'admin-dashboard-super.php';
+        return require $this->pluginPath . 'Infrastructure' . DIRECTORY_SEPARATOR . 'Templates' . DIRECTORY_SEPARATOR . 'admin-dashboard-super.php';
     }
 }

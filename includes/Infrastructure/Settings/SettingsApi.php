@@ -207,7 +207,7 @@ class SettingsApi
     }
 
     /**
-     * Handles AJAX requests for removing a multisearch resource entry.
+     * Handles AJAX requests for removing a Search Engine resource entry.
      *
      * Expects `resource_id` in the POST body and echoes the update result as JSON.
      *

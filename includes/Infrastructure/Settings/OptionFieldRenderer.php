@@ -29,7 +29,7 @@ class OptionFieldRenderer extends AppController
         parent::__construct();
 
         // Shortcut to template directory
-        $this->templatesDir = $this->pluginPath.Helper::toDirectory(['RRZESearch', 'Infrastructure', 'Templates']);
+        $this->templatesDir = $this->pluginPath.Helper::toDirectory(['Infrastructure', 'Templates']);
     }
 
     /**
