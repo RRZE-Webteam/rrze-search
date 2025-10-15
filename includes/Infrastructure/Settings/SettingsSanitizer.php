@@ -34,7 +34,7 @@ class SettingsSanitizer extends AppController
         $output = [];
 
         // Configured Search Engines - Super Admin Level
-        $output['rrze_search_resources'] = ($input['rrze_search_resources']) ? $input['rrze_search_resources'] : $option['rrze_search_resources'];
+        $output['rrze_search_resources'] = $input['rrze_search_resources'] ?? ($option['rrze_search_resources'] ?? []);
         foreach ($output['rrze_search_resources'] as $key => $resource) {
             if ($output['rrze_search_resources'][$key]['resource_name'] === ''){
                 $output['rrze_search_resources'][$key]['resource_name'] = $this->enginesClassCollection[$resource['resource_class']]['label'];
@@ -42,16 +42,16 @@ class SettingsSanitizer extends AppController
         }
 
         // Installed Search Engines - Regular Admin Level
-        $output['rrze_search_engines'] = ($input['rrze_search_engines']) ? $input['rrze_search_engines'] : $option['rrze_search_engines'];
+        $output['rrze_search_engines'] = $input['rrze_search_engines'] ?? ($option['rrze_search_engines'] ?? []);
 //        foreach ($output['rrze_search_resources'] as $key => $resource) {
 //            $output['rrze_search_engines'][$key]['resource_name'] = $this->enginesClassCollection[$resource['resource_class']]['label'];
 //        }
 
         // Persist the page ID used to surface search results.
-        $output['rrze_search_page_id'] = ($input['rrze_search_page_id']) ? $input['rrze_search_page_id'] : $option['rrze_search_page_id'];
+        $output['rrze_search_page_id'] = $input['rrze_search_page_id'] ?? ($option['rrze_search_page_id'] ?? 0);
 
         // Sanitize the engine collection to mirror the resource configuration.
-        if ($input['rrze_search_resources']) {
+        if (!empty($input['rrze_search_resources'] ?? null)) {
             $engineCollectionUpdate = [];
 
             // Collection of Engine Ids
@@ -75,7 +75,7 @@ class SettingsSanitizer extends AppController
                     // create an engine for our update collection, will likely create empty record which will removed
                     $engine                   = [
                         'resource_id'         => $resource['resource_id'],
-                        'resource_disclaimer' => $resource['resource_disclaimer'],
+                        'resource_disclaimer' => $resource['resource_disclaimer'] ?? '',
                     ];
                     $engine['resource_name']  = $this->enginesClassCollection[$resource['resource_class']]['label'];
                     $engine['resource_class'] = $resource['resource_class'];
@@ -111,8 +111,7 @@ class SettingsSanitizer extends AppController
                     unset($engineCollectionUpdate[$key]);
                 }
             }
-
-            $output['rrze_search_engines'] = 'empty';
+            
             $output['rrze_search_engines'] = $engineCollectionUpdate;
         }
 
