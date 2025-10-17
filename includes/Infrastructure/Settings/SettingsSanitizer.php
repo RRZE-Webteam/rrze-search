@@ -34,15 +34,25 @@ class SettingsSanitizer extends AppController
         $output = [];
 
         // Configured Search Engines - Super Admin Level
-        $output['rrze_search_resources'] = $input['rrze_search_resources'] ?? ($option['rrze_search_resources'] ?? []);
+        $existingResources = isset($option['rrze_search_resources']) && is_array($option['rrze_search_resources'])
+            ? $option['rrze_search_resources']
+            : [];
+        $existingEngines = isset($option['rrze_search_engines']) && is_array($option['rrze_search_engines'])
+            ? $option['rrze_search_engines']
+            : [];
+
+        $output['rrze_search_resources'] = $input['rrze_search_resources'] ?? $existingResources;
         foreach ($output['rrze_search_resources'] as $key => $resource) {
+            if (!isset($output['rrze_search_resources'][$key]['enabled'])) {
+                $output['rrze_search_resources'][$key]['enabled'] = true;
+            }
             if ($output['rrze_search_resources'][$key]['resource_name'] === ''){
                 $output['rrze_search_resources'][$key]['resource_name'] = $this->enginesClassCollection[$resource['resource_class']]['label'];
             }
         }
 
         // Installed Search Engines - Regular Admin Level
-        $output['rrze_search_engines'] = $input['rrze_search_engines'] ?? ($option['rrze_search_engines'] ?? []);
+        $output['rrze_search_engines'] = $input['rrze_search_engines'] ?? $existingEngines;
 //        foreach ($output['rrze_search_resources'] as $key => $resource) {
 //            $output['rrze_search_engines'][$key]['resource_name'] = $this->enginesClassCollection[$resource['resource_class']]['label'];
 //        }
@@ -51,18 +61,18 @@ class SettingsSanitizer extends AppController
         $output['rrze_search_page_id'] = $input['rrze_search_page_id'] ?? ($option['rrze_search_page_id'] ?? 0);
 
         // Sanitize the engine collection to mirror the resource configuration.
-        if (!empty($input['rrze_search_resources'] ?? null)) {
+        if (!empty($output['rrze_search_resources'])) {
             $engineCollectionUpdate = [];
 
             // Collection of Engine Ids
             $engineIds = [];
-            foreach ($option['rrze_search_engines'] as $engineOption) {
+            foreach ($existingEngines as $engineOption) {
                 $engineIds[] = $engineOption['resource_id'];
             }
 
             // Collection of Resource Ids
             $resourceIds = [];
-            foreach ($input['rrze_search_resources'] as $resourceOption) {
+            foreach ($output['rrze_search_resources'] as $resourceOption) {
                 $resourceIds[] = $resourceOption['resource_id'];
             }
 
@@ -86,8 +96,10 @@ class SettingsSanitizer extends AppController
 
             // Update Labels
             foreach ($output['rrze_search_engines'] as $key => $engine) {
-                if (!isset($engineCollectionUpdate[$key]['enabled'])) {
+                if (isset($engine['enabled'])) {
                     $engineCollectionUpdate[$key]['enabled'] = true;
+                } else {
+                    unset($engineCollectionUpdate[$key]['enabled']);
                 }
 
                 if($output['rrze_search_resources'][$key]['resource_name'] !== '') {
@@ -111,7 +123,7 @@ class SettingsSanitizer extends AppController
             }
 
             // Remove engines that don't exist in our current engineId collection
-            foreach ($option['rrze_search_engines'] as $key => $engine) {
+            foreach ($existingEngines as $key => $engine) {
                 if (!in_array($engine['resource_id'], $engineIds)) {
                     unset($engineCollectionUpdate[$key]);
                 }

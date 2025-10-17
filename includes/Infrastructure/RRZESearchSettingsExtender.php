@@ -4,8 +4,6 @@ declare(strict_types=1);
 namespace RRZE\RRZESearch\Infrastructure;
 defined('ABSPATH') || exit;
 
-use RRZE\RRZESearch\Infrastructure\Helper\Helper;
-
 /**
  * Refactored class to merge globally defined search engines into the rrze_search_settings option.
  *
@@ -16,13 +14,15 @@ use RRZE\RRZESearch\Infrastructure\Helper\Helper;
 final class RRZESearchSettingsExtender
 {
     /**
+     * Registered adapter metadata keyed by class name.
+     *
      * @var array<string, array<string, mixed>>
      */
     private array $adapterCollection;
 
     public function __construct()
     {
-        $this->adapterCollection = Helper::adapterCollection();
+        $this->adapterCollection = Helper\Helper::adapterCollection();
     }
 
     /**
@@ -34,6 +34,8 @@ final class RRZESearchSettingsExtender
         if ($globalEngines === []) {
             return;
         }
+
+        $globalEngines = $this->dedupePresetsByClass($globalEngines);
 
         $settings = $this->getSettings();
 
@@ -62,7 +64,7 @@ final class RRZESearchSettingsExtender
             $desc          = $preset['desc'];
             $cx            = $preset['cx'];
             $api           = $preset['key'];
-            $enabled       = "on";
+            $enabled       = true;
 
             // Fill or create the resource row.
             if (isset($resourceIndexByClass[$resourceClass])) {
@@ -76,7 +78,9 @@ final class RRZESearchSettingsExtender
                     $resource['resource_disclaimer'] = $desc;
                 }
 
-                $resource['enabled'] = $enabled;
+                if (!isset($resource['enabled'])) {
+                    $resource['enabled'] = $enabled;
+                }
 
                 $resource['args'] = $resource['args'] ?? [];
                 if ($cx !== '' && empty($resource['args']['cx'])) {
@@ -95,6 +99,7 @@ final class RRZESearchSettingsExtender
                     'resource_class'      => $resourceClass,
                     'resource_name'       => $name,
                     'resource_disclaimer' => $desc,
+                    'enabled'             => $enabled,
                     'args'                => array_filter(
                         [
                             'cx'  => $cx,
@@ -159,17 +164,13 @@ final class RRZESearchSettingsExtender
      */
     private function getGlobalEngines(): array
     {
-        if (!defined('RRZE_SEARCH_ENGINES')) {
-            return [];
+        $global = [];
+
+        if (defined('RRZE_SEARCH_ENGINES') && is_array(RRZE_SEARCH_ENGINES)) {
+            $global = RRZE_SEARCH_ENGINES;
         }
 
-        /** @var mixed $maybe */
-        $maybe = RRZE_SEARCH_ENGINES;
-        if (!is_array($maybe)) {
-            return [];
-        }
-
-        return $maybe;
+        return array_merge($global, $this->buildDefaultLocalEngine());
     }
 
     /**
@@ -277,7 +278,10 @@ final class RRZESearchSettingsExtender
     {
         $resourceClass = $this->resolveResourceClass($presetRaw, $key);
         if ($resourceClass === null) {
-            return null;
+            $resourceClass = $this->findWordPressAdapter();
+            if ($resourceClass === null) {
+                return null;
+            }
         }
 
         $name = isset($presetRaw['name']) && is_string($presetRaw['name']) ? $presetRaw['name'] : '';
@@ -300,7 +304,7 @@ final class RRZESearchSettingsExtender
             'cx'             => $cx,
             'key'            => $api,
             'resource_class' => $resourceClass,
-            'enabled'        => "on",
+            'enabled'        => true,
         ];
     }
 
@@ -349,7 +353,7 @@ final class RRZESearchSettingsExtender
             }
         }
 
-        return null;
+        return $this->findWordPressAdapter();
     }
 
     /**
@@ -363,5 +367,96 @@ final class RRZESearchSettingsExtender
         }
 
         return uniqid('rrze_', true);
+    }
+
+    /**
+     * Create a preset entry describing the native WordPress search engine.
+     *
+     * @return array<int, array<string, string>>
+     */
+    private function buildDefaultLocalEngine(): array
+    {
+        $class = $this->findWordPressAdapter();
+
+        if ($class === null) {
+            return [];
+        }
+
+        $name = function_exists('__') ? __('Local Website Search', 'rrze-search') : 'Local Website Search';
+        $desc = function_exists('__') ? __('Native WordPress search results', 'rrze-search') : 'Native WordPress search results';
+
+        return [[
+            'name'           => $name,
+            'desc'           => $desc,
+            'cx'             => '',
+            'key'            => '',
+            'resource_class' => $class,
+            'enabled'        => true,
+        ]];
+    }
+
+    /**
+     * Locate the adapter class that wraps the WordPress search foundation.
+     */
+    private function findWordPressAdapter(): ?string
+    {
+        foreach ($this->adapterCollection as $class => $meta) {
+            if (!is_string($class)) {
+                continue;
+            }
+
+            if (str_contains(strtolower($class), 'wordpressadapter')) {
+                return $class;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Remove duplicate presets so each adapter class appears at most once.
+     *
+     * @param array<int, array<string, mixed>> $presets
+     * @return array<int, array<string, mixed>>
+     */
+    private function dedupePresetsByClass(array $presets): array
+    {
+        $seen = [];
+        $unique = [];
+
+        foreach ($presets as $preset) {
+            if (!is_array($preset)) {
+                continue;
+            }
+
+            $class = $preset['resource_class'] ?? $preset['class'] ?? null;
+            if ((!$class || !is_string($class)) && isset($preset['name']) && is_string($preset['name'])) {
+                $nameCandidate = strtolower($preset['name']);
+                $localNameVariants = ['local website search', 'native wordpress search', 'wordpress'];
+                if (function_exists('__')) {
+                    $localNameVariants[] = strtolower(__('Local Website Search', 'rrze-search'));
+                    $localNameVariants[] = strtolower(__('Native WordPress search results', 'rrze-search'));
+                }
+
+                if (in_array($nameCandidate, $localNameVariants, true)) {
+                    $class = $this->findWordPressAdapter();
+                }
+            }
+
+            if (!$class || !is_string($class)) {
+                $unique[] = $preset;
+                continue;
+            }
+
+            if (isset($seen[$class])) {
+                continue;
+            }
+
+            $seen[$class] = true;
+            $preset['resource_class'] = $class;
+            $unique[] = $preset;
+        }
+
+        return $unique;
     }
 }
