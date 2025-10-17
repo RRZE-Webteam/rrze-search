@@ -32,7 +32,7 @@ class ScriptEnqueuer extends AppController
     public function enqueueAdminScripts(): void
     {
         wp_enqueue_style('rrze-search-style', $this->pluginUrl . 'build/css/rrze-search.css');
-        wp_enqueue_script('rrze-search-script', $this->pluginUrl . 'build/js/rrze-search-admin.js', [], false, true);
+        wp_enqueue_script('rrze-search-script', $this->pluginUrl . 'build/js/backend/rrze-search-admin.js', [], false, true);
     }
 
     /**

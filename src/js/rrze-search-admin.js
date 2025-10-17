@@ -1,15 +1,23 @@
-function rrze_resource_removal(resource_id) {
-    var data = {
-        'action': 'resourceRemoval',
-        'resource_id': resource_id
+/**
+ * Removes a multisearch resource via AJAX and reloads the settings page.
+ *
+ * @param {number} resourceId Index of the resource to remove.
+ * @return {void}
+ */
+const rrzeResourceRemoval = (resourceId) => {
+    const data = {
+        action: 'resourceRemoval',
+        resource_id: resourceId,
     };
-    jQuery.post(ajaxurl, data, function (success) {
-        console.log(success);
+
+    jQuery.post(ajaxurl, data, (success) => {
         if (success) {
-            location.reload();
+            window.location.reload();
         }
     });
-}
+};
+
+window.rrze_resource_removal = rrzeResourceRemoval;
 
 jQuery(document).ready(function ($) {
     $('#rrze_search_add_resource_form').bind('click', function (e) {
@@ -19,7 +27,7 @@ jQuery(document).ready(function ($) {
         var uId = 'rrze_' + Math.random();
 
         /** selected template content */
-        var template = document.getElementsByTagName("template")[0];
+        var template = document.getElementsByTagName('template')[0];
 
         /** replace `index` with current count */
         /** replace `uid` with unique Id */

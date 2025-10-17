@@ -76,6 +76,7 @@ class OptionFieldRenderer extends AppController
         // Global presets for the read-only panel
         require $this->templatesDir . DIRECTORY_SEPARATOR . 'admin-engine-presets.php';
 
+
         // Resource table
         require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-configuration.php';
 
