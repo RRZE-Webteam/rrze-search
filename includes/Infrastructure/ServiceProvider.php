@@ -40,8 +40,13 @@ class ServiceProvider
      */
     public static function bootstrap(): void
     {
-        $extender = new RRZESearchSettingsExtender();
-        $extender->extendWithGlobalEngines();
+        add_action(
+            'init',
+            static function () {
+                (new RRZESearchSettingsExtender())->extendWithGlobalEngines();
+            },
+            20
+        );
 
         foreach (static::getServices() as $class) {
             $service = new $class;

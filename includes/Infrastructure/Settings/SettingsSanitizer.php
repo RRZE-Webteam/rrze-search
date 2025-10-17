@@ -67,7 +67,7 @@ class SettingsSanitizer extends AppController
             }
 
             // Add Resources which don't exist in the Engine Collection
-            foreach ($input['rrze_search_resources'] as $key => $resource) {
+            foreach ($output['rrze_search_resources'] as $key => $resource) {
                 if (in_array($resource['resource_id'], $engineIds)) {
                     // include the engine into our update collection
                     $engineCollectionUpdate[] = Helper::getEngineById('rrze_search_settings', $resource['resource_id']);
@@ -76,6 +76,7 @@ class SettingsSanitizer extends AppController
                     $engine                   = [
                         'resource_id'         => $resource['resource_id'],
                         'resource_disclaimer' => $resource['resource_disclaimer'] ?? '',
+                        'enabled'             => true,
                     ];
                     $engine['resource_name']  = $this->enginesClassCollection[$resource['resource_class']]['label'];
                     $engine['resource_class'] = $resource['resource_class'];
@@ -84,16 +85,20 @@ class SettingsSanitizer extends AppController
             }
 
             // Update Labels
-            foreach ($option['rrze_search_engines'] as $key => $engine) {
-                if($input['rrze_search_resources'][$key]['resource_name'] !== '') {
-                    $engineCollectionUpdate[$key]['resource_name']  = $input['rrze_search_resources'][$key]['resource_name'];
-                } else {
-                    $engineCollectionUpdate[$key]['resource_name']  = $this->enginesClassCollection[$input['rrze_search_resources'][$key]['resource_class']]['label'];
+            foreach ($output['rrze_search_engines'] as $key => $engine) {
+                if (!isset($engineCollectionUpdate[$key]['enabled'])) {
+                    $engineCollectionUpdate[$key]['enabled'] = true;
                 }
-                $engineCollectionUpdate[$key]['resource_class'] = $input['rrze_search_resources'][$key]['resource_class'];
+
+                if($output['rrze_search_resources'][$key]['resource_name'] !== '') {
+                    $engineCollectionUpdate[$key]['resource_name']  = $output['rrze_search_resources'][$key]['resource_name'];
+                } else {
+                    $engineCollectionUpdate[$key]['resource_name']  = $this->enginesClassCollection[$output['rrze_search_resources'][$key]['resource_class']]['label'];
+                }
+                $engineCollectionUpdate[$key]['resource_class'] = $output['rrze_search_resources'][$key]['resource_class'];
 
                 // Automatically disable the engine when Class changed
-                if ($engine['resource_class'] !== $input['rrze_search_resources'][$key]['resource_class']) {
+                if ($engine['resource_class'] !== $output['rrze_search_resources'][$key]['resource_class']) {
                     unset($engineCollectionUpdate[$key]['enabled']);
                 }
             }

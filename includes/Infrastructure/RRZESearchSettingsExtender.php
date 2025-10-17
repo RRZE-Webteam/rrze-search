@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace RRZE\RRZESearch\Infrastructure;
 defined('ABSPATH') || exit;
 
+use RRZE\RRZESearch\Infrastructure\Helper\Helper;
+
 /**
  * Refactored class to merge globally defined search engines into the rrze_search_settings option.
  *
@@ -13,6 +15,16 @@ defined('ABSPATH') || exit;
  */
 final class RRZESearchSettingsExtender
 {
+    /**
+     * @var array<string, array<string, mixed>>
+     */
+    private array $adapterCollection;
+
+    public function __construct()
+    {
+        $this->adapterCollection = Helper::adapterCollection();
+    }
+
     /**
      * Public entry point (replacement for rrze_search_extend_with_global_engines()).
      */
@@ -50,6 +62,7 @@ final class RRZESearchSettingsExtender
             $desc          = $preset['desc'];
             $cx            = $preset['cx'];
             $api           = $preset['key'];
+            $enabled       = "on";
 
             // Fill or create the resource row.
             if (isset($resourceIndexByClass[$resourceClass])) {
@@ -62,6 +75,8 @@ final class RRZESearchSettingsExtender
                 if (empty($resource['resource_disclaimer']) && $desc !== '') {
                     $resource['resource_disclaimer'] = $desc;
                 }
+
+                $resource['enabled'] = $enabled;
 
                 $resource['args'] = $resource['args'] ?? [];
                 if ($cx !== '' && empty($resource['args']['cx'])) {
@@ -109,6 +124,7 @@ final class RRZESearchSettingsExtender
                     'resource_id'    => $resourceId,
                     'resource_name'  => $resources[$resourceIdx]['resource_name'] ?? '',
                     'resource_class' => $resourceClass,
+                    'enabled'        => true,
                     'args'           => [],
                 ];
                 $engineIdx = array_key_last($engines);
@@ -117,6 +133,9 @@ final class RRZESearchSettingsExtender
 
             $engines[$engineIdx]['resource_name']  = $resources[$resourceIdx]['resource_name'] ?? ($engines[$engineIdx]['resource_name'] ?? '');
             $engines[$engineIdx]['resource_class'] = $resourceClass;
+            if (!array_key_exists('enabled', $engines[$engineIdx])) {
+                $engines[$engineIdx]['enabled'] = true;
+            }
             $engines[$engineIdx]['args']           = $engines[$engineIdx]['args'] ?? [];
 
             if ($cx !== '' && empty($engines[$engineIdx]['args']['cx'])) {
@@ -150,7 +169,6 @@ final class RRZESearchSettingsExtender
             return [];
         }
 
-        error_Log(print_r(RRZE_SEARCH_ENGINES, true));
         return $maybe;
     }
 
@@ -282,6 +300,7 @@ final class RRZESearchSettingsExtender
             'cx'             => $cx,
             'key'            => $api,
             'resource_class' => $resourceClass,
+            'enabled'        => "on",
         ];
     }
 
@@ -303,6 +322,31 @@ final class RRZESearchSettingsExtender
 
         if (is_string($key) && $key !== '') {
             return $key;
+        }
+
+        // Attempt to match by preset name against registered adapters.
+        if (!empty($this->adapterCollection)) {
+            $presetName = isset($preset['name']) && is_string($preset['name']) ? $preset['name'] : '';
+            if ($presetName !== '') {
+                foreach ($this->adapterCollection as $class => $meta) {
+                    $candidateNames = array_filter([
+                        $meta['name'] ?? null,
+                        $meta['label'] ?? null,
+                    ]);
+
+                    foreach ($candidateNames as $candidate) {
+                        if (is_string($candidate) && strcasecmp($candidate, $presetName) === 0) {
+                            return $class;
+                        }
+                    }
+                }
+            }
+
+            // Fallback to the first available adapter when everything else fails.
+            $firstAdapter = array_key_first($this->adapterCollection);
+            if (is_string($firstAdapter) && $firstAdapter !== '') {
+                return $firstAdapter;
+            }
         }
 
         return null;
