@@ -71,6 +71,10 @@ class OptionFieldRenderer extends AppController
 
         // Define props used in template
         $resources = $optionValue[$fieldName];
+        $globalEngines = defined('RRZE_SEARCH_ENGINES') && is_array(RRZE_SEARCH_ENGINES) ? RRZE_SEARCH_ENGINES : [];
+
+        // Global presets for the read-only panel
+        require $this->templatesDir . DIRECTORY_SEPARATOR . 'admin-engine-presets.php';
 
         // Resource table
         require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-configuration.php';

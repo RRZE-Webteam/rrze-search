@@ -4,16 +4,32 @@ if ($resources === 'empty' || !is_array($resources)) {
     $resources = [];
 }
 
+?>
+<dl>
+    <?php
+    foreach ($globalEngines as $engine) {
+        $engine_name = esc_attr($globalEngines['name']) ?? "";
+        $engine_desc = esc_attr($globalEngines['desc']) ?? "";
+        ?>
+
+        <dt><?php echo($engine_name) ?></dt>
+        <dd><?php echo($engine_desc) ?></dd>
+        <?php
+    }
+    ?>
+</dl>
+<?php
+
 foreach ($resources as $resource) {
     // Defensive Defaults
-    $resource        = is_array($resource) ? $resource : [];
+    $resource = is_array($resource) ? $resource : [];
     $resource_id_key = 'resource_id';
-    $resource_class  = isset($resource['resource_class']) ? (string) $resource['resource_class'] : '';
-    $resource_name   = isset($resource['resource_name']) ? (string) $resource['resource_name'] : '';
-    $resource_args   = isset($resource['args']) && is_array($resource['args']) ? $resource['args'] : [];
+    $resource_class = isset($resource['resource_class']) ? (string)$resource['resource_class'] : '';
+    $resource_name = isset($resource['resource_name']) ? (string)$resource['resource_name'] : '';
+    $resource_args = isset($resource['args']) && is_array($resource['args']) ? $resource['args'] : [];
 
     // Unique ID erzeugen (persistieren falls vorhanden)
-    $uId = !empty($resource[$resource_id_key]) ? (string) $resource[$resource_id_key] : uniqid('rrze_', true);
+    $uId = !empty($resource[$resource_id_key]) ? (string)$resource[$resource_id_key] : uniqid('rrze_', true);
 
     // Zeilenfarbe (besser per CSS-Klasse, hier beibehalten falls gewünscht)
     $rowColor = ($nextResourceIndex % 2) ? '#ddd' : '#bbb';
@@ -29,7 +45,7 @@ foreach ($resources as $resource) {
            class="regular-text"
            id="<?php echo esc_attr($fieldName . '_' . $nextResourceIndex . '_id'); ?>"
            name="<?php echo esc_attr($optionName . '[' . $fieldName . '][' . $nextResourceIndex . '][' . $resource_id_key . ']'); ?>"
-           value="<?php echo esc_attr($uId); ?>" />
+           value="<?php echo esc_attr($uId); ?>"/>
 
     <tr style="background-color: <?php echo esc_attr($rowColor); ?>;">
         <td style="vertical-align:top">
@@ -56,7 +72,7 @@ foreach ($resources as $resource) {
                            class="regular-text"
                            id="<?php echo esc_attr($fieldName . '_' . $nextResourceIndex . '_name'); ?>"
                            name="<?php echo esc_attr($optionName . '[' . $fieldName . '][' . $nextResourceIndex . '][resource_name]'); ?>"
-                           value="<?php echo esc_attr($resource_name); ?>" />
+                           value="<?php echo esc_attr($resource_name); ?>"/>
                 </label>
             </fieldset>
         </td>
@@ -64,8 +80,8 @@ foreach ($resources as $resource) {
         <td style="vertical-align:top">
             <?php if (!empty($engineVars)): ?>
                 <?php foreach ($engineVars as $index => $engineVariable):
-                    $varKey = (string) $engineVariable;
-                    $preval = isset($resource_args[$varKey]) ? (string) $resource_args[$varKey] : '';
+                    $varKey = (string)$engineVariable;
+                    $preval = isset($resource_args[$varKey]) ? (string)$resource_args[$varKey] : '';
                     ?>
                     <fieldset>
                         <label class="resource_table_label">
@@ -74,7 +90,7 @@ foreach ($resources as $resource) {
                                    class="regular-text"
                                    id="<?php echo esc_attr($fieldName . '_' . $nextResourceIndex . '_arg_' . $varKey); ?>"
                                    name="<?php echo esc_attr($optionName . '[' . $fieldName . '][' . $nextResourceIndex . '][args][' . $varKey . ']'); ?>"
-                                   value="<?php echo esc_attr($preval); ?>" />
+                                   value="<?php echo esc_attr($preval); ?>"/>
                         </label>
                     </fieldset>
                 <?php endforeach; ?>
@@ -82,7 +98,7 @@ foreach ($resources as $resource) {
         </td>
 
         <td>
-            <a href="javascript:rrze_resource_removal(<?php echo esc_js((int) $nextResourceIndex); ?>)"
+            <a href="javascript:rrze_resource_removal(<?php echo esc_js((int)$nextResourceIndex); ?>)"
                class="button button-primary">
                 <?php echo esc_html(__('Remove', 'rrze-search')); ?>
             </a>
