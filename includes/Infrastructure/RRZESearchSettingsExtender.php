@@ -430,22 +430,20 @@ final class RRZESearchSettingsExtender
      */
     private function dedupePresetsByClass(array $presets): array
     {
-        $bestByClass = [];        // class => ['preset' => array, 'isLocalDefault' => bool, 'score' => int, 'firstIdx' => int]
-        $passthrough = [];        // Presets ohne ermittelbare Klasse werden unverändert durchgereicht
+        $bestByClass = []; // class => ['preset'=>array, 'isLocalDefault'=>bool, 'score'=>int, 'firstIdx'=>int]
+        $passthrough = [];
 
         foreach ($presets as $idx => $preset) {
             if (!is_array($preset)) {
                 continue;
             }
 
-            // Klasse bestimmen (robust, inkl. Mapping auf WP-Adapter via Name-Heuristik)
+            // Determine class (do NOT sanitize with sanitize_key!)
             $class = $preset['resource_class'] ?? $preset['class'] ?? null;
-            if (is_string($class)) {
-                $class = sanitize_key($class);
-            }
+            $class = $this->normalizeClassName(is_string($class) ? $class : null);
 
-            // Heuristik für die lokale WP-Suche, falls keine Klasse vorhanden ist
-            if ((!$class || !is_string($class) || $class === '') && isset($preset['name']) && is_string($preset['name'])) {
+            // Heuristic for WP local engine by name
+            if ($class === null && isset($preset['name']) && is_string($preset['name'])) {
                 $nameCandidate     = strtolower($preset['name']);
                 $localNameVariants = ['local website search', 'native wordpress search', 'wordpress'];
                 if (function_exists('__')) {
@@ -454,26 +452,24 @@ final class RRZESearchSettingsExtender
                 }
                 if (in_array($nameCandidate, $localNameVariants, true)) {
                     $mapped = $this->findWordPressAdapter();
-                    if (is_string($mapped) && $mapped !== '') {
-                        $class = sanitize_key($mapped);
+                    $class  = $this->normalizeClassName($mapped);
+                    if ($class !== null) {
                         $preset['resource_class'] = $class;
                     }
                 }
             }
 
-            // Keine Klasse ermittelbar -> nicht deduplizieren, hinten anhängen
-            if (!$class || !is_string($class) || $class === '') {
+            if ($class === null) {
+                // No class -> keep as-is
                 $passthrough[] = $preset;
                 continue;
             }
 
-            // Für die Priorisierungslogik vorbereiten
             $isLocalDefault = $this->isLocalDefaultPreset($preset);
             $score          = $this->completenessScore($preset);
 
             if (!isset($bestByClass[$class])) {
-                // Erstes Vorkommen dieser Klasse
-                $preset['resource_class'] = $class; // sicherstellen
+                $preset['resource_class'] = $class; // ensure normalized FQCN is stored
                 $bestByClass[$class] = [
                     'preset'         => $preset,
                     'isLocalDefault' => $isLocalDefault,
@@ -483,27 +479,24 @@ final class RRZESearchSettingsExtender
                 continue;
             }
 
-            // Es existiert bereits ein Kandidat für diese Klasse -> Auswahl treffen
             $current = $bestByClass[$class];
 
-            // 1) Global > LocalDefault
+            // Prefer global (non-default-local) over default-local
             if ($current['isLocalDefault'] && !$isLocalDefault) {
-                // neues (globales/„nicht Default-Local“) Preset gewinnt
                 $preset['resource_class'] = $class;
                 $bestByClass[$class] = [
                     'preset'         => $preset,
                     'isLocalDefault' => $isLocalDefault,
                     'score'          => $score,
-                    'firstIdx'       => $current['firstIdx'], // Ordnung am ersten Auftreten ausrichten
+                    'firstIdx'       => $current['firstIdx'],
                 ];
                 continue;
             }
             if (!$current['isLocalDefault'] && $isLocalDefault) {
-                // bestehender ist global, neuer ist default-local -> ignorieren
-                continue;
+                continue; // keep existing global
             }
 
-            // 2) Beide gleiche „Globalität“ -> Vollständigkeit vergleichen
+            // Tie-breaker by completeness
             if ($score > $current['score']) {
                 $preset['resource_class'] = $class;
                 $bestByClass[$class] = [
@@ -515,21 +508,16 @@ final class RRZESearchSettingsExtender
                 continue;
             }
 
-            // 3) Bei Gleichstand behalten wir den zuerst gesehenen (stabile Ausgabe)
-            // -> nichts tun
+            // Equal -> keep first
         }
 
-        // Ausgabe: nach erstem Auftreten pro Klasse sortieren
-        uasort($bestByClass, static function ($a, $b) {
-            return $a['firstIdx'] <=> $b['firstIdx'];
-        });
+        // Stable order by first appearance
+        uasort($bestByClass, static fn($a, $b) => $a['firstIdx'] <=> $b['firstIdx']);
 
         $unique = [];
         foreach ($bestByClass as $bundle) {
             $unique[] = $bundle['preset'];
         }
-
-        // Presets ohne Klasse hinten anhängen
         foreach ($passthrough as $p) {
             $unique[] = $p;
         }
@@ -597,6 +585,24 @@ final class RRZESearchSettingsExtender
         $score += (isset($preset['resource_class']) && is_string($preset['resource_class']) && $preset['resource_class'] !== '') ? 1 : 0;
 
         return $score;
+    }
+
+    /**
+     * Normalize a fully-qualified class name without altering case or namespace separators.
+     * - trims whitespace
+     * - removes a single leading backslash
+     */
+    private function normalizeClassName(?string $class): ?string
+    {
+        if (!is_string($class) || $class === '') {
+            return null;
+        }
+        $class = trim($class);
+        if ($class === '') {
+            return null;
+        }
+        // keep case; just drop a leading "\" if present
+        return ltrim($class, '\\');
     }
 
 }

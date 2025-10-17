@@ -43,15 +43,22 @@ class OptionFieldRenderer extends AppController
      */
     public function enginesToggle(array $args): void
     {
-        $fieldName   = $args['label_for'];
-        $optionName  = $args['option_name'];
-        $optionValue = get_option($optionName);
+        $globalEngines = defined('RRZE_SEARCH_ENGINES') && is_array(RRZE_SEARCH_ENGINES) ? RRZE_SEARCH_ENGINES : [];
 
-        // Define props used in template
-        $engines = $optionValue[$fieldName];
+        if(empty($globalEngines)) {
+            $fieldName = $args['label_for'];
+            $optionName = $args['option_name'];
+            $optionValue = get_option($optionName);
 
-        // Engine table
-        require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-toggle.php';
+            // Define props used in template
+            $engines = $optionValue[$fieldName];
+
+            // Engine table
+            require $this->templatesDir . DIRECTORY_SEPARATOR . 'admin-engine-toggle.php';
+        }
+        else {
+            echo('Search Engines are currently set networkwide and cannot be overwritten.');
+        }
     }
 
     /**
