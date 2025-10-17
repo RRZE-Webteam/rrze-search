@@ -73,12 +73,14 @@ class OptionFieldRenderer extends AppController
         $resources = $optionValue[$fieldName];
         $globalEngines = defined('RRZE_SEARCH_ENGINES') && is_array(RRZE_SEARCH_ENGINES) ? RRZE_SEARCH_ENGINES : [];
 
-        // Global presets for the read-only panel
-        require $this->templatesDir . DIRECTORY_SEPARATOR . 'admin-engine-presets.php';
-
-
-        // Resource table
-        require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-configuration.php';
+        if(!empty($globalEngines))
+        {
+            // Global presets for the read-only panel
+            require $this->templatesDir . DIRECTORY_SEPARATOR . 'admin-engine-presets.php';
+        } else {
+            // Resource table
+            require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-configuration.php';
+        }
 
         // Resource template
         require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-template.php';
