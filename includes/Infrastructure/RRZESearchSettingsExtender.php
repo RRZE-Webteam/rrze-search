@@ -36,24 +36,16 @@ final class RRZESearchSettingsExtender
         }
 
         $globalEngines = $this->dedupePresetsByClass($globalEngines);
-        error_log('global Engines after deduplication');
-        error_log(print_r($globalEngines, true));
 
         $settings = $this->getSettings();
-        error_log('settings after deduplication');
-        error_log(print_r($settings, true));
 
         $resources = $settings['rrze_search_resources'] ?? [];
         $engines   = $settings['rrze_search_engines'] ?? [];
 
         // Index maps
         $resourceIndexByClass = $this->indexResourcesByClass($resources);
-        error_log('resources Index by Class after deduplication');
-        error_log(print_r($resourceIndexByClass, true));
 
         $engineIndexById = $this->indexEnginesById($engines);
-        error_log('engines Index by Id after deduplication');
-        error_log(print_r($engineIndexById, true));
 
         foreach ($globalEngines as $key => $presetRaw) {
             if (!is_array($presetRaw)) {
@@ -168,9 +160,6 @@ final class RRZESearchSettingsExtender
         $settings['rrze_search_resources'] = array_values($resources);
         $settings['rrze_search_engines']   = array_values($engines);
 
-        error_log('updated Settings:');
-        error_log(print_r($settings, true));
-
         $this->updateSettings($settings);
     }
 
@@ -187,8 +176,6 @@ final class RRZESearchSettingsExtender
         if (defined('RRZE_SEARCH_ENGINES') && is_array(RRZE_SEARCH_ENGINES)) {
             $global = RRZE_SEARCH_ENGINES;
         }
-
-        error_log(print_r($global, true));
 
         return array_merge($global, $this->buildDefaultLocalEngine());
     }
