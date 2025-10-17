@@ -40,6 +40,9 @@ class ServiceProvider
      */
     public static function bootstrap(): void
     {
+        $extender = new RRZESearchSettingsExtender();
+        $extender->extendWithGlobalEngines();
+
         foreach (static::getServices() as $class) {
             $service = new $class;
             if (\is_callable([$service, 'register'])) {
