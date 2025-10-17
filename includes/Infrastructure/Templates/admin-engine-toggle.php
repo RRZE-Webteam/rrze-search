@@ -25,7 +25,6 @@
                 </label>
             </td>
             <td>
-                <?php //  if (strpos($this->enginesClassCollection[$resourceEngine['resource_class']]['label'], '%s')) { ?>
                 <label class="resource_table_label">
                     <span><?php _e('Privacy Policy / Instruction Page ID', 'rrze-search'); ?></span>
                     <input type="number" id="<?= $fieldName; ?>"

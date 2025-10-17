@@ -1,6 +1,8 @@
 <?php
 
 namespace RRZE\RRZESearch\Infrastructure\Settings;
+use JetBrains\PhpStorm\NoReturn;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -213,7 +215,7 @@ class SettingsApi
      *
      * @return void
      */
-    public function resourceRemoval(): void
+    #[NoReturn] public function resourceRemoval(): void
     {
         $resources   = [];
         $index       = $_POST['resource_id'];

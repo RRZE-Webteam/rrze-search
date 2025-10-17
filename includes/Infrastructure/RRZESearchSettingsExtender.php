@@ -36,17 +36,24 @@ final class RRZESearchSettingsExtender
         }
 
         $globalEngines = $this->dedupePresetsByClass($globalEngines);
+        error_log('global Engines after deduplication');
+        error_log(print_r($globalEngines, true));
 
         $settings = $this->getSettings();
+        error_log('settings after deduplication');
+        error_log(print_r($settings, true));
 
         $resources = $settings['rrze_search_resources'] ?? [];
         $engines   = $settings['rrze_search_engines'] ?? [];
 
-        // Index existing resources by their adapter class for quick lookup.
+        // Index maps
         $resourceIndexByClass = $this->indexResourcesByClass($resources);
+        error_log('resources Index by Class after deduplication');
+        error_log(print_r($resourceIndexByClass, true));
 
-        // Index existing engines by resource_id so we can update in place.
         $engineIndexById = $this->indexEnginesById($engines);
+        error_log('engines Index by Id after deduplication');
+        error_log(print_r($engineIndexById, true));
 
         foreach ($globalEngines as $key => $presetRaw) {
             if (!is_array($presetRaw)) {
@@ -55,26 +62,26 @@ final class RRZESearchSettingsExtender
 
             $preset = $this->normalizePreset($presetRaw, $key);
             if ($preset === null) {
-                // Missing resource_class (cannot target adapter).
                 continue;
             }
 
             $resourceClass = $preset['resource_class'];
-            $name          = $preset['name'];
-            $desc          = $preset['desc'];
-            $cx            = $preset['cx'];
-            $api           = $preset['key'];
+            $name          = $preset['name'] ?? '';
+            $desc          = $preset['desc'] ?? '';
+            $cx            = $preset['cx']   ?? '';
+
+            $api           = $preset['key']  ?? ($preset['api'] ?? ($preset['apikey'] ?? ''));
             $enabled       = true;
 
-            // Fill or create the resource row.
             if (isset($resourceIndexByClass[$resourceClass])) {
                 $resourceIdx = $resourceIndexByClass[$resourceClass];
                 $resource    = $resources[$resourceIdx];
 
-                if (empty($resource['resource_name']) && $name !== '') {
+                // Overwrite policy for metadata if global provides values
+                if ($name !== '') {
                     $resource['resource_name'] = $name;
                 }
-                if (empty($resource['resource_disclaimer']) && $desc !== '') {
+                if ($desc !== '') {
                     $resource['resource_disclaimer'] = $desc;
                 }
 
@@ -83,11 +90,13 @@ final class RRZESearchSettingsExtender
                 }
 
                 $resource['args'] = $resource['args'] ?? [];
-                if ($cx !== '' && empty($resource['args']['cx'])) {
+
+                // Overwrite policy for credentials if global provides values
+                if ($cx !== '') {
                     $resource['args']['cx'] = $cx;
                 }
-                if ($api !== '' && empty($resource['args']['key'])) {
-                    $resource['args']['key'] = $api;
+                if ($api !== '') {
+                    $resource['args']['key'] = $api; // align to local storage key
                 }
 
                 $resources[$resourceIdx] = $resource;
@@ -102,28 +111,29 @@ final class RRZESearchSettingsExtender
                     'enabled'             => $enabled,
                     'args'                => array_filter(
                         [
-                            'cx'  => $cx,
-                            'key' => $api,
+                            'cx'  => (string) $cx,
+                            'key' => (string) $api,
                         ],
                         static fn($value) => $value !== ''
                     ),
                 ];
 
-                // Store the index so we can relate an engine entry to this resource.
                 $resourceIndexByClass[$resourceClass] = array_key_last($resources);
             }
 
-            // Ensure a matching engine entry exists.
+            // Ensure a matching engine entry exists
             $resourceIdx = $resourceIndexByClass[$resourceClass];
             $resourceId  = $resources[$resourceIdx]['resource_id'] ?? '';
 
             if ($resourceId === '') {
-                // Defensive: if resource_id is missing for any reason, skip to avoid corrupting settings.
+                // Defensive: skip if we somehow lack a resource_id
                 continue;
             }
 
-            if (isset($engineIndexById[$resourceId])) {
-                $engineIdx = $engineIndexById[$resourceId];
+            $resourceIdKey = (string) $resourceId; // normalize for index map
+
+            if (isset($engineIndexById[$resourceIdKey])) {
+                $engineIdx = $engineIndexById[$resourceIdKey];
             } else {
                 $engines[] = [
                     'resource_id'    => $resourceId,
@@ -133,29 +143,37 @@ final class RRZESearchSettingsExtender
                     'args'           => [],
                 ];
                 $engineIdx = array_key_last($engines);
-                $engineIndexById[$resourceId] = $engineIdx;
+                $engineIndexById[$resourceIdKey] = $engineIdx; // keep map in sync
             }
 
+            // Keep name/class in sync with resource
             $engines[$engineIdx]['resource_name']  = $resources[$resourceIdx]['resource_name'] ?? ($engines[$engineIdx]['resource_name'] ?? '');
             $engines[$engineIdx]['resource_class'] = $resourceClass;
+
             if (!array_key_exists('enabled', $engines[$engineIdx])) {
                 $engines[$engineIdx]['enabled'] = true;
             }
-            $engines[$engineIdx]['args']           = $engines[$engineIdx]['args'] ?? [];
 
-            if ($cx !== '' && empty($engines[$engineIdx]['args']['cx'])) {
+            $engines[$engineIdx]['args'] = $engines[$engineIdx]['args'] ?? [];
+
+            // Overwrite policy for credentials if global provides values
+            if ($cx !== '') {
                 $engines[$engineIdx]['args']['cx'] = $cx;
             }
-            if ($api !== '' && empty($engines[$engineIdx]['args']['key'])) {
-                $engines[$engineIdx]['args']['key'] = $api;
+            if ($api !== '') {
+                $engines[$engineIdx]['args']['key'] = $api; // align to local storage key
             }
         }
 
         $settings['rrze_search_resources'] = array_values($resources);
         $settings['rrze_search_engines']   = array_values($engines);
 
+        error_log('updated Settings:');
+        error_log(print_r($settings, true));
+
         $this->updateSettings($settings);
     }
+
 
     /**
      * Safely fetch and validate the global engines definition (RRZE_SEARCH_ENGINES).
@@ -169,6 +187,8 @@ final class RRZESearchSettingsExtender
         if (defined('RRZE_SEARCH_ENGINES') && is_array(RRZE_SEARCH_ENGINES)) {
             $global = RRZE_SEARCH_ENGINES;
         }
+
+        error_log(print_r($global, true));
 
         return array_merge($global, $this->buildDefaultLocalEngine());
     }
@@ -415,48 +435,181 @@ final class RRZESearchSettingsExtender
 
     /**
      * Remove duplicate presets so each adapter class appears at most once.
+     * Priorität: "Global" > "Default Local" > "anderes gleichwertig".
+     * Bei Gleichstand entscheidet die höhere Vollständigkeit (Score), sonst das zuerst gesehene.
      *
      * @param array<int, array<string, mixed>> $presets
      * @return array<int, array<string, mixed>>
      */
     private function dedupePresetsByClass(array $presets): array
     {
-        $seen = [];
-        $unique = [];
+        $bestByClass = [];        // class => ['preset' => array, 'isLocalDefault' => bool, 'score' => int, 'firstIdx' => int]
+        $passthrough = [];        // Presets ohne ermittelbare Klasse werden unverändert durchgereicht
 
-        foreach ($presets as $preset) {
+        foreach ($presets as $idx => $preset) {
             if (!is_array($preset)) {
                 continue;
             }
 
+            // Klasse bestimmen (robust, inkl. Mapping auf WP-Adapter via Name-Heuristik)
             $class = $preset['resource_class'] ?? $preset['class'] ?? null;
-            if ((!$class || !is_string($class)) && isset($preset['name']) && is_string($preset['name'])) {
-                $nameCandidate = strtolower($preset['name']);
+            if (is_string($class)) {
+                $class = sanitize_key($class);
+            }
+
+            // Heuristik für die lokale WP-Suche, falls keine Klasse vorhanden ist
+            if ((!$class || !is_string($class) || $class === '') && isset($preset['name']) && is_string($preset['name'])) {
+                $nameCandidate     = strtolower($preset['name']);
                 $localNameVariants = ['local website search', 'native wordpress search', 'wordpress'];
                 if (function_exists('__')) {
                     $localNameVariants[] = strtolower(__('Local Website Search', 'rrze-search'));
                     $localNameVariants[] = strtolower(__('Native WordPress search results', 'rrze-search'));
                 }
-
                 if (in_array($nameCandidate, $localNameVariants, true)) {
-                    $class = $this->findWordPressAdapter();
+                    $mapped = $this->findWordPressAdapter();
+                    if (is_string($mapped) && $mapped !== '') {
+                        $class = sanitize_key($mapped);
+                        $preset['resource_class'] = $class;
+                    }
                 }
             }
 
-            if (!$class || !is_string($class)) {
-                $unique[] = $preset;
+            // Keine Klasse ermittelbar -> nicht deduplizieren, hinten anhängen
+            if (!$class || !is_string($class) || $class === '') {
+                $passthrough[] = $preset;
                 continue;
             }
 
-            if (isset($seen[$class])) {
+            // Für die Priorisierungslogik vorbereiten
+            $isLocalDefault = $this->isLocalDefaultPreset($preset);
+            $score          = $this->completenessScore($preset);
+
+            if (!isset($bestByClass[$class])) {
+                // Erstes Vorkommen dieser Klasse
+                $preset['resource_class'] = $class; // sicherstellen
+                $bestByClass[$class] = [
+                    'preset'         => $preset,
+                    'isLocalDefault' => $isLocalDefault,
+                    'score'          => $score,
+                    'firstIdx'       => $idx,
+                ];
                 continue;
             }
 
-            $seen[$class] = true;
-            $preset['resource_class'] = $class;
-            $unique[] = $preset;
+            // Es existiert bereits ein Kandidat für diese Klasse -> Auswahl treffen
+            $current = $bestByClass[$class];
+
+            // 1) Global > LocalDefault
+            if ($current['isLocalDefault'] && !$isLocalDefault) {
+                // neues (globales/„nicht Default-Local“) Preset gewinnt
+                $preset['resource_class'] = $class;
+                $bestByClass[$class] = [
+                    'preset'         => $preset,
+                    'isLocalDefault' => $isLocalDefault,
+                    'score'          => $score,
+                    'firstIdx'       => $current['firstIdx'], // Ordnung am ersten Auftreten ausrichten
+                ];
+                continue;
+            }
+            if (!$current['isLocalDefault'] && $isLocalDefault) {
+                // bestehender ist global, neuer ist default-local -> ignorieren
+                continue;
+            }
+
+            // 2) Beide gleiche „Globalität“ -> Vollständigkeit vergleichen
+            if ($score > $current['score']) {
+                $preset['resource_class'] = $class;
+                $bestByClass[$class] = [
+                    'preset'         => $preset,
+                    'isLocalDefault' => $isLocalDefault,
+                    'score'          => $score,
+                    'firstIdx'       => $current['firstIdx'],
+                ];
+                continue;
+            }
+
+            // 3) Bei Gleichstand behalten wir den zuerst gesehenen (stabile Ausgabe)
+            // -> nichts tun
+        }
+
+        // Ausgabe: nach erstem Auftreten pro Klasse sortieren
+        uasort($bestByClass, static function ($a, $b) {
+            return $a['firstIdx'] <=> $b['firstIdx'];
+        });
+
+        $unique = [];
+        foreach ($bestByClass as $bundle) {
+            $unique[] = $bundle['preset'];
+        }
+
+        // Presets ohne Klasse hinten anhängen
+        foreach ($passthrough as $p) {
+            $unique[] = $p;
         }
 
         return $unique;
     }
+
+    /**
+     * Erkennung des Default-Local-Presets (aus buildDefaultLocalEngine()).
+     * Heuristik: Name/Desc entsprechen dem Default (inkl. Übersetzungen) und beide Tokens (cx/key) leer.
+     */
+    private function isLocalDefaultPreset(array $preset): bool
+    {
+        $name = isset($preset['name']) && is_string($preset['name']) ? strtolower($preset['name']) : '';
+        $desc = isset($preset['desc']) && is_string($preset['desc']) ? strtolower($preset['desc']) : '';
+        $cx   = isset($preset['cx']) && is_string($preset['cx']) ? trim($preset['cx']) : '';
+        // key | api | apikey sind alternative Felder
+        $api  = '';
+        if (isset($preset['key']) && is_string($preset['key'])) {
+            $api = trim($preset['key']);
+        } elseif (isset($preset['api']) && is_string($preset['api'])) {
+            $api = trim($preset['api']);
+        } elseif (isset($preset['apikey']) && is_string($preset['apikey'])) {
+            $api = trim($preset['apikey']);
+        }
+
+        $localName = 'local website search';
+        $localDesc = 'native wordpress search results';
+        if (function_exists('__')) {
+            $localName = strtolower(__('Local Website Search', 'rrze-search'));
+            $localDesc = strtolower(__('Native WordPress search results', 'rrze-search'));
+        }
+
+        $nameMatches = ($name === $localName);
+        $descMatches = ($desc === $localDesc);
+        $tokensEmpty = ($cx === '' && $api === '');
+
+        return $nameMatches && $descMatches && $tokensEmpty;
+    }
+
+    /**
+     * Bewertet, wie „vollständig“ ein Preset ist.
+     * Höherer Score bevorzugt (mehr sinnvolle Felder befüllt).
+     */
+    private function completenessScore(array $preset): int
+    {
+        $score = 0;
+
+        // Schlüssel-Felder
+        $score += (!empty($preset['cx']) && is_string($preset['cx'])) ? 2 : 0;
+
+        $apiFilled = false;
+        foreach (['key', 'api', 'apikey'] as $k) {
+            if (isset($preset[$k]) && is_string($preset[$k]) && $preset[$k] !== '') {
+                $apiFilled = true; break;
+            }
+        }
+        $score += $apiFilled ? 2 : 0;
+
+        // Metadaten
+        $score += (isset($preset['name']) && is_string($preset['name']) && $preset['name'] !== '') ? 1 : 0;
+        $score += (isset($preset['desc']) && is_string($preset['desc']) && $preset['desc'] !== '') ? 1 : 0;
+
+        // Klasse vorhanden gibt Bonus (robustheit)
+        $score += (isset($preset['resource_class']) && is_string($preset['resource_class']) && $preset['resource_class'] !== '') ? 1 : 0;
+
+        return $score;
+    }
+
 }
