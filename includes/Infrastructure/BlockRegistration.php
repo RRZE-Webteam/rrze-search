@@ -27,7 +27,6 @@ class BlockRegistration {
      */
     public function rrze_register_blocks(): void {
         register_block_type(plugin_dir_path( dirname( __DIR__ ) ) . 'build/block', [
-            'render_callback' => [$this, 'render_rrze_search_block'],
             'skip_inner_blocks' => true
         ]);
 //        $scriptHandle = generate_block_asset_handle('rrze-search/block', 'editorScript');
