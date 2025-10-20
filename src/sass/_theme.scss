@@ -274,3 +274,21 @@ label.resource_table_label {
 /* _fau-theme 
 /* Created on : 19.07.2022, 13:43:45
 /*----------------------------------------------------------------------------*/
+
+.wp-theme-FAU-Einrichtungen nav.meta-links div.search-settings{
+	display: none;
+}
+
+.wp-theme-FAU-Einrichtungen nav.meta-links button.fau-global-search__button{
+	font-size: .9rem;
+	padding-top: .6rem;
+	padding-bottom: .6rem;
+	padding-right: 1.5rem;
+	padding-left: 1.5rem;
+	margin-left: -0.25rem;
+}
+
+.wp-theme-FAU-Einrichtungen nav.meta-links input.fau-global-search__input{
+	padding-top: .7rem;
+	padding-bottom: .7rem;
+}

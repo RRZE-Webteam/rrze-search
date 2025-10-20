@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Application\Controller\ShortcodeController;
 use RRZE\RRZESearch\Application\Controller\WidgetController;
+use UTN\BiteEmbed\Block;
 
 /**
  * Facade that wires the RRZE Search plugin services into WordPress.
@@ -30,6 +31,7 @@ class ServiceProvider
             SettingsLink::class,
             WidgetController::class,
             ShortcodeController::class,
+            BlockRegistration::class,
         ];
     }
 
