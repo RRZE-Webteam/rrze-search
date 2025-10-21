@@ -1,19 +1,22 @@
 import {
   TextControl,
   PanelBody,
-  SelectControl,
-
+  SelectControl
 } from "@wordpress/components";
 import {
-  InspectorControls
+  InspectorControls,
+  HeadingLevelDropdown,
+  BlockControls
 } from "@wordpress/block-editor"
 import {
   useBlockProps,
 } from "@wordpress/block-editor";
+import { __ } from "@wordpress/i18n";
 
 interface EditProps {
   attributes: {
-    width: "wide" | "full";
+    width: "content-size" | "full-grid";
+    headingLevel: 2 | 3 | 4 | 5 | 6;
     heading: string;
   },
 setAttributes : (attributes: Partial<EditProps["attributes"]>) => void;
@@ -21,23 +24,35 @@ blockProps: string[];
 }
 
 export default function Edit({ attributes, setAttributes}: EditProps) {
-  const props = useBlockProps();
-  const { width, heading } = attributes;
+  const { width, heading, headingLevel } = attributes;
 
   const blockProps = useBlockProps( {
     className: `fau-global-search-wrapper fau-global-search-wrapper--${ width }`,
   } );
 
-  const onChangeWidth = ( newWidth ) => {
+  const HEADING_LEVELS = [ 2, 3, 4, 5, 6 ];
+
+  const onChangeWidth = ( newWidth: "content-size" | "full-grid" ) => {
     setAttributes( { width: newWidth } );
   };
 
-  const onChangeHeading = ( newHeading ) => {
+  const onChangeHeadingLevel = ( newHeadingLevel: number ) => {
+    setAttributes( { headingLevel: newHeadingLevel } );
+  };
+
+  const onChangeHeading = ( newHeading: string ) => {
     setAttributes( { heading: newHeading } );
   };
 
   return (
     <>
+      <BlockControls group="block">
+        <HeadingLevelDropdown
+          options={ [ 2, 3, 4, 5, 6 ] }
+          value={ headingLevel }
+          onChange={ onChangeHeadingLevel }
+        ></HeadingLevelDropdown>
+      </BlockControls>
       <InspectorControls>
         <PanelBody title={ __( 'Content Settings', 'fau-elemental' ) }>
           <TextControl

@@ -1,28 +1,37 @@
-svg.elements-tabs-icon-modal{
-    float: left;
-    clear: both;
-    width: 2ch;
-    height: 2ch;
-    padding-right: 2ch;
-    border: 1px solid #000;
-    padding: 1ch;
-}
+/**
+ * FAU Global Search Block Editor Styles
+ */
+.wp-block-rrze-search-search {
 
-.elements-tabs-icon-modal-input .components-text-control__input{
-    // width: 80%;
-    display: inline-block;
-}
+    // Include the core styling for form elements
+    .fau-global-search {
 
-.components-base-control.elements-tabs-icon-modal-input{
-    width: auto;
-}
+        &__input {
+            flex: 1;
+            font-weight: 400;
+            font-size: var(--P-Body-Text-Small);
+            padding: 0 var(--Spacing-4x) 0 var(--Spacing-12x);
+            height: var(--Spacing-12x);
+            border: 0.0625rem solid var(--FAU-Col-FAU-Dunkelblau-100);
+            border-right: none;
+            background-color: var(--FAU-Col-FAU-Weiss-100);
+            background-image: var(--icon-search-schwarz);
+            background-repeat: no-repeat;
+            background-position: var(--Spacing-4x) center;
+            background-size: var(--Spacing-4x) var(--Spacing-4x);
+            color: var(--FAU-Col-FAU-Dunkelblau-100);
+            border-radius: 0;
+            outline: none;
 
-.rrze-elements-tabs-modal-container{
-    display: flex;
-    flex-wrap: wrap;
-}
+            &::placeholder {
+                color: var(--FAU-Col-FAU-Schwarz-62_5);
+                opacity: 1;
+            }
 
-// .is-selected.wp-block-rrze-elements-tab{
-//     padding-top: 4em;
-//     margin-top: -4em;
-// }
+            &:focus {
+                border-color: var(--FAU-Col-FAU-Blau-100);
+                box-shadow: 0 0 0 0.0625rem var(--FAU-Col-FAU-Blau-100);
+            }
+        }
+    }
+}
