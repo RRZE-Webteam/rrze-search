@@ -50,6 +50,10 @@ final class BlockRender
 
         $paramName = self::sanitizeParamName($rawParam);
 
+        $defaultEngineResourceId = isset($settings['rrze_search_default_engine'])
+            ? (string) $settings['rrze_search_default_engine']
+            : '';
+
         $availableEngines = self::collectEnabledEngines($settings);
         $shouldUseWidgetSubmission = (
             $rawTargetUrlTrimmed === '' &&
@@ -65,7 +69,9 @@ final class BlockRender
             $paramName = self::DEFAULT_PARAM;
         }
 
-        $selectedEngine = $shouldUseWidgetSubmission ? self::determinePreferredEngine($availableEngines) : '';
+        $selectedEngine = $shouldUseWidgetSubmission
+            ? self::determinePreferredEngine($availableEngines, $defaultEngineResourceId)
+            : '';
 
         $formMethod = $shouldUseWidgetSubmission ? 'post' : 'get';
         $formAction = $shouldUseWidgetSubmission ? admin_url('admin-post.php') : $actionUrl;
@@ -154,6 +160,7 @@ final class BlockRender
                                     continue;
                                 }
                                 $isChecked = ($engineId === $selectedEngine);
+                                $resourceIdAttr = isset($engineData['resource_id']) ? (string) $engineData['resource_id'] : '';
                                 ?>
                                 <input
                                         type="radio"
@@ -162,6 +169,7 @@ final class BlockRender
                                         id="<?php echo esc_attr($radioId); ?>"
                                         value="<?php echo esc_attr($engineId); ?>"
                                     <?php checked($isChecked); ?>
+                                        data-resource-id="<?php echo esc_attr($resourceIdAttr); ?>"
                                 >
                                 <label for="<?php echo esc_attr($radioId); ?>">
                                     <?php echo esc_html($engineData['label']); ?>
@@ -233,8 +241,11 @@ final class BlockRender
                 }
             }
 
+            $resourceId = isset($engine['resource_id']) ? (string) $engine['resource_id'] : (string) $index;
+
             $collection[] = [
                 'id' => (string)$index,
+                'resource_id' => $resourceId,
                 'label' => $label,
                 'disclaimer_url' => $disclaimerUrl,
             ];
@@ -249,7 +260,7 @@ final class BlockRender
      * @param array<int, array<string, string>> $engines
      * @return string
      */
-    private static function determinePreferredEngine(array $engines): string
+    private static function determinePreferredEngine(array $engines, string $defaultResourceId = ''): string
     {
         if (empty($engines)) {
             return '';
@@ -257,6 +268,14 @@ final class BlockRender
 
         $keys = array_column($engines, 'id');
         $keys = array_map('strval', $keys);
+        $resourceIdMap = [];
+        foreach ($engines as $engine) {
+            $idx = isset($engine['id']) ? (string) $engine['id'] : null;
+            $resourceId = isset($engine['resource_id']) ? (string) $engine['resource_id'] : null;
+            if ($idx !== null && $resourceId !== null) {
+                $resourceIdMap[$resourceId] = $idx;
+            }
+        }
 
         if (isset($_GET['se'])) {
             $fromQuery = (string)absint($_GET['se']);
@@ -270,6 +289,10 @@ final class BlockRender
             if (in_array($fromCookie, $keys, true)) {
                 return $fromCookie;
             }
+        }
+
+        if ($defaultResourceId !== '' && isset($resourceIdMap[$defaultResourceId])) {
+            return $resourceIdMap[$defaultResourceId];
         }
 
         return $keys[0];

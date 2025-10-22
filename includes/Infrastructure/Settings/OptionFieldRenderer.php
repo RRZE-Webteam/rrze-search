@@ -43,22 +43,22 @@ class OptionFieldRenderer extends AppController
      */
     public function enginesToggle(array $args): void
     {
+        $fieldName   = $args['label_for'];
+        $optionName  = $args['option_name'];
+        $optionValue = get_option($optionName);
+
+        $engines = isset($optionValue[$fieldName]) && is_array($optionValue[$fieldName])
+            ? $optionValue[$fieldName]
+            : [];
+
         $globalEngines = defined('RRZE_SEARCH_ENGINES') && is_array(RRZE_SEARCH_ENGINES) ? RRZE_SEARCH_ENGINES : [];
+        $hasGlobalPresets = !empty($globalEngines);
 
-        if(empty($globalEngines)) {
-            $fieldName = $args['label_for'];
-            $optionName = $args['option_name'];
-            $optionValue = get_option($optionName);
+        $defaultEngine = isset($optionValue['rrze_search_default_engine'])
+            ? (string) $optionValue['rrze_search_default_engine']
+            : '';
 
-            // Define props used in template
-            $engines = $optionValue[$fieldName];
-
-            // Engine table
-            require $this->templatesDir . DIRECTORY_SEPARATOR . 'admin-engine-toggle.php';
-        }
-        else {
-            echo('Search Engines are currently set networkwide and cannot be overwritten.');
-        }
+        require $this->templatesDir . DIRECTORY_SEPARATOR . 'admin-engine-toggle.php';
     }
 
     /**
@@ -80,17 +80,12 @@ class OptionFieldRenderer extends AppController
         $resources = $optionValue[$fieldName];
         $globalEngines = defined('RRZE_SEARCH_ENGINES') && is_array(RRZE_SEARCH_ENGINES) ? RRZE_SEARCH_ENGINES : [];
 
-        if(!empty($globalEngines))
-        {
-            // Global presets for the read-only panel
+        if (!empty($globalEngines)) {
             require $this->templatesDir . DIRECTORY_SEPARATOR . 'admin-engine-presets.php';
-        } else {
-            // Resource table
-            require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-configuration.php';
         }
 
-        // Resource template
-        require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-engine-template.php';
+        require $this->templatesDir . DIRECTORY_SEPARATOR . 'admin-engine-configuration.php';
+        require $this->templatesDir . DIRECTORY_SEPARATOR . 'admin-engine-template.php';
     }
 
     /**

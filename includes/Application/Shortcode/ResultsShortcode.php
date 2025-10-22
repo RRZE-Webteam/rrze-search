@@ -60,6 +60,22 @@ class ResultsShortcode
     {
         $engines      = $this->options['rrze_search_engines'];
         $resources    = $this->options['rrze_search_resources'];
+        $defaultEngineResourceId = isset($this->options['rrze_search_default_engine'])
+            ? (string) $this->options['rrze_search_default_engine']
+            : '';
+
+        $engineIndexByResourceId = [];
+        foreach ($engines as $index => $engine) {
+            if (!is_array($engine)) {
+                continue;
+            }
+            $resourceId = isset($engine['resource_id']) ? (string) $engine['resource_id'] : '';
+            if ($resourceId === '') {
+                continue;
+            }
+            $engineIndexByResourceId[$resourceId] = (int) $index;
+        }
+
         $pageLink     = get_permalink($this->options['rrze_search_page_id']);
         $templatesDir = DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR;
 
@@ -71,6 +87,9 @@ class ResultsShortcode
             $query = sanitize_text_field(wp_unslash($_GET['s']));
         }
         $useengine = 0;
+        if ($defaultEngineResourceId !== '' && isset($engineIndexByResourceId[$defaultEngineResourceId])) {
+            $useengine = $engineIndexByResourceId[$defaultEngineResourceId];
+        }
         if (isset($_GET['se'])) {
             $useengine  = absint($_GET['se']);
         }

@@ -186,7 +186,8 @@ final class RRZESearchSettingsExtender
      * @return array{
      *   rrze_search_resources: array<int, array>,
      *   rrze_search_engines: array<int, array>,
-     *   rrze_search_page_id: int
+     *   rrze_search_page_id: int,
+     *   rrze_search_default_engine: string
      * }
      */
     private function getSettings(): array
@@ -197,6 +198,7 @@ final class RRZESearchSettingsExtender
                 'rrze_search_resources' => [],
                 'rrze_search_engines'   => [],
                 'rrze_search_page_id'   => 0,
+                'rrze_search_default_engine' => '',
             ]
         );
 
@@ -206,6 +208,7 @@ final class RRZESearchSettingsExtender
                 'rrze_search_resources' => [],
                 'rrze_search_engines'   => [],
                 'rrze_search_page_id'   => 0,
+                'rrze_search_default_engine' => '',
             ];
         }
 
@@ -220,6 +223,10 @@ final class RRZESearchSettingsExtender
         $settings['rrze_search_page_id'] = isset($settings['rrze_search_page_id']) && is_int($settings['rrze_search_page_id'])
             ? $settings['rrze_search_page_id']
             : 0;
+
+        $settings['rrze_search_default_engine'] = isset($settings['rrze_search_default_engine'])
+            ? (string) $settings['rrze_search_default_engine']
+            : '';
 
         return $settings;
     }

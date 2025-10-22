@@ -172,7 +172,51 @@ final class SettingsSanitizer extends AppController
             ];
         }
 
-        // 6) Page-ID übernehmen (Input > Option > 0)
+        // 6) Standard-Suchmaschine bestimmen
+        $preferredDefault = '';
+        if (isset($input['rrze_search_default_engine'])) {
+            $preferredDefault = sanitize_text_field((string) $input['rrze_search_default_engine']);
+        } elseif (isset($option['rrze_search_default_engine'])) {
+            $preferredDefault = sanitize_text_field((string) $option['rrze_search_default_engine']);
+        }
+
+        $enabledEnginesByResourceId = [];
+        $allEnginesByResourceId = [];
+        $wordpressResourceId = null;
+
+        foreach ($enginesOut as $engineEntry) {
+            $engineResourceId = isset($engineEntry['resource_id']) ? (string) $engineEntry['resource_id'] : '';
+            if ($engineResourceId === '') {
+                continue;
+            }
+
+            $allEnginesByResourceId[$engineResourceId] = $engineEntry;
+
+            if (!empty($engineEntry['enabled'])) {
+                $enabledEnginesByResourceId[$engineResourceId] = $engineEntry;
+            }
+
+            if ($wordpressResourceId === null && isset($engineEntry['resource_class']) && $this->isWordPressAdapterClass((string) $engineEntry['resource_class'])) {
+                $wordpressResourceId = $engineResourceId;
+            }
+        }
+
+        $defaultEngine = '';
+        if ($preferredDefault !== '' && isset($enabledEnginesByResourceId[$preferredDefault])) {
+            $defaultEngine = $preferredDefault;
+        } elseif ($wordpressResourceId !== null && isset($enabledEnginesByResourceId[$wordpressResourceId])) {
+            $defaultEngine = $wordpressResourceId;
+        } elseif (!empty($enabledEnginesByResourceId)) {
+            $enabledKeys = array_keys($enabledEnginesByResourceId);
+            $firstKey = reset($enabledKeys);
+            if ($firstKey !== false) {
+                $defaultEngine = (string) $firstKey;
+            }
+        } elseif ($wordpressResourceId !== null && isset($allEnginesByResourceId[$wordpressResourceId])) {
+            $defaultEngine = $wordpressResourceId;
+        }
+
+        // 7) Page-ID übernehmen (Input > Option > 0)
         $pageId = 0;
         if (isset($input['rrze_search_page_id'])) {
             $pageId = absint($input['rrze_search_page_id']);
@@ -180,14 +224,15 @@ final class SettingsSanitizer extends AppController
             $pageId = absint($option['rrze_search_page_id']);
         }
 
-        // 7) Finale Ressourcenliste für Ausgabe (normiert, numerische Indizes)
+        // 8) Finale Ressourcenliste für Ausgabe (normiert, numerische Indizes)
         $resourcesOut = array_values($resourcesById);
 
-        // 8) Ergebnis zusammenstellen
+        // 9) Ergebnis zusammenstellen
         return [
             'rrze_search_resources' => $resourcesOut,
             'rrze_search_engines'   => array_values($enginesOut),
             'rrze_search_page_id'   => $pageId,
+            'rrze_search_default_engine' => $defaultEngine,
         ];
     }
 
@@ -214,5 +259,11 @@ final class SettingsSanitizer extends AppController
         }
 
         return '';
+    }
+
+    private function isWordPressAdapterClass(string $class): bool
+    {
+        $class = strtolower(trim($class));
+        return $class !== '' && str_contains($class, 'wordpressadapter');
     }
 }
