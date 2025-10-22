@@ -4,8 +4,8 @@
   "name": "rrze-search/search",
   "version": "1.1.2",
   "title": "RRZE Search",
-  "category": "fau",
-  "description": "Creates a blueprint block.",
+  "category": "rrze",
+  "description": "Creates a Search Form for the RRZE Search plugin.",
   "keywords": [
     "search",
     "global",
@@ -50,5 +50,6 @@
   "textdomain": "rrze-elements-blocks",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css"
+  "style": "file:./style-index.css",
+  "example": {}
 }

@@ -31,6 +31,11 @@ final class BlockRender
         // ---- Read & sanitize attributes ---------------------------------
         $width = isset($attributes['width']) ? esc_attr((string)$attributes['width']) : 'content-size';
         $heading = isset($attributes['heading']) ? wp_kses_post((string)$attributes['heading']) : '';
+        $headingLevel = isset($attributes['headingLevel']) ? (int) $attributes['headingLevel'] : 2;
+        $headingClasses = 'fau-global-search__heading';
+        if ($width === 'full-grid') {
+            $headingClasses .= ' fau-global-search__heading--full-grid';
+        }
 
         $rawTargetUrl = isset($attributes['searchTargetUrl']) ? (string)$attributes['searchTargetUrl'] : '';
         $rawTargetUrlTrimmed = trim($rawTargetUrl);
@@ -103,16 +108,15 @@ final class BlockRender
         <div class="fau-global-search__outer-wrapper">
             <div <?php echo $wrapperAttributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             ?>>
-                <?php if (!empty($heading) && $width === 'full-grid') : ?>
-                    <h3 class="fau-global-search__heading fau-global-search__heading--full-grid">
-                        <?php echo esc_html($heading); ?>
-                    </h3>
-                <?php elseif (!empty($heading) && $width !== 'full-grid') : ?>
-                    <h3 class="fau-global-search__heading">
-                        <?php echo esc_html($heading); ?>
-                    </h3>
+                <?php if ($heading !== '') : ?>
+                    <?php printf(
+                        '<h%d class="%s">%s</h%d>',
+                        $headingLevel,
+                        esc_attr($headingClasses),
+                        esc_html($heading),
+                        $headingLevel
+                    ); ?>
                 <?php endif; ?>
-
                 <form
                         class="fau-global-search fau-global-search__form"
                         method="<?php echo esc_attr($formMethod); ?>"
