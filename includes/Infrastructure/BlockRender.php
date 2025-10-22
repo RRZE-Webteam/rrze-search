@@ -33,15 +33,32 @@ final class BlockRender
         $width = isset($attributes['width']) ? esc_attr((string)$attributes['width']) : 'content-size';
         $heading = isset($attributes['heading']) ? wp_kses_post((string)$attributes['heading']) : '';
 
-        $rawTargetUrl = $attributes['searchTargetUrl'] ?? '';
-        $actionUrl = self::sanitizeActionUrl($rawTargetUrl);
+        $rawTargetUrl = isset($attributes['searchTargetUrl']) ? (string)$attributes['searchTargetUrl'] : '';
+        $rawTargetUrlTrimmed = trim($rawTargetUrl);
 
-        $rawParam = $attributes['searchGetParameter'] ?? '';
+        $rawParam = isset($attributes['searchGetParameter']) ? (string)$attributes['searchGetParameter'] : '';
+        $rawParamTrimmed = trim($rawParam);
+
+        $settings = get_option('rrze_search_settings');
+
+        $actionUrl = self::sanitizeActionUrl($rawTargetUrl);
+        if ($rawTargetUrlTrimmed === '') {
+            $resultsUrl = self::resolveResultsPageUrl($settings);
+            if ($resultsUrl !== null) {
+                $actionUrl = $resultsUrl;
+            }
+        }
+
         $paramName = self::sanitizeParamName($rawParam);
 
-        // Feature flags based on width
-        $showSearchScope = ($width === 'content-size'); // reserved for future use
-        $enableAdvancedFeatures = ($width === 'content-size');
+        $availableEngines = ($width === 'content-size') ? self::collectEnabledEngines($settings) : [];
+        $shouldShowEngineSelector = (
+            $width === 'content-size' &&
+            $rawTargetUrlTrimmed === '' &&
+            $rawParamTrimmed === '' &&
+            !empty($availableEngines)
+        );
+        $selectedEngine = $shouldShowEngineSelector ? self::determinePreferredEngine($availableEngines) : '';
 
         // Wrapper attributes
         $wrapperAttributes = get_block_wrapper_attributes([
@@ -60,11 +77,12 @@ final class BlockRender
         $currentValue = '';
         if (isset($_GET[$paramName])) {
             $currentValue = sanitize_text_field(wp_unslash($_GET[$paramName]));
+        } elseif ($paramName === self::DEFAULT_PARAM && isset($_GET['q'])) {
+            $currentValue = sanitize_text_field(wp_unslash($_GET['q']));
         }
 
         // ---- Build output ------------------------------------------------
         ob_start();
-        include dirname(__DIR__).'/Infrastructure/Templates/partials/search-form.php';
         ?>
         <div class="fau-global-search__outer-wrapper">
             <div <?php echo $wrapperAttributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -84,7 +102,7 @@ final class BlockRender
                         method="get"
                         action="<?php echo esc_url($actionUrl); ?>"
                         id="<?php echo esc_attr($formId); ?>"
-                    <?php if ($enableAdvancedFeatures) : ?>
+                    <?php if ($shouldShowEngineSelector) : ?>
                         data-advanced-features="true" data-enable-autocomplete="true"
                     <?php endif; ?>
                 >
@@ -108,11 +126,162 @@ final class BlockRender
                             <span class="fau-global-search__button-icon" aria-hidden="true"></span>
                         </button>
                     </div>
+                    <?php if ($shouldShowEngineSelector) : ?>
+                        <fieldset class="search-settings" role="radiogroup" aria-labelledby="<?php echo esc_attr($formId); ?>-legend">
+                            <legend id="<?php echo esc_attr($formId); ?>-legend" class="screen-reader-text">
+                                <?php echo esc_html__('Please select one of the available search engines:', 'rrze-search'); ?>
+                            </legend>
+                            <?php foreach ($availableEngines as $index => $engineData) :
+                                $radioId = sprintf('%s-engine-%d', $formId, $index + 1);
+                                $isChecked = ($engineData['key'] === $selectedEngine);
+                                ?>
+                                <input
+                                        type="radio"
+                                        class="search-engine"
+                                        name="se"
+                                        id="<?php echo esc_attr($radioId); ?>"
+                                        value="<?php echo esc_attr($engineData['key']); ?>"
+                                    <?php checked($isChecked); ?>
+                                >
+                                <label for="<?php echo esc_attr($radioId); ?>">
+                                    <?php echo esc_html($engineData['label']); ?>
+                                    <?php if (!empty($engineData['disclaimer_url'])) : ?>
+                                        <span class="search-engine__disclaimer">
+                                            (<a href="<?php echo esc_url($engineData['disclaimer_url']); ?>">
+                                                <?php echo esc_html__('Privacy Disclaimer', 'rrze-search'); ?>
+                                            </a>)
+                                        </span>
+                                    <?php endif; ?>
+                                </label>
+                            <?php endforeach; ?>
+                        </fieldset>
+                    <?php endif; ?>
                 </form>
             </div>
         </div>
         <?php
         return (string)ob_get_clean();
+    }
+
+    /**
+     * Build the list of enabled search engines with presentation data.
+     *
+     * @param mixed $settings RRZE Search option array if already loaded.
+     * @return array<int, array<string, string>>
+     */
+    private static function collectEnabledEngines($settings): array
+    {
+        if (!is_array($settings)) {
+            $settings = get_option('rrze_search_settings');
+        }
+
+        if (!is_array($settings)) {
+            return [];
+        }
+
+        $engines = isset($settings['rrze_search_engines']) && is_array($settings['rrze_search_engines'])
+            ? $settings['rrze_search_engines']
+            : [];
+
+        $collection = [];
+        foreach ($engines as $index => $engine) {
+            if (!is_array($engine)) {
+                continue;
+            }
+
+            $resourceClass = isset($engine['resource_class']) ? (string)$engine['resource_class'] : '';
+            if ($resourceClass === '') {
+                continue;
+            }
+
+            $engineEnabled = !isset($engine['enabled']) || (bool)$engine['enabled'];
+            if (!$engineEnabled) {
+                continue;
+            }
+
+            $label = isset($engine['resource_name']) ? trim((string)$engine['resource_name']) : '';
+            if ($label === '') {
+                continue;
+            }
+
+            $disclaimerId = isset($engine['resource_disclaimer']) ? absint($engine['resource_disclaimer']) : 0;
+            $disclaimerUrl = '';
+            if ($disclaimerId > 0) {
+                $permalink = get_permalink($disclaimerId);
+                if (is_string($permalink)) {
+                    $disclaimerUrl = $permalink;
+                }
+            }
+
+            $collection[] = [
+                'key' => (string)$index,
+                'label' => $label,
+                'disclaimer_url' => $disclaimerUrl,
+            ];
+        }
+
+        return $collection;
+    }
+
+    /**
+     * Determine which engine should be selected for the current request.
+     *
+     * @param array<int, array<string, string>> $engines
+     * @return string
+     */
+    private static function determinePreferredEngine(array $engines): string
+    {
+        if (empty($engines)) {
+            return '';
+        }
+
+        $keys = array_column($engines, 'key');
+        $keys = array_map('strval', $keys);
+
+        if (isset($_GET['se'])) {
+            $fromQuery = (string)absint($_GET['se']);
+            if (in_array($fromQuery, $keys, true)) {
+                return $fromQuery;
+            }
+        }
+
+        if (isset($_COOKIE['rrze_search_engine_pref'])) {
+            $fromCookie = (string)absint($_COOKIE['rrze_search_engine_pref']);
+            if (in_array($fromCookie, $keys, true)) {
+                return $fromCookie;
+            }
+        }
+
+        return $keys[0];
+    }
+
+    /**
+     * Resolve the configured multisearch results page URL.
+     *
+     * @param mixed $settings RRZE Search option array if already loaded.
+     * @return string|null
+     */
+    private static function resolveResultsPageUrl($settings): ?string
+    {
+        if (!is_array($settings)) {
+            $settings = get_option('rrze_search_settings');
+        }
+
+        if (!is_array($settings)) {
+            return null;
+        }
+
+        $pageId = isset($settings['rrze_search_page_id']) ? absint($settings['rrze_search_page_id']) : 0;
+        if ($pageId <= 0) {
+            return null;
+        }
+
+        $permalink = get_permalink($pageId);
+        if (is_string($permalink) && $permalink !== '') {
+            return $permalink;
+        }
+
+        return null;
     }
 
     /**
