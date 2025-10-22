@@ -24,11 +24,18 @@
       "type": "number",
       "default": 2,
       "enum": [2, 3, 4, 5, 6]
+    },
+    "searchTargetUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "searchGetParameter": {
+      "type": "string",
+      "default": ""
     }
   },
   "textdomain": "rrze-elements-blocks",
   "editorScript": "file:./index.ts",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "render": "file:./render.php"
+  "style": "file:./style-index.css"
 }

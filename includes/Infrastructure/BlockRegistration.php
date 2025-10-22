@@ -27,7 +27,8 @@ class BlockRegistration {
      */
     public function rrze_register_blocks(): void {
         register_block_type(plugin_dir_path( dirname( __DIR__ ) ) . 'build/block', [
-            'skip_inner_blocks' => true
+            'skip_inner_blocks' => true,
+            'render_callback' => [$this, 'render_block'],
         ]);
 //        $scriptHandle = generate_block_asset_handle('rrze-search/block', 'editorScript');
 //        wp_set_script_translations(
@@ -73,10 +74,9 @@ class BlockRegistration {
      * @param $attributes
      * @return string The Shortcode Output | An error message if no shortcode is present.
      */
-    public static function render_rrze_search_block($attributes): string {
+    public static function render_block($attributes): string {
         try {
-            return 'Hello World!';
-
+            return BlockRender::render($attributes);
         } catch (Exception $e) {
             return sprintf(
                 '<div class="rrze-search-error">%s</div>',
