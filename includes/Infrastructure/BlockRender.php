@@ -1,7 +1,6 @@
 <?php
 
 namespace RRZE\RRZESearch\Infrastructure;
-use RRZE\RRZESearch\Application\Widget\SearchWidget;
 
 defined('ABSPATH') || exit;
 
@@ -58,7 +57,13 @@ final class BlockRender
             $rawParamTrimmed === '' &&
             !empty($availableEngines)
         );
+        if ($shouldShowEngineSelector) {
+            $paramName = self::DEFAULT_PARAM;
+        }
         $selectedEngine = $shouldShowEngineSelector ? self::determinePreferredEngine($availableEngines) : '';
+
+        $formMethod = $shouldShowEngineSelector ? 'post' : 'get';
+        $formAction = $shouldShowEngineSelector ? admin_url('admin-post.php') : $actionUrl;
 
         // Wrapper attributes
         $wrapperAttributes = get_block_wrapper_attributes([
@@ -99,13 +104,16 @@ final class BlockRender
 
                 <form
                         class="fau-global-search fau-global-search__form"
-                        method="get"
-                        action="<?php echo esc_url($actionUrl); ?>"
+                        method="<?php echo esc_attr($formMethod); ?>"
+                        action="<?php echo esc_url($formAction); ?>"
                         id="<?php echo esc_attr($formId); ?>"
                     <?php if ($shouldShowEngineSelector) : ?>
                         data-advanced-features="true" data-enable-autocomplete="true"
                     <?php endif; ?>
                 >
+                    <?php if ($shouldShowEngineSelector) : ?>
+                        <input type="hidden" name="action" value="widget_form_submit">
+                    <?php endif; ?>
                     <div class="fau-global-search__input-wrapper<?php echo ($width === 'full-grid') ? ' fau-global-search__input-wrapper--full-grid' : ''; ?>">
                         <input
                                 type="search"
@@ -138,9 +146,9 @@ final class BlockRender
                                 <input
                                         type="radio"
                                         class="search-engine"
-                                        name="se"
+                                        name="resource_id"
                                         id="<?php echo esc_attr($radioId); ?>"
-                                        value="<?php echo esc_attr($engineData['key']); ?>"
+                                        value="<?php echo esc_attr($engineData['id']); ?>"
                                     <?php checked($isChecked); ?>
                                 >
                                 <label for="<?php echo esc_attr($radioId); ?>">
@@ -214,7 +222,7 @@ final class BlockRender
             }
 
             $collection[] = [
-                'key' => (string)$index,
+                'id' => (string)$index,
                 'label' => $label,
                 'disclaimer_url' => $disclaimerUrl,
             ];
@@ -235,7 +243,7 @@ final class BlockRender
             return '';
         }
 
-        $keys = array_column($engines, 'key');
+        $keys = array_column($engines, 'id');
         $keys = array_map('strval', $keys);
 
         if (isset($_GET['se'])) {
