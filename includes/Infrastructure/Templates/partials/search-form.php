@@ -58,7 +58,7 @@ $currentQuery = isset($currentQuery) ? $currentQuery : '';
                             <input
                                     type="radio"
                                     class="search-engine"
-                                    name="search-engine"
+                                    name="resource_id"
                                     id="<?php echo esc_attr($id); ?>"
                                     value="<?php echo esc_attr($value); ?>"
                                 <?php checked($preferredEngine, $value); ?>

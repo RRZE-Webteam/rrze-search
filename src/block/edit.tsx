@@ -12,7 +12,8 @@ import {
 import {
   useBlockProps,
 } from "@wordpress/block-editor";
-import {__} from "@wordpress/i18n";
+import { __ } from "@wordpress/i18n";
+import { useEffect, useState } from "@wordpress/element";
 
 interface EditProps {
   attributes: {
@@ -28,6 +29,17 @@ interface EditProps {
 
 export default function Edit({attributes, setAttributes}: EditProps) {
   const {width, heading, headingLevel} = attributes;
+
+  const [targetUrlDraft, setTargetUrlDraft] = useState(attributes.searchTargetUrl || "");
+  const [getParamDraft, setGetParamDraft] = useState(attributes.searchGetParameter || "");
+
+  useEffect(() => {
+    setTargetUrlDraft(attributes.searchTargetUrl || "");
+  }, [attributes.searchTargetUrl]);
+
+  useEffect(() => {
+    setGetParamDraft(attributes.searchGetParameter || "");
+  }, [attributes.searchGetParameter]);
 
   const blockProps = useBlockProps({
     className: `fau-global-search-wrapper fau-global-search-wrapper--${width}`,
@@ -64,7 +76,7 @@ export default function Edit({attributes, setAttributes}: EditProps) {
     if (!clean) return '';
 
     const withoutPrefix = clean.replace(/^[?&]+/, '');
-    const firstChunk = withoutPrefix.split('&')[0];
+    const firstChunk = withoutPrefix.split(/[&#]/)[0];
     const namePart = firstChunk.split('=')[0];
 
     const match = namePart.match(/^[A-Za-z][A-Za-z0-9._-]{0,63}$/);
@@ -86,12 +98,24 @@ export default function Edit({attributes, setAttributes}: EditProps) {
   };
 
   const onChangeSearchTargetUrl = (newSearchTargetUrl: string) => {
-    const sanitized = sanitizeUrl(newSearchTargetUrl);
+    setTargetUrlDraft(newSearchTargetUrl);
+    setAttributes({ searchTargetUrl: newSearchTargetUrl });
+  };
+
+  const onBlurSearchTargetUrl = () => {
+    const sanitized = sanitizeUrl(targetUrlDraft);
+    setTargetUrlDraft(sanitized);
     setAttributes({ searchTargetUrl: sanitized });
   };
 
   const onChangeSearchGetParameter = (newSearchGetParameter: string) => {
-    const sanitized = sanitizeGetParam(newSearchGetParameter);
+    setGetParamDraft(newSearchGetParameter);
+    setAttributes({ searchGetParameter: newSearchGetParameter });
+  };
+
+  const onBlurSearchGetParameter = () => {
+    const sanitized = sanitizeGetParam(getParamDraft);
+    setGetParamDraft(sanitized);
     setAttributes({ searchGetParameter: sanitized });
   };
 
@@ -148,8 +172,20 @@ export default function Edit({attributes, setAttributes}: EditProps) {
         </PanelBody>
       )}
       <PanelBody title={__('Advanced Search options', 'rrze-search' )} initialOpen={false} >
-        <TextControl value={attributes.searchTargetUrl} onChange={onChangeSearchTargetUrl} placeholder={"https://fau.de/page/"} label={__('Target URL for the Search Request.')} />
-        <TextControl value={attributes.searchGetParameter} onChange={onChangeSearchGetParameter} placeholder={"?search="} label={__('GET-Parameter for the Search Request.')} />
+        <TextControl
+          value={targetUrlDraft}
+          onChange={onChangeSearchTargetUrl}
+          onBlur={onBlurSearchTargetUrl}
+          placeholder={"https://fau.de/page/"}
+          label={__('Target URL for the Search Request.')}
+        />
+        <TextControl
+          value={getParamDraft}
+          onChange={onChangeSearchGetParameter}
+          onBlur={onBlurSearchGetParameter}
+          placeholder={"?search="}
+          label={__('GET-Parameter for the Search Request.')}
+        />
       </PanelBody>
       </InspectorControls>
       <div className="fau-global-search__outer-wrapper">

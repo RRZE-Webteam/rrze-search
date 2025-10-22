@@ -50,20 +50,25 @@ final class BlockRender
 
         $paramName = self::sanitizeParamName($rawParam);
 
-        $availableEngines = ($width === 'content-size') ? self::collectEnabledEngines($settings) : [];
-        $shouldShowEngineSelector = (
-            $width === 'content-size' &&
+        $availableEngines = self::collectEnabledEngines($settings);
+        $shouldUseWidgetSubmission = (
             $rawTargetUrlTrimmed === '' &&
             $rawParamTrimmed === '' &&
             !empty($availableEngines)
         );
-        if ($shouldShowEngineSelector) {
+        $shouldShowEngineSelector = (
+            $shouldUseWidgetSubmission &&
+            $width === 'content-size'
+        );
+
+        if ($shouldUseWidgetSubmission) {
             $paramName = self::DEFAULT_PARAM;
         }
-        $selectedEngine = $shouldShowEngineSelector ? self::determinePreferredEngine($availableEngines) : '';
 
-        $formMethod = $shouldShowEngineSelector ? 'post' : 'get';
-        $formAction = $shouldShowEngineSelector ? admin_url('admin-post.php') : $actionUrl;
+        $selectedEngine = $shouldUseWidgetSubmission ? self::determinePreferredEngine($availableEngines) : '';
+
+        $formMethod = $shouldUseWidgetSubmission ? 'post' : 'get';
+        $formAction = $shouldUseWidgetSubmission ? admin_url('admin-post.php') : $actionUrl;
 
         // Wrapper attributes
         $wrapperAttributes = get_block_wrapper_attributes([
@@ -111,8 +116,11 @@ final class BlockRender
                         data-advanced-features="true" data-enable-autocomplete="true"
                     <?php endif; ?>
                 >
-                    <?php if ($shouldShowEngineSelector) : ?>
+                    <?php if ($shouldUseWidgetSubmission) : ?>
                         <input type="hidden" name="action" value="widget_form_submit">
+                        <?php if (!$shouldShowEngineSelector && $selectedEngine !== '') : ?>
+                            <input type="hidden" name="resource_id" value="<?php echo esc_attr($selectedEngine); ?>">
+                        <?php endif; ?>
                     <?php endif; ?>
                     <div class="fau-global-search__input-wrapper<?php echo ($width === 'full-grid') ? ' fau-global-search__input-wrapper--full-grid' : ''; ?>">
                         <input
@@ -141,14 +149,18 @@ final class BlockRender
                             </legend>
                             <?php foreach ($availableEngines as $index => $engineData) :
                                 $radioId = sprintf('%s-engine-%d', $formId, $index + 1);
-                                $isChecked = ($engineData['key'] === $selectedEngine);
+                                $engineId = isset($engineData['id']) ? (string)$engineData['id'] : '';
+                                if ($engineId === '') {
+                                    continue;
+                                }
+                                $isChecked = ($engineId === $selectedEngine);
                                 ?>
                                 <input
                                         type="radio"
                                         class="search-engine"
                                         name="resource_id"
                                         id="<?php echo esc_attr($radioId); ?>"
-                                        value="<?php echo esc_attr($engineData['id']); ?>"
+                                        value="<?php echo esc_attr($engineId); ?>"
                                     <?php checked($isChecked); ?>
                                 >
                                 <label for="<?php echo esc_attr($radioId); ?>">
