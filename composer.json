@@ -6,10 +6,10 @@
   "require": {},
   "autoload": {
     "exclude-from-classmap": [
-      "src/RRZESearch/Ports/Engines/SearchEngine-template.php"
+      "includes/Ports/Engines/SearchEngine-template.php"
     ],
     "psr-4": {
-      "RRZE\\": "src/"
+      "RRZE\\RRZESearch\\": "includes/"
     }
   }
 }

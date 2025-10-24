@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "rrze-search/search",
+  "version": "1.1.2",
+  "title": "RRZE Search",
+  "category": "rrze",
+  "description": "Creates a Search Form for the RRZE Search plugin.",
+  "keywords": [
+    "search",
+    "global",
+    "suche"
+  ],
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "width": {
+      "type": "string",
+      "default": "content-size",
+      "enum": [
+        "content-size",
+        "full-grid"
+      ]
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "headingLevel": {
+      "type": "number",
+      "default": 2,
+      "enum": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "searchTargetUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "searchGetParameter": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "rrze-elements-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "example": {}
+}

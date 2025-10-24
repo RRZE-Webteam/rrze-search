@@ -31,9 +31,7 @@
 			text-decoration: underline;
 		}
 	}
-	p {
-	    @include px2rem($font-size-meta);
-	}
+
 }
 
 .search-settings {
