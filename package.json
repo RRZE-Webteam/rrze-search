@@ -1,12 +1,14 @@
 {
   "name": "rrze-search",
-  "version": "0.2.6-0",
+  "version": "1.0.0",
   "description": "",
   "main": "rrze-search.php",
   "textdomain": "rrze-search",
   "scripts": {
     "build": "wp-scripts build",
-    "start": "wp-scripts start"
+    "start": "wp-scripts start",
+    "create-pot-for-blockeditor-l10n": "wp i18n make-pot . languages/rrze-search.pot --slug=rrze-search --domain=rrze-search --exclude=node_modules,src",
+    "create-json-for-l10n": "wp i18n make-json languages/ --no-purge"
   },
   "repository": {
     "type": "git",
