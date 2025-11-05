@@ -32,6 +32,8 @@
 namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
 defined( 'ABSPATH' ) || exit;
 
+use RRZE\RRZESearch\Infrastructure\UsageLimiter;
+
 /**
  * Google Custom Search Engine
  *
@@ -70,6 +72,28 @@ class GoogleSearch extends AbstractSearchEngine
             ];
         }
 
+        [$canConsume, $exceeded] = UsageLimiter::canConsumeRequest();
+        if (!$canConsume) {
+            $message = __('RRZE Search usage limit reached.', 'rrze-search');
+            $suffix  = UsageLimiter::describeExceededPeriods($exceeded);
+            if ($suffix !== '') {
+                $message = sprintf(
+                    __('RRZE Search usage limit reached (%s).', 'rrze-search'),
+                    $suffix
+                );
+            }
+
+            return [
+                'error' => [
+                    'code'    => 429,
+                    'message' => $message,
+                    'details' => [
+                        'blocked_periods' => $exceeded,
+                    ],
+                ],
+            ];
+        }
+
         $requestQueryArgs = [
             'cx'    => $args['cx'],
             'key'   => $args['key'],
@@ -89,6 +113,11 @@ class GoogleSearch extends AbstractSearchEngine
             'headers'   => [
                 'Accept' => 'application/json',
             ],
+        ]);
+
+        UsageLimiter::recordIncrement([
+            'engine'  => static::class,
+            'site_id' => function_exists('get_current_blog_id') ? get_current_blog_id() : null,
         ]);
 
         if (is_wp_error($response)) {

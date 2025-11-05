@@ -29,6 +29,7 @@ class ServiceProvider
             SettingsPage::class,
             ScriptEnqueuer::class,
             SettingsLink::class,
+            UsageLimiter::class,
             WidgetController::class,
             ShortcodeController::class,
             BlockRegistration::class,
