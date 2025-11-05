@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Application\Controller\ShortcodeController;
 use RRZE\RRZESearch\Application\Controller\WidgetController;
+use RRZE\RRZESearch\Infrastructure\UsageLimiter;
 use UTN\BiteEmbed\Block;
 
 /**

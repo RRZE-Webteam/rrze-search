@@ -17,12 +17,16 @@ final class UsageLimiter
 
     private const PERIODS = ['hour', 'day', 'week', 'month', 'year'];
 
+    private const TRANSIENT_KEY = 'rrze_search_limit_block';
+
     /**
      * Wire the limit enforcement into rrze_search_increment handling.
      */
     public function register(): void
     {
         add_filter('rrze_search_should_increment', [$this, 'enforceIncrementLimits'], 10, 2);
+        add_action('admin_notices', [$this, 'renderAdminNotice']);
+        add_action('network_admin_notices', [$this, 'renderAdminNotice']);
     }
 
     /**
@@ -41,6 +45,7 @@ final class UsageLimiter
         $option = get_site_option(self::OPTION_NAME, null);
 
         if (!is_array($option)) {
+            self::clearBlockedState();
             return [true, []];
         }
 
@@ -64,7 +69,13 @@ final class UsageLimiter
             }
         }
 
-        return [empty($exceeded), $exceeded];
+        if (!empty($exceeded)) {
+            self::storeBlockedState($exceeded);
+            return [false, $exceeded];
+        }
+
+        self::clearBlockedState();
+        return [true, []];
     }
 
     /**
@@ -108,6 +119,27 @@ final class UsageLimiter
     }
 
     /**
+     * Whether engine selection widgets should be hidden due to a temporary block.
+     */
+    public static function shouldForceFallback(): bool
+    {
+        return !empty(self::getBlockedState());
+    }
+
+    /**
+     * Returns metadata about the current block, if any.
+     *
+     * @return array<string,mixed>
+     */
+    public static function getBlockedMetadata(): array
+    {
+        $state = self::getBlockedState();
+        return isset($state['exceeded']) && is_array($state['exceeded'])
+            ? $state['exceeded']
+            : [];
+    }
+
+    /**
      * Filter callback that blocks increments when limits are reached.
      *
      * @param bool  $allowed Current allowance passed through the filter chain.
@@ -121,6 +153,36 @@ final class UsageLimiter
 
         [$canConsume] = self::canConsumeRequest();
         return $canConsume;
+    }
+
+    /**
+     * Display an admin notice when RRZE Search limits prevent remote queries.
+     */
+    public function renderAdminNotice(): void
+    {
+        if ((function_exists('wp_doing_ajax') && wp_doing_ajax()) || !is_user_logged_in()) {
+            return;
+        }
+
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+
+        [$allowed, $exceeded] = self::canConsumeRequest();
+        if ($allowed || empty($exceeded)) {
+            return;
+        }
+
+        $summary = self::describeExceededPeriods($exceeded);
+        $message = __('RRZE Search usage limit reached. Remote search will fall back to the local search until quotas reset.', 'rrze-search');
+        if ($summary !== '') {
+            $message = sprintf(
+                __('RRZE Search usage limit reached (%s). Remote search will fall back to the local search until quotas reset.', 'rrze-search'),
+                $summary
+            );
+        }
+
+        printf('<div class="notice notice-warning"><p>%s</p></div>', esc_html($message));
     }
 
     /**
@@ -143,5 +205,50 @@ final class UsageLimiter
 
         return $normalized;
     }
-}
 
+    /**
+     * Persist a short-lived block state when limits are hit.
+     *
+     * @param array<string,array<string,int>> $exceeded
+     */
+    private static function storeBlockedState(array $exceeded): void
+    {
+        $payload = [
+            'blocked'  => true,
+            'exceeded' => $exceeded,
+            'stored'   => time(),
+        ];
+
+        $ttl = HOUR_IN_SECONDS;
+
+        if (is_multisite()) {
+            set_site_transient(self::TRANSIENT_KEY, $payload, $ttl);
+        } else {
+            set_transient(self::TRANSIENT_KEY, $payload, $ttl);
+        }
+    }
+
+    /**
+     * Remove any cached block state when limits allow consumption again.
+     */
+    private static function clearBlockedState(): void
+    {
+        if (is_multisite()) {
+            delete_site_transient(self::TRANSIENT_KEY);
+        } else {
+            delete_transient(self::TRANSIENT_KEY);
+        }
+    }
+
+    /**
+     * @return array<string,mixed>
+     */
+    private static function getBlockedState(): array
+    {
+        $value = is_multisite()
+            ? get_site_transient(self::TRANSIENT_KEY)
+            : get_transient(self::TRANSIENT_KEY);
+
+        return is_array($value) ? $value : [];
+    }
+}

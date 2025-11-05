@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Domain\Contract\Engine;
 use RRZE\RRZESearch\Infrastructure\Helper\Helper;
+use RRZE\RRZESearch\Infrastructure\UsageLimiter;
 use WP_Widget;
 
 /**
@@ -210,7 +211,14 @@ class SearchWidget extends WP_Widget
     {
         echo $args['before_widget'];
 
+        [$limitAvailable] = UsageLimiter::canConsumeRequest();
+
         $preferredEngine = empty($_COOKIE['rrze_search_engine_pref']) ? (int)$instance['search_engine'] : (int)$_COOKIE['rrze_search_engine_pref'];
+        $forceLocalSearch = !$limitAvailable || UsageLimiter::shouldForceFallback();
+        $localEngineKey = $this->getWordPressEngineKey();
+        if ($forceLocalSearch && $localEngineKey !== null) {
+            $preferredEngine = (int) $localEngineKey;
+        }
         $resources = [];
 
         foreach ($this->options['rrze_search_engines'] as $key => $engine) {
@@ -224,6 +232,9 @@ class SearchWidget extends WP_Widget
                 $resources[$key]['args'] = $resource['args'];
             }
         }
+        $engineSelectionDisabled = $forceLocalSearch;
+        $fallbackEngineKey = (int) $preferredEngine;
+
         include \dirname(__DIR__,
                 2) . DIRECTORY_SEPARATOR . 'Infrastructure' . DIRECTORY_SEPARATOR . 'Templates' . DIRECTORY_SEPARATOR . 'widget.php';
 
@@ -237,7 +248,13 @@ class SearchWidget extends WP_Widget
      */
     public function widgetSubmit(): void
     {
+        [$limitAvailable] = UsageLimiter::canConsumeRequest();
+        $forceLocalSearch = !$limitAvailable || UsageLimiter::shouldForceFallback();
         $resourceId = isset($_POST['resource_id']) ? absint($_POST['resource_id']) : null;
+        $localEngineKey = $this->getWordPressEngineKey();
+        if ($forceLocalSearch && $localEngineKey !== null) {
+            $resourceId = (int) $localEngineKey;
+        }
 
         $engines = $this->options['rrze_search_engines'] ?? [];
         $engineEntry = null;
@@ -281,5 +298,30 @@ class SearchWidget extends WP_Widget
 
         wp_redirect($redirect_link);
         exit;
+    }
+
+    /**
+     * Locate the engine index that represents the local WordPress search.
+     */
+    protected function getWordPressEngineKey(): ?int
+    {
+        if (empty($this->options['rrze_search_engines']) || !is_array($this->options['rrze_search_engines'])) {
+            return null;
+        }
+
+        foreach ($this->options['rrze_search_engines'] as $key => $engine) {
+            if (!is_array($engine)) {
+                continue;
+            }
+            $class = isset($engine['resource_class']) ? (string)$engine['resource_class'] : '';
+            if ($class === '') {
+                continue;
+            }
+            if (stripos($class, 'WordPress') !== false) {
+                return (int)$key;
+            }
+        }
+
+        return null;
     }
 }
