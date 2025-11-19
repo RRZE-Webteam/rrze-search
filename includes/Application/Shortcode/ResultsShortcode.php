@@ -4,6 +4,8 @@ namespace RRZE\RRZESearch\Application\Shortcode;
 defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Domain\Contract\Engine;
+use RRZE\RRZESearch\Infrastructure\UsageLimiter;
+use RRZE\RRZESearch\Infrastructure\Engines\Foundations\WordPressSearch;
 
 /**
  * Renders the RRZE Search results via the `[rrze_search_results]` shortcode.
@@ -94,6 +96,13 @@ class ResultsShortcode
             $useengine  = absint($_GET['se']);
         }
 
+        if (UsageLimiter::shouldForceFallback()) {
+            $fallbackEngineKey = $this->findWordPressEngineKey($engines);
+            if ($fallbackEngineKey !== null) {
+                $useengine = $fallbackEngineKey;
+            }
+        }
+
         if ((isset($useengine)) && (isset($resources[$useengine]))) {
             $resource     = $resources[$useengine];
         }
@@ -114,13 +123,22 @@ class ResultsShortcode
             $this->searchEngine = new $resource['resource_class'];
             $searchEngineClass  = substr(strrchr(get_parent_class($this->searchEngine), '\\'), 1);
 
-            $queryResults = $this->searchEngine->query($query, $resource['args'], $startPage);
+            $queryResults = $this->searchEngine->query($query, $resource['args'] ?? [], $startPage);
             $results      = is_array($queryResults) ? $queryResults : json_decode($queryResults, true);
+
+            $fallbackPayload = null;
+            if (isset($results['fallback_engine']) && $results['fallback_engine'] === WordPressSearch::class) {
+                $fallbackPayload = $results;
+                $results = isset($results['results']) && is_array($results['results']) ? $results['results'] : [];
+            }
 
             $currentEngineKey    = $useengine;
             $currentEngineConfig = $resource;
 
-            if ((isset($results['error'])) && ($results['error']['code']>=400)) {
+            if ($fallbackPayload !== null) {
+                $searchEngineClass = 'WordPressSearch';
+                include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'WordPressSearch-shortcode.php';
+            } elseif ((isset($results['error'])) && ($results['error']['code']>=400)) {
                 include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'Error-shortcode.php';
             }  else {
                 include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.$searchEngineClass.'-shortcode.php';
@@ -130,5 +148,28 @@ class ResultsShortcode
         } else {
             include \dirname(__DIR__, 2).$templatesDir.'Results'.DIRECTORY_SEPARATOR.'Error-shortcode.php';
         }
+    }
+
+    /**
+     * Locate the native WordPress engine index if available.
+     *
+     * @param array<int, array<string,mixed>> $engines
+     */
+    private function findWordPressEngineKey(array $engines): ?int
+    {
+        foreach ($engines as $index => $engine) {
+            if (!is_array($engine)) {
+                continue;
+            }
+            $class = isset($engine['resource_class']) ? (string)$engine['resource_class'] : '';
+            if ($class === '') {
+                continue;
+            }
+            if (stripos($class, 'WordPress') !== false) {
+                return (int)$index;
+            }
+        }
+
+        return null;
     }
 }

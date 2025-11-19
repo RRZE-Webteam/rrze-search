@@ -32,6 +32,9 @@
 namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
 defined( 'ABSPATH' ) || exit;
 
+use RRZE\RRZESearch\Infrastructure\UsageLimiter;
+use RRZE\RRZESearch\Infrastructure\Engines\Foundations\WordPressSearch;
+
 /**
  * Google Custom Search Engine
  *
@@ -70,6 +73,19 @@ class GoogleSearch extends AbstractSearchEngine
             ];
         }
 
+        [$canConsume, $exceeded] = UsageLimiter::canConsumeRequest();
+        if (!$canConsume) {
+            $fallbackEngine = new WordPressSearch();
+            $fallback = $fallbackEngine->query($query, $args, $startPage);
+            $decoded = is_array($fallback) ? $fallback : json_decode((string) $fallback, true);
+
+            return [
+                'fallback_engine' => WordPressSearch::class,
+                'results'         => is_array($decoded) ? $decoded : [],
+                'blocked_periods' => $exceeded,
+            ];
+        }
+
         $requestQueryArgs = [
             'cx'    => $args['cx'],
             'key'   => $args['key'],
@@ -89,6 +105,11 @@ class GoogleSearch extends AbstractSearchEngine
             'headers'   => [
                 'Accept' => 'application/json',
             ],
+        ]);
+
+        UsageLimiter::recordIncrement([
+            'engine'  => static::class,
+            'site_id' => function_exists('get_current_blog_id') ? get_current_blog_id() : null,
         ]);
 
         if (is_wp_error($response)) {

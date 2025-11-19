@@ -36,41 +36,45 @@ $staticLinks;
                         </div>
                         <div class="search-settings" role="radiogroup"
                              aria-label="<?php echo __('Available search engines', 'rrze-search'); ?>">
-                            <p id="search-engines"
-                               class="screen-reader-text"><?php echo __('Please select one of the available search engines:', 'rrze-search'); ?></p>
-                            <?php
-                            $idx = 0;
-                            foreach ($resources as $key => $resource):
-                                if (!empty($resource['enabled'])) {
-                                    $idx++;
-                                    $id = 'resource-' . esc_attr($key) . '-' . $idx; // eindeutige id
-                                    $isPreferred = ($preferredEngine == $key);
-                                    $tabIndex = $isPreferred ? '0' : '-1'; // 0 statt 1 für Fokussierbarkeit
-                                    $searchEngineDisclaimer = '';
+                            <?php if (!empty($engineSelectionDisabled)) : ?>
+                                <input type="hidden" name="resource_id" value="<?= esc_attr($fallbackEngineKey); ?>">
+                            <?php else : ?>
+                                <p id="search-engines"
+                                   class="screen-reader-text"><?php echo __('Please select one of the available search engines:', 'rrze-search'); ?></p>
+                                <?php
+                                $idx = 0;
+                                foreach ($resources as $key => $resource):
+                                    if (!empty($resource['enabled'])) {
+                                        $idx++;
+                                        $id = 'resource-' . esc_attr($key) . '-' . $idx; // eindeutige id
+                                        $isPreferred = ($preferredEngine == $key);
+                                        $tabIndex = $isPreferred ? '0' : '-1'; // 0 statt 1 für Fokussierbarkeit
+                                        $searchEngineDisclaimer = '';
 
-                                    if (!empty($resource['resource_disclaimer'])) {
-                                        $searchEngineDisclaimer = ' (<a href="' . get_permalink($resource['resource_disclaimer']) . '"' .
-                                            (!empty($privacylabeltarget) ? ' target="' . $privacylabeltarget . '"' : '') .
-                                            '>' . __('Privacy Disclaimer', 'rrze-search') . '</a>)';
+                                        if (!empty($resource['resource_disclaimer'])) {
+                                            $searchEngineDisclaimer = ' (<a href="' . get_permalink($resource['resource_disclaimer']) . '"' .
+                                                (!empty($privacylabeltarget) ? ' target="' . $privacylabeltarget . '"' : '') .
+                                                '>' . __('Privacy Disclaimer', 'rrze-search') . '</a>)';
+                                        }
+                                        ?>
+                                        <input
+                                                type="radio"
+                                                id="<?= $id; ?>"
+                                                name="resource_id"
+                                                class="search-engine"
+                                                value="<?= esc_attr($key); ?>"
+                                            <?= checked($preferredEngine, $key, false); ?>
+                                                aria-checked="<?= $isPreferred ? 'true' : 'false'; ?>"
+                                                tabindex="<?= $tabIndex; ?>"
+                                        >
+                                        <label for="<?= $id; ?>">
+                                            <?= esc_html($resource['resource_name']); ?><?= $searchEngineDisclaimer; ?>
+                                        </label>
+                                        <?php
                                     }
-                                    ?>
-                                    <input
-                                            type="radio"
-                                            id="<?= $id; ?>"
-                                            name="resource_id"
-                                            class="search-engine"
-                                            value="<?= esc_attr($key); ?>"
-                                        <?= checked($preferredEngine, $key, false); ?>
-                                            aria-checked="<?= $isPreferred ? 'true' : 'false'; ?>"
-                                            tabindex="<?= $tabIndex; ?>"
-                                    >
-                                    <label for="<?= $id; ?>">
-                                        <?= esc_html($resource['resource_name']); ?><?= $searchEngineDisclaimer; ?>
-                                    </label>
-                                    <?php
-                                }
-                            endforeach;
-                            ?>
+                                endforeach;
+                                ?>
+                            <?php endif; ?>
                         </div>
                     </form>
                 </div>
