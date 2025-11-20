@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rrze-search\n"
-"POT-Creation-Date: 2025-10-24T08:55:08+00:00\n"
-"PO-Revision-Date: 2025-10-24 11:05+0200\n"
+"POT-Creation-Date: 2025-11-20T11:05:12+00:00\n"
+"PO-Revision-Date: 2025-11-20 12:06+0100\n"
 "Last-Translator: Wolfgang Wiese <wolfgang.wiese@fau.de>\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -52,15 +52,15 @@ msgstr ""
 msgid "Tollwerk & RRZE"
 msgstr "Tollwerk & RRZE"
 
-#: includes/Application/Widget/SearchWidget.php:105
+#: includes/Application/Widget/SearchWidget.php:106
 msgid "RRZE Search Sidebar"
 msgstr "RRZE Such-Randspalte"
 
-#: includes/Application/Widget/SearchWidget.php:107
+#: includes/Application/Widget/SearchWidget.php:108
 msgid "Used to display the widget"
 msgstr "Wird verwendet, um das Widget anzuzeigen"
 
-#: includes/Application/Widget/SearchWidget.php:188
+#: includes/Application/Widget/SearchWidget.php:189
 msgid "Default Search Engine"
 msgstr "Standardsuchmaschine"
 
@@ -70,16 +70,16 @@ msgstr "RRZE"
 
 #: includes/Infrastructure/BlockRender.php:158
 #: includes/Infrastructure/Templates/partials/search-form.php:38
-#: includes/Infrastructure/Templates/widget.php:40
+#: includes/Infrastructure/Templates/widget.php:42
 msgid "Please select one of the available search engines:"
 msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
 
 #: includes/Infrastructure/BlockRender.php:183
-#: includes/Infrastructure/Templates/widget.php:54
+#: includes/Infrastructure/Templates/widget.php:56
 msgid "Privacy Disclaimer"
 msgstr "Datenschutzhinweise"
 
-#: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:68
+#: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:71
 #, fuzzy
 msgid ""
 "Google search credentials are missing. Please provide both API key and CX "
@@ -88,12 +88,12 @@ msgstr ""
 "Die Anmeldedaten für die Google-Suche fehlen. Bitte geben Sie sowohl den API-"
 "Schlüssel als auch die CX-Kennung an."
 
-#: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:119
+#: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:140
 #, fuzzy
 msgid "Google search request failed without a response body."
 msgstr "Google-Suchanfrage ohne Antwortkörper fehlgeschlagen."
 
-#: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:129
+#: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:150
 msgid "Google FAU Search"
 msgstr "Google FAU Suche"
 
@@ -306,9 +306,50 @@ msgstr "Vorherige Seite"
 msgid "Next Page"
 msgstr "Nächste Seite"
 
-#: includes/Infrastructure/Templates/widget.php:38
+#: includes/Infrastructure/Templates/widget.php:18
+msgid "Search all pages and documents:"
+msgstr "Alle Seiten und Dokumente durchsuchen:"
+
+#: includes/Infrastructure/Templates/widget.php:37
 msgid "Available search engines"
 msgstr "Verfügbare Suchmaschinen"
+
+#: includes/Infrastructure/UsageLimiter.php:93
+msgid "hourly"
+msgstr "stündlich"
+
+#: includes/Infrastructure/UsageLimiter.php:94
+msgid "daily"
+msgstr "täglich"
+
+#: includes/Infrastructure/UsageLimiter.php:95
+msgid "weekly"
+msgstr "wöchentlich"
+
+#: includes/Infrastructure/UsageLimiter.php:96
+msgid "monthly"
+msgstr "monatlich"
+
+#: includes/Infrastructure/UsageLimiter.php:97
+msgid "yearly"
+msgstr "jährlich"
+
+#: includes/Infrastructure/UsageLimiter.php:177
+msgid ""
+"RRZE Search usage limit reached. Remote search will fall back to the local "
+"search until quotas reset."
+msgstr ""
+"Das Nutzungslimit für die RRZE-Suche wurde erreicht. Die Remote-Suche wird "
+"auf die lokale Suche zurückgesetzt, bis die Kontingente zurückgesetzt werden."
+
+#: includes/Infrastructure/UsageLimiter.php:180
+#, php-format
+msgid ""
+"RRZE Search usage limit reached (%s). Remote search will fall back to the "
+"local search until quotas reset."
+msgstr ""
+"RRZE-Suchlimit erreicht (%s). Die Remote-Suche wird auf die lokale Suche "
+"zurückgesetzt, bis die Kontingente zurückgesetzt werden."
 
 #: build/block/index.js:1
 msgid "Content Settings"

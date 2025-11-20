@@ -15,8 +15,7 @@ $staticLinks;
 
 ?>
     <div class="menu-modal__content" role="navigation" aria-label="Suchen">
-        <div class="menu-modal__search-wrapper"><h3 class="menu-modal__search-heading">Alle Seiten und Dokumente
-                durchsuchen:</h3>
+        <div class="menu-modal__search-wrapper"><h3 class="menu-modal__search-heading"><?php echo(__("Search all pages and documents:", "rrze-search")); ?></h3>
             <div class="fau-global-search__outer-wrapper">
                 <div class="fau-global-search-wrapper fau-global-search-wrapper--content-size wp-block-fau-elemental-fau-global-search">
                     <form itemprop="potentialAction" itemscope id="fau-global-search-2"
