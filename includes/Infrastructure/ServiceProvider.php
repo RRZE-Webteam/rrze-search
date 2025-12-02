@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Application\Controller\ShortcodeController;
 use RRZE\RRZESearch\Application\Controller\WidgetController;
+use RRZE\RRZESearch\Infrastructure\DashboardWidget;
 use RRZE\RRZESearch\Infrastructure\UsageLimiter;
 use UTN\BiteEmbed\Block;
 
@@ -31,6 +32,7 @@ class ServiceProvider
             ScriptEnqueuer::class,
             SettingsLink::class,
             UsageLimiter::class,
+            DashboardWidget::class,
             WidgetController::class,
             ShortcodeController::class,
             BlockRegistration::class,
