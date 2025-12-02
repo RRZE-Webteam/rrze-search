@@ -15,6 +15,8 @@ final class UsageLimiter
 {
     private const OPTION_NAME = 'rrze_search_network_limits_and_stats';
 
+    private const FALLBACK_OPTION_NAME = 'rrze_search_network_limits_and_statistics';
+
     private const PERIODS = ['hour', 'day', 'week', 'month', 'year'];
 
     private const TRANSIENT_KEY = 'rrze_search_limit_block';
@@ -42,7 +44,7 @@ final class UsageLimiter
             return [true, []];
         }
 
-        $option = get_site_option(self::OPTION_NAME, null);
+        $option = self::getNetworkUsageOption();
 
         if (!is_array($option)) {
             self::clearBlockedState();
@@ -50,6 +52,14 @@ final class UsageLimiter
         }
 
         $limits = self::normalizePeriods($option['limits'] ?? []);
+        $fallbackLimits = self::getConfiguredLimitsFallback();
+        if ($fallbackLimits !== []) {
+            foreach ($fallbackLimits as $period => $value) {
+                if (!isset($limits[$period]) || $limits[$period] <= 0) {
+                    $limits[$period] = $value;
+                }
+            }
+        }
         $totals = self::normalizePeriods($option['totals'] ?? []);
 
         $exceeded = [];
@@ -137,6 +147,46 @@ final class UsageLimiter
         return isset($state['exceeded']) && is_array($state['exceeded'])
             ? $state['exceeded']
             : [];
+    }
+
+    /**
+     * Returns the normalized limit, total, and remaining counts for each period.
+     *
+     * @return array<string, array<string,int>>
+     */
+    public static function getUsageSnapshot(): array
+    {
+        $option = self::getNetworkUsageOption();
+
+        if (!is_array($option)) {
+            $option = [];
+        }
+
+        $limits = self::normalizePeriods($option['limits'] ?? []);
+        $fallbackLimits = self::getConfiguredLimitsFallback();
+        if ($fallbackLimits !== []) {
+            foreach ($fallbackLimits as $period => $value) {
+                if (!isset($limits[$period]) || $limits[$period] <= 0) {
+                    $limits[$period] = $value;
+                }
+            }
+        }
+        $totals = self::normalizePeriods($option['totals'] ?? []);
+
+        $snapshot = [];
+
+        foreach (self::PERIODS as $period) {
+            $limit = (int) ($limits[$period] ?? 0);
+            $total = (int) ($totals[$period] ?? 0);
+
+            $snapshot[$period] = [
+                'limit'     => max($limit, 0),
+                'total'     => max($total, 0),
+                'remaining' => $limit > 0 ? max($limit - $total, 0) : 0,
+            ];
+        }
+
+        return $snapshot;
     }
 
     /**
@@ -250,5 +300,67 @@ final class UsageLimiter
             : get_transient(self::TRANSIENT_KEY);
 
         return is_array($value) ? $value : [];
+    }
+
+    /**
+     * Fetch the option payload that stores the network usage statistics.
+     */
+    private static function getNetworkUsageOption(): ?array
+    {
+        $candidates = [
+            [self::OPTION_NAME, 'site'],
+            [self::FALLBACK_OPTION_NAME, 'site'],
+            [self::OPTION_NAME, 'single'],
+            [self::FALLBACK_OPTION_NAME, 'single'],
+        ];
+
+        foreach ($candidates as [$name, $context]) {
+            if ($context === 'site') {
+                $value = get_site_option($name, null);
+            } else {
+                $value = get_option($name, null);
+            }
+
+            if (is_array($value)) {
+                return $value;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Pulls configured RRZE Search limits from the RRZE Settings plugin if present.
+     *
+     * @return array<string,int>
+     */
+    private static function getConfiguredLimitsFallback(): array
+    {
+        if (!class_exists('RRZE\Settings\Options')) {
+            return [];
+        }
+
+        $options = \RRZE\Settings\Options::getSiteOptions();
+        if (!is_object($options) || !isset($options->plugins) || !is_object($options->plugins)) {
+            return [];
+        }
+
+        $pluginOptions = $options->plugins;
+
+        $map = [
+            'day'   => 'rrze_search_limit_daily',
+            'week'  => 'rrze_search_limit_weekly',
+            'month' => 'rrze_search_limit_monthly',
+            'year'  => 'rrze_search_limit_yearly',
+        ];
+
+        $limits = [];
+        foreach ($map as $period => $field) {
+            if (isset($pluginOptions->$field)) {
+                $limits[$period] = max(0, (int) $pluginOptions->$field);
+            }
+        }
+
+        return $limits;
     }
 }

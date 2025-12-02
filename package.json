@@ -35,6 +35,9 @@
     "url": "https://www.wordpress.rrze.fau.de/person/webmaster"
   },
   "license": "GNU General Public License v3",
+  "dependencies": {
+    "d3": "^7.9.0"
+  },
   "devDependencies": {
     "@types/node": "^24.9.1",
     "@types/wordpress__block-editor": "^14.21.0",
