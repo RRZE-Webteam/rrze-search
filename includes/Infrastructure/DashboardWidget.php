@@ -14,7 +14,6 @@ class DashboardWidget
 
     /** @var array<string,string> */
     private const PERIOD_LABELS = [
-        'day'   => 'Daily',
         'week'  => 'Weekly',
         'month' => 'Monthly',
         'year'  => 'Yearly',
@@ -55,13 +54,9 @@ class DashboardWidget
 
         $usedLabel = __('Used quota', 'rrze-search');
         $availableLabel = __('Available quota', 'rrze-search');
-        $selectLabel = __('Quota period', 'rrze-search');
         $description = __('Remaining RRZE Search API requests before the quota resets.', 'rrze-search');
 
-        $defaultPeriod = $this->getDefaultPeriod($dataset);
         $containerId = sprintf('%s-%d', self::CONTAINER_ID, ++self::$instanceCounter);
-        $chartId = $containerId . '-chart';
-        $selectId = $containerId . '-period';
 
         if ($dataset === []) {
             printf('<div class="rrze-search-dashboard-widget" data-empty="%1$s">%1$s</div>', esc_html($emptyState));
@@ -70,27 +65,23 @@ class DashboardWidget
 
         echo '<div class="rrze-search-dashboard-widget"'
             . ' data-usage="' . esc_attr(wp_json_encode($dataset)) . '"'
-            . ' data-default-period="' . esc_attr($defaultPeriod) . '"'
             . ' data-empty="' . esc_attr($emptyState) . '"'
             . ' data-used-label="' . esc_attr($usedLabel) . '"'
             . ' data-available-label="' . esc_attr($availableLabel) . '"'
             . ' data-description="' . esc_attr($description) . '">';
 
-        echo '<div class="rrze-search-dashboard-widget__controls">';
-        printf('<label for="%1$s">%2$s</label>', esc_attr($selectId), esc_html($selectLabel));
-        echo '<select id="' . esc_attr($selectId) . '" class="rrze-search-dashboard-widget__period">';
+        echo '<div class="rrze-search-dashboard-widget__charts">';
         foreach ($dataset as $period => $details) {
-            printf(
-                '<option value="%1$s" %3$s>%2$s</option>',
-                esc_attr($period),
-                esc_html($details['label']),
-                selected($period, $defaultPeriod, false)
-            );
-        }
-        echo '</select></div>';
+            $chartId = sprintf('%s-%s-chart', $containerId, $period);
 
-        printf('<div id="%1$s" class="rrze-search-dashboard-widget__chart"></div>', esc_attr($chartId));
-        echo '</div>';
+            echo '<div class="rrze-search-dashboard-widget__chart-card">'
+                . '<h4 class="rrze-search-dashboard-widget__chart-title">' . esc_html($details['label']) . '</h4>'
+                . '<div id="' . esc_attr($chartId) . '"'
+                . ' class="rrze-search-dashboard-widget__chart"'
+                . ' data-period="' . esc_attr($period) . '"></div>'
+                . '</div>';
+        }
+        echo '</div></div>';
     }
 
     /**
@@ -120,19 +111,6 @@ class DashboardWidget
         }
 
         return $dataset;
-    }
-
-    /**
-     * Default period for the widget selector.
-     */
-    private function getDefaultPeriod(array $dataset): string
-    {
-        if (isset($dataset['day'])) {
-            return 'day';
-        }
-
-        $keys = array_keys($dataset);
-        return $keys[0] ?? 'day';
     }
 
     /**

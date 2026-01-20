@@ -12,3 +12,113 @@
 
 @use "result-gcse-entries";
 @use "fau-elemental-compatibility-layer";
+
+.rrze-search-dashboard-widget {
+  &__charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  &__chart-card {
+    background: #fff;
+    border: 1px solid #dcdcde;
+    border-radius: 6px;
+    padding: 1rem;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__chart-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1d2327;
+  }
+
+  &__chart {
+    flex: 1 1 auto;
+    svg {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+  }
+
+  &__empty {
+    align-items: center;
+    color: #50575e;
+    display: flex;
+    justify-content: center;
+    min-height: 220px;
+    text-align: center;
+  }
+}
+
+#dashboard-widgets-wrap > .rrze-search-dashboard-widget__full-width-row {
+  margin-bottom: 20px;
+  width: 100%;
+
+  #rrze_search_usage_widget.postbox {
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+  }
+}
+
+div#dashboard-widgets-wrap div#rrze_search_usage_widget .postbox-header{
+  padding-inline: 2rem;
+}
+
+div#dashboard-widgets-wrap div.rrze-search-dashboard-widget__full-width-row div.inside div.rrze-search-dashboard-widget__charts{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-inline: 1rem;
+}
+
+div#dashboard-widgets-wrap div.rrze-search-dashboard-widget__full-width-row div.inside div.rrze-search-dashboard-widget__charts > div{
+  border-right: 1px solid #04316a;
+  padding-left: 1rem;
+}
+
+div#dashboard-widgets-wrap div.rrze-search-dashboard-widget__full-width-row div.inside div.rrze-search-dashboard-widget__charts > div{
+  justify-content: center;
+  justify-self: center;
+  justify-items: center;
+  display: grid;
+  align-self: center;
+  width: 100%;
+}
+
+/*
+div#dashboard-widgets-wrap div.rrze-search-dashboard-widget__full-width-row div.inside div.rrze-search-dashboard-widget__charts > div:nth-child(1){
+  justify-content: start;
+  justify-self: start;
+  justify-items: start;
+  display: grid;
+  align-self: start;
+  padding-left: 1rem;
+  width: 100%;
+}
+
+div#dashboard-widgets-wrap div.rrze-search-dashboard-widget__full-width-row div.inside div.rrze-search-dashboard-widget__charts > div:nth-child(3){
+  justify-content: end;
+  justify-self: end;
+  justify-items: end;
+  display: grid;
+  align-self: end;
+  padding-right: 1rem;
+
+  width: 100%;
+}
+*/
+
+div#dashboard-widgets-wrap div.rrze-search-dashboard-widget__full-width-row div.inside div.rrze-search-dashboard-widget__charts > div:last-child{
+  border-right: none;
+}
+
+div#dashboard-widgets-wrap div#rrze_search_usage_widget{
+  border: none;
+}
