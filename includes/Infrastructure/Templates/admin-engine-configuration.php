@@ -8,9 +8,12 @@
     }
     foreach ($resources as $resource) {
         $rowColor = ($nextResourceIndex % 2) ? '#ddd' : '#bbb';
-        $uId      = ($resource['resource_id'] !== '') ? $resource['resource_id'] : uniqid('rrze_', true);
+        $resourceId = isset($resource['resource_id']) ? (string) $resource['resource_id'] : '';
+        $resourceClass = isset($resource['resource_class']) ? (string) $resource['resource_class'] : '';
+        $resourceName = isset($resource['resource_name']) ? (string) $resource['resource_name'] : '';
+        $resourceIdForForm = ($resourceId !== '') ? $resourceId : uniqid('rrze_', true);
         /** Unique Id */
-        echo '<input type="hidden" class="regular-text" id="'.$fieldName.'" name="'.$optionName.'['.$fieldName.']['.$nextResourceIndex.'][resource_id]" value="'.$uId.'" />';
+        echo '<input type="hidden" class="regular-text" id="'.esc_attr($fieldName).'" name="'.esc_attr($optionName).'['.esc_attr($fieldName).']['.esc_attr((string) $nextResourceIndex).'][resource_id]" value="'.esc_attr($resourceIdForForm).'" />';
         ?>
         <tr bgcolor="<?php echo $rowColor; ?>">
             <td style="vertical-align:top">
@@ -21,7 +24,7 @@
                         /** Search Engine Class */
                         echo '<select id="'.$fieldName.'" name="'.$optionName.'['.$fieldName.']['.$nextResourceIndex.'][resource_class]" class="regular-text">';
                         foreach ($this->enginesClassCollection as $key => $value) {
-                            if ($key === $resource['resource_class']) {
+                            if ($key === $resourceClass) {
                                 echo '<option value="'.$key.'" selected>'.$value['name'].'</option>';
                             } else {
                                 echo '<option value="'.$key.'" >'.$value['name'].'</option>';
@@ -37,14 +40,14 @@
                         <span><?php echo __('Label', 'rrze-search'); ?></span>
                         <?php
 
-                        echo '<input type="text" class="regular-text" id="'.$fieldName.'" name="'.$optionName.'['.$fieldName.']['.$nextResourceIndex.'][resource_name]" value="'.$resource['resource_name'].'" />';
+                        echo '<input type="text" class="regular-text" id="'.$fieldName.'" name="'.$optionName.'['.$fieldName.']['.$nextResourceIndex.'][resource_name]" value="'.esc_attr($resourceName).'" />';
                         ?>
                     </label>
                 </fieldset>
             </td>
             <td style="vertical-align:top">
-                <?php if (!empty($this->enginesClassCollection[$resource['resource_class']]['variables'])) {
-                    $engineVariables = $this->enginesClassCollection[$resource['resource_class']]['variables']; ?>
+                <?php if ($resourceClass !== '' && !empty($this->enginesClassCollection[$resourceClass]['variables'])) {
+                    $engineVariables = $this->enginesClassCollection[$resourceClass]['variables']; ?>
                     <?php foreach ($engineVariables as $index => $engineVariable) { ?>
                         <fieldset>
                             <label class="resource_table_label">

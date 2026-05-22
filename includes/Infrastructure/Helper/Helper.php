@@ -55,16 +55,22 @@ class Helper
      */
     public static function isResourceEngine(string $optionName, string $resourceId): bool
     {
-        $bool   = false;
-        $option = get_option($optionName);
-        foreach ($option['rrze_search_engines'] as $engine) {
-            if ($engine['resource_id'] === $resourceId) {
-                $bool = true;
-//                return $engine;
+        $settings = get_option($optionName);
+        $engines = isset($settings['rrze_search_engines']) && is_array($settings['rrze_search_engines'])
+            ? $settings['rrze_search_engines']
+            : [];
+
+        foreach ($engines as $engine) {
+            if (!is_array($engine) || !isset($engine['resource_id'])) {
+                continue;
+            }
+
+            if ((string) $engine['resource_id'] === $resourceId) {
+                return true;
             }
         }
 
-        return $bool;
+        return false;
     }
 
     /**
@@ -78,8 +84,16 @@ class Helper
     public static function isEngineResource(string $optionName, string $resourceId): bool
     {
         $optionValue = get_option($optionName);
-        foreach ($optionValue['rrze_search_resources'] as $resource) {
-            if ($resource['resource_id'] === $resourceId) {
+        $resources = isset($optionValue['rrze_search_resources']) && is_array($optionValue['rrze_search_resources'])
+            ? $optionValue['rrze_search_resources']
+            : [];
+
+        foreach ($resources as $resource) {
+            if (!is_array($resource) || !isset($resource['resource_id'])) {
+                continue;
+            }
+
+            if ((string) $resource['resource_id'] === $resourceId) {
                 return true;
             }
         }
@@ -100,10 +114,23 @@ class Helper
     public static function getResourceById(string $optionName, string $resourceId): array
     {
         $optionValue = get_option($optionName);
-        foreach ($optionValue['rrze_search_resources'] as $resource) {
-            if ($resource['resource_id'] === $resourceId) {
-                return $resource;
+        $resources = isset($optionValue['rrze_search_resources']) && is_array($optionValue['rrze_search_resources'])
+            ? $optionValue['rrze_search_resources']
+            : [];
+        $latestMatchingResource = null;
+
+        foreach ($resources as $resource) {
+            if (!is_array($resource) || !isset($resource['resource_id'])) {
+                continue;
             }
+
+            if ((string) $resource['resource_id'] === $resourceId) {
+                $latestMatchingResource = $resource;
+            }
+        }
+
+        if ($latestMatchingResource !== null) {
+            return $latestMatchingResource;
         }
 
         throw new \OutOfRangeException(sprintf('Unknown resource ID "%s"', $resourceId), 1538577491);
@@ -123,8 +150,16 @@ class Helper
     {
         // Employed by OptionsSettings Class
         $optionValue = get_option($optionName);
-        foreach ($optionValue['rrze_search_engines'] as $resource) {
-            if ($resource['resource_id'] === $resourceId) {
+        $engines = isset($optionValue['rrze_search_engines']) && is_array($optionValue['rrze_search_engines'])
+            ? $optionValue['rrze_search_engines']
+            : [];
+
+        foreach ($engines as $resource) {
+            if (!is_array($resource) || !isset($resource['resource_id'])) {
+                continue;
+            }
+
+            if ((string) $resource['resource_id'] === $resourceId) {
                 return $resource;
             }
         }

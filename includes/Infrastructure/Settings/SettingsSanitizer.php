@@ -48,16 +48,20 @@ final class SettingsSanitizer extends AppController
 
         // 2) Ressourcen normalisieren/sanitizen → Map nach resource_id
         $resourcesById = [];
-        foreach ((array) $rawResources as $r) {
-            $resourceId = isset($r['resource_id']) ? absint($r['resource_id']) : 0;
-            if ($resourceId <= 0) {
+        foreach ((array) $rawResources as $rawResource) {
+            if (!is_array($rawResource)) {
+                continue;
+            }
+
+            $resourceId = $this->normalizeResourceId($rawResource['resource_id'] ?? null);
+            if ($resourceId === '') {
                 continue; // Ungültig -> überspringen
             }
 
-            $resourceClass = isset($r['resource_class']) ? sanitize_key((string) $r['resource_class']) : '';
-            $resourceName  = isset($r['resource_name']) ? sanitize_text_field((string) $r['resource_name']) : '';
-            $disclaimer    = isset($r['resource_disclaimer']) ? wp_kses_post((string) $r['resource_disclaimer']) : '';
-            $enabledSuper  = !empty($r['enabled']); // Super-Admin-Schalter (Ressource grundsätzlich verfügbar)
+            $resourceClass = isset($rawResource['resource_class']) ? sanitize_text_field((string) $rawResource['resource_class']) : '';
+            $resourceName  = isset($rawResource['resource_name']) ? sanitize_text_field((string) $rawResource['resource_name']) : '';
+            $resourceDisclaimer = isset($rawResource['resource_disclaimer']) ? wp_kses_post((string) $rawResource['resource_disclaimer']) : '';
+            $isResourceEnabledNetworkWide = !empty($rawResource['enabled']);
 
             if ($resourceName === '') {
                 $resourceName = $this->lookupClassLabel($resourceClass);
@@ -68,72 +72,79 @@ final class SettingsSanitizer extends AppController
                 continue;
             }
 
-            $resourcesById[(string) $resourceId] = [
+            $resourcesById[$resourceId] = [
                 'resource_id'         => $resourceId,
                 'resource_class'      => $resourceClass,
                 'resource_name'       => $resourceName,
-                'resource_disclaimer' => $disclaimer,
-                'enabled'             => $enabledSuper,
+                'resource_disclaimer' => $resourceDisclaimer,
+                'enabled'             => $isResourceEnabledNetworkWide,
             ];
         }
 
         // 3) Bestehende Engines nach ID indizieren
         $existingEnginesById = [];
-        foreach ((array) $existingEngines as $e) {
-            $eid = isset($e['resource_id']) ? absint($e['resource_id']) : 0;
-            if ($eid <= 0) {
+        foreach ((array) $existingEngines as $existingEngineEntry) {
+            if (!is_array($existingEngineEntry)) {
                 continue;
             }
-            $existingEnginesById[(string) $eid] = (array) $e;
+
+            $existingEngineResourceId = $this->normalizeResourceId($existingEngineEntry['resource_id'] ?? null);
+            if ($existingEngineResourceId === '') {
+                continue;
+            }
+            $existingEnginesById[$existingEngineResourceId] = $existingEngineEntry;
         }
 
         // 4) Input-Engines (Admin-Ebene) einlesen → Flags/Overrides aus Formular
         //    Wir lesen v. a. "enabled" und optionale Felder pro Engine.
         $inputEnginesById = [];
-        foreach ((array) $rawEnginesInput as $ei) {
-            $eid = isset($ei['resource_id']) ? absint($ei['resource_id']) : 0;
-            if ($eid <= 0) {
+        foreach ((array) $rawEnginesInput as $rawEngineInput) {
+            if (!is_array($rawEngineInput)) {
                 continue;
             }
-            $inputEnginesById[(string) $eid] = [
-                'enabled'             => !empty($ei['enabled']),
+
+            $inputEngineResourceId = $this->normalizeResourceId($rawEngineInput['resource_id'] ?? null);
+            if ($inputEngineResourceId === '') {
+                continue;
+            }
+            $inputEnginesById[$inputEngineResourceId] = [
+                'enabled'             => !empty($rawEngineInput['enabled']),
                 // Erlaube optionale Feld-Overrides aus Engine-Form:
-                'resource_disclaimer' => isset($ei['resource_disclaimer']) ? wp_kses_post((string) $ei['resource_disclaimer']) : null,
-                'resource_name'       => isset($ei['resource_name']) ? sanitize_text_field((string) $ei['resource_name']) : null,
-                'resource_class'      => isset($ei['resource_class']) ? sanitize_key((string) $ei['resource_class']) : null,
+                'resource_disclaimer' => isset($rawEngineInput['resource_disclaimer']) ? wp_kses_post((string) $rawEngineInput['resource_disclaimer']) : null,
+                'resource_name'       => isset($rawEngineInput['resource_name']) ? sanitize_text_field((string) $rawEngineInput['resource_name']) : null,
+                'resource_class'      => isset($rawEngineInput['resource_class']) ? sanitize_text_field((string) $rawEngineInput['resource_class']) : null,
             ];
         }
 
         // 5) Engines aus Ressourcen aufbauen/synchronisieren
         $enginesOut = [];
 
-        foreach ($resourcesById as $idStr => $res) {
-            $rid                = $res['resource_id'];
-            $resClass           = $res['resource_class'];
-            $resName            = $res['resource_name'];
-            $resDisclaimer      = $res['resource_disclaimer'];
-            $resourceIsEnabled  = (bool) $res['enabled']; // Super-Admin Freigabe
+        foreach ($resourcesById as $resourceId => $resource) {
+            $resourceClass      = $resource['resource_class'];
+            $resourceName       = $resource['resource_name'];
+            $resourceDisclaimer = $resource['resource_disclaimer'];
+            $isResourceEnabledNetworkWide  = (bool) $resource['enabled'];
 
-            $existingEngine     = $existingEnginesById[$idStr] ?? [];
-            $existingClass      = isset($existingEngine['resource_class']) ? sanitize_key((string) $existingEngine['resource_class']) : '';
+            $existingEngine     = $existingEnginesById[$resourceId] ?? [];
+            $existingClass      = isset($existingEngine['resource_class']) ? sanitize_text_field((string) $existingEngine['resource_class']) : '';
             $existingName       = isset($existingEngine['resource_name']) ? sanitize_text_field((string) $existingEngine['resource_name']) : '';
             $existingDisclaimer = isset($existingEngine['resource_disclaimer']) ? wp_kses_post((string) $existingEngine['resource_disclaimer']) : '';
             $existingEnabled    = !empty($existingEngine['enabled']);
 
-            $inputEngine        = $inputEnginesById[$idStr] ?? null;
+            $inputEngine        = $inputEnginesById[$resourceId] ?? null;
             $inputEnabled       = $inputEngine['enabled'] ?? null;
 
             // Quelle für Disclaimer/Name bestimmen: Engine-Input -> Resource -> Existing
             $engineDisclaimer = isset($inputEngine['resource_disclaimer']) && $inputEngine['resource_disclaimer'] !== null
                 ? (string) $inputEngine['resource_disclaimer']
-                : ($resDisclaimer !== '' ? $resDisclaimer : $existingDisclaimer);
+                : ($resourceDisclaimer !== '' ? $resourceDisclaimer : $existingDisclaimer);
 
             $engineName = isset($inputEngine['resource_name']) && $inputEngine['resource_name'] !== null
                 ? (string) $inputEngine['resource_name']
-                : ($resName !== '' ? $resName : ($existingName !== '' ? $existingName : $this->lookupClassLabel($resClass)));
+                : ($resourceName !== '' ? $resourceName : ($existingName !== '' ? $existingName : $this->lookupClassLabel($resourceClass)));
 
             // Klasse final festlegen (Resource führt)
-            $engineClass = $resClass !== '' ? $resClass
+            $engineClass = $resourceClass !== '' ? $resourceClass
                 : ((isset($inputEngine['resource_class']) && $inputEngine['resource_class'] !== null) ? (string) $inputEngine['resource_class'] : $existingClass);
 
             // Enabled-Logik:
@@ -143,7 +154,7 @@ final class SettingsSanitizer extends AppController
             $classChanged = ($existingClass !== '') && ($existingClass !== $engineClass);
             $enabled      = false;
 
-            if ($resourceIsEnabled) {
+            if ($isResourceEnabledNetworkWide) {
                 if ($classChanged) {
                     $enabled = false; // Auto-Disable bei Klassenwechsel
                 } else {
@@ -164,7 +175,7 @@ final class SettingsSanitizer extends AppController
             }
 
             $enginesOut[] = [
-                'resource_id'         => $rid,
+                'resource_id'         => $resourceId,
                 'resource_class'      => $engineClass,
                 'resource_name'       => $engineName,
                 'resource_disclaimer' => $engineDisclaimer,
@@ -259,6 +270,15 @@ final class SettingsSanitizer extends AppController
         }
 
         return '';
+    }
+
+    private function normalizeResourceId(mixed $resourceId): string
+    {
+        if ($resourceId === null) {
+            return '';
+        }
+
+        return trim(sanitize_text_field((string) $resourceId));
     }
 
     private function isWordPressAdapterClass(string $class): bool

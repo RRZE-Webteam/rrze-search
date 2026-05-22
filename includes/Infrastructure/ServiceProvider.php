@@ -70,9 +70,7 @@ class ServiceProvider
 
         if (!get_option('rrze_search_settings')) {
             update_option('rrze_search_settings', [
-                'rrze_search_resources' => [
-                    ['resource_name' => 'Default', 'resource_key' => '']
-                ],
+                'rrze_search_resources' => [],
                 'rrze_search_engines' => []
             ]);
         }
