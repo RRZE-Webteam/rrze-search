@@ -126,3 +126,22 @@ div#dashboard-widgets-wrap div#rrze_search_usage_widget .inside {
 div#dashboard-widgets-wrap div#rrze_search_usage_widget{
   border: none;
 }
+
+#rrze_search_usage_widget {
+  .order-higher-indicator,
+  .order-lower-indicator {
+    display: inline-block;
+    font: normal 20px/1 dashicons;
+    speak: never;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+
+  .order-higher-indicator::before {
+    content: "\f343";
+  }
+
+  .order-lower-indicator::before {
+    content: "\f347";
+  }
+}
