@@ -1,15 +1,15 @@
-# Copyright (C) 2025 Tollwerk & RRZE
+# Copyright (C) 2026 Tollwerk & RRZE
 # This file is distributed under the GPL3.
 msgid ""
 msgstr ""
-"Project-Id-Version: RRZE Search 1.0.1\n"
+"Project-Id-Version: RRZE Search 1.0.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rrze-search\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-11-20T11:05:12+00:00\n"
+"POT-Creation-Date: 2026-05-22T13:41:53+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: rrze-search\n"
@@ -60,6 +60,51 @@ msgstr ""
 #: includes/Infrastructure/BlockRender.php:183
 #: includes/Infrastructure/Templates/widget.php:56
 msgid "Privacy Disclaimer"
+msgstr ""
+
+#: includes/Infrastructure/DashboardWidget.php:42
+msgid "RRZE Search API Usage"
+msgstr ""
+
+#: includes/Infrastructure/DashboardWidget.php:53
+msgid "Usage data is not available at the moment."
+msgstr ""
+
+#: includes/Infrastructure/DashboardWidget.php:55
+msgid "Used quota"
+msgstr ""
+
+#: includes/Infrastructure/DashboardWidget.php:56
+msgid "used"
+msgstr ""
+
+#: includes/Infrastructure/DashboardWidget.php:57
+msgid "Available quota"
+msgstr ""
+
+#: includes/Infrastructure/DashboardWidget.php:58
+msgid "Remaining RRZE Search API requests before the quota resets."
+msgstr ""
+
+#: includes/Infrastructure/DashboardWidget.php:86
+#, php-format
+msgid "%1$s%% used of %2$s"
+msgstr ""
+
+#: includes/Infrastructure/DashboardWidget.php:138
+msgid "Weekly quota"
+msgstr ""
+
+#: includes/Infrastructure/DashboardWidget.php:139
+msgid "Monthly quota"
+msgstr ""
+
+#: includes/Infrastructure/DashboardWidget.php:140
+msgid "Yearly quota"
+msgstr ""
+
+#: includes/Infrastructure/DashboardWidget.php:141
+msgid "Quota"
 msgstr ""
 
 #: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:71
@@ -140,20 +185,20 @@ msgstr ""
 msgid "Search Results Page"
 msgstr ""
 
-#: includes/Infrastructure/Templates/admin-engine-configuration.php:19
+#: includes/Infrastructure/Templates/admin-engine-configuration.php:22
 #: includes/Infrastructure/Templates/admin-engine-template.php:14
 msgid "Type"
 msgstr ""
 
-#: includes/Infrastructure/Templates/admin-engine-configuration.php:37
+#: includes/Infrastructure/Templates/admin-engine-configuration.php:40
 msgid "Label"
 msgstr ""
 
-#: includes/Infrastructure/Templates/admin-engine-configuration.php:66
+#: includes/Infrastructure/Templates/admin-engine-configuration.php:69
 msgid "Remove"
 msgstr ""
 
-#: includes/Infrastructure/Templates/admin-engine-configuration.php:77
+#: includes/Infrastructure/Templates/admin-engine-configuration.php:80
 msgid "Add Search Engine"
 msgstr ""
 
@@ -253,31 +298,31 @@ msgstr ""
 msgid "Available search engines"
 msgstr ""
 
-#: includes/Infrastructure/UsageLimiter.php:93
+#: includes/Infrastructure/UsageLimiter.php:103
 msgid "hourly"
 msgstr ""
 
-#: includes/Infrastructure/UsageLimiter.php:94
+#: includes/Infrastructure/UsageLimiter.php:104
 msgid "daily"
 msgstr ""
 
-#: includes/Infrastructure/UsageLimiter.php:95
+#: includes/Infrastructure/UsageLimiter.php:105
 msgid "weekly"
 msgstr ""
 
-#: includes/Infrastructure/UsageLimiter.php:96
+#: includes/Infrastructure/UsageLimiter.php:106
 msgid "monthly"
 msgstr ""
 
-#: includes/Infrastructure/UsageLimiter.php:97
+#: includes/Infrastructure/UsageLimiter.php:107
 msgid "yearly"
 msgstr ""
 
-#: includes/Infrastructure/UsageLimiter.php:177
+#: includes/Infrastructure/UsageLimiter.php:227
 msgid "RRZE Search usage limit reached. Remote search will fall back to the local search until quotas reset."
 msgstr ""
 
-#: includes/Infrastructure/UsageLimiter.php:180
+#: includes/Infrastructure/UsageLimiter.php:230
 #, php-format
 msgid "RRZE Search usage limit reached (%s). Remote search will fall back to the local search until quotas reset."
 msgstr ""

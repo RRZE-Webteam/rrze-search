@@ -66,6 +66,29 @@ const parseUsageData = (dataset) => {
   }
 };
 
+const FULL_WIDTH_CONTAINER_CLASS = "rrze-search-dashboard-widget__full-width-row";
+
+const ensureFullWidthPlacement = () => {
+  const widget = document.getElementById("rrze_search_usage_widget");
+  const wrapper = document.getElementById("dashboard-widgets-wrap");
+
+  if (!widget || !wrapper) {
+    return;
+  }
+
+  let container = wrapper.querySelector(`.${FULL_WIDTH_CONTAINER_CLASS}`);
+
+  if (!container) {
+    container = document.createElement("div");
+    container.className = FULL_WIDTH_CONTAINER_CLASS;
+    wrapper.insertBefore(container, wrapper.firstChild);
+  }
+
+  if (widget.parentElement !== container) {
+    container.appendChild(widget);
+  }
+};
+
 const mountUsageWidget = (container) => {
   const elementApi = getElementApi();
   if (!elementApi || typeof elementApi.createElement !== "function") {
@@ -79,39 +102,29 @@ const mountUsageWidget = (container) => {
   const usage = parseUsageData(container.dataset.usage);
   const emptyMessage = container.dataset.empty || container.textContent || "";
   const defaultPeriod = container.dataset.defaultPeriod || "";
+  const fallbackPeriod = defaultPeriod && usage[defaultPeriod] ? defaultPeriod : Object.keys(usage)[0] || "";
   const usedLabel = container.dataset.usedLabel || "Used quota";
+  const usedShortLabel = container.dataset.usedShortLabel || "used";
   const availableLabel = container.dataset.availableLabel || "Available quota";
   const globalDescription = container.dataset.description || "";
 
-  const select = container.querySelector(".rrze-search-dashboard-widget__period");
-  const chartHost = container.querySelector(".rrze-search-dashboard-widget__chart");
+  const chartHosts = container.querySelectorAll(".rrze-search-dashboard-widget__chart");
 
-  if (!chartHost) {
+  if (!chartHosts.length) {
     return;
   }
 
-  const getSelectedPeriod = () => {
-    if (select && select.value) {
-      return select.value;
-    }
-
-    if (defaultPeriod && usage[defaultPeriod]) {
-      return defaultPeriod;
-    }
-
-    const keys = Object.keys(usage);
-    return keys[0] || "";
-  };
-
-  const renderForCurrentPeriod = () => {
-    const currentPeriod = getSelectedPeriod();
-    const stats = usage[currentPeriod];
+  const renderChartForHost = (chartHost) => {
+    const period = chartHost.dataset.period;
+    const stats = usage[period] || usage[fallbackPeriod] || null;
 
     if (!stats || stats.limit <= 0) {
       chartHost.textContent = emptyMessage;
       chartHost.classList.add("rrze-search-dashboard-widget__empty");
       return;
     }
+
+    chartHost.classList.remove("rrze-search-dashboard-widget__empty");
 
     const limit = Number(stats.limit) || 0;
     const total = Number(stats.total) || 0;
@@ -127,8 +140,10 @@ const mountUsageWidget = (container) => {
       ? `${stats.label} (${used.toLocaleString()} / ${limit.toLocaleString()})`
       : globalDescription;
 
-    const width = Math.max(chartHost.clientWidth || container.clientWidth || 0, 320);
-    const element = createElement(PieChart, { data, width, description });
+    const fallbackWidth = chartHost.parentElement?.clientWidth || container.clientWidth || 0;
+    const maxWidth = Math.max(chartHost.clientWidth || fallbackWidth, 220);
+    const width = Math.max(Math.min(Math.round(maxWidth * 0.72), 260), 180);
+    const element = createElement(PieChart, { data, width, description, usedShortLabel });
 
     if (typeof modernCreateRoot === "function") {
       let root = roots.get(chartHost);
@@ -145,13 +160,15 @@ const mountUsageWidget = (container) => {
     }
   };
 
-  renderForCurrentPeriod();
+  const renderAllCharts = () => {
+    chartHosts.forEach((chartHost) => {
+      renderChartForHost(chartHost);
+    });
+  };
 
-  if (select) {
-    select.addEventListener("change", renderForCurrentPeriod);
-  }
+  renderAllCharts();
 
-  container.__rrzeSearchUpdate = renderForCurrentPeriod;
+  container.__rrzeSearchUpdate = renderAllCharts;
 };
 
 const renderUsageWidgets = () => {
@@ -174,6 +191,7 @@ const renderUsageWidgets = () => {
 bindResourceFormEvents();
 
 domReady(() => {
+  ensureFullWidthPlacement();
   renderUsageWidgets();
   window.addEventListener("resize", renderUsageWidgets);
 });

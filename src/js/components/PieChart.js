@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 
-const PieChart = ({ data, width, description }) => {
+const PieChart = ({ data, width, description, usedShortLabel }) => {
   const elementApi = window?.wp?.element;
   const useRef = elementApi?.useRef;
   const useEffect = elementApi?.useEffect;
@@ -17,10 +17,8 @@ const PieChart = ({ data, width, description }) => {
       return undefined;
     }
 
-    const height = Math.min(width, 500);
+    const height = Math.min(width, 260);
     const radius = Math.min(width, height) / 2;
-    const maxItemsPerColumn = 5; // Maximum legend items per column
-    const columnSpacing = 120; // Spacing between columns
 
     const arc = d3
       .arc()
@@ -34,8 +32,8 @@ const PieChart = ({ data, width, description }) => {
       .value((d) => d.value);
 
     const highContrastColors = [
-      "#1f77b4",
-      "#ff7f0e",
+      "#04316a",
+      "#8ecae6",
       "#2ca02c",
       "#d62728",
       "#9467bd",
@@ -57,9 +55,11 @@ const PieChart = ({ data, width, description }) => {
     const svg = d3
       .select(chartRef.current)
       .attr("width", width)
-      .attr("height", height + 200) // Add extra space for legend and description
-      .attr("viewBox", [-width / 2, -height / 2 - 50, width, height + 200])
-      .attr("style", "max-width: 100%; height: auto; background: none;"); // Transparent background
+      .attr("height", height)
+      .attr("viewBox", [-width / 2, -height / 2, width, height])
+      .attr("role", "img")
+      .attr("aria-label", description || "")
+      .attr("style", "max-width: 100%; height: auto; background: none;");
 
     // Tooltip for showing data on hover
     const tooltip = d3
@@ -169,51 +169,33 @@ const PieChart = ({ data, width, description }) => {
         tooltip.style("opacity", 0);
       });
 
-    // Legend
-    const legend = svg
-      .append("g")
-      .attr("transform", `translate(-${radius}, ${radius + 40})`) // Position below the chart
-      .attr("font-family", "sans-serif")
-      .attr("font-size", 12)
-      .attr("text-anchor", "start");
+    const summary = data[0]?.summary || {};
+    const limit = Number(summary.limit ?? 0) || 0;
+    const used = Number(summary.used ?? 0) || 0;
+    const usedPercentage = limit > 0 ? Math.min(Math.round((used / limit) * 100), 100) : 0;
 
-    legend
-      .selectAll("g")
-      .data(data)
-      .join("g")
-      .attr("transform", (d, i) => {
-        const col = Math.floor(i / maxItemsPerColumn); // Current column index
-        const row = i % maxItemsPerColumn; // Current row index
-        return `translate(${col * columnSpacing}, ${row * 20})`; // Adjust position for rows and columns
-      })
-      .call((group) => {
-        group
-          .append("rect")
-          .attr("x", 0)
-          .attr("width", 18)
-          .attr("height", 18)
-          .attr("fill", (d, i) => `url(#pattern-${i})`); // Use patterns for legend
-
-        group
-          .append("text")
-          .attr("x", 24)
-          .attr("y", 9)
-          .attr("dy", "0.35em")
-          .text((d) => d.name); // Properly render all `name` values
-      });
-
-    // Description
     svg
       .append("text")
-      .attr("transform", `translate(0, ${height / 2 + 140})`)
+      .attr("y", -4)
       .attr("text-anchor", "middle")
       .attr("font-family", "sans-serif")
-      .attr("font-size", 14)
-      .text(description || ""); // Optional description
+      .attr("font-size", 28)
+      .attr("font-weight", 700)
+      .attr("fill", "#1d2327")
+      .text(`${usedPercentage}%`);
+
+    svg
+      .append("text")
+      .attr("y", 18)
+      .attr("text-anchor", "middle")
+      .attr("font-family", "sans-serif")
+      .attr("font-size", 12)
+      .attr("fill", "#646970")
+      .text(usedShortLabel || "");
 
     // Cleanup tooltip on unmount
     return () => tooltip.remove();
-  }, [data, width, description]);
+  }, [data, width, description, usedShortLabel]);
 
   return createElement("svg", { ref: chartRef });
 };

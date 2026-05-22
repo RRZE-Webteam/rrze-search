@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rrze-search\n"
-"POT-Creation-Date: 2025-11-20T11:05:12+00:00\n"
-"PO-Revision-Date: 2025-11-20 12:05+0100\n"
+"POT-Creation-Date: 2026-05-22T13:41:53+00:00\n"
+"PO-Revision-Date: 2026-05-22 15:43+0200\n"
 "Last-Translator: Wolfgang Wiese <wolfgang.wiese@fau.de>\n"
-"Language-Team: Deutsch (Sie)\n"
-"Language: de\n"
+"Language-Team: Deutsch\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -26,29 +26,25 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: rrze-search.php
-#, fuzzy
 msgid "RRZE Search"
-msgstr "RRZE Suche"
+msgstr "RRZE-Suche"
 
 #. Plugin URI of the plugin
 #. Author URI of the plugin
 #: rrze-search.php
-#, fuzzy
 msgid "https://www.tollwerk.de"
 msgstr "https://www.tollwerk.de"
 
 #. Description of the plugin
 #: rrze-search.php
-#, fuzzy
 msgid ""
 "A WordPress Search Plugin originally by Tollwerk GmbH and maintained by RRZE"
 msgstr ""
-"Ein WordPress-Such-Plugin, das ursprünglich von der Tollwerk GmbH stammt und "
-"von RRZE gepflegt wird"
+"Ein WordPress-Such-Plugin, ursprünglich von der Tollwerk GmbH entwickelt und "
+"vom RRZE gepflegt"
 
 #. Author of the plugin
 #: rrze-search.php
-#, fuzzy
 msgid "Tollwerk & RRZE"
 msgstr "Tollwerk & RRZE"
 
@@ -79,8 +75,53 @@ msgstr "Bitte wählen Sie einen der verfügbaren Suchdienste:"
 msgid "Privacy Disclaimer"
 msgstr "Datenschutzhinweise"
 
+#: includes/Infrastructure/DashboardWidget.php:42
+msgid "RRZE Search API Usage"
+msgstr "RRZE Search API Nutzung"
+
+#: includes/Infrastructure/DashboardWidget.php:53
+msgid "Usage data is not available at the moment."
+msgstr "Derzeit liegen keine Nutzungsdaten vor."
+
+#: includes/Infrastructure/DashboardWidget.php:55
+msgid "Used quota"
+msgstr "Verbrauchtes Kontingent"
+
+#: includes/Infrastructure/DashboardWidget.php:56
+msgid "used"
+msgstr "verwendet"
+
+#: includes/Infrastructure/DashboardWidget.php:57
+msgid "Available quota"
+msgstr "Verfügbares Kontingent"
+
+#: includes/Infrastructure/DashboardWidget.php:58
+msgid "Remaining RRZE Search API requests before the quota resets."
+msgstr ""
+"Verbleibende RRZE-Such-API-Anfragen vor dem Zurücksetzen des Kontingents."
+
+#: includes/Infrastructure/DashboardWidget.php:86
+#, php-format
+msgid "%1$s%% used of %2$s"
+msgstr "%1$s%% verwendet von %2$s"
+
+#: includes/Infrastructure/DashboardWidget.php:138
+msgid "Weekly quota"
+msgstr "Wöchentliches Kontingent"
+
+#: includes/Infrastructure/DashboardWidget.php:139
+msgid "Monthly quota"
+msgstr "Monatliches Kontingent"
+
+#: includes/Infrastructure/DashboardWidget.php:140
+msgid "Yearly quota"
+msgstr "Jährliches Kontingent"
+
+#: includes/Infrastructure/DashboardWidget.php:141
+msgid "Quota"
+msgstr "Kontingent"
+
 #: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:71
-#, fuzzy
 msgid ""
 "Google search credentials are missing. Please provide both API key and CX "
 "identifier."
@@ -89,9 +130,10 @@ msgstr ""
 "Schlüssel als auch die CX-Kennung an."
 
 #: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:140
-#, fuzzy
 msgid "Google search request failed without a response body."
-msgstr "Google-Suchanfrage ohne Antwortkörper fehlgeschlagen."
+msgstr ""
+"Die Google-Suchanfrage ist fehlgeschlagen, ohne dass ein Antworttext "
+"zurückgegeben wurde."
 
 #: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:150
 msgid "Google FAU Search"
@@ -111,8 +153,6 @@ msgstr "Ihr Label mit Übersetzungsunterstützung"
 #: includes/Infrastructure/RRZESearchSettingsExtender.php:400
 #: includes/Infrastructure/RRZESearchSettingsExtender.php:458
 #: includes/Infrastructure/RRZESearchSettingsExtender.php:558
-#, fuzzy
-#| msgid "More search results"
 msgid "Native WordPress search results"
 msgstr "Weitere Suchergebnisse"
 
@@ -173,36 +213,34 @@ msgstr "Konfiguration"
 msgid "Search Results Page"
 msgstr "Suchergebnisseite"
 
-#: includes/Infrastructure/Templates/admin-engine-configuration.php:19
+#: includes/Infrastructure/Templates/admin-engine-configuration.php:22
 #: includes/Infrastructure/Templates/admin-engine-template.php:14
 msgid "Type"
 msgstr "Typ"
 
-#: includes/Infrastructure/Templates/admin-engine-configuration.php:37
+#: includes/Infrastructure/Templates/admin-engine-configuration.php:40
 msgid "Label"
 msgstr "Bezeichnung"
 
-#: includes/Infrastructure/Templates/admin-engine-configuration.php:66
+#: includes/Infrastructure/Templates/admin-engine-configuration.php:69
 msgid "Remove"
 msgstr "Löschen"
 
-#: includes/Infrastructure/Templates/admin-engine-configuration.php:77
+#: includes/Infrastructure/Templates/admin-engine-configuration.php:80
 msgid "Add Search Engine"
 msgstr "Suchmaschine hinzufügen"
 
 #: includes/Infrastructure/Templates/admin-engine-presets.php:30
-#, fuzzy
 msgid "No global preset search engines are configured."
-msgstr "Es sind keine globalen voreingestellten Suchmaschinen konfiguriert."
+msgstr "Es sind keine globalen Standard-Suchmaschinen konfiguriert."
 
 #: includes/Infrastructure/Templates/admin-engine-presets.php:49
-#, fuzzy
 msgid "(Unnamed engine)"
-msgstr "(Unbenannte Maschine)"
+msgstr "(Unbenannte Suchmaschine)"
 
 #: includes/Infrastructure/Templates/admin-engine-presets.php:62
 msgid "Global Preset Search Engines"
-msgstr "Globale voreingestellte Suchmaschinen"
+msgstr "Suchmaschinen Globale Voreinstellungen"
 
 #: includes/Infrastructure/Templates/admin-engine-presets.php:64
 msgid ""
@@ -213,43 +251,37 @@ msgstr ""
 "hier als Referenz dargestellt. Sensible Werte sind maskiert."
 
 #: includes/Infrastructure/Templates/admin-engine-presets.php:70
-#, fuzzy
 msgid "Name"
-msgstr "Vorname Nachname"
+msgstr "Name"
 
 #: includes/Infrastructure/Templates/admin-engine-presets.php:71
 msgid "Description"
 msgstr "Beschreibung"
 
 #: includes/Infrastructure/Templates/admin-engine-presets.php:72
-#, fuzzy
-#| msgid "Search Engines"
 msgid "CX (Search Engine)"
-msgstr "Suchmaschinen"
+msgstr "CX (Suchmaschine)"
 
 #: includes/Infrastructure/Templates/admin-engine-presets.php:73
 msgid "API Key"
 msgstr "API-Schlüssel"
 
 #: includes/Infrastructure/Templates/admin-engine-toggle.php:6
-#, fuzzy
 msgid ""
 "Network-wide search engines are available. You can still adjust which ones "
 "are enabled locally and choose the default fallback below."
 msgstr ""
-"Netzwerkweite Suchmaschinen sind verfügbar. Sie können immer noch "
-"einstellen, welche lokal aktiviert sind, und unten den Standard-Fallback "
-"wählen."
+"Es stehen netzwerkweite Suchmaschinen zur Verfügung. Sie können weiterhin "
+"festlegen, welche davon lokal aktiviert sind, und unten die Standard-"
+"Ausweichoption auswählen."
 
 #: includes/Infrastructure/Templates/admin-engine-toggle.php:47
 msgid "Privacy Policy / Instruction Page ID"
 msgstr "Datenschutz- / Instruktionsseite (ID)"
 
 #: includes/Infrastructure/Templates/admin-engine-toggle.php:63
-#, fuzzy
-#| msgid "Default Search Engine"
 msgid "Default search engine"
-msgstr "Standardsuchmaschine"
+msgstr "Standard-Suchmaschine"
 
 #: includes/Infrastructure/Templates/admin-engine-toggle.php:65
 msgid ""
@@ -257,10 +289,10 @@ msgid ""
 "forms. If the selected engine becomes unavailable, the plugin will fall back "
 "to the local WordPress search."
 msgstr ""
-"Wählen Sie aus, welche aktivierte Suchmaschine für standortweite "
-"Suchformulare vorausgewählt werden soll. Wenn die ausgewählte Suchmaschine "
-"nicht mehr verfügbar ist, greift das Plugin auf die lokale WordPress-Suche "
-"zurück."
+"Wählen Sie aus, welche aktivierte Suchmaschine für die Suchformulare auf der "
+"gesamten Website voreingestellt werden soll. Sollte die ausgewählte "
+"Suchmaschine nicht mehr verfügbar sein, greift das Plugin auf die lokale "
+"WordPress-Suche zurück."
 
 #: includes/Infrastructure/Templates/admin-engine-toggle.php:71
 msgid "disabled"
@@ -310,27 +342,27 @@ msgstr "Alle Seiten und Dokumente durchsuchen:"
 msgid "Available search engines"
 msgstr "Verfügbare Suchmaschinen"
 
-#: includes/Infrastructure/UsageLimiter.php:93
+#: includes/Infrastructure/UsageLimiter.php:103
 msgid "hourly"
 msgstr "stündlich"
 
-#: includes/Infrastructure/UsageLimiter.php:94
+#: includes/Infrastructure/UsageLimiter.php:104
 msgid "daily"
 msgstr "täglich"
 
-#: includes/Infrastructure/UsageLimiter.php:95
+#: includes/Infrastructure/UsageLimiter.php:105
 msgid "weekly"
 msgstr "wöchentlich"
 
-#: includes/Infrastructure/UsageLimiter.php:96
+#: includes/Infrastructure/UsageLimiter.php:106
 msgid "monthly"
 msgstr "monatlich"
 
-#: includes/Infrastructure/UsageLimiter.php:97
+#: includes/Infrastructure/UsageLimiter.php:107
 msgid "yearly"
 msgstr "jährlich"
 
-#: includes/Infrastructure/UsageLimiter.php:177
+#: includes/Infrastructure/UsageLimiter.php:227
 msgid ""
 "RRZE Search usage limit reached. Remote search will fall back to the local "
 "search until quotas reset."
@@ -338,7 +370,7 @@ msgstr ""
 "Das Nutzungslimit für die RRZE-Suche wurde erreicht. Die Remote-Suche wird "
 "auf die lokale Suche zurückgesetzt, bis die Kontingente zurückgesetzt werden."
 
-#: includes/Infrastructure/UsageLimiter.php:180
+#: includes/Infrastructure/UsageLimiter.php:230
 #, php-format
 msgid ""
 "RRZE Search usage limit reached (%s). Remote search will fall back to the "
@@ -356,10 +388,9 @@ msgid "Heading"
 msgstr "Überschrift"
 
 #: build/block/index.js:1
-#, fuzzy
 msgid "Optional heading text to display above the search form"
 msgstr ""
-"Optionaler Überschriftstext, der oberhalb des Suchformulars angezeigt wird"
+"Optionaler Überschriftentext, der über dem Suchformular angezeigt werden soll"
 
 #: build/block/index.js:1
 msgid "Layout Settings"
@@ -370,17 +401,14 @@ msgid "Width"
 msgstr "Breite"
 
 #: build/block/index.js:1
-#, fuzzy
 msgid "Content Size (with search scope & advanced features)"
-msgstr "Content Size (mit Suchumfang & erweiterten Funktionen)"
+msgstr "Content Size (mit Suchumfang und erweiterten Funktionen)"
 
 #: build/block/index.js:1
-#, fuzzy
 msgid "Full Grid (simple search only)"
 msgstr "Vollständiges Raster (nur einfache Suche)"
 
 #: build/block/index.js:1
-#, fuzzy
 msgid ""
 "Content Size: for editorial content, includes search scope selection and "
 "advanced features. Full Grid: for wide teaser components, simple search only."
@@ -390,8 +418,6 @@ msgstr ""
 "einfache Suche."
 
 #: build/block/index.js:1
-#, fuzzy
-#| msgid "Add Search Engine"
 msgid "Advanced Search options"
 msgstr "Suchmaschine hinzufügen"
 
