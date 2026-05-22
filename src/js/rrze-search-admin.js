@@ -104,6 +104,7 @@ const mountUsageWidget = (container) => {
   const defaultPeriod = container.dataset.defaultPeriod || "";
   const fallbackPeriod = defaultPeriod && usage[defaultPeriod] ? defaultPeriod : Object.keys(usage)[0] || "";
   const usedLabel = container.dataset.usedLabel || "Used quota";
+  const usedShortLabel = container.dataset.usedShortLabel || "used";
   const availableLabel = container.dataset.availableLabel || "Available quota";
   const globalDescription = container.dataset.description || "";
 
@@ -140,9 +141,9 @@ const mountUsageWidget = (container) => {
       : globalDescription;
 
     const fallbackWidth = chartHost.parentElement?.clientWidth || container.clientWidth || 0;
-    const maxWidth = Math.max(chartHost.clientWidth || fallbackWidth, 320);
-    const width = Math.max(Math.round(maxWidth * (2 / 3)), 220);
-    const element = createElement(PieChart, { data, width, description });
+    const maxWidth = Math.max(chartHost.clientWidth || fallbackWidth, 220);
+    const width = Math.max(Math.min(Math.round(maxWidth * 0.72), 260), 180);
+    const element = createElement(PieChart, { data, width, description, usedShortLabel });
 
     if (typeof modernCreateRoot === "function") {
       let root = roots.get(chartHost);

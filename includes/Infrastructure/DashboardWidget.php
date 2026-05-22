@@ -53,6 +53,7 @@ class DashboardWidget
         $emptyState = __('Usage data is not available at the moment.', 'rrze-search');
 
         $usedLabel = __('Used quota', 'rrze-search');
+        $usedShortLabel = __('used', 'rrze-search');
         $availableLabel = __('Available quota', 'rrze-search');
         $description = __('Remaining RRZE Search API requests before the quota resets.', 'rrze-search');
 
@@ -67,8 +68,26 @@ class DashboardWidget
             . ' data-usage="' . esc_attr(wp_json_encode($dataset)) . '"'
             . ' data-empty="' . esc_attr($emptyState) . '"'
             . ' data-used-label="' . esc_attr($usedLabel) . '"'
+            . ' data-used-short-label="' . esc_attr($usedShortLabel) . '"'
             . ' data-available-label="' . esc_attr($availableLabel) . '"'
             . ' data-description="' . esc_attr($description) . '">';
+
+        echo '<div class="rrze-search-dashboard-widget__summary">';
+        foreach ($dataset as $details) {
+            $limit = (int) ($details['limit'] ?? 0);
+            $total = (int) ($details['total'] ?? 0);
+            $remaining = (int) ($details['remaining'] ?? 0);
+            $usedPercentage = $limit > 0 ? min(100, (int) round(($total / $limit) * 100)) : 0;
+
+            echo '<div class="rrze-search-dashboard-widget__summary-item">'
+                . '<span class="rrze-search-dashboard-widget__summary-label">' . esc_html($details['label']) . '</span>'
+                . '<strong class="rrze-search-dashboard-widget__summary-value">' . esc_html(number_format_i18n($remaining)) . '</strong>'
+                . '<span class="rrze-search-dashboard-widget__summary-meta">'
+                . esc_html(sprintf(__('%1$s%% used of %2$s', 'rrze-search'), number_format_i18n($usedPercentage), number_format_i18n($limit)))
+                . '</span>'
+                . '</div>';
+        }
+        echo '</div>';
 
         echo '<div class="rrze-search-dashboard-widget__charts">';
         foreach ($dataset as $period => $details) {
