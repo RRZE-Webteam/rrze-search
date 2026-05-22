@@ -12,11 +12,11 @@ class DashboardWidget
     private const CONTAINER_ID = 'rrze-search-dashboard-widget';
     private static $instanceCounter = 0;
 
-    /** @var array<string,string> */
-    private const PERIOD_LABELS = [
-        'week'  => 'Weekly',
-        'month' => 'Monthly',
-        'year'  => 'Yearly',
+    /** @var array<int,string> */
+    private const PERIODS = [
+        'week',
+        'month',
+        'year',
     ];
 
     /**
@@ -113,7 +113,7 @@ class DashboardWidget
         $snapshot = UsageLimiter::getUsageSnapshot();
         $dataset = [];
 
-        foreach (self::PERIOD_LABELS as $period => $label) {
+        foreach (self::PERIODS as $period) {
             $limit = (int) ($snapshot[$period]['limit'] ?? 0);
             $total = (int) ($snapshot[$period]['total'] ?? 0);
 
@@ -122,7 +122,7 @@ class DashboardWidget
             }
 
             $dataset[$period] = [
-                'label'     => sprintf(__('%s quota', 'rrze-search'), __($label, 'rrze-search')),
+                'label'     => $this->getPeriodQuotaLabel($period),
                 'limit'     => max($limit, 0),
                 'total'     => max($total, 0),
                 'remaining' => $limit > 0 ? max($limit - $total, 0) : 0,
@@ -130,6 +130,16 @@ class DashboardWidget
         }
 
         return $dataset;
+    }
+
+    private function getPeriodQuotaLabel(string $period): string
+    {
+        return match ($period) {
+            'week' => __('Weekly quota', 'rrze-search'),
+            'month' => __('Monthly quota', 'rrze-search'),
+            'year' => __('Yearly quota', 'rrze-search'),
+            default => __('Quota', 'rrze-search'),
+        };
     }
 
     /**
