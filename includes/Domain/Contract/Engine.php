@@ -33,9 +33,12 @@ interface Engine
     public static function getName(): string;
 
     /**
-     * Returns the relative URL that serves the search results page.
+     * Returns the URL that serves this engine's search results.
      *
-     * @return string Redirect path used when forwarding search requests.
+     * External engines resolve to the managed RRZE Search results page; the
+     * native WordPress engine returns the site root marker `/`.
+     *
+     * @return string Redirect target used when forwarding search requests.
      */
     public static function getRedirectLink(): string;
 

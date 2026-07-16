@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Application\Controller\AppController;
 use RRZE\RRZESearch\Infrastructure\Helper\Helper;
+use RRZE\RRZESearch\Infrastructure\ResultsPage;
 
 /**
  * Renders RRZE Search settings fields inside the WordPress admin.
@@ -102,35 +103,24 @@ class OptionFieldRenderer extends AppController
     {
         $name        = $args['label_for'];
         $optionName  = $args['option_name'];
-        $optionValue = get_option($optionName);
+        $pageId      = ResultsPage::ensureExists();
 
-        if (array_key_exists($name, $optionValue)) {
-            // Test the Permalink to ensure current user isn't overwriting post created by another user
-            if ($optionValue[$name] === '' || !get_permalink($optionValue[$name])) {
-                $rrze_search_page    = [
-                    'post_date'     => date('Y-m-d H:i:s'),
-                    'post_date_gmt' => date('Y-m-d H:i:s'),
-                    'post_content'  => '[rrze_search_results]',
-                    'post_name'     => 'rrze_search_page',
-                    'post_title'    => __('Global Search Results', 'rrze-search'),
-                    'post_status'   => 'publish',
-                    'post_type'     => 'page',
-                    'post_excerpt'  => __('Search Result Page utilized by RRZE Search Plugin', 'rrze-search'),
-                ];
-                $rrze_search_page_id = wp_insert_post($rrze_search_page);
-                $optionValue[$name]  = $rrze_search_page_id;
-                update_option($optionName, $optionValue, true);
-            }
+        if (is_wp_error($pageId)) {
+            echo '<span class="notice notice-error inline"><p>' . esc_html($pageId->get_error_message()) . '</p></span>';
 
-            if (get_post($optionValue[$name])) {
-                require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-results-page-input.php';
-            } else {
-                echo __('Oh no! Someone deleted the results Page! No worries, Another one will be generated when you click [ Save Changes ]',
-                    'rrze-search');
-            }
-        } else {
-            echo __('Search Results Page doesn\'t exist, yet! No worries, one will be generated when you click [ Save Changes ]',
-                'rrze-search');
+            return;
         }
+
+        $resultsPage = get_post($pageId);
+
+        if (!$resultsPage instanceof \WP_Post) {
+            echo '<span class="notice notice-error inline"><p>'
+                . esc_html__('The RRZE Search results page could not be loaded.', 'rrze-search')
+                . '</p></span>';
+
+            return;
+        }
+
+        require $this->templatesDir.DIRECTORY_SEPARATOR.'admin-results-page-input.php';
     }
 }

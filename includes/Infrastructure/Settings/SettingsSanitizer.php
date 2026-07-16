@@ -6,6 +6,7 @@ namespace RRZE\RRZESearch\Infrastructure\Settings;
 defined('ABSPATH') || exit;
 
 use RRZE\RRZESearch\Application\Controller\AppController;
+use RRZE\RRZESearch\Infrastructure\ResultsPage;
 
 /**
  * Sanitizes and normalizes RRZE Search settings prior to persistence.
@@ -227,13 +228,9 @@ final class SettingsSanitizer extends AppController
             $defaultEngine = $wordpressResourceId;
         }
 
-        // 7) Page-ID übernehmen (Input > Option > 0)
-        $pageId = 0;
-        if (isset($input['rrze_search_page_id'])) {
-            $pageId = absint($input['rrze_search_page_id']);
-        } elseif (isset($option['rrze_search_page_id'])) {
-            $pageId = absint($option['rrze_search_page_id']);
-        }
+        // 7) Die verwaltete Systemseite darf nicht über Formulardaten
+        //    einer beliebigen anderen Seite zugeordnet werden.
+        $pageId = ResultsPage::getId();
 
         // 8) Finale Ressourcenliste für Ausgabe (normiert, numerische Indizes)
         $resourcesOut = array_values($resourcesById);

@@ -46,9 +46,9 @@ use RRZE\RRZESearch\Infrastructure\Engines\Foundations\AbstractSearchEngine;
 class SearchEngineClass extends AbstractSearchEngine
 {
     /**
-     * Slug of the page that renders multisearch results.
+     * External engines render on the RRZE Search managed results page.
      */
-    const REDIRECT_LINK = '/rrze_search_page';
+    const REDIRECT_LINK = '';
 
     /**
      * Executes the external search request and returns the raw payload.

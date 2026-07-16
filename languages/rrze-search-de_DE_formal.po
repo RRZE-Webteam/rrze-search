@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Search\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rrze-search\n"
-"POT-Creation-Date: 2026-05-22T13:41:53+00:00\n"
-"PO-Revision-Date: 2026-05-22 15:43+0200\n"
 "Last-Translator: Wolfgang Wiese <wolfgang.wiese@fau.de>\n"
 "Language-Team: Deutsch\n"
-"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-05-22T13:41:53+00:00\n"
+"PO-Revision-Date: 2026-05-22 15:43+0200\n"
+"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ..\n"
@@ -37,26 +37,23 @@ msgstr "https://www.tollwerk.de"
 
 #. Description of the plugin
 #: rrze-search.php
-msgid ""
-"A WordPress Search Plugin originally by Tollwerk GmbH and maintained by RRZE"
-msgstr ""
-"Ein WordPress-Such-Plugin, ursprünglich von der Tollwerk GmbH entwickelt und "
-"vom RRZE gepflegt"
+msgid "A WordPress Search Plugin originally by Tollwerk GmbH and maintained by RRZE"
+msgstr "Ein WordPress-Such-Plugin, ursprünglich von der Tollwerk GmbH entwickelt und vom RRZE gepflegt"
 
 #. Author of the plugin
 #: rrze-search.php
 msgid "Tollwerk & RRZE"
 msgstr "Tollwerk & RRZE"
 
-#: includes/Application/Widget/SearchWidget.php:106
+#: includes/Application/Widget/SearchWidget.php:107
 msgid "RRZE Search Sidebar"
 msgstr "RRZE Such-Randspalte"
 
-#: includes/Application/Widget/SearchWidget.php:108
+#: includes/Application/Widget/SearchWidget.php:109
 msgid "Used to display the widget"
 msgstr "Wird verwendet, um das Widget anzuzeigen"
 
-#: includes/Application/Widget/SearchWidget.php:189
+#: includes/Application/Widget/SearchWidget.php:190
 msgid "Default Search Engine"
 msgstr "Standardsuchmaschine"
 
@@ -97,8 +94,7 @@ msgstr "Verfügbares Kontingent"
 
 #: includes/Infrastructure/DashboardWidget.php:58
 msgid "Remaining RRZE Search API requests before the quota resets."
-msgstr ""
-"Verbleibende RRZE-Such-API-Anfragen vor dem Zurücksetzen des Kontingents."
+msgstr "Verbleibende RRZE-Such-API-Anfragen vor dem Zurücksetzen des Kontingents."
 
 #: includes/Infrastructure/DashboardWidget.php:86
 #, php-format
@@ -122,18 +118,12 @@ msgid "Quota"
 msgstr "Kontingent"
 
 #: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:71
-msgid ""
-"Google search credentials are missing. Please provide both API key and CX "
-"identifier."
-msgstr ""
-"Die Anmeldedaten für die Google-Suche fehlen. Bitte geben Sie sowohl den API-"
-"Schlüssel als auch die CX-Kennung an."
+msgid "Google search credentials are missing. Please provide both API key and CX identifier."
+msgstr "Die Anmeldedaten für die Google-Suche fehlen. Bitte geben Sie sowohl den API-Schlüssel als auch die CX-Kennung an."
 
 #: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:140
 msgid "Google search request failed without a response body."
-msgstr ""
-"Die Google-Suchanfrage ist fehlgeschlagen, ohne dass ein Antworttext "
-"zurückgegeben wurde."
+msgstr "Die Google-Suchanfrage ist fehlgeschlagen, ohne dass ein Antworttext zurückgegeben wurde."
 
 #: includes/Infrastructure/Engines/Foundations/GoogleSearch.php:150
 msgid "Google FAU Search"
@@ -156,29 +146,13 @@ msgstr "Ihr Label mit Übersetzungsunterstützung"
 msgid "Native WordPress search results"
 msgstr "Weitere Suchergebnisse"
 
-#: includes/Infrastructure/Settings/OptionFieldRenderer.php:115
+#: includes/Infrastructure/ResultsPage.php:344
 msgid "Global Search Results"
 msgstr "Globale Suchergebnisse"
 
-#: includes/Infrastructure/Settings/OptionFieldRenderer.php:118
+#: includes/Infrastructure/ResultsPage.php:347
 msgid "Search Result Page utilized by RRZE Search Plugin"
 msgstr "Suchergebnisseite, die vom RRZE Search Plugin verwendet wird"
-
-#: includes/Infrastructure/Settings/OptionFieldRenderer.php:128
-msgid ""
-"Oh no! Someone deleted the results Page! No worries, Another one will be "
-"generated when you click [ Save Changes ]"
-msgstr ""
-"Oh nein! Jemand hat die Ergebnisseite gelöscht! Keine Sorge, eine weitere "
-"wird generiert, sobald Sie auf [Änderungen speichern] klicken"
-
-#: includes/Infrastructure/Settings/OptionFieldRenderer.php:132
-msgid ""
-"Search Results Page doesn't exist, yet! No worries, one will be generated "
-"when you click [ Save Changes ]"
-msgstr ""
-"Die Suchergebnisse Seite existiert noch nicht! Keine Sorge, sie wird "
-"generiert, sobald Sie auf [Änderungen speichern] klicken"
 
 #: includes/Infrastructure/Settings/SectionRenderer.php:23
 msgid "Enable Search Engines"
@@ -243,12 +217,8 @@ msgid "Global Preset Search Engines"
 msgstr "Suchmaschinen Globale Voreinstellungen"
 
 #: includes/Infrastructure/Templates/admin-engine-presets.php:64
-msgid ""
-"These engines are globally configured by an Superadministrator and shown "
-"here for reference. Sensitive values are masked."
-msgstr ""
-"Diese Engines werden von einem Superadministrator global konfiguriert und "
-"hier als Referenz dargestellt. Sensible Werte sind maskiert."
+msgid "These engines are globally configured by an Superadministrator and shown here for reference. Sensitive values are masked."
+msgstr "Diese Engines werden von einem Superadministrator global konfiguriert und hier als Referenz dargestellt. Sensible Werte sind maskiert."
 
 #: includes/Infrastructure/Templates/admin-engine-presets.php:70
 msgid "Name"
@@ -267,13 +237,8 @@ msgid "API Key"
 msgstr "API-Schlüssel"
 
 #: includes/Infrastructure/Templates/admin-engine-toggle.php:6
-msgid ""
-"Network-wide search engines are available. You can still adjust which ones "
-"are enabled locally and choose the default fallback below."
-msgstr ""
-"Es stehen netzwerkweite Suchmaschinen zur Verfügung. Sie können weiterhin "
-"festlegen, welche davon lokal aktiviert sind, und unten die Standard-"
-"Ausweichoption auswählen."
+msgid "Network-wide search engines are available. You can still adjust which ones are enabled locally and choose the default fallback below."
+msgstr "Es stehen netzwerkweite Suchmaschinen zur Verfügung. Sie können weiterhin festlegen, welche davon lokal aktiviert sind, und unten die Standard-Ausweichoption auswählen."
 
 #: includes/Infrastructure/Templates/admin-engine-toggle.php:47
 msgid "Privacy Policy / Instruction Page ID"
@@ -284,15 +249,8 @@ msgid "Default search engine"
 msgstr "Standard-Suchmaschine"
 
 #: includes/Infrastructure/Templates/admin-engine-toggle.php:65
-msgid ""
-"Choose which enabled engine should be preselected for site-wide search "
-"forms. If the selected engine becomes unavailable, the plugin will fall back "
-"to the local WordPress search."
-msgstr ""
-"Wählen Sie aus, welche aktivierte Suchmaschine für die Suchformulare auf der "
-"gesamten Website voreingestellt werden soll. Sollte die ausgewählte "
-"Suchmaschine nicht mehr verfügbar sein, greift das Plugin auf die lokale "
-"WordPress-Suche zurück."
+msgid "Choose which enabled engine should be preselected for site-wide search forms. If the selected engine becomes unavailable, the plugin will fall back to the local WordPress search."
+msgstr "Wählen Sie aus, welche aktivierte Suchmaschine für die Suchformulare auf der gesamten Website voreingestellt werden soll. Sollte die ausgewählte Suchmaschine nicht mehr verfügbar sein, greift das Plugin auf die lokale WordPress-Suche zurück."
 
 #: includes/Infrastructure/Templates/admin-engine-toggle.php:71
 msgid "disabled"
@@ -363,21 +321,13 @@ msgid "yearly"
 msgstr "jährlich"
 
 #: includes/Infrastructure/UsageLimiter.php:227
-msgid ""
-"RRZE Search usage limit reached. Remote search will fall back to the local "
-"search until quotas reset."
-msgstr ""
-"Das Nutzungslimit für die RRZE-Suche wurde erreicht. Die Remote-Suche wird "
-"auf die lokale Suche zurückgesetzt, bis die Kontingente zurückgesetzt werden."
+msgid "RRZE Search usage limit reached. Remote search will fall back to the local search until quotas reset."
+msgstr "Das Nutzungslimit für die RRZE-Suche wurde erreicht. Die Remote-Suche wird auf die lokale Suche zurückgesetzt, bis die Kontingente zurückgesetzt werden."
 
 #: includes/Infrastructure/UsageLimiter.php:230
 #, php-format
-msgid ""
-"RRZE Search usage limit reached (%s). Remote search will fall back to the "
-"local search until quotas reset."
-msgstr ""
-"RRZE-Suchlimit erreicht (%s). Die Remote-Suche wird auf die lokale Suche "
-"zurückgesetzt, bis die Kontingente zurückgesetzt werden."
+msgid "RRZE Search usage limit reached (%s). Remote search will fall back to the local search until quotas reset."
+msgstr "RRZE-Suchlimit erreicht (%s). Die Remote-Suche wird auf die lokale Suche zurückgesetzt, bis die Kontingente zurückgesetzt werden."
 
 #: build/block/index.js:1
 msgid "Content Settings"
@@ -389,8 +339,7 @@ msgstr "Überschrift"
 
 #: build/block/index.js:1
 msgid "Optional heading text to display above the search form"
-msgstr ""
-"Optionaler Überschriftentext, der über dem Suchformular angezeigt werden soll"
+msgstr "Optionaler Überschriftentext, der über dem Suchformular angezeigt werden soll"
 
 #: build/block/index.js:1
 msgid "Layout Settings"
@@ -409,13 +358,8 @@ msgid "Full Grid (simple search only)"
 msgstr "Vollständiges Raster (nur einfache Suche)"
 
 #: build/block/index.js:1
-msgid ""
-"Content Size: for editorial content, includes search scope selection and "
-"advanced features. Full Grid: for wide teaser components, simple search only."
-msgstr ""
-"Inhaltsgröße: für redaktionelle Inhalte, mit Auswahl des Suchbereichs und "
-"erweiterten Funktionen. Volles Raster: für breite Teaser-Komponenten, nur "
-"einfache Suche."
+msgid "Content Size: for editorial content, includes search scope selection and advanced features. Full Grid: for wide teaser components, simple search only."
+msgstr "Inhaltsgröße: für redaktionelle Inhalte, mit Auswahl des Suchbereichs und erweiterten Funktionen. Volles Raster: für breite Teaser-Komponenten, nur einfache Suche."
 
 #: build/block/index.js:1
 msgid "Advanced Search options"
@@ -429,17 +373,32 @@ msgstr "Suchen…"
 msgid "Search"
 msgstr "Suche"
 
-#~ msgid "Portale"
-#~ msgstr "Portale"
+#: includes/Infrastructure/ResultsPage.php:83
+msgid "The search results page is currently being created."
+msgstr "Die Suchergebnisseite wird gerade erstellt."
 
-#~ msgid "Mein Campus"
-#~ msgstr "Mein Campus"
+#: includes/Infrastructure/ResultsPage.php:111
+msgid "The RRZE Search results page could not be restored from the Trash."
+msgstr "Die Suchergebnisseite von RRZE Search konnte nicht aus dem Papierkorb wiederhergestellt werden."
 
-#~ msgid "UnivIS"
-#~ msgstr "UnivIS"
+#: includes/Infrastructure/ResultsPage.php:121
+#: includes/Infrastructure/Settings/OptionFieldRenderer.php:118
+msgid "The RRZE Search results page could not be loaded."
+msgstr "Die Suchergebnisseite von RRZE Search konnte nicht geladen werden."
 
-#~ msgid "Lageplan"
-#~ msgstr "Lageplan"
+#: includes/Infrastructure/ResultsPage.php:246
+msgid "RRZE Search system page"
+msgstr "RRZE Search-Systemseite"
 
-#~ msgid "Search suggestions"
-#~ msgstr "Suchempfehlungen"
+#: includes/Infrastructure/ResultsPage.php:275
+msgid "The RRZE Search system page no longer contains the results shortcode. Add [rrze_search_results] to the page so that search results can be displayed."
+msgstr "Die Systemseite von RRZE Search enthält den Ergebnis-Shortcode nicht mehr. Fügen Sie [rrze_search_results] in die Seite ein, damit Suchergebnisse angezeigt werden können."
+
+#: includes/Infrastructure/ResultsPage.php:279
+#: includes/Infrastructure/Templates/admin-results-page-input.php:12
+msgid "Edit search results page"
+msgstr "Suchergebnisseite bearbeiten"
+
+#: includes/Infrastructure/Templates/admin-results-page-input.php:16
+msgid "View search results page"
+msgstr "Suchergebnisseite ansehen"

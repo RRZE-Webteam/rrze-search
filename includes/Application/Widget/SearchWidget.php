@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Domain\Contract\Engine;
 use RRZE\RRZESearch\Infrastructure\Helper\Helper;
+use RRZE\RRZESearch\Infrastructure\ResultsPage;
 use RRZE\RRZESearch\Infrastructure\UsageLimiter;
 use WP_Widget;
 
@@ -284,11 +285,18 @@ class SearchWidget extends WP_Widget
 
         $engineClass = $engineEntry['resource_class'];
         $class = new $engineClass();
-        $results_page = $class->getRedirectLink();
+        $engineRedirectLink = $class->getRedirectLink();
+        $isLocalSearch = $engineRedirectLink === '/';
+        $results_page = $isLocalSearch ? $engineRedirectLink : ResultsPage::getUrl();
+
+        if ($results_page === null) {
+            wp_safe_redirect(add_query_arg('rrze_search_error', 'results_page_unavailable', wp_get_referer() ?: home_url('/')));
+            exit;
+        }
 
         $searchTerm = isset($_POST['s']) ? sanitize_text_field(wp_unslash($_POST['s'])) : '';
 
-        $_q = ($class->getRedirectLink() !== '/') ? 'q' : 's';
+        $_q = $isLocalSearch ? 's' : 'q';
 
         // Ensure you're using $_POST['s'] for the q(uery) value, prior to redirect
         $redirect_link = add_query_arg(
@@ -296,7 +304,7 @@ class SearchWidget extends WP_Widget
             $results_page
         );
 
-        wp_redirect($redirect_link);
+        wp_safe_redirect($redirect_link);
         exit;
     }
 

@@ -16,7 +16,13 @@ $pluginWidget = 'widget_'.$pluginId;
 // Remove Search Results Page
 $options = get_option($pluginOption);
 if (isset($options['rrze_search_page_id'])) {
-    wp_delete_post((int)$options['rrze_search_page_id'], true);
+    $resultsPageId = (int) $options['rrze_search_page_id'];
+    $isManagedResultsPage = get_post_type($resultsPageId) === 'page'
+        && get_post_meta($resultsPageId, '_rrze_search_managed_page', true) === '1';
+
+    if ($isManagedResultsPage) {
+        wp_delete_post($resultsPageId, true);
+    }
 }
 
 // WP Delete Plugin Option

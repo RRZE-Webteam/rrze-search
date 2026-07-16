@@ -45,7 +45,7 @@ class GoogleSearch extends AbstractSearchEngine
 {
     const NAME = 'Google Custom Search';
 
-    const REDIRECT_LINK = '/rrze_search_page';
+    const REDIRECT_LINK = '';
 
     // Constant Options fpr our Search
     // See also https://developers.google.com/custom-search/v1/cse/list

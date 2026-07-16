@@ -7,7 +7,6 @@ use RRZE\RRZESearch\Application\Controller\ShortcodeController;
 use RRZE\RRZESearch\Application\Controller\WidgetController;
 use RRZE\RRZESearch\Infrastructure\DashboardWidget;
 use RRZE\RRZESearch\Infrastructure\UsageLimiter;
-use UTN\BiteEmbed\Block;
 
 /**
  * Facade that wires the RRZE Search plugin services into WordPress.
@@ -28,6 +27,7 @@ class ServiceProvider
     public static function getServices(): array
     {
         return [
+            ResultsPage::class,
             SettingsPage::class,
             ScriptEnqueuer::class,
             SettingsLink::class,
@@ -66,16 +66,17 @@ class ServiceProvider
      */
     public static function activate(): void
     {
-        flush_rewrite_rules();
-
         if (!get_option('rrze_search_settings')) {
             update_option('rrze_search_settings', [
                 'rrze_search_resources' => [],
-                'rrze_search_engines' => []
+                'rrze_search_engines' => [],
+                'rrze_search_page_id' => 0,
+                'rrze_search_default_engine' => '',
             ]);
         }
 
-        self::updateResultsPageStatus('publish');
+        ResultsPage::ensureExists();
+        flush_rewrite_rules();
     }
 
     /**
@@ -88,30 +89,7 @@ class ServiceProvider
      */
     public static function deactivate(): void
     {
+        ResultsPage::setStatus('private');
         flush_rewrite_rules();
-        self::updateResultsPageStatus('private');
-    }
-
-    /**
-     * Updates the stored results page post status while preserving settings.
-     *
-     * @param string $status WordPress post status to assign (for example 'publish' or 'private').
-     *
-     * @return void
-     */
-    private static function updateResultsPageStatus(string $status): void
-    {
-        $options = get_option('rrze_search_settings');
-
-        if (!empty($options['rrze_search_page_id'])) {
-            $pageId = $options['rrze_search_page_id'];
-
-            if ($pageId !== '') {
-                $page = get_post($pageId, 'ARRAY_A');
-                $page['post_status'] = $status;
-            }
-
-            wp_update_post($page);
-        }
     }
 }

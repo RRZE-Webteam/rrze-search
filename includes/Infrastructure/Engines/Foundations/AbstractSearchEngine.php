@@ -37,6 +37,7 @@ namespace RRZE\RRZESearch\Infrastructure\Engines\Foundations;
 defined( 'ABSPATH' ) || exit;
 
 use RRZE\RRZESearch\Domain\Contract\Engine;
+use RRZE\RRZESearch\Infrastructure\ResultsPage;
 
 /**
  * Abstract search engine base class
@@ -58,7 +59,7 @@ abstract class AbstractSearchEngine implements Engine
      *
      * @var string
      */
-    const REDIRECT_LINK = 'Abstract redirect link';
+    const REDIRECT_LINK = '';
 
     /**
      * Search engine label (with optional placeholder %s for link label)
@@ -90,7 +91,11 @@ abstract class AbstractSearchEngine implements Engine
      */
     public static function getRedirectLink(): string
     {
-        return static::REDIRECT_LINK;
+        if (static::REDIRECT_LINK === '/') {
+            return '/';
+        }
+
+        return ResultsPage::getUrl() ?? home_url('/');
     }
 
     /**

@@ -47,7 +47,7 @@ final class BlockRender
 
         $actionUrl = self::sanitizeActionUrl($rawTargetUrl);
         if ($rawTargetUrlTrimmed === '') {
-            $resultsUrl = self::resolveResultsPageUrl($settings);
+            $resultsUrl = ResultsPage::getUrl();
             if ($resultsUrl !== null) {
                 $actionUrl = $resultsUrl;
             }
@@ -300,35 +300,6 @@ final class BlockRender
         }
 
         return $keys[0];
-    }
-
-    /**
-     * Resolve the configured multisearch results page URL.
-     *
-     * @param mixed $settings RRZE Search option array if already loaded.
-     * @return string|null
-     */
-    private static function resolveResultsPageUrl($settings): ?string
-    {
-        if (!is_array($settings)) {
-            $settings = get_option('rrze_search_settings');
-        }
-
-        if (!is_array($settings)) {
-            return null;
-        }
-
-        $pageId = isset($settings['rrze_search_page_id']) ? absint($settings['rrze_search_page_id']) : 0;
-        if ($pageId <= 0) {
-            return null;
-        }
-
-        $permalink = get_permalink($pageId);
-        if (is_string($permalink) && $permalink !== '') {
-            return $permalink;
-        }
-
-        return null;
     }
 
     /**

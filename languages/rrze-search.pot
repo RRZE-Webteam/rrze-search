@@ -2,14 +2,14 @@
 # This file is distributed under the GPL3.
 msgid ""
 msgstr ""
-"Project-Id-Version: RRZE Search 1.0.3\n"
+"Project-Id-Version: RRZE Search 1.0.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rrze-search\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-22T13:41:53+00:00\n"
+"POT-Creation-Date: 2026-07-16T07:01:31+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: rrze-search\n"
@@ -35,15 +35,15 @@ msgstr ""
 msgid "Tollwerk & RRZE"
 msgstr ""
 
-#: includes/Application/Widget/SearchWidget.php:106
+#: includes/Application/Widget/SearchWidget.php:107
 msgid "RRZE Search Sidebar"
 msgstr ""
 
-#: includes/Application/Widget/SearchWidget.php:108
+#: includes/Application/Widget/SearchWidget.php:109
 msgid "Used to display the widget"
 msgstr ""
 
-#: includes/Application/Widget/SearchWidget.php:189
+#: includes/Application/Widget/SearchWidget.php:190
 msgid "Default Search Engine"
 msgstr ""
 
@@ -130,26 +130,44 @@ msgstr ""
 msgid "Your Label with Translation Support"
 msgstr ""
 
+#: includes/Infrastructure/ResultsPage.php:83
+msgid "The search results page is currently being created."
+msgstr ""
+
+#: includes/Infrastructure/ResultsPage.php:111
+msgid "The RRZE Search results page could not be restored from the Trash."
+msgstr ""
+
+#: includes/Infrastructure/ResultsPage.php:121
+#: includes/Infrastructure/Settings/OptionFieldRenderer.php:118
+msgid "The RRZE Search results page could not be loaded."
+msgstr ""
+
+#: includes/Infrastructure/ResultsPage.php:246
+msgid "RRZE Search system page"
+msgstr ""
+
+#: includes/Infrastructure/ResultsPage.php:275
+msgid "The RRZE Search system page no longer contains the results shortcode. Add [rrze_search_results] to the page so that search results can be displayed."
+msgstr ""
+
+#: includes/Infrastructure/ResultsPage.php:279
+#: includes/Infrastructure/Templates/admin-results-page-input.php:12
+msgid "Edit search results page"
+msgstr ""
+
+#: includes/Infrastructure/ResultsPage.php:344
+msgid "Global Search Results"
+msgstr ""
+
+#: includes/Infrastructure/ResultsPage.php:347
+msgid "Search Result Page utilized by RRZE Search Plugin"
+msgstr ""
+
 #: includes/Infrastructure/RRZESearchSettingsExtender.php:400
 #: includes/Infrastructure/RRZESearchSettingsExtender.php:458
 #: includes/Infrastructure/RRZESearchSettingsExtender.php:558
 msgid "Native WordPress search results"
-msgstr ""
-
-#: includes/Infrastructure/Settings/OptionFieldRenderer.php:115
-msgid "Global Search Results"
-msgstr ""
-
-#: includes/Infrastructure/Settings/OptionFieldRenderer.php:118
-msgid "Search Result Page utilized by RRZE Search Plugin"
-msgstr ""
-
-#: includes/Infrastructure/Settings/OptionFieldRenderer.php:128
-msgid "Oh no! Someone deleted the results Page! No worries, Another one will be generated when you click [ Save Changes ]"
-msgstr ""
-
-#: includes/Infrastructure/Settings/OptionFieldRenderer.php:132
-msgid "Search Results Page doesn't exist, yet! No worries, one will be generated when you click [ Save Changes ]"
 msgstr ""
 
 #: includes/Infrastructure/Settings/SectionRenderer.php:23
@@ -252,6 +270,10 @@ msgstr ""
 
 #: includes/Infrastructure/Templates/admin-engine-toggle.php:71
 msgid "disabled"
+msgstr ""
+
+#: includes/Infrastructure/Templates/admin-results-page-input.php:16
+msgid "View search results page"
 msgstr ""
 
 #: includes/Infrastructure/Templates/Results/Error-NoQuery.php:6

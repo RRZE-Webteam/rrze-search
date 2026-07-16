@@ -6,6 +6,7 @@ defined( 'ABSPATH' ) || exit;
 use RRZE\RRZESearch\Domain\Contract\Engine;
 use RRZE\RRZESearch\Infrastructure\UsageLimiter;
 use RRZE\RRZESearch\Infrastructure\Engines\Foundations\WordPressSearch;
+use RRZE\RRZESearch\Infrastructure\ResultsPage;
 
 /**
  * Renders the RRZE Search results via the `[rrze_search_results]` shortcode.
@@ -78,7 +79,7 @@ class ResultsShortcode
             $engineIndexByResourceId[$resourceId] = (int) $index;
         }
 
-        $pageLink     = get_permalink($this->options['rrze_search_page_id']);
+        $pageLink     = ResultsPage::getUrl() ?? home_url('/');
         $templatesDir = DIRECTORY_SEPARATOR.'Infrastructure'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR;
 
         $query = '';
